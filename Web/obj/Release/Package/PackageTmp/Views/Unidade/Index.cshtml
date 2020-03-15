@@ -3,52 +3,6 @@
 @{
     ViewData["Title"] = "Unidade";
 }
-
-<head>
-    <style>
-        nav.clean {
-            background: none;
-            box-shadow: none;
-        }
-
-            nav.clean .breadcrumb {
-                color: black;
-            }
-
-                nav.clean .breadcrumb:before {
-                    color: rgba(0, 0, 0, 0.7);
-                }
-
-        .breadcrumb {
-            color: black;
-            font-size: 15px;
-        }
-
-        .btn-flat {
-            background-color: #af2405;
-            color: #fff
-        }
-
-        .btn {
-            background-color: #af2405;
-        }
-
-            .btn:hover {
-                background-color: #7c1a04;
-            }
-        /* INPUT COLOR */
-        .input-field input:focus + label {
-            color: #af2405 !important;
-        }
-
-        .row .input-field input:focus {
-            border-bottom: 1px solid #af2405 !important;
-            box-shadow: 0 1px 0 0 #af2405 !important
-        }
-    </style>
-
-</head>
-
 <nav class="clean container">
     <div class="nav-wrapper">
         <div class="col s12">
@@ -175,8 +129,6 @@
         </tbody>
     </table>
 }
-
-
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -240,8 +192,6 @@
                 <input id="idEditar" style="display: none;" />
             </form>
         </div>
-
-
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
@@ -314,11 +264,10 @@
     <div class="modal-footer">
         <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
-
     </div>
 </div>
+
 @section scripts{
-    <script src="js/main.js"></script>
     <script>
         let valorId;
         let valorDescricao;
@@ -417,10 +366,10 @@
                      url: "@Url.Action("BuscaCep","Unidade")",
                      data: { cep: cep },
                      success: function (dados) {
-                         document.getElementById('bairroEditar').value = dados.bairro;
-                         document.getElementById('enderecoEditar').value = dados.endereco ;
-                         document.getElementById('cidadeEditar').value = dados.cidade ;
-                         document.getElementById('estadoEditar').value = dados.estado ;
+                         document.getElementById('bairroEditar').value = dados.Bairro;
+                         document.getElementById('enderecoEditar').value = dados.Endereco ;
+                         document.getElementById('cidadeEditar').value = dados.Cidade ;
+                         document.getElementById('estadoEditar').value = dados.Estado ;
                          }
                 })
             });
@@ -434,10 +383,10 @@
                      url: "@Url.Action("BuscaCep","Unidade")",
                      data: { cep: cep },
                      success: function (dados) {
-                         document.getElementById('bairro').value = dados.bairro;
-                         document.getElementById('endereco').value = dados.endereco ;
-                         document.getElementById('cidade').value = dados.cidade ;
-                         document.getElementById('estado').value = dados.estado ;
+                         document.getElementById('bairro').value = dados.Bairro;
+                         document.getElementById('endereco').value = dados.Endereco ;
+                         document.getElementById('cidade').value = dados.Cidade ;
+                         document.getElementById('estado').value = dados.Estado ;
                          }
                 })
             });

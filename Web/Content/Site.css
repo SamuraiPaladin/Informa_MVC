@@ -110,3 +110,17 @@ nav.clean {
     border-bottom: 1px solid #af2405 !important;
     box-shadow: 0 1px 0 0 #af2405 !important
 }
+
+/* SCROLLBAR */
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}

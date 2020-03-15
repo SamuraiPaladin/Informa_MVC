@@ -21,7 +21,6 @@ namespace Web
 
             bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
                       "~/Scripts/materialize/materialize.min.js",
-                      "~/Scripts/materialize/main.js",
                       "~/Scripts/materialize/menu.js",
                       "~/Scripts/materialize/site.js",
                       "~/Scripts/materialize/temperaturaAndLocale.js",
