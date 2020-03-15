@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"] - inForma</title>
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
+
+    <style>
+        /* SCROLLBAR */
+        ::-webkit-scrollbar-track {
+            background-color: #F4F4F4;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            background: #F4F4F4;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #dad7d7;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- TOP SIDE -->
+    <nav style="background-color: #af2405;">
+        <div class="nav-wrapper row container" style="background-color: #af2405;">
+            <ul class="left hide-on-med-and-down">
+                <li>
+                    <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large">
+                        <i class="material-icons">menu</i>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Principal" asp-action="Index" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
+                </li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a asp-controller="Principal" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Unidade" asp-action="Index">Unidade</a></li>
+                <li><a asp-controller="Modalidade" asp-action="Index">Modalidade</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background" style="background-color: #af2405;">
+                    <img src="~/imgs/icon-informa.png">
+                </div>
+                <a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
+                <a href="#name"><span class="white-text name">John Dee</span></a>
+                <a href="#email"><span class="white-text email"><strong>Recepcionista</strong> - Osasco</span></a>
+            </div>
+        </li>
+        <li><a class="subheader">Módulos</a></li>
+        <li>
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons" style="color: grey;">edit</i>
+                        <strong>Cadastros</strong>
+                        <i class="material-icons right" id="arrow">arrow_drop_down</i>
+                    </div>
+
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a class="" asp-controller="Unidade" asp-action="Index"><span class="insideLink">Unidade</span></a>
+                            </li>
+                            <li>
+                                <a class="" asp-controller="Modalidade" asp-action="Index"><span class="insideLink">Modalidade</span></a>
+                            </li>
+                            <li>
+                                <a class="" asp-controller="Funcao" asp-action="Index"><span class="insideLink">Função</span></a>
+                            </li>
+                            <li>
+                                <a class="" asp-controller="Colaborador" asp-action="Index"><span class="insideLink">Colaborador</span></a>
+                            </li>
+                            <li>
+                                <a class="" asp-controller="Aluno" asp-action="Index"><span class="insideLink">Aluno</span></a>
+                            </li>
+                            <li>
+                                <a class="" asp-controller="Fornecedor" asp-action="Index"><span class="insideLink">Fornecedor</span></a>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-blue" asp-controller="Turma" asp-action="Index"><span class="insideLink">Turma</span></a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons" style="color: grey;">money</i>
+                        <strong>Financeiro</strong>
+                        <i class="material-icons right" id="arrow">arrow_drop_down</i>
+                    </div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a class="" href="matricula/gerenciarPagamento.html"><span class="insideLink">Gerenciar Pagamento</span></a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons" style="color: grey;">edit</i>
+                        <strong>Estoque</strong>
+                        <i class="material-icons right" id="arrow">arrow_drop_down</i>
+                    </div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a class=""><span class="insideLink">Link</span></a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+
+        <li><a class="subheader">Outro submenu</a></li>
+
+    </ul>
+
+
+    <div class="row">
+        @RenderBody()
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - inForma
+        </div>
+    </footer>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/materialize/materialize.min.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
