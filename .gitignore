@@ -4,3 +4,6 @@
 
 /.vs/Informa_MVC/v16
 /.vs
+/.vs/informa/config
+/Model/bin/Debug/netstandard2.0
+/Model/obj
