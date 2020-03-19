@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Guilherme\\Desktop\\Projetos\\inForma\\Model\\Model.csproj": {}
+    "C:\\Projetos\\Informa_MVC\\Model\\Model.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Guilherme\\Desktop\\Projetos\\inForma\\Model\\Model.csproj": {
+    "C:\\Projetos\\Informa_MVC\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Guilherme\\Desktop\\Projetos\\inForma\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Projetos\\Informa_MVC\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\Guilherme\\Desktop\\Projetos\\inForma\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\Guilherme\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Guilherme\\Desktop\\Projetos\\inForma\\Model\\obj\\",
+        "projectPath": "C:\\Projetos\\Informa_MVC\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Informa_MVC\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Guilherme\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
