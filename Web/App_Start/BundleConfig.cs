@@ -21,10 +21,10 @@ namespace Web
 
             bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
                       "~/Scripts/materialize/materialize.min.js",
-                      "~/Scripts/materialize/menu.js",
-                      "~/Scripts/materialize/site.js",
-                      "~/Scripts/materialize/temperaturaAndLocale.js",
-                      "~/Scripts/materialize/tempo.js"
+                      "~/Scripts/menu.js",
+                      "~/Scripts/site.js",
+                      "~/Scripts/temperaturaAndLocale.js",
+                      "~/Scripts/tempo.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -36,6 +36,7 @@ namespace Web
                       "~/Content/cadastro.css",
                       "~/Content/gerenciarPagamento.css",
                       "~/Content/public.css",
+                      "~/Content/weather-icons-master/css/weather-icons.min.css",
                       "~/Content/Site.css"));
         }
     }

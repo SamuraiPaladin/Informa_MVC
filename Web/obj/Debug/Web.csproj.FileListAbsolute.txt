@@ -469,3 +469,4 @@ C:\Projetos\Informa_MVC\Web\bin\pt-BR\Microsoft.Data.SqlClient.resources.dll
 C:\Projetos\Informa_MVC\Web\bin\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Projetos\Informa_MVC\Web\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Projetos\Informa_MVC\Web\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache

@@ -384,8 +384,6 @@ C:\Projetos\Informa_MVC\Web\bin\Antlr3.Runtime.dll
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Bcl.HashCode.dll
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Projetos\Informa_MVC\Web\bin\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Projetos\Informa_MVC\Web\bin\Microsoft.EntityFrameworkCore.dll
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Extensions.Caching.Memory.dll
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -421,8 +419,6 @@ C:\Projetos\Informa_MVC\Web\bin\WebGrease.dll
 C:\Projetos\Informa_MVC\Web\bin\Model.pdb
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Bcl.HashCode.xml
-C:\Projetos\Informa_MVC\Web\bin\Microsoft.EntityFrameworkCore.xml
-C:\Projetos\Informa_MVC\Web\bin\Microsoft.EntityFrameworkCore.Abstractions.xml
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Extensions.Caching.Abstractions.xml
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Extensions.Caching.Memory.xml
 C:\Projetos\Informa_MVC\Web\bin\Microsoft.Extensions.Configuration.xml
@@ -456,3 +452,18 @@ C:\Projetos\Informa_MVC\Web\obj\Release\Web.csprojAssemblyReference.cache
 C:\Projetos\Informa_MVC\Web\obj\Release\Web.csproj.CopyComplete
 C:\Projetos\Informa_MVC\Web\obj\Release\Web.dll
 C:\Projetos\Informa_MVC\Web\obj\Release\Web.pdb
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.Data.SqlClient.dll
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.Identity.Client.dll
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.Data.SqlClient.pdb
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.Identity.Client.xml
+C:\Projetos\Informa_MVC\Web\bin\de\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\es\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\fr\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\it\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\ja\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\ko\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\pt-BR\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\ru\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Projetos\Informa_MVC\Web\obj\Release\Web.csproj.CoreCompileInputs.cache

@@ -15,14 +15,11 @@ function getTemperatura(latitude, longitude) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`)
         .then(function (resp) { return resp.json() })
         .then(function (data) {
-            console.log(data)
             localeComputer.innerText = data.name;
             graus.innerText = Math.round(data.main.temp - 273.15);
             var geticon = data.weather[0].icon
             var newimg = `https://openweathermap.org/img/wn/${geticon}@2x.png`;
             icon.src = newimg
-            console.log(newimg)
-            console.log(icon)
         })
         .catch(function () {
 
