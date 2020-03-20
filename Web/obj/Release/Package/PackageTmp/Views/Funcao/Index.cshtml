@@ -1,0 +1,255 @@
+﻿@model IList<Model.Entity.Funcao>
+@{
+    ViewData["Title"] = "Cargos";
+}
+<!-- BREADCRUMB -->
+<nav class="clean container">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+            <a href="#" class="breadcrumb">Cadastro</a>
+            <a href="@Url.Action("Index", "Funcao")" class="breadcrumb"><strong>Cargo</strong></a>
+        </div>
+    </div>
+</nav>
+
+<div class="row container">
+    <div class="col s12 l12">
+        <a class="btn waves-effect waves-light modal-trigger right" href="#cadastrarCargo">Cadastrar Cargo</a>
+    </div>
+</div>
+
+<div id="cadastrarCargo" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Cadastrar Cargo</h4>
+        </div>
+
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioAdicionar">
+                <div class="input-field col s6">
+                    <input placeholder="Ex:Recepcionista, contadora..." id="funcao" type="text" class="validate">
+                    <label for="funcao">Nome do Cargo</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Limpeza das piscinas, manutenção" id="descricao" type="text" class="validate">
+                    <label for="descricao">Descrição</label>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+    </div>
+</div>
+
+<div class="row container">
+    <div class="col s12 l12">
+
+        @if (Model.Count > 0)
+        {
+            <table class="highlight centered tabela">
+                <thead>
+                    <tr>
+                        <th>Cargo</th>
+                        <th>Descrição</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@item.TipoFuncao</td>
+                            <td>@item.Descricao</td>
+                            <td>
+                                <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.TipoFuncao', '@item.Descricao', '@item.Id','Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                                <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.TipoFuncao', '@item.Descricao', '@item.Id','Deletar')"><i class="material-icons">delete_forever</i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        }
+    </div>
+</div>
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="editarCargoModal"></h4>
+        </div>
+
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioEditar">
+                <div class="input-field col s6">
+                    <input placeholder="Ex:Recepcionista, contadora..." id="funcaoEditar" type="text" class="validate">
+                    <label for="funcaoEditar">Nome da Cargo</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Limpeza das piscinas, manutenção" id="descricaoEditar" type="text" class="validate">
+                    <label for="descricaoEditar">Descrição</label>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
+</div>
+
+
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="deletarCargoModal"></h4>
+        </div>
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioDeletar">
+                <div class="input-field col s6">
+                    <input id="funcaoDeletar" type="text" class="validate" placeholder="Ex:Recepcionista, contadora..." disabled>
+                    <label for="funcaoDeletar">Nome da Cargo</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input id="descricaoDeletar" type="text" class="validate" placeholder="Ex: Limpeza das piscinas, manutenção" disabled>
+                    <label for="descricaoDeletar">Descrição</label>
+                </div>
+                <input id="idDeletar" style="display: none;" />
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var valorFuncao;
+        var valorDescricao;
+        var valorId;
+        function Adicionar() {
+            var funcao = { TipoFuncao: document.getElementById("funcao").value, Descricao: document.getElementById("descricao").value, Ativo: true };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Funcao")",
+                     data: { funcao: funcao},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        function EditarModal(funcao, descricao, id, model) {
+            valorFuncao = funcao;
+            valorDescricao = descricao;
+            valorId = id;
+            if (model === 'Editar') {
+                document.getElementById("funcaoEditar").value = funcao;
+                document.getElementById("descricaoEditar").value = descricao;
+                document.getElementById("idEditar").value = id;
+                document.getElementById("editarCargoModal").innerText = "Editar Cargo " + funcao;
+            } else {
+                document.getElementById("funcaoDeletar").value = funcao;
+                document.getElementById("descricaoDeletar").value = descricao;
+                document.getElementById("idDeletar").value = id;
+                document.getElementById("deletarCargoModal").innerText = "Tem certeza que deseja deletar o cargo " + funcao + "?";
+
+            }
+        }
+        function Editar(funcao, descricao) {
+            var funcao = { TipoFuncao: valorFuncao, Descricao: valorDescricao };
+            var funcaoEditar = { TipoFuncao: document.getElementById("funcaoEditar").value, Descricao: document.getElementById("descricaoEditar").value, Ativo: true, Id : document.getElementById("idEditar").value };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Funcao")",
+                     data: { funcao: funcao, funcaoEditar: funcaoEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        function Adicionar() {
+            var funcao = { TipoFuncao: document.getElementById("funcao").value, Descricao: document.getElementById("descricao").value, Ativo: true };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Funcao")",
+                     data: { funcao: funcao },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        function Deletar() {
+            var funcao = { TipoFuncao: document.getElementById("funcaoDeletar").value, Descricao: document.getElementById("descricaoDeletar").value, Ativo: true, Id: document.getElementById("idDeletar").value };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Deletar","Funcao")",
+                     data: { funcao: funcao},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+    </script>
+
+}
