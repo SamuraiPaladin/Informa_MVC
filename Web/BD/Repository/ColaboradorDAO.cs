@@ -135,69 +135,85 @@ namespace Web.BD.Repository
             throw new NotImplementedException();
         }
 
-        public List<ColaboradorFormViewModel> ReturnColaboradorFormViewModel()
+        public List<Funcao> ReturnColaboradorFormViewModel()
         {
-            string query = "SELECT * FROM Colaboradores Order by Nome";
-            string query2 = "SELECT * FROM Funcoes Order by Descricao";
-
-            List<ColaboradorFormViewModel> lista = new List<ColaboradorFormViewModel>();
-            List<Colaborador> colaboradores = new List<Colaborador>();
-            List<Funcao> funcoes = new List<Funcao>();
-
+            string query = "SELECT * FROM Funcoes Order by Descricao";
+            List<Funcao> lista = new List<Funcao>();
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
-                SqlCommand cmdFunc = new SqlCommand(query2, con);
-
                 SqlDataReader sdr = cmd.ExecuteReader();
-        
                 if (sdr.HasRows)
-                {
-                    while (sdr.Read())
-                    {
-                        var model = new Colaborador
-                        {
-                            Nome = sdr["Nome"].ToString(),
-                            DataNascimento = sdr["DataNascimento"].ToString(),
-                            CPF = sdr["CPF"].ToString(),
-                            RG = sdr["RG"].ToString(),
-                            Endereco = sdr["Endereco"].ToString(),
-                            CEP = sdr["CEP"].ToString(),
-                            Numero = sdr["Numero"].ToString(),
-                            Bairro = sdr["Bairro"].ToString(),
-                            Cidade = sdr["Cidade"].ToString(),
-                            Estado = sdr["Estado"].ToString(),
-                            Telefone = sdr["Telefone"].ToString(),
-                            FuncaoId = (int)sdr["FuncaoId"],
-                        };
-                        colaboradores.Add(model);
-                    }
-                }
-                con.Close();
-
-                con.Open();
-                SqlDataReader sdrFunc = cmdFunc.ExecuteReader();
-
-                if (sdrFunc.HasRows)
                 {
                     while (sdr.Read())
                     {
                         var model = new Funcao
                         {
+                            Ativo = Convert.ToBoolean(sdr["Ativo"]),
                             Descricao = sdr["Descricao"].ToString(),
-                            TipoFuncao = sdr["TipoFuncao"].ToString(),
-                            Ativo = (bool)sdr["Ativo"]
+                            TipoFuncao = sdr["TipoFuncao"].ToString()
                         };
-                        funcoes.Add(model);
+                        lista.Add(model);
                     }
                 }
-
-                var listaColaboradorEFuncao = new ColaboradorFormViewModel() { Colaboradores = colaboradores, Funcoes = funcoes };
-                lista.Add(listaColaboradorEFuncao);
-
                 return lista;
             }
+
+
+
+            //string query = "SELECT * FROM Funcoes Order by Descricao";
+            //List<Funcao> funcoes = new List<Funcao>();
+            //using (var con = new SqlConnection(stringConexao))
+            //{
+            //con.Open();
+            //SqlCommand cmd = new SqlCommand(query, con);
+            //SqlDataReader sdr = cmd.ExecuteReader();
+
+            //if (sdr.HasRows)
+            //{
+            //    while (sdr.Read())
+            //    {
+            //        var model = new Colaborador
+            //        {
+            //            Nome = sdr["Nome"].ToString(),
+            //            DataNascimento = sdr["DataNascimento"].ToString(),
+            //            CPF = sdr["CPF"].ToString(),
+            //            RG = sdr["RG"].ToString(),
+            //            Endereco = sdr["Endereco"].ToString(),
+            //            CEP = sdr["CEP"].ToString(),
+            //            Numero = sdr["Numero"].ToString(),
+            //            Bairro = sdr["Bairro"].ToString(),
+            //            Cidade = sdr["Cidade"].ToString(),
+            //            Estado = sdr["Estado"].ToString(),
+            //            Telefone = sdr["Telefone"].ToString(),
+            //            FuncaoId = (int)sdr["FuncaoId"],
+            //        };
+            //        colaboradores.Add(model);
+            //    }
+            //}
+            //con.Close();
+
+            //con.Open();
+            //SqlCommand cmd = new SqlCommand(query, con);
+            //var sdrFunc = cmd.ExecuteScalar();
+
+            //if (sdrFunc.HasRows)
+            //{
+            //    while (sdrFunc.Read())
+            //    {
+            //        var model = new Funcao
+            //        {
+            //            Descricao = sdrFunc["Descricao"].ToString(),
+            //            TipoFuncao = sdrFunc["TipoFuncao"].ToString(),
+            //            Ativo = (bool)sdrFunc["Ativo"]
+            //        };
+            //        funcoes.Add(model);
+            //    }
+            //}
+
+            //return funcoes;
+        //}
         }
         public bool VerificarSeJaExiste(Colaborador entity)
         {
