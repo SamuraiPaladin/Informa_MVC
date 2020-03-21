@@ -35,20 +35,21 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Cargo</a>
+                    @*<a class='dropdown-trigger btn' href='#' data-target='funcao'>Cargo</a>
                     <!-- Dropdown Structure -->
-                    <ul id='dropdown1' class='dropdown-content'>
+                    <ul id="funcao" class='dropdown-content'>
                         @foreach (var item in Model.ListaFuncao)
                         {
                             <li><a href="dropDownSelecionado(@item.TipoFuncao)">@item.TipoFuncao</a></li>
+
                         }
-                    </ul>
+                    </ul>*@
 
-                    @*<select id="funcao" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+                    <select id="funcao" class="validate" asp-items="@(new SelectList(Model.ListaFuncao, "Id", "TipoFuncao"))">
                         </select>
-                        <label for="funcao">Cargo</label>*@
-                </div>
+                        <label for="funcao">Cargo</label>
 
+                </div>
                 @*<div class="input-field col s6">
                         <input type="date" id="datadenascimento" class="validate">
                         <label for="datadenascimento">Data de Nascimento</label>
@@ -88,126 +89,148 @@
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
-@*
-    @if (Model.Count > 0)
-    {
-        <table class="table highlight centered container ">
-            <thead>
+
+@if (Model.ListaColaborador.Count > 0)
+{
+    <table class="table highlight centered container ">
+        <thead>
+            <tr>
+                <th>Colaborador</th>
+                <th>Cargo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListaColaborador)
+            {
                 <tr>
-                    <th>Colaborador</th>
-                    <th>Cargo</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    @foreach (var colaborador in item.Colaboradores)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => colaborador.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => colaborador.Funcao.TipoFuncao)
-                            </td>
-                            <td>
-                                <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@colaborador.Id', '@colaborador.Nome', '@colaborador.Funcao.Id',
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Funcao.TipoFuncao)
+                    </td>
+                    <td>
+                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
                                                                                                                                                       'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                                <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@colaborador.Id', '@colaborador.Nome', '@colaborador.Funcao.Id',
+                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
                                                                                                                                                       'Deletar')"><i class="material-icons">delete_forever</i></a>
-                            </td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    }
-
-
-    <div id="modalEditar" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 id="editarColaboradorNome"></h4>
-            </div>
-            @foreach (var item in Model)
-            {
-                <div class="col s12 l12">
-                    <form class="col s12 l12">
-                        <div class="input-field col s6">
-                            <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeEditar" type="text" class="validate">
-                            <label for="nomeEditar">Nome do Funcionário</label>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <select id="funcaoEditar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
-                                <option value="" disabled selected>Selecione uma função</option>
-                            </select>
-                            <label for="funcaoEditar">Cargo</label>
-                        </div>
-                        <div id="modalCadastroColaborador" class="modal">
-                            <div class="modal-content">
-                                <h4 class="flow-text center">Colaborador Cadastrado!</h4>
-                                <p class="center">Clique em "SAIR" para voltar a página principal.</p>
-
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
-                            </div>
-                        </div>
-                        <input id="idEditar" style="display: none;" />
-                    </form>
-                </div>
+                    </td>
+                </tr>
             }
+        </tbody>
+    </table>
+}
+
+
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="editarColaboradorNome"></h4>
         </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
-        </div>
+
+            <div class="col s12 l12">
+                <form class="col s12 l12">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeEditar" type="text" class="validate">
+                        <label for="nomeEditar">Nome do Funcionário</label>
+                    </div>
+
+                    @*<div class="input-field col s6">
+            <select id="funcaoEditar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+                <option value="" disabled selected>Selecione uma função</option>
+            </select>
+            <label for="funcaoEditar">Cargo</label>
+        </div>*@
+                    <div class="input-field col s6">
+                        <a class='dropdown-trigger btn' href='#' data-target='funcaoEditar'>Cargo</a>
+                        <!-- Dropdown Structure -->
+                        <ul id="funcaoEditar" class='dropdown-content'>
+                            @foreach (var item in Model.ListaFuncao)
+                            {
+                                <li><a href="dropDownSelecionado(@item.TipoFuncao)">@item.TipoFuncao</a></li>
+
+                            }
+                        </ul>
+
+                        @*<select id="funcao" class="validate" asp-items="@(new SelectList(Model.ListaFuncao, "Id", "TipoFuncao"))">
+            </select>
+            <label for="funcao">Cargo</label>*@
+
+                    </div>
+
+                    <div id="modalCadastroColaborador" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Colaborador Cadastrado!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                        </div>
+                    </div>
+                    <input id="idEditar" style="display: none;" />
+                </form>
+            </div>
+        
     </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
+</div>
 
 
-    <div id="modalDeletar" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 id="deletarColaboradorNome"></h4>
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="deletarColaboradorNome"></h4>
+        </div>
+    
+
+            <div class="col s12 l12">
+                <form class="col s12 l12">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeDeletar" type="text" class="validate">
+                        <label for="nomeDeletar">Nome do Funcionário</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        @*<select disabled id="funcaoDeletar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+        </select>
+        <label for="funcaoDeletar">Cargo</label>*@
+
+                        <a class='dropdown-trigger btn' href='#' data-target='funcaoDeletar'>Cargo</a>
+                        <!-- Dropdown Structure -->
+                        <ul id="funcaoDeletar" class='dropdown-content'>
+                            @foreach (var item in Model.ListaFuncao)
+                            {
+                                <li><a href="dropDownSelecionado(@item.TipoFuncao)">@item.TipoFuncao</a></li>
+
+                            }
+                        </ul>
+                    </div>
+                    <div id="modalCadastroColaborador" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Colaborador Cadastrado!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                        </div>
+                    </div>
+                    <input id="idEditar" style="display: none;" />
+                </form>
             </div>
-            @foreach (var item in Model)
-            {
+        
 
-                <div class="col s12 l12">
-                    <form class="col s12 l12">
-                        <div class="input-field col s6">
-                            <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeDeletar" type="text" class="validate">
-                            <label for="nomeDeletar">Nome do Funcionário</label>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <select disabled id="funcaoDeletar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
-                            </select>
-                            <label for="funcaoDeletar">Cargo</label>
-                        </div>
-                        <div id="modalCadastroColaborador" class="modal">
-                            <div class="modal-content">
-                                <h4 class="flow-text center">Colaborador Cadastrado!</h4>
-                                <p class="center">Clique em "SAIR" para voltar a página principal.</p>
-
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
-                            </div>
-                        </div>
-                        <input id="idEditar" style="display: none;" />
-                    </form>
-                </div>
-            }
-
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
-        </div>
-    </div>*@
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+    </div>
+</div>
 
 @section scripts{
     <script src="js/main.js"></script>

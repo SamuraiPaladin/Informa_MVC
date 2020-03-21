@@ -22,6 +22,7 @@ namespace Model.Entity
         public Funcao Funcao { get; set;} 
         public int FuncaoId { get; set;}
         public List<Funcao> ListaFuncao { get; set; }
+        public List<Colaborador> ListaColaborador { get; set; }
         //public int? PessoaId { get; set;} 
     }
 }

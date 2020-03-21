@@ -31,8 +31,10 @@ namespace Web.Controllers
        {
             var model = new Colaborador
             {
-                ListaFuncao = dAOColaborador.ReturnColaboradorFormViewModel()
+                ListaFuncao = dAOColaborador.ReturnColaboradorFuncoesLista(),
+                ListaColaborador = dAOColaborador.ReturnColaboradoresLisat(),
             };
+
             return View(model);
         }
         public JsonResult Adicionar(Colaborador Colaborador)
