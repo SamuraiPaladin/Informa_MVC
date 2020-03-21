@@ -4,15 +4,13 @@
 }
 
 <!-- BREADCRUMB -->
-<nav class="clean container">
-    <div class="nav-wrapper">
+    <nav class="nav-wrapper">
         <div class="col s12">
             <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
             <a href="#" class="breadcrumb">Cadastro</a>
             <a href="@Url.Action("Index", "Colaborador")" class="breadcrumb"><strong>Colaborador</strong></a>
         </div>
-    </div>
-</nav>
+    </nav>
 
 <div class="row container">
     <div class="col s12 l12">
@@ -36,19 +34,24 @@
 
                 <div class="input-field col s6">
                     @*<a class='dropdown-trigger btn' href='#' data-target='funcao'>Cargo</a>
+        <!-- Dropdown Structure -->
+        <ul id="funcao" class='dropdown-content'>
+            @foreach (var item in Model.ListaFuncao)
+            {
+                <li><a href="dropDownSelecionado(@item.TipoFuncao)">@item.TipoFuncao</a></li>
+
+            }
+        </ul>*@
+
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-trigger btn' href='#' data-target='funcao' id="textoDropDown">Selecione a Função</a>
                     <!-- Dropdown Structure -->
-                    <ul id="funcao" class='dropdown-content'>
+                    <ul id='funcao' class='dropdown-content'>
                         @foreach (var item in Model.ListaFuncao)
                         {
-                            <li><a href="dropDownSelecionado(@item.TipoFuncao)">@item.TipoFuncao</a></li>
-
+                            <li><a onclick="editaSelecionado('@item.TipoFuncao')">@item.TipoFuncao</a></li>
                         }
-                    </ul>*@
-
-                    <select id="funcao" class="validate" asp-items="@(new SelectList(Model.ListaFuncao, "Id", "TipoFuncao"))">
-                        </select>
-                        <label for="funcao">Cargo</label>
-
+                    </ul>
                 </div>
                 @*<div class="input-field col s6">
                         <input type="date" id="datadenascimento" class="validate">
@@ -233,7 +236,6 @@
 </div>
 
 @section scripts{
-    <script src="js/main.js"></script>
 
     <script type="text/javascript">
         let valorId;
@@ -374,5 +376,8 @@
             if (v.length == 10) i.value += "-";
         }
 
+        function editaSelecionado(funcao) {
+            document.getElementById('textoDropDown').text = funcao;
+        }
     </script>
 }

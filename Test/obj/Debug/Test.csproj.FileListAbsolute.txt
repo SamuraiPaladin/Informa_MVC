@@ -1,0 +1,15 @@
+C:\Projetos\Informa_MVC\Test\bin\Debug\xunit.runner.visualstudio.testadapter.dll
+C:\Projetos\Informa_MVC\Test\bin\Debug\xunit.runner.reporters.net452.dll
+C:\Projetos\Informa_MVC\Test\bin\Debug\xunit.runner.utility.net452.dll
+C:\Projetos\Informa_MVC\Test\bin\Debug\xunit.abstractions.dll
+C:\Projetos\Informa_MVC\Test\bin\Debug\Test.dll
+C:\Projetos\Informa_MVC\Test\bin\Debug\Test.pdb
+C:\Projetos\Informa_MVC\Test\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Projetos\Informa_MVC\Test\bin\Debug\xunit.assert.dll
+C:\Projetos\Informa_MVC\Test\bin\Debug\xunit.core.dll
+C:\Projetos\Informa_MVC\Test\bin\Debug\xunit.execution.desktop.dll
+C:\Projetos\Informa_MVC\Test\obj\Debug\Test.csprojAssemblyReference.cache
+C:\Projetos\Informa_MVC\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Projetos\Informa_MVC\Test\obj\Debug\Test.csproj.CopyComplete
+C:\Projetos\Informa_MVC\Test\obj\Debug\Test.dll
+C:\Projetos\Informa_MVC\Test\obj\Debug\Test.pdb

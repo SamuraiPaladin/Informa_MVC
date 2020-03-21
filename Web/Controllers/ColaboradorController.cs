@@ -32,7 +32,7 @@ namespace Web.Controllers
             var model = new Colaborador
             {
                 ListaFuncao = dAOColaborador.ReturnColaboradorFuncoesLista(),
-                ListaColaborador = dAOColaborador.ReturnColaboradoresLisat(),
+                ListaColaborador = dAOColaborador.ReturnColaboradoresLisat()
             };
 
             return View(model);
