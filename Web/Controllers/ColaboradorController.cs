@@ -29,7 +29,13 @@ namespace Web.Controllers
 
         public ActionResult Index()
        {
-            return View(dAOColaborador.ReturnColaboradorFormViewModel());
+            var model = new Colaborador
+            {
+                ListaFuncao = dAOColaborador.ReturnColaboradorFuncoesLista(),
+                ListaColaborador = dAOColaborador.ReturnColaboradoresLisat()
+            };
+
+            return View(model);
         }
         public JsonResult Adicionar(Colaborador Colaborador)
         {
