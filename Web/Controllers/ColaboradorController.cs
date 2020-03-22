@@ -28,7 +28,7 @@ namespace Web.Controllers
 
 
         public ActionResult Index()
-       {
+        {
             var model = new Colaborador
             {
                 ListaFuncao = dAOColaborador.ReturnColaboradorFuncoesLista(),
@@ -42,7 +42,14 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(Colaborador))
                 return Json("Preenchimento obrigatório");
             else
+                if (dAO.VerificarSeJaExiste(Colaborador))
+            {
+                return Json(false);
+            }
+            else
+            {
                 return Json(dAO.Adicionar(Colaborador));
+            }
         }
 
         private static bool VerificaSeTemCampoVazioOuNulo(Colaborador Colaborador)
@@ -55,7 +62,14 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(ColaboradorEditar))
                 return Json("Preenchimento obrigatório");
             else
+               if (dAO.VerificarSeJaExiste(ColaboradorEditar))
+            {
+                return Json(false);
+            }
+            else
+            {
                 return Json(dAO.Atualizar(Colaborador, ColaboradorEditar));
+            }
         }
         public JsonResult Deletar(Colaborador Colaborador)
         {

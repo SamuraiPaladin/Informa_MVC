@@ -33,23 +33,14 @@
                 </div>
 
                 <div class="input-field col s6">
-                    @*<a class='dropdown-trigger btn' href='#' data-target='funcao'>Cargo</a>
-        <!-- Dropdown Structure -->
-        <ul id="funcao" class='dropdown-content'>
-            @foreach (var item in Model.ListaFuncao)
-            {
-                <li><a href="dropDownSelecionado(@item.TipoFuncao)">@item.TipoFuncao</a></li>
-
-            }
-        </ul>*@
 
                     <!-- Dropdown Trigger -->
-                    <a class='dropdown-trigger btn' href='#' data-target='funcao' id="textoDropDown">Selecione a Função</a>
+                    <a class='dropdown-trigger btn' href='#' data-target='funcaoCadastrar' id="textoDropDownCadastrar">Selecione a Função</a>
                     <!-- Dropdown Structure -->
-                    <ul id='funcao' class='dropdown-content'>
+                    <ul id='funcaoCadastrar' class='dropdown-content'>
                         @foreach (var item in Model.ListaFuncao)
                         {
-                            <li><a onclick="editaSelecionado('@item.TipoFuncao')">@item.TipoFuncao</a></li>
+                            <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Cadastrar')">@item.TipoFuncao</a></li>
                         }
                     </ul>
                 </div>
@@ -115,9 +106,9 @@
                     </td>
                     <td>
                         <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
-                                                                                                                                                      'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                                                                                                                                                      'Editar', '@item.Funcao.TipoFuncao')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
                         <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
-                                                                                                                                                      'Deletar')"><i class="material-icons">delete_forever</i></a>
+                                                                                                                                                      'Deletar', '@item.Funcao.TipoFuncao')"><i class="material-icons">delete_forever</i></a>
                     </td>
                 </tr>
             }
@@ -145,22 +136,21 @@
             </select>
             <label for="funcaoEditar">Cargo</label>
         </div>*@
-                    <div class="input-field col s6">
-                        <a class='dropdown-trigger btn' href='#' data-target='funcaoEditar'>Cargo</a>
-                        <!-- Dropdown Structure -->
-                        <ul id="funcaoEditar" class='dropdown-content'>
-                            @foreach (var item in Model.ListaFuncao)
-                            {
-                                <li><a href="dropDownSelecionado(@item.TipoFuncao)">@item.TipoFuncao</a></li>
+                <div class="input-field col s6">
+                    <a class='dropdown-trigger2 btn' href='#' data-target='funcaoEditar' id="textoDropDownEditar">Selecione a Função</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='funcaoEditar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaFuncao)
+                        {
+                            <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Editar')">@item.TipoFuncao</a></li>
+                        }
+                    </ul>
 
-                            }
-                        </ul>
+                    @*<select id="funcao" class="validate" asp-items="@(new SelectList(Model.ListaFuncao, "Id", "TipoFuncao"))">
+        </select>
+        <label for="funcao">Cargo</label>*@
 
-                        @*<select id="funcao" class="validate" asp-items="@(new SelectList(Model.ListaFuncao, "Id", "TipoFuncao"))">
-            </select>
-            <label for="funcao">Cargo</label>*@
-
-                    </div>
+                </div>
 
                     <div id="modalCadastroColaborador" class="modal">
                         <div class="modal-content">
@@ -194,7 +184,7 @@
             <div class="col s12 l12">
                 <form class="col s12 l12">
                     <div class="input-field col s6">
-                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeDeletar" type="text" class="validate">
+                        <input disabled placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeDeletar" type="text" class="validate">
                         <label for="nomeDeletar">Nome do Funcionário</label>
                     </div>
 
@@ -202,14 +192,12 @@
                         @*<select disabled id="funcaoDeletar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
         </select>
         <label for="funcaoDeletar">Cargo</label>*@
-
-                        <a class='dropdown-trigger btn' href='#' data-target='funcaoDeletar'>Cargo</a>
+                        <a disabled class='dropdown-trigger btn' href='#' data-target='funcaoDeletar' id="textoDropDownDeletar">Selecione a Função</a>
                         <!-- Dropdown Structure -->
-                        <ul id="funcaoDeletar" class='dropdown-content'>
+                        <ul id='funcaoDeletar' class='dropdown-content'>
                             @foreach (var item in Model.ListaFuncao)
                             {
-                                <li><a href="dropDownSelecionado(@item.TipoFuncao)">@item.TipoFuncao</a></li>
-
+                                <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Deletar')">@item.TipoFuncao</a></li>
                             }
                         </ul>
                     </div>
@@ -242,13 +230,16 @@
         let valorNome;
         let valorFuncao;
 
-        function EditarModal(id, nome, funcao, model) {
+        function EditarModal(id, nome, funcao, model, tipoFuncao) {
+            
             valorId = id;
             valorNome = nome;
             valorFuncao = funcao;
 
             document.getElementById("nome" + model).value = nome;
-            document.getElementById("funcao" + model).value = funcao;
+            document.getElementById('textoDropDown' + model).text = tipoFuncao;
+            document.getElementById('textoDropDown' + model).FuncaoId = funcao;
+            //document.getElementById("funcao" + model).value = funcao;
 
             if (model === "Editar") {
             document.getElementById("id" + model).value = id;
@@ -285,13 +276,14 @@
         });
         }
 
-          function Editar() {
+        function Editar() {
+            
             var colaborador = {
-                Id: valorId, Nome: valorNome, Funcao: valorFuncao};
+                Id: valorId, Nome: valorNome, FuncaoId: valorFuncao};
             var colaboradorEditar = {
                 Id: document.getElementById("idEditar").value,
                 Nome: document.getElementById("nomeEditar").value,
-                FuncaoId: document.getElementById("funcaoEditar").value
+                FuncaoId: document.getElementById('textoDropDownEditar').FuncaoId
             };
             $(function () {
                  $.ajax({
@@ -316,10 +308,10 @@
         });
         }
 
-                function Adicionar() {
+        function Adicionar() {
                     var colaborador = {
                         Nome: document.getElementById("nome").value,
-                        FuncaoId: document.getElementById("funcao").value,
+                        FuncaoId: document.getElementById('textoDropDownCadastrar').FuncaoId,
             };
              $(function () {
                  $.ajax({
@@ -376,8 +368,10 @@
             if (v.length == 10) i.value += "-";
         }
 
-        function editaSelecionado(funcao) {
-            document.getElementById('textoDropDown').text = funcao;
+        function editaSelecionado(funcao, id, model) {
+            
+            document.getElementById('textoDropDown' + model).text = funcao;
+            document.getElementById('textoDropDown' + model).FuncaoId = id;
         }
     </script>
 }

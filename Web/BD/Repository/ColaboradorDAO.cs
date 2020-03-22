@@ -36,7 +36,18 @@ namespace Web.BD.Repository
            ,FuncaoId)
 			Values(@Nome, @FuncaoId);
             SELECT @@IDENTITY";
-            return GravarERetornarVerdadeiroOuFalse(entity, query);
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@Nome", entity.Nome);
+                cmd.Parameters.AddWithValue("@Funcao", entity.FuncaoId);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+
         }
 
     
@@ -108,42 +119,50 @@ namespace Web.BD.Repository
                 //cmd.Parameters.AddWithValue("@EstadoAntigo", entityAntigo.Estado);
                 //cmd.Parameters.AddWithValue("@TelefoneAntigo", entityAntigo.Telefone);
                 cmd.Parameters.AddWithValue("@FuncaoIdAntigo", entityAntigo.FuncaoId);
-                return cmd.ExecuteNonQuery() > 0 ? true : false;
+                cmd.ExecuteNonQuery();
+                return true;
             }
         }
         public bool Deletar(Colaborador entity)
         {
-            string query = @"DELETE FROM Colaboradores
+          //  string query = @"DELETE FROM Colaboradores
+          //                  WHERE 
+          //Nome = @Nome AND
+          //DataNascimento = @DataNascimento AND
+          //CPF = @CPF AND
+          //RG = @RG AND
+          //Endereco = @Endereco AND
+          //CEP = @CEP AND
+          //Numero = @Numero AND 
+          //Bairro =  @Bairro AND
+          //Cidade = @Cidade AND
+          //Estado = @Estado AND
+          //Telefone = @Telefone AND 
+          //FuncaoId =  @FuncaoId";   
+            
+            
+         string query = @"DELETE FROM Colaboradores
                             WHERE 
           Nome = @Nome AND
-          DataNascimento = @DataNascimento AND
-          CPF = @CPF AND
-          RG = @RG AND
-          Endereco = @Endereco AND
-          CEP = @CEP AND
-          Numero = @Numero AND 
-          Bairro =  @Bairro AND
-          Cidade = @Cidade AND
-          Estado = @Estado AND
-          Telefone = @Telefone AND 
           FuncaoId =  @FuncaoId";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Nome", entity.Nome);
-                cmd.Parameters.AddWithValue("@DataNascimento", entity.DataNascimento);
-                cmd.Parameters.AddWithValue("@CPF", entity.CPF);
-                cmd.Parameters.AddWithValue("@RG", entity.RG);
-                cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
-                cmd.Parameters.AddWithValue("@CEP", entity.CEP);
-                cmd.Parameters.AddWithValue("@Numero", entity.Numero);
-                cmd.Parameters.AddWithValue("@Bairro", entity.Bairro);
-                cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
-                cmd.Parameters.AddWithValue("@Estado", entity.Estado);
-                cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
+                //cmd.Parameters.AddWithValue("@DataNascimento", entity.DataNascimento);
+                //cmd.Parameters.AddWithValue("@CPF", entity.CPF);
+                //cmd.Parameters.AddWithValue("@RG", entity.RG);
+                //cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
+                //cmd.Parameters.AddWithValue("@CEP", entity.CEP);
+                //cmd.Parameters.AddWithValue("@Numero", entity.Numero);
+                //cmd.Parameters.AddWithValue("@Bairro", entity.Bairro);
+                //cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
+                //cmd.Parameters.AddWithValue("@Estado", entity.Estado);
+                //cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
                 cmd.Parameters.AddWithValue("@FuncaoId", entity.FuncaoId);
-                return cmd.ExecuteNonQuery() > 0 ? true : false;
+                cmd.ExecuteNonQuery();
+                return true;
             }
         }
 
@@ -276,22 +295,30 @@ namespace Web.BD.Repository
         }
         public bool VerificarSeJaExiste(Colaborador entity)
         {
+          //  string query = @"SELECT 
+          //                      	count(1) as qtd
+          //                      FROM 
+          //                      	Colaboradores  
+          //                      	                   WHERE 
+          //Nome = @Nome AND
+          //DataNascimento = @DataNascimento AND
+          //CPF = @CPF AND
+          //RG = @RG AND
+          //Endereco = @Endereco AND
+          //CEP = @CEP AND
+          //Numero = @Numero AND
+          //Bairro =  @Bairro AND
+          //Cidade = @Cidade AND
+          //Estado = @Estado AND
+          //Telefone = @Telefone AND
+          //FuncaoId =  @FuncaoId";   
+            
             string query = @"SELECT 
                                 	count(1) as qtd
                                 FROM 
                                 	Colaboradores  
                                 	                   WHERE 
           Nome = @Nome AND
-          DataNascimento = @DataNascimento AND
-          CPF = @CPF AND
-          RG = @RG AND
-          Endereco = @Endereco AND
-          CEP = @CEP AND
-          Numero = @Numero AND
-          Bairro =  @Bairro AND
-          Cidade = @Cidade AND
-          Estado = @Estado AND
-          Telefone = @Telefone AND
           FuncaoId =  @FuncaoId";
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
