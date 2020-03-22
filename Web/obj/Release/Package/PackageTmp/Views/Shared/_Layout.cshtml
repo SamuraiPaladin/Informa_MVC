@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/materialize/css/materialize.min.css">
     <link rel="stylesheet" href="~/Content/Site.css">
+    <link href="~/Content/paginas/principal.css" rel="stylesheet" />
+    <link href="~/Content/weather-icons-master/css/weather-icons-wind.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="~/favicon.ico" />
 </head>
 <body>
@@ -26,9 +28,9 @@
                 </li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a asp-controller="Principal" asp-action="Index">Home</a></li>
-                <li><a asp-controller="Unidade" asp-action="Index">Unidade</a></li>
-                <li><a asp-controller="Modalidade" asp-action="Index">Modalidade</a></li>
+                <li><a href="@Url.Action("Index","Principal")">Home</a></li>
+                <li><a href="@Url.Action("Index","Unidade")">Unidade</a></li>
+                <li><a href="@Url.Action("Index","Modalidade")">Modalidade</a></li>
             </ul>
         </div>
     </nav>
@@ -57,22 +59,22 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a class="" asp-controller="Unidade" asp-action="Index"><span class="insideLink">Unidade</span></a>
+                                <a href="@Url.Action("Index","Unidade")"><span class="insideLink">Unidade</span></a>
                             </li>
                             <li>
-                                <a class="" asp-controller="Modalidade" asp-action="Index"><span class="insideLink">Modalidade</span></a>
+                                <a href="@Url.Action("Index","Modalidade")"><span class="insideLink">Modalidade</span></a>
                             </li>
                             <li>
-                                <a class="" asp-controller="Funcao" asp-action="Index"><span class="insideLink">Função</span></a>
+                                <a href="@Url.Action("Index","Funcao")"><span class="insideLink">Cargo</span></a>
                             </li>
                             <li>
-                                <a class="" asp-controller="Colaborador" asp-action="Index"><span class="insideLink">Colaborador</span></a>
+                                <a href="@Url.Action("Index","Colaborador")"><span class="insideLink">Colaborador</span></a>
                             </li>
                             <li>
-                                <a class="" asp-controller="Aluno" asp-action="Index"><span class="insideLink">Aluno</span></a>
+                                <a href="@Url.Action("Index","Aluno")"><span class="insideLink">Aluno</span></a>
                             </li>
                             <li>
-                                <a class="" asp-controller="Fornecedor" asp-action="Index"><span class="insideLink">Fornecedor</span></a>
+                                <a href="@Url.Action("Index","Fornecedor")"><span class="insideLink">Fornecedor</span></a>
                             </li>
                             <li>
                                 <a class="waves-effect waves-blue" asp-controller="Turma" asp-action="Index"><span class="insideLink">Turma</span></a>
@@ -147,6 +149,8 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/menu.js"></script>
     <script src="~/Scripts/materialize/materialize.min.js"></script>
+    <script src="~/Scripts/temperaturaAndLocale.js"></script>
+    <script src="~/Scripts/tempo.js"></script>
     @RenderSection("Scripts", required: false)
 
 </body>

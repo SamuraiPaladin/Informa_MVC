@@ -124,3 +124,26 @@ nav.clean {
 ::-webkit-scrollbar-thumb {
     background: #dad7d7;
 }
+
+#parallaxIndex {
+    height: 220px;
+    width: 100%;
+    margin-top: -30px;
+    position: relative;
+    top: -25px;
+}
+
+#icontemperature {
+    position: relative;
+    top: -20px
+}
+
+#horario {
+    position: relative;
+    top: 20px
+}
+
+nav {
+    background-color: #ff9100;
+    text-align:center;
+}

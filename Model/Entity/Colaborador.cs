@@ -12,10 +12,17 @@ namespace Model.Entity
         public string DataNascimento {get; set;} 
         public string CPF {get; set;} 
         public string RG { get; set;} 
-        public string Endereço { get; set;} 
+        public string Endereco { get; set;}
+        public string CEP { get; set; }
+        public string Numero { get; set; }
+        public string Bairro { get; set; }
+        public string Cidade { get; set; }
+        public string Estado { get; set; }
         public string Telefone { get; set;} 
         public Funcao Funcao { get; set;} 
-        public int FuncaoId { get; set;} 
+        public int FuncaoId { get; set;}
+        public List<Funcao> ListaFuncao { get; set; }
+        public List<Colaborador> ListaColaborador { get; set; }
         //public int? PessoaId { get; set;} 
     }
 }
