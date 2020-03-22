@@ -2,14 +2,20 @@
 @{
     ViewData["Title"] = "Modalidade";
 }
-<!-- BREADCRUMB -->
-    <nav class="nav-wrapper">
-        <div class="col s12">
-            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-            <a href="#" )" class="breadcrumb">Cadastro</a>
-            <a href="@Url.Action("Index", "Modalidade")" class="breadcrumb"><strong>Modalidades</strong></a>
+
+    <nav class="clean container">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <span class="left">
+                    <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                    <a href="#" class="breadcrumb">Cadastro</a>
+                    <a href="@Url.Action("Index", "Modalidade")" class="breadcrumb"><strong>Modalidade</strong></a>
+                </span>
+            </div>
         </div>
     </nav>
+
+
 <div class="row container">
     <div class="col s12 l12">
         <a class="btn waves-effect waves-light modal-trigger right" href="#cadastrarModalidade">Cadastrar Modalidade</a>
