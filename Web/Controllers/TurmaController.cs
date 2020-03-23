@@ -50,7 +50,7 @@ namespace Web.Controllers
 
         private static bool VerificaSeTemCampoVazioOuNulo(Turma Turma)
         {
-            return string.IsNullOrWhiteSpace(Turma.Nome.Trim());
+            return string.IsNullOrWhiteSpace(Turma.Descricao.Trim());
         }
 
         public JsonResult Editar(Turma Turma, Turma TurmaEditar)

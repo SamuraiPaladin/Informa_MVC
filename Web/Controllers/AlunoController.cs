@@ -28,7 +28,7 @@ namespace Web.Controllers
 
         public JsonResult BuscaCep(string cep)
         {
-            var cepDados = ViaCEP.ViaCEPClient.Search(cep);
+        var cepDados = ViaCEP.ViaCEPClient.Search(cep);
             Aluno aluno = new Aluno
             {
                 Bairro = cepDados.Neighborhood,
