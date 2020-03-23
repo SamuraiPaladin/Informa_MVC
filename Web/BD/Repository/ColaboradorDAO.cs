@@ -173,7 +173,7 @@ namespace Web.BD.Repository
 
         public List<Funcao> ReturnColaboradorFuncoesLista()
         {
-            string query = "SELECT * FROM Funcoes Order by Descricao";
+            string query = @"SELECT * FROM Funcoes Order by Descricao";
             List<Funcao> lista = new List<Funcao>();
             using (var con = new SqlConnection(stringConexao))
             {
@@ -254,9 +254,10 @@ namespace Web.BD.Repository
             //}
         }
 
-        public List<Colaborador> ReturnColaboradoresLisat()
+        public List<Colaborador> ReturnColaboradoresLista()
         {
-            string query = "SELECT *, f.Id, f.Descricao, f.TipoFuncao, f.Ativo from Colaboradores c inner join Funcoes f on c.FuncaoId = f.Id";
+            string query = @"SELECT c.*, f.Id, f.Descricao, f.TipoFuncao, f.Ativo 
+                            from Colaboradores c inner join Funcoes f on c.FuncaoId = f.Id";
             List<Colaborador> colaboradores = new List<Colaborador>();
             using (var con = new SqlConnection(stringConexao))
             {
