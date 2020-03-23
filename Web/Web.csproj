@@ -45,7 +45,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-  <Reference Include="netstandard" />
+    <Reference Include="netstandard" />
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -223,10 +223,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BD\Interface\IDAO.cs" />
+    <Compile Include="BD\Repository\AlunoDAO.cs" />
+    <Compile Include="BD\Repository\TurmaDAO.cs" />
     <Compile Include="BD\Repository\ColaboradorDAO.cs" />
     <Compile Include="BD\Repository\FuncaoDAO.cs" />
     <Compile Include="BD\Repository\ModalidadeDAO.cs" />
     <Compile Include="BD\Repository\UnidadeDAO.cs" />
+    <Compile Include="Controllers\AlunoController.cs" />
+    <Compile Include="Controllers\TurmaController.cs" />
     <Compile Include="Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\FuncaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -827,6 +831,7 @@
     <Content Include="Views\Funcao\Index.cshtml" />
     <Content Include="Views\Principal\Index.cshtml" />
     <Content Include="Views\Colaborador\Index.cshtml" />
+    <Content Include="Views\Aluno\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
