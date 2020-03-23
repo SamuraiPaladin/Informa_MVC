@@ -59,3 +59,5 @@ C:\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.csproj.CopyComplete
 C:\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.dll
 C:\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.pdb
 C:\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.csproj.CoreCompileInputs.cache
+C:\Users\Diego\Desktop\Repositorios\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.dll
+C:\Users\Diego\Desktop\Repositorios\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.pdb
