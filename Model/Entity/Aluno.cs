@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.Entity
@@ -21,6 +22,8 @@ namespace Model.Entity
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Telefone { get; set; }
+
+        public List<Aluno> ListaAluno { get; set; }
 
     }
 }
