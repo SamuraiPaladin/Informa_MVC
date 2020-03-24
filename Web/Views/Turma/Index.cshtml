@@ -1,0 +1,652 @@
+﻿@model Model.Entity.Turma
+
+@{
+    ViewData["Title"] = "Turma";
+}
+
+<!-- BREADCRUMB -->
+<nav class="nav-wrapper">
+    <div class="col s12">
+        <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+        <a href="#" class="breadcrumb">Cadastro</a>
+        <a href="@Url.Action("Index", "Turma")" class="breadcrumb"><strong>Turma</strong></a>
+    </div>
+</nav>
+
+
+<div class="row container">
+    <a href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Turma</a>
+
+    <div id="modaCadastrar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Cadastrar Turma</h4>
+            </div>
+
+            <div class="col s12 l12">
+                <form class="col s12 l12" id="formularioEditar">
+
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricao" type="text" class="validate" maxlength="25">
+                        <label for="descricao">Nome da Turma</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        @*<select id="nome" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
+                            </select>
+                            <label for="nome">Professor</label>*@
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-trigger btn' href='#' data-target='nomeCadastrar' id="nomeDropDownCadastrar">Selecione um Colaborador</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='nomeCadastrar' class='dropdown-content'>
+                            @foreach (var item in Model.ListaColaborador)
+                            {
+                                <li><a onclick="editaColaboradorSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="input-field col s6">
+                        @*<select id="tipo" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
+                            </select>
+                            <label for="tipo">Tipo</label>*@
+
+                        <a class='dropdown-trigger2 btn' href='#' data-target='tipoCadastrar' id="tipoDropDownCadastrar">Selecione o Tipo</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='tipoCadastrar' class='dropdown-content'>
+                            @foreach (var item in Model.TipoClientes)
+                            {
+                                <li><a onclick="editaTipoSelecionado('@item', 'Cadastrar')">@item</a></li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="input-field col s6">
+                        @*<select id="diasdasemana" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
+                            </select>
+                            <label for="diasdasemana">Dias da semana</label>*@
+                        <a class='dropdown-trigger3 btn' href='#' data-target='diasdasemanaCadastrar' id="diasdasemanaDropDownCadastrar">Selecione o Dia</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='diasdasemanaCadastrar' class='dropdown-content'>
+                            @foreach (var item in Model.DiasDaSemana)
+                            {
+                                <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Cadastrar')">@item</a></li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input min="08:00" max="22:00" id="horarioinicial" type="time" class="validate" maxlength="5">
+                        <label for="horarioinicial">Horario Inicial</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input min="08:00" max="22:00" id="horariofinal" type="time" class="validate" maxlength="5">
+                        <label for="horariofinal">Horario Final</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        @*<select id="unidade" class="validate" asp-items="@(new SelectList(item.Unidades, "Id", "Descricao"))">
+                            </select>
+                            <label for="unidade">Unidade</label>*@
+
+                        <a class='dropdown-trigger4 btn' href='#' data-target='unidadeCadastrar' id="unidadeDropDownCadastrar">Selecione a Unidade</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='unidadeCadastrar' class='dropdown-content'>
+                            @foreach (var item in Model.ListaUnidade)
+                            {
+                                <li><a onclick="editaUnidadeSelecionado('@item.Descricao', '@item.Id', 'Cadastrar')">@item.Descricao</a></li>
+                            }
+                        </ul>
+
+
+                    </div>
+
+                    <div class="input-field col s6">
+                        @*<select id="modalidade" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "TipoModalidade"))">
+                            </select>
+                            <label for="modalidade">Modalidade</label>*@
+
+
+                        <a class='dropdown-trigger5 btn' href='#' data-target='modalidadeCadastrar' id="modalidadeDropDownCadastrar">Selecione a Modalidade</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='modalidadeCadastrar' class='dropdown-content'>
+                            @foreach (var item in Model.ListaModalidade)
+                            {
+                                <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Cadastrar')">@item.TipoModalidade</a></li>
+                            }
+                        </ul>
+
+                    </div>
+
+                    <div id="modalCadastroTurma" class="modal">
+                        <div class="modal-content">
+                            <h4 class="flow-text center">Turma Cadastrada!</h4>
+                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
+                        </div>
+                    </div>
+                    <input id="idEditar" style="display: none;" />
+                </form>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+        </div>
+    </div>
+
+</div>
+
+
+
+@if (Model != null)
+{
+    <table class="table highlight container ">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Professor</th>
+                <th>Tipo</th>
+                <th>Dia da semana</th>
+                <th>Horario Inicial</th>
+                <th>Horario Final</th>
+                <th>Unidade</th>
+                <th>Modalidade</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var turma in Model.ListaTurma)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => turma.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => turma.Colaborador.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => turma.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => turma.DiaDaSemana)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => turma.HorarioInicial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => turma.HorarioFinal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => turma.Unidade.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => turma.Modalidade.TipoModalidade)
+                    </td>
+                    <td>
+                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
+        '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Editar', '@turma.Colaborador.Nome', '@turma.Unidade.Descricao', '@turma.Modalidade.TipoModalidade')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
+        '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Deletar', '@turma.Colaborador.Nome', '@turma.Unidade.Descricao', '@turma.Modalidade.TipoModalidade')"><i class="material-icons">delete_forever</i></a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="editarTurmaDescricao"></h4>
+        </div>
+
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioEditar">
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricaoEditar" type="text" class="validate" maxlength="25">
+                    <label for="descricaoEditar">Nome da Turma</label>
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select id="nomeEditar" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
+                            <option value="" disabled selected>Selecione um novo professor</option>
+                        </select>
+                        <label for="nomeEditar">Professor</label>*@
+
+                    <a class='dropdown-trigger6 btn' href='#' data-target='nomeEditar' id="nomeDropDownEditar">Selecione um Colaborador</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='nomeEditar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaColaborador)
+                        {
+                            <li><a onclick="editaColaboradorSelecionado('@item.Nome', '@item.Id', 'Editar')">@item.Nome</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select id="tipoEditar" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
+                            <option value="" disabled selected>Selecione um tipo de aluno</option>
+                        </select>
+                        <label for="tipoEditar">Tipo</label>*@
+
+                    <a class='dropdown-trigger7 btn' href='#' data-target='tipoEditar' id="tipoDropDownEditar">Selecione o Tipo</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='tipoEditar' class='dropdown-content'>
+                        @foreach (var item in Model.TipoClientes)
+                        {
+                            <li><a onclick="editaTipoSelecionado('@item', 'Editar')">@item</a></li>
+                        }
+                    </ul>
+
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select id="diasdasemanaEditar" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
+                            <option value="" disabled selected>Selecione um dia da semana</option>
+                        </select>
+                        <label for="diasdasemanaEditar">Dias da semana</label>*@
+
+                    <a class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaEditar' id="diasdasemanaDropDownEditar">Selecione o Dia</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='diasdasemanaEditar' class='dropdown-content'>
+                        @foreach (var item in Model.DiasDaSemana)
+                        {
+                            <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Editar')">@item</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="input-field col s6">
+                    <input min="08:00" max="22:00" id="horarioinicialEditar" type="time" class="validate" maxlength="5">
+                    <label for="horarioinicialEditar">Horario Inicial</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input min="08:00" max="22:00" id="horariofinalEditar" type="time" class="validate" maxlength="5">
+                    <label for="horariofinalEditar">Horario Final</label>
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select id="unidadeEditar" class="validate" asp-items="@(new SelectList(item.Unidades, "Id", "Descricao"))">
+                            <option value="" disabled selected>Selecione uma nova unidade</option>
+                        </select>
+                        <label for="unidadeEditar">Unidade</label>*@
+
+                    <a class='dropdown-trigger9 btn' href='#' data-target='unidadeEditar' id="unidadeDropDownEditar">Selecione a Unidade</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='unidadeEditar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaUnidade)
+                        {
+                            <li><a onclick="editaUnidadeSelecionado('@item.Descricao', '@item.Id', 'Editar')">@item.Descricao</a></li>
+                        }
+                    </ul>
+
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select id="modalidadeEditar" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "TipoModalidade"))">
+                            <option value="" disabled selected>Selecione uma nova modalidade</option>
+                        </select>
+                        <label for="modalidadeEditar">Modalidade</label>*@
+
+
+                    <a class='dropdown-trigger10 btn' href='#' data-target='modalidadeEditar' id="modalidadeDropDownEditar">Selecione a Modalidade</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='modalidadeEditar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaModalidade)
+                        {
+                            <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Editar')">@item.TipoModalidade</a></li>
+                        }
+                    </ul>
+
+
+                </div>
+
+
+                <div id="modalCadastroTurma" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Turma Cadastrada!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
+</div>
+
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="deletarTurmaDescricao"></h4>
+        </div>
+
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioDeletar">
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: Turma de Karate, Turma de Natação, Turma de Ginástica" id="descricaoDeletar" type="text" class="validate" maxlength="25">
+                    <label for="descricaoDeletar">Nome da Turma</label>
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select disabled id="nomeDeletar" class="validate">
+                        </select>
+                        <label for="nomeDeletar">Professor</label>*@
+
+                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='nomeDeletar' id="nomeDropDownDeletar">Selecione um Colaborador</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='nomeDeletar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaColaborador)
+                        {
+                            <li><a onclick="editaColaboradorSelecionado('@item.Nome', '@item.Id', 'Deletar')">@item.Nome</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select disabled id="tipoDeletar" class="validate">
+                        </select>
+                        <label for="tipoDeletar">Tipo</label>*@
+
+                    <a disabled class='dropdown-trigger7 btn' href='#' data-target='tipoDeletar' id="tipoDropDownDeletar">Selecione o Tipo</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='tipoDeletar' class='dropdown-content'>
+                        @foreach (var item in Model.TipoClientes)
+                        {
+                            <li><a onclick="editaTipoSelecionado('@item', 'Deletar')">@item</a></li>
+                        }
+                    </ul>
+
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select disabled id="diasdasemanaDeletar" class="validate">
+                        </select>
+                        <label for="diasdasemanaDeletar">Dias da semana</label>*@
+
+                    <a disabled class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaDeletar' id="diasdasemanaDropDownDeletar">Selecione o Dia</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='diasdasemanaDeletar' class='dropdown-content'>
+                        @foreach (var item in Model.DiasDaSemana)
+                        {
+                            <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Deletar')">@item</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled min="08:00" max="22:00" id="horarioinicialDeletar" type="time" class="validate" maxlength="5">
+                    <label for="horarioinicialDeletar">Horario Inicial</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled min="08:00" max="22:00" id="horariofinalDeletar" type="time" class="validate" maxlength="5">
+                    <label for="horariofinalDeletar">Horario Final</label>
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select disabled id="unidadeDeletar" class="validate">
+                        </select>
+                        <label for="unidadeDeletar">Unidade</label>*@
+
+                    <a disabled class='dropdown-trigger9 btn' href='#' data-target='unidadeDeletar' id="unidadeDropDownDeletar">Selecione a Unidade</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='unidadeDeletar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaUnidade)
+                        {
+                            <li><a onclick="editaUnidadeSelecionado('@item.Descricao', '@item.Id', 'Deletar')">@item.Descricao</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="input-field col s6">
+                    @*<select disabled id="modalidadeDeletar" class="validate">
+                        </select>
+                        <label for="modalidadeDeletar">Modalidade</label>*@
+
+                    <a disabled class='dropdown-trigger10 btn' href='#' data-target='modalidadeDeletar' id="modalidadeDropDownDeletar">Selecione a Modalidade</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='modalidadeDeletar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaModalidade)
+                        {
+                            <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Deletar')">@item.TipoModalidade</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div id="modalCadastroTurma" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Turma Cadastrada!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="js/main.js"></script>
+    <script>
+
+        let valorId;
+        let valorDescricao;
+        let valorNome;
+        let valorTipo;
+        let valorDiasDaSemana;
+        let valorHorarioInicial;
+        let valorHorarioFinal;
+        let valorUnidade;
+        let valorModalidade;
+
+        function EditarModal(id, descricao, nome, tipo, diasdasemana, horarioinicial, horariofinal, unidade, modalidade, model, nomeColaborador, unidadeDescricao, modalidadeTipoModalidade) {
+            valorId = id;
+            valorDescricao = descricao;
+            valorNome = nome;
+            valorTipo = tipo;
+            valorDiasDaSemana = diasdasemana;
+            valorHorarioInicial = horarioinicial;
+            valorHorarioFinal = horariofinal;
+            valorUnidade = unidade;
+            valorModalidade = modalidade;
+
+            document.getElementById("descricao" + model).value = descricao;
+            document.getElementById("nome" + model).value = nome;
+            document.getElementById("tipo" + model).value = tipo;
+            document.getElementById("diasdasemana" + model).value = diasdasemana;
+            document.getElementById("horarioinicial" + model).value = horarioinicial;
+            document.getElementById("horariofinal" + model).value = horariofinal;
+            document.getElementById("unidade" + model).value = unidade;
+            document.getElementById("modalidade" + model).value = modalidade;
+
+
+            document.getElementById('nomeDropDown' + model).text = nomeColaborador;
+            document.getElementById('nomeDropDown' + model).ColaboradorId = nome;
+
+            document.getElementById('tipoDropDown' + model).text = tipo;
+
+            document.getElementById('diasdasemanaDropDown' + model).text = diasdasemana;
+
+            document.getElementById('unidadeDropDown' + model).text = unidadeDescricao;
+            document.getElementById('unidadeDropDown' + model).UnidadeId = unidade;
+
+            document.getElementById('modalidadeDropDown' + model).text = modalidadeTipoModalidade;
+            document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
+
+            if (model === "Editar") {
+            document.getElementById("id" + model).value = id;
+            document.getElementById("editarTurmaDescricao").innerText = "Editar " + descricao;
+            } else {
+                document.getElementById("deletarTurmaDescricao").innerText = "Tem certeza que deseja deletar " + descricao +"?";
+            }
+        }
+        function Deletar() {
+            var turma = {
+                Id: valorId,
+                Descricao: valorDescricao,
+                ColaboradorId: valorNome,
+                Tipo: valorTipo,
+                DiaDaSemana: valorDiasDaSemana,
+                HorarioInicial: valorHorarioInicial,
+                HorarioFinal: valorHorarioFinal,
+                UnidadeId: valorUnidade,
+                ModalidadeId: valorModalidade
+            };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Deletar","Turma")",
+                     data: { turma: turma},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        function Editar() {
+            var turma = {
+                Id: valorId, Descricao: valorDescricao, ColaboradorId: valorNome, Tipo: valorTipo, DiaDaSemana: valorDiasDaSemana, HorarioInicial: valorHorarioInicial, HorarioFinal: valorHorarioFinal
+                , UnidadeId: valorUnidade, ModalidadeId: valorModalidade};
+            var turmaEditar = {
+                Id: document.getElementById("idEditar").value,
+                Descricao: document.getElementById("descricaoEditar").value,
+                ColaboradorId: document.getElementById('nomeDropDownEditar').ColaboradorId,
+                Tipo: document.getElementById('tipoDropDownEditar').text,
+                DiaDaSemana: document.getElementById('diasdasemanaDropDownEditar').text,
+                HorarioInicial: document.getElementById("horarioinicialEditar").value,
+                HorarioFinal: document.getElementById("horariofinalEditar").value,
+                UnidadeId: document.getElementById('unidadeDropDownEditar').UnidadeId,
+                ModalidadeId: document.getElementById('modalidadeDropDownEditar').ModalidadeId
+            };
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Turma")",
+                     data: { turma: turma, turmaEditar: turmaEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                              case "Horario inválido":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+
+        function Adicionar() {
+                    var turma = {
+                        Descricao: document.getElementById("descricao").value,
+                        ColaboradorId: document.getElementById('nomeDropDownCadastrar').ColaboradorId,
+                        Tipo: document.getElementById('tipoDropDownCadastrar').text,
+                        DiaDaSemana: document.getElementById('diasdasemanaDropDownCadastrar').text,
+                        HorarioInicial: document.getElementById("horarioinicial").value,
+                        HorarioFinal: document.getElementById("horariofinal").value,
+                        UnidadeId: document.getElementById('unidadeDropDownCadastrar').UnidadeId,
+                        ModalidadeId: document.getElementById('modalidadeDropDownCadastrar').ModalidadeId
+            };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar","Turma")",
+                     data: { turma: turma},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                              case "Horario inválido":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        $(document).ready(function(){
+          $('.modal').modal();
+        });
+
+        function editaColaboradorSelecionado(nome, id, model) {
+
+            document.getElementById('nomeDropDown' + model).text = nome;
+            document.getElementById('nomeDropDown' + model).ColaboradorId = id;
+        }
+
+        function editaTipoSelecionado(tipo, model) {
+
+            document.getElementById('tipoDropDown' + model).text = tipo;
+        }
+
+        function editaDiasDaSemanaSelecionado(dia, model) {
+
+            document.getElementById('diasdasemanaDropDown' + model).text = dia;
+        }
+
+        function editaUnidadeSelecionado(descricao, id, model) {
+            document.getElementById('unidadeDropDown' + model).text = descricao;
+            document.getElementById('unidadeDropDown' + model).UnidadeId = id;
+        }
+
+        function editaModalidadeSelecionado(modalidade, id, model) {
+            document.getElementById('modalidadeDropDown' + model).text = modalidade;
+            document.getElementById('modalidadeDropDown' + model).ModalidadeId = id;
+        }
+
+    </script>
+
+}

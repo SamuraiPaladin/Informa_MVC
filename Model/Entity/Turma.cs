@@ -20,7 +20,9 @@ namespace Model.Entity
         public List<Colaborador> ListaColaborador { get; set; }
         public Colaborador Colaborador { get; set; }
         public string Tipo { get; set; }
+        public Array TipoClientes { get; set; }
         public string DiaDaSemana { get; set; }
+        public Array DiasDaSemana { get; set; }
         public string HorarioInicial { get; set; }
         public string HorarioFinal { get; set; }
         public List<Turma> ListaTurma { get; set; } 
