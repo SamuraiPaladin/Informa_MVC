@@ -4,13 +4,19 @@
 }
 
 <!-- BREADCRUMB -->
-    <nav class="nav-wrapper">
+
+<nav class="clean container">
+    <div class="nav-wrapper">
         <div class="col s12">
-            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-            <a href="#" class="breadcrumb">Cadastro</a>
-            <a href="@Url.Action("Index", "Colaborador")" class="breadcrumb"><strong>Colaborador</strong></a>
+            <span class="left">
+                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="#" class="breadcrumb">Cadastro</a>
+                <a href="@Url.Action("Index", "Colaborador")" class="breadcrumb"><strong>Colaborador</strong></a>
+            </span>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
 <div class="row container">
     <div class="col s12 l12">
@@ -123,19 +129,19 @@
             <h4 id="editarColaboradorNome"></h4>
         </div>
 
-            <div class="col s12 l12">
-                <form class="col s12 l12">
-                    <div class="input-field col s6">
-                        <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeEditar" type="text" class="validate">
-                        <label for="nomeEditar">Nome do Funcionário</label>
-                    </div>
+        <div class="col s12 l12">
+            <form class="col s12 l12">
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeEditar" type="text" class="validate">
+                    <label for="nomeEditar">Nome do Funcionário</label>
+                </div>
 
-                    @*<div class="input-field col s6">
-            <select id="funcaoEditar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
-                <option value="" disabled selected>Selecione uma função</option>
-            </select>
-            <label for="funcaoEditar">Cargo</label>
-        </div>*@
+                @*<div class="input-field col s6">
+                        <select id="funcaoEditar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+                            <option value="" disabled selected>Selecione uma função</option>
+                        </select>
+                        <label for="funcaoEditar">Cargo</label>
+                    </div>*@
                 <div class="input-field col s6">
                     <a class='dropdown-trigger2 btn' href='#' data-target='funcaoEditar' id="textoDropDownEditar">Selecione a Função</a>
                     <!-- Dropdown Structure -->
@@ -147,25 +153,25 @@
                     </ul>
 
                     @*<select id="funcao" class="validate" asp-items="@(new SelectList(Model.ListaFuncao, "Id", "TipoFuncao"))">
-        </select>
-        <label for="funcao">Cargo</label>*@
+                        </select>
+                        <label for="funcao">Cargo</label>*@
 
                 </div>
 
-                    <div id="modalCadastroColaborador" class="modal">
-                        <div class="modal-content">
-                            <h4 class="flow-text center">Colaborador Cadastrado!</h4>
-                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+                <div id="modalCadastroColaborador" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Colaborador Cadastrado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
 
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
-                        </div>
                     </div>
-                    <input id="idEditar" style="display: none;" />
-                </form>
-            </div>
-        
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
@@ -179,42 +185,42 @@
         <div class="modal-header">
             <h4 id="deletarColaboradorNome"></h4>
         </div>
-    
 
-            <div class="col s12 l12">
-                <form class="col s12 l12">
-                    <div class="input-field col s6">
-                        <input disabled placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeDeletar" type="text" class="validate">
-                        <label for="nomeDeletar">Nome do Funcionário</label>
-                    </div>
 
-                    <div class="input-field col s6">
-                        @*<select disabled id="funcaoDeletar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
-        </select>
-        <label for="funcaoDeletar">Cargo</label>*@
-                        <a disabled class='dropdown-trigger btn' href='#' data-target='funcaoDeletar' id="textoDropDownDeletar">Selecione a Função</a>
-                        <!-- Dropdown Structure -->
-                        <ul id='funcaoDeletar' class='dropdown-content'>
-                            @foreach (var item in Model.ListaFuncao)
-                            {
-                                <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Deletar')">@item.TipoFuncao</a></li>
-                            }
-                        </ul>
-                    </div>
-                    <div id="modalCadastroColaborador" class="modal">
-                        <div class="modal-content">
-                            <h4 class="flow-text center">Colaborador Cadastrado!</h4>
-                            <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+        <div class="col s12 l12">
+            <form class="col s12 l12">
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeDeletar" type="text" class="validate">
+                    <label for="nomeDeletar">Nome do Funcionário</label>
+                </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
-                        </div>
+                <div class="input-field col s6">
+                    @*<select disabled id="funcaoDeletar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
+                        </select>
+                        <label for="funcaoDeletar">Cargo</label>*@
+                    <a disabled class='dropdown-trigger btn' href='#' data-target='funcaoDeletar' id="textoDropDownDeletar">Selecione a Função</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='funcaoDeletar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaFuncao)
+                        {
+                            <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Deletar')">@item.TipoFuncao</a></li>
+                        }
+                    </ul>
+                </div>
+                <div id="modalCadastroColaborador" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Colaborador Cadastrado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
                     </div>
-                    <input id="idEditar" style="display: none;" />
-                </form>
-            </div>
-        
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+
 
     </div>
     <div class="modal-footer">
@@ -231,7 +237,7 @@
         let valorFuncao;
 
         function EditarModal(id, nome, funcao, model, tipoFuncao) {
-            
+
             valorId = id;
             valorNome = nome;
             valorFuncao = funcao;
@@ -277,7 +283,7 @@
         }
 
         function Editar() {
-            
+
             var colaborador = {
                 Id: valorId, Nome: valorNome, FuncaoId: valorFuncao};
             var colaboradorEditar = {
@@ -369,7 +375,7 @@
         }
 
         function editaSelecionado(funcao, id, model) {
-            
+
             document.getElementById('textoDropDown' + model).text = funcao;
             document.getElementById('textoDropDown' + model).FuncaoId = id;
         }

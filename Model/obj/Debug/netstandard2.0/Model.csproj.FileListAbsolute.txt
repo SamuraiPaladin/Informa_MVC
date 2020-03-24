@@ -59,3 +59,17 @@ C:\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.csproj.CopyComplete
 C:\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.dll
 C:\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.pdb
 C:\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.csproj.CoreCompileInputs.cache
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\Model.deps.json
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\Model.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\Model.pdb
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\System.Configuration.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\System.Security.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.xml
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\System.Configuration.xml
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\bin\Debug\netstandard2.0\System.Security.xml
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.AssemblyInfoInputs.cache
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.AssemblyInfo.cs
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.csproj.CopyComplete
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.pdb
