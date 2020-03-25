@@ -14,7 +14,7 @@ namespace Web.BD.Repository
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Funcao entity)
         {
-            string query = @"INSERT INTO Funcoes(Descricao, TipoFuncao) VALUES(@Descricao, @TipoFuncao);
+            string query = @"INSERT INTO Funcoes(Descricao, TipoFuncao, Ativo) VALUES(@Descricao, @TipoFuncao, @Ativo);
                             SELECT @@IDENTITY";
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
@@ -31,7 +31,8 @@ namespace Web.BD.Repository
 
                 cmd.Parameters.AddWithValue("@DescricaoAntigo", entityAntigo.Descricao);
                 cmd.Parameters.AddWithValue("@TipoFuncaoAntigo", entityAntigo.TipoFuncao);
-                return cmd.ExecuteNonQuery() > 0 ? true : false;
+                cmd.ExecuteNonQuery();
+                return true;
             }
         }
 
@@ -91,6 +92,7 @@ namespace Web.BD.Repository
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
                 cmd.Parameters.AddWithValue("@TipoFuncao", entity.TipoFuncao);
+                cmd.Parameters.AddWithValue("@Ativo", 1);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
         }
