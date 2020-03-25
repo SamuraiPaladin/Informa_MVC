@@ -73,3 +73,5 @@ C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model
 C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.csproj.CopyComplete
 C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.dll
 C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.pdb
+C:\Users\Diego\Desktop\Repositorios\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.dll
+C:\Users\Diego\Desktop\Repositorios\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.pdb
