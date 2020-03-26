@@ -805,7 +805,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\materialize\materialize.js" />
     <Content Include="Scripts\materialize\materialize.min.js" />
     <Content Include="Scripts\menu.js" />
@@ -834,6 +833,7 @@
     <Content Include="Views\Colaborador\Index.cshtml" />
     <Content Include="Views\Aluno\Index.cshtml" />
     <Content Include="Views\Mensalidades\Index.cshtml" />
+    <Content Include="Views\Turma\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
