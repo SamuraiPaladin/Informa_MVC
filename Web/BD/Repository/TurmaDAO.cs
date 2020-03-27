@@ -93,7 +93,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@DescricaoNovo", entityNovo.Descricao);
                 cmd.Parameters.AddWithValue("@ColaboradorIdNovo", entityNovo.ColaboradorId);
                 cmd.Parameters.AddWithValue("@TipoNovo", entityNovo.Tipo);
-                cmd.Parameters.AddWithValue("@DiaDaSemanaNovo", entityNovo.DiaDaSemana[0]);
+                cmd.Parameters.AddWithValue("@DiaDaSemanaNovo", entityNovo.DiaDaSemana);
                 cmd.Parameters.AddWithValue("@HorarioInicialNovo", entityNovo.HorarioInicial);
                 cmd.Parameters.AddWithValue("@HorarioFinalNovo", entityNovo.HorarioFinal);
 
@@ -102,7 +102,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@DescricaoAntigo", entityAntigo.Descricao);
                 cmd.Parameters.AddWithValue("@ColaboradorIdAntigo", entityAntigo.ColaboradorId);
                 cmd.Parameters.AddWithValue("@TipoAntigo", entityAntigo.Tipo);
-                cmd.Parameters.AddWithValue("@DiaDaSemanaAntigo", entityAntigo.DiaDaSemana[0]);
+                cmd.Parameters.AddWithValue("@DiaDaSemanaAntigo", entityAntigo.DiaDaSemana);
                 cmd.Parameters.AddWithValue("@HorarioInicialAntigo", entityAntigo.HorarioInicial);
                 cmd.Parameters.AddWithValue("@HorarioFinalAntigo", entityAntigo.HorarioFinal);
                 cmd.ExecuteNonQuery();
