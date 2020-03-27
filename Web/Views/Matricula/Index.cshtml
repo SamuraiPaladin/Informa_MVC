@@ -1,7 +1,583 @@
-﻿
+﻿@model  Model.Entity.Aluno
 @{
-    ViewBag.Title = "Index";
+    ViewData["Title"] = "Matricula";
 }
 
-<h2>Index</h2>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
+        <style>
+            nav.clean {
+                background: none;
+                box-shadow: none;
+            }
 
+                nav.clean .breadcrumb {
+                    color: black;
+                }
+
+                    nav.clean .breadcrumb:before {
+                        color: rgba(0, 0, 0, 0.7);
+                    }
+
+            .breadcrumb {
+                color: black;
+                font-size: 15px;
+            }
+
+            .btn-flat {
+                background-color: #af2405;
+                color: #fff
+            }
+
+            .btn {
+                background-color: #af2405;
+            }
+
+                .btn:hover {
+                    background-color: #7c1a04;
+                }
+
+            /* INPUT COLOR */
+            .input-field input:focus + label {
+                color: #af2405 !important;
+            }
+
+            .row .input-field input:focus {
+                border-bottom: 1px solid #af2405 !important;
+                box-shadow: 0 1px 0 0 #af2405 !important
+            }
+
+            [type="checkbox"]:checked + span:not(.lever):before {
+                top: -4px;
+                left: -5px;
+                width: 12px;
+                height: 22px;
+                border-top: 2px solid transparent;
+                border-left: 2px solid transparent;
+                border-right: 2px solid #af2405;
+                border-bottom: 2px solid #af2405;
+                -webkit-transform: rotate(40deg);
+                transform: rotate(40deg);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transform-origin: 100% 100%;
+                transform-origin: 100% 100%;
+            }
+
+            .subtitleModal {
+                font-family: 'Roboto', sans-serif;
+                text-align: left;
+                text-transform: uppercase;
+            }
+        </style>
+    </head>
+
+<!-- BREADCRUMB -->
+
+<nav class="clean container">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <span class="left">
+                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="@Url.Action("Index", "Aluno")" class="breadcrumb"><strong>Matricula</strong></a>
+            </span>
+        </div>
+    </div>
+</nav>
+
+
+<div class="row container">
+    <div class="col s12 l12">
+        <a href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Aluno</a>
+    </div>
+</div>
+
+<div id="modalCadastrar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="flow-text ">Cadastrar Aluno</h4>
+        </div>
+        <br /><br />
+        <div class="col s12 l12">
+            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
+        </div>
+
+        <br />
+
+        <div class="col s12 l12">
+            <form class="col s12 l12">
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nome" type="text" class="validate">
+                    <label for="nome">Nome do Aluno</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="mm/dd/aaaa" type="date" id="datadenascimento" class="validate">
+                    <label for="datadenascimento">Data de Nascimento</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 999.999.999-99" id="cpf" oninput="mascaraCPF(this)" type="text">
+                    <label for="cpf">CPF</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 99.999.999-9" id="rg" oninput="mascaraRG(this)" type="text">
+                    <label for="rg">RG</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate" maxlength="11">
+                    <label for="telefone">Telefone</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cep" oninput="mascaraCEP(this)" type="text" class="validate" maxlength="9">
+                    <label for="cep">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate" maxlength="45" disabled>
+                    <label for="endereco">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numero" type="number" class="validate" maxlength="5">
+                    <label for="numero">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate" maxlength="30" disabled>
+                    <label for="bairro">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidade" type="text" class="validate" maxlength="30" disabled>
+                    <label for="cidade">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estado" type="text" class="validate" disabled>
+                    <label for="estado">Estado</label>
+                </div>
+
+                <div id="modalCadastroAluno" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Aluno Cadastrado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        <br /><br />
+        </div>
+
+        <div class="col s12 l12">
+            <br /><br />
+            <div class="col s12 l6">
+                <h4 class="flow-text center subtitleModal" style="margin-top:25px;">TURMAS DISPONÍVEIS</h4>
+            </div>
+            <div class="col s12 l6 right">
+                <div class="input-field col s12">
+                    <input placeholder="Pesquisar por código, Curso ou Professor..." id="pesquisarMatricula" type="text" class="validate">
+                    <label for="pesquisarMatricula">Pesquisar Matrícula</label>
+                </div>
+            </div>
+        </div>
+
+        <table class="table highlight centered ">
+            <thead>
+                <tr>
+                    <th>Código Turma</th>
+                    <th>Alunos na Turma</th>
+                    <th>Curso</th>
+                    <th>Professor</th>
+                    <th>Horário</th>
+                    <th>Turma desejada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AB12</td>
+                    <td>7/10</td>
+                    <td>Natação</td>
+                    <td><strong>Andressa</strong></td>
+                    <td>12:00</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" />
+                            <span>AB12</span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AB12</td>
+                    <td>7/10</td>
+                    <td>Natação</td>
+                    <td><strong>Andressa</strong></td>
+                    <td>12:00</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" />
+                            <span>AB12</span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AB12</td>
+                    <td>7/10</td>
+                    <td>Natação</td>
+                    <td><strong>Andressa</strong></td>
+                    <td>12:00</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" />
+                            <span>AB12</span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AB12</td>
+                    <td>7/10</td>
+                    <td>Natação</td>
+                    <td><strong>Andressa</strong></td>
+                    <td>12:00</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" />
+                            <span>AB12</span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AB12</td>
+                    <td>7/10</td>
+                    <td>Natação</td>
+                    <td><strong>Andressa</strong></td>
+                    <td>12:00</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" />
+                            <span>AB12</span>
+                        </label>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+    </div>
+</div>
+
+
+<table class="table highlight centered container ">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>RG</th>
+                <th>Bairro</th>
+                <th>Telefone</th>
+                <th>Curso</th>
+                <th>Código Turma</th>
+                <th>Professor Turma</th>
+                <th>Horario da Turma</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>Diego</td>
+                <td>25252552</td>
+                <td>Eng. Goulart</td>
+                <td>11-969696969</td>
+                <td>Natação</td>
+                <td><strong>AB47</strong></td>
+                <td>Andressa</td>
+                <td>12:00</td>
+                <td>
+                    <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                    <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"><i class="material-icons">delete_forever</i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Diego</td>
+                <td>25252552</td>
+                <td>Eng. Goulart</td>
+                <td>11-969696969</td>
+                <td>Natação</td>
+                <td><strong>AB47</strong></td>
+                <td>Andressa</td>
+                <td>12:00</td>
+                <td>
+                    <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                    <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"><i class="material-icons">delete_forever</i></a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Editar Aluno Diego Souza</h4>
+        </div>
+
+        <br /><br />
+        <div class="col s12 l12">
+            <div class="col s12 l12">
+                <h4 class="flow-text subtitleModal">dados pessoais</h4>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <br />
+        <div class="col s12 l12">
+            <form class="col s12 l12">
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeEditar" type="text" class="validate">
+                    <label for="nomeEditar">Nome do Aluno</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="mm/dd/aaaa" type="text" id="datadenascimentoEditar" class="validate">
+                    <label for="datadenascimentoEditar">Data de Nascimento</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 999.999.999-99" id="cpfEditar" oninput="mascaraCPF(this)" type="text">
+                    <label for="cpfEditar">CPF</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 99.999.999-9" id="rgEditar" oninput="mascaraRG(this)" type="text">
+                    <label for="rgEditar">RG</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefoneEditar" type="text" class="validate" maxlength="11">
+                    <label for="telefoneEditar">Telefone</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEPEditar()" id="cepEditar" oninput="mascaraCEP(this)" type="number" class="validate" maxlength="8">
+                    <label for="cepEditar">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="enderecoEditar" type="text" class="validate" maxlength="45" disabled>
+                    <label for="enderecoEditar">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numeroEditar" type="number" class="validate" maxlength="5">
+                    <label for="numeroEditar">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairroEditar" type="text" class="validate" maxlength="30" disabled>
+                    <label for="bairroEditar">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidadeEditar" type="text" class="validate" maxlength="30" disabled>
+                    <label for="cidadeEditar">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estadoEditar" type="text" class="validate" disabled>
+                    <label for="estadoEditar">Estado</label>
+                </div>
+
+                <div id="modalCadastroAluno" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Aluno Editado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+
+        
+        <div class="col s12 l12">
+            <br /><br />
+            <div class="col s12 l12">
+                <h4 class="flow-text subtitleModal">Turma Atual</h4>
+                <table class="centered">
+                    <thead>
+                    <th>Código Turma</th>
+                    <th>Alunos na Turma</th>
+                    <th>Curso</th>
+                    <th>Professor</th>
+                    <th>Horário</th>
+                    <th>Turma atual</th>
+                    </thead>
+
+                    <tbody>
+                    <td>AB13</td>
+                    <td>07/10</td>
+                    <td>Natação</td>
+                    <td>Andressa</td>
+                    <td>13:00</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" checked />
+                            <span>AB12</span>
+                        </label>
+                    </td>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+              <div class="col s12 l12">
+                  <br /><br /><br />
+                  <div class="col s12 l6">
+                      <h4 class="flow-text center subtitleModal" style="margin-top:25px;">atrelar nova turma</h4>
+                  </div>
+                  <div class="col s12 l6 right">
+                      <div class="input-field col s12">
+                          <input placeholder="Pesquisar por código, Curso ou Professor..." id="pesquisarMatricula" type="text" class="validate">
+                          <label for="pesquisarMatricula">Pesquisar Matrícula</label>
+                      </div>
+                  </div>
+                  <table class="table highlight centered ">
+                      <thead>
+                          <tr>
+                              <th>Código Turma</th>
+                              <th>Alunos na Turma</th>
+                              <th>Curso</th>
+                              <th>Professor</th>
+                              <th>Horário</th>
+                              <th>Turma desejada</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>AB12</td>
+                              <td>7/10</td>
+                              <td>Natação</td>
+                              <td><strong>Andressa</strong></td>
+                              <td>12:00</td>
+                              <td>
+                                  <label>
+                                      <input type="checkbox" />
+                                      <span>AB12</span>
+                                  </label>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>AB12</td>
+                              <td>7/10</td>
+                              <td>Natação</td>
+                              <td><strong>Andressa</strong></td>
+                              <td>12:00</td>
+                              <td>
+                                  <label>
+                                      <input type="checkbox" />
+                                      <span>AB12</span>
+                                  </label>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>AB12</td>
+                              <td>7/10</td>
+                              <td>Natação</td>
+                              <td><strong>Andressa</strong></td>
+                              <td>12:00</td>
+                              <td>
+                                  <label>
+                                      <input type="checkbox" />
+                                      <span>AB12</span>
+                                  </label>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>AB12</td>
+                              <td>7/10</td>
+                              <td>Natação</td>
+                              <td><strong>Andressa</strong></td>
+                              <td>12:00</td>
+                              <td>
+                                  <label>
+                                      <input type="checkbox" />
+                                      <span>AB12</span>
+                                  </label>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>AB12</td>
+                              <td>7/10</td>
+                              <td>Natação</td>
+                              <td><strong>Andressa</strong></td>
+                              <td>12:00</td>
+                              <td>
+                                  <label>
+                                      <input type="checkbox" />
+                                      <span>AB12</span>
+                                  </label>
+                              </td>
+                          </tr>
+
+                      </tbody>
+                  </table>
+              </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
+</div>
+
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Tem certeza que deseja deletar o aluno Diego Souza?</h4>
+        </div>
+
+        <div class="col s12 l12">
+            <div class="col s12 l4">
+                <p class="center">
+                    <strong style="font-weight:bold">RG</strong>
+                    <br />
+                    <span>456465465</span>
+                </p>
+            </div>
+            <div class="col s12 l4">
+                <p class="center">
+                    <strong style="font-weight:bold">Aluno</strong>
+                    <br />
+                    <span>Diego Magalhaes de Souza</span>
+                </p>
+            </div>
+            <div class="col s12 l4">
+                <p class="center">
+                    <strong style="font-weight:bold">CPF</strong>
+                    <br />
+                    <span>456465465</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Sim, deletar</a>
+    </div>
+</div>
