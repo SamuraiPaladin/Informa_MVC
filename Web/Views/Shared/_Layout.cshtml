@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Principal" asp-action="Index" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
+                    <a asp-controller="Principal" href="@Url.Action("Index","Principal")" asp-action="Index" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
                 </li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -39,7 +39,7 @@
         <li>
             <div class="user-view">
                 <div class="background" style="background-color: #af2405;">
-                    <img src="~/imgs/icon-informa.png">
+                    <img src="~/imgs/icon-informa.png" class="right" width="140">
                 </div>
                 <a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
                 <a href="#name"><span class="white-text name">John Dee</span></a>
@@ -70,9 +70,10 @@
                             <li>
                                 <a href="@Url.Action("Index","Colaborador")"><span class="insideLink">Colaborador</span></a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a href="@Url.Action("Index","Aluno")"><span class="insideLink">Aluno</span></a>
                             </li>
+                                -->
                             <li>
                                 <a href="@Url.Action("Index","Fornecedor")"><span class="insideLink">Fornecedor</span></a>
                             </li>
@@ -84,6 +85,13 @@
                     </div>
                 </li>
             </ul>
+        </li>
+
+        <li>
+            <div class="collapsible-header" onClick="redirecionaPaginaMatricula()">
+                 <i class="material-icons" style="color: grey;">recent_actors</i>
+                  <strong>Matricula</strong>
+            </div>
         </li>
 
 
@@ -150,7 +158,14 @@
     <script src="~/Scripts/menu.js"></script>
     <script src="~/Scripts/materialize/materialize.min.js"></script>
     <script src="~/Scripts/temperaturaAndLocale.js"></script>
-    @RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false);
+<script>
+
+        const redirecionaPaginaMatricula = () => {
+            window.location.href="@Url.Action("Index", "Matricula")"
+        }
+
+</script>
 
 </body>
 </html>
