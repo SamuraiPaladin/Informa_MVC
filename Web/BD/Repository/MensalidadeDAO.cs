@@ -140,7 +140,10 @@ namespace Web.BD.Repository
                             from Mensalidades t 
                             inner join Turmas u on t.TurmaId = u.Id
                             inner join Modalidades m on t.ModalidadeId = m.Id 
-                            inner join Alunos a on t.Alunoid = a.Id";
+                            inner join Alunos a on t.Alunoid = a.Id
+                            WHERE 
+                            MONTH(t.DataDeVencimento) = MONTH(GETDATE()) and
+                            YEAR(t.DataDeVencimento) = YEAR(GETDATE())";
 
             List<Mensalidade> Mensalidades = new List<Mensalidade>();
             using (var con = new SqlConnection(stringConexao))
@@ -162,7 +165,7 @@ namespace Web.BD.Repository
                             ModalidadeId = (int)sdr["ModalidadeId"],
                             Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
                             TurmaId = (int)sdr["TurmaId"],
-                            Turma = new Turma { Id = (int)sdr["TurmaId"], Descricao = sdr["Descricao"].ToString() },
+                            Turma = new Turma { Id = (int)sdr["TurmaId"], Descricao = sdr["DescricaoTurma"].ToString() },
                             DataDeVencimento = (DateTime)sdr["DataDeVencimento"],
                             StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
                             FormaDePagamento = sdr["FormaDePagamento"].ToString()
@@ -287,6 +290,7 @@ namespace Web.BD.Repository
                                 	count(1) as qtd
                                 FROM 
                                 	Mensalidades  
+                                WHERE
                             AlunoId = @AlunoId and 
 	                        ModalidadeId =   @ModalidadeId and 
 	                        TurmaId = @TurmaId and 
