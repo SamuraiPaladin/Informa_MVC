@@ -1,4 +1,5 @@
 ﻿using Model.Entity;
+using Model.DTO;
 using Model.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,8 @@ namespace Web.BD.Repository
         {
             
             string query = @"INSERT INTO Alunos
-               (Nome, CPF, DataNascimento, RG, CEP, Endereco, Numero, Bairro, Cidade, Estado, Telefone)
-			    Values(@Nome, @CPF, @DataNascimento, @RG, @CEP, @Endereco, @Numero, @Bairro, @Cidade, @Estado, @Telefone);
+               (Nome, CPF, DataNascimento, RG, CEP, Endereco, Numero, Bairro, Cidade, Estado, Telefone, Email)
+			    Values(@Nome, @CPF, @DataNascimento, @RG, @CEP, @Endereco, @Numero, @Bairro, @Cidade, @Estado, @Telefone, @Email);
                 SELECT @@IDENTITY";
 
             using (var con = new SqlConnection(stringConexao))
@@ -37,6 +38,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
                 cmd.Parameters.AddWithValue("@Estado", entity.Estado);
                 cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
+                cmd.Parameters.AddWithValue("@Email", entity.Email);
 
                 cmd.ExecuteNonQuery();
                 return true;
@@ -60,7 +62,8 @@ namespace Web.BD.Repository
                   Bairro = @BairroNovo,
                   Cidade = @CidadeNovo,
                   Estado = @EstadoNovo,
-                  Telefone = @TelefoneNovo
+                  Telefone = @TelefoneNovo,
+                  Email = @EmailNovo
                 WHERE   
                   ID = @IDAntigo";
 
@@ -80,6 +83,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@CidadeNovo", entityNovo.Cidade);
                 cmd.Parameters.AddWithValue("@EstadoNovo", entityNovo.Estado);
                 cmd.Parameters.AddWithValue("@TelefoneNovo", entityNovo.Telefone);
+                cmd.Parameters.AddWithValue("@EmailNovo", entityNovo.Email);
 
                 cmd.Parameters.AddWithValue("@IDAntigo", entityAntigo.Id);
                 //cmd.Parameters.AddWithValue("@DataNascimentoAntigo", entityAntigo.DataNascimento);
@@ -146,6 +150,48 @@ namespace Web.BD.Repository
                             Cidade = sdr["Cidade"].ToString(),
                             Estado = sdr["Estado"].ToString(),
                             Telefone = sdr["Telefone"].ToString(),
+                            Email = sdr["Email"].ToString(),
+                        };
+                        alunos.Add(model);
+                    }
+                }
+                con.Close();
+                return alunos;
+            }
+        }
+
+        public List<AlunoInadimpente> ReturnAlunosInadimplentesLista()
+        {
+            
+            string query = @"
+                            SELECT a.Id as IdAluno, a.Nome, a.DataNascimento, a.CPF, a.RG, a.Telefone, a.Email, m.Id as IdMensalidade, m.DataDeVencimento, m.StatusDaMensalidade FROM Alunos a
+                            INNER JOIN Mensalidades m ON a.Id = m.AlunoID
+                            WHERE m.StatusDaMensalidade = 'Vencido'
+                            ORDER BY m.DataDeVencimento";
+            List<AlunoInadimpente> alunos = new List<AlunoInadimpente>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        var model = new AlunoInadimpente
+                        {
+                            IdAluno = (int)sdr["IdAluno"],
+                            Nome = sdr["Nome"].ToString(),
+                            DataNascimento = DateTime.Parse(sdr["DataNascimento"].ToString()),
+                            CPF = sdr["CPF"].ToString(),
+                            RG = sdr["RG"].ToString(),
+                            Telefone = sdr["Telefone"].ToString(),
+                            Email = sdr["Email"].ToString(),
+                            IdMensalidade = (int)sdr["IdMensalidade"],
+                            DataDeVencimento = DateTime.Parse(sdr["DataDeVencimento"].ToString()),
+                            StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString()
                         };
                         alunos.Add(model);
                     }
@@ -169,7 +215,8 @@ namespace Web.BD.Repository
                             Bairro =  @Bairro AND
                             Cidade = @Cidade AND
                             Estado = @Estado AND
-                            Telefone = @Telefone";   
+                            Telefone = @Telefone AND
+                            Email = @Email";   
 
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
@@ -191,6 +238,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
                 cmd.Parameters.AddWithValue("@Estado", entity.Estado);
                 cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
+                cmd.Parameters.AddWithValue("@Email", entity.Email);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
         }
