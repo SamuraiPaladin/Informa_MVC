@@ -136,7 +136,7 @@ namespace Web.BD.Repository
         }
         public List<Mensalidade> ListaMensalidade()
         {
-            string query = @"SELECT t.*, a.Nome, m.TipoModalidade, m.Descricao DescricaoModalidade, c.Nome, u.Descricao  DescricaoTurma
+            string query = @"SELECT t.*, a.Nome, m.TipoModalidade, m.Descricao DescricaoModalidade, a.Nome, u.Descricao  DescricaoTurma
                             from Mensalidades t 
                             inner join Turmas u on t.TurmaId = u.Id
                             inner join Modalidades m on t.ModalidadeId = m.Id 
@@ -242,9 +242,10 @@ namespace Web.BD.Repository
 
         public List<Turma> ReturnMensalidadeTurmasLista()
         {
-            string query = @"SELECT t.*, u.Descricao DescricaoUnidade, m.TipoModalidade, m.Descricao DescricaoModalidade, c.Nome 
+            string query = @"SELECT t.*, u.Descricao DescricaoUnidade, m.TipoModalidade, m.Descricao DescricaoModalidade 
                             from Turmas t 
-                            inner join Unidades u on t.UnidadeId = u.Id";
+                            inner join Unidades u on t.UnidadeId = u.Id
+                            inner join Modalidades m on t.ModalidadeId = m.Id";
 
             List<Turma> turmas = new List<Turma>();
             using (var con = new SqlConnection(stringConexao))
@@ -266,8 +267,6 @@ namespace Web.BD.Repository
                             ModalidadeId = (int)sdr["ModalidadeId"],
                             Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
                             Descricao = sdr["Descricao"].ToString(),
-                            ColaboradorId = (int)sdr["ColaboradorId"],
-                            Colaborador = new Colaborador() { Id = (int)sdr["ColaboradorId"], Nome = sdr["Nome"].ToString() },
                             Tipo = sdr["Tipo"].ToString(),
                             DiaDaSemana = sdr["DiaDaSemana"].ToString(),
                             HorarioInicial = sdr["HorarioInicial"].ToString(),
