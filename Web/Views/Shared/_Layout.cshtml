@@ -1,12 +1,11 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
+﻿<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@ViewData["Title"] - inForma</title>
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/materialize/css/materialize.min.css">
     <link rel="stylesheet" href="~/Content/Site.css">
     <link href="~/Content/paginas/principal.css" rel="stylesheet" />
@@ -89,8 +88,8 @@
 
         <li>
             <div class="collapsible-header" onClick="redirecionaPaginaMatricula()">
-                 <i class="material-icons" style="color: grey;">recent_actors</i>
-                  <strong>Matricula</strong>
+                <i class="material-icons" style="color: grey;">recent_actors</i>
+                <strong>Matricula</strong>
             </div>
         </li>
 
@@ -158,14 +157,16 @@
     <script src="~/Scripts/menu.js"></script>
     <script src="~/Scripts/materialize/materialize.min.js"></script>
     <script src="~/Scripts/temperaturaAndLocale.js"></script>
+    <script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/datatables/dataTables.bootstrap4.min.js"></script>
+
     @RenderSection("Scripts", required: false);
-<script>
+    <script>
 
         const redirecionaPaginaMatricula = () => {
             window.location.href="@Url.Action("Index", "Matricula")"
         }
 
-</script>
+    </script>
 
 </body>
-</html>
