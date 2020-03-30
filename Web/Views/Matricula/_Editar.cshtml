@@ -1,0 +1,177 @@
+﻿@model  Model.Entity.Matricula
+
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="tituloAlunoEditar"></h4>
+        </div>
+
+        <br /><br />
+        <div class="col s12 l12">
+            <div class="col s12 l12">
+                <h4 class="flow-text subtitleModal">Dados pessoais</h4>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <br />
+        <div class="col s12 l12">
+            <form class="col s12 l12">
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nomeEditar" type="text" class="validate">
+                    <label for="nomeEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="mm/dd/aaaa" type="text" id="datadenascimentoEditar" class="validate">
+                    <label for="datadenascimentoEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 999.999.999-99" id="cpfEditar" oninput="mascaraCPF(this)" type="text">
+                    <label for="cpfEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 99.999.999-9" id="rgEditar" oninput="mascaraRG(this)" type="text">
+                    <label for="rgEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefoneEditar" type="text" class="validate" maxlength="11">
+                    <label for="telefoneEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEPEditar()" id="cepEditar" oninput="mascaraCEP(this)" type="number" class="validate" maxlength="8">
+                    <label for="cepEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="enderecoEditar" type="text" class="validate" maxlength="45" disabled>
+                    <label for="enderecoEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numeroEditar" type="number" class="validate" maxlength="5">
+                    <label for="numeroEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairroEditar" type="text" class="validate" maxlength="30" disabled>
+                    <label for="bairroEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidadeEditar" type="text" class="validate" maxlength="30" disabled>
+                    <label for="cidadeEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estadoEditar" type="text" class="validate" disabled>
+                    <label for="estadoEditar"></label>
+                </div>
+
+                <div id="modalCadastroAluno" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Aluno Editado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+        </div>
+
+
+        <div class="col s12 l12">
+            <br /><br />
+            <div class="col s12 l12">
+                <h4 class="flow-text subtitleModal">Turma Atual</h4>
+                <table class="centered">
+
+                    <thead>
+                        <tr>
+                            <th>Curso</th>
+                            <th>Tipo</th>
+                            <th>Professor</th>
+                            <th>Dia da Semana</th>
+                            <th>Horário Inícial</th>
+                            <th>Horário FInal</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="Grid">
+                        
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="col s12 l12">
+            <br /><br />
+            <div class="col s12 l6">
+                <h4 class="flow-text center subtitleModal" style="margin-top:25px;">Atrelar nova turma</h4>
+            </div>
+        </div>
+        <div class="col s12 l12">
+
+
+            <table class="table highlight centered " id="tabelaNova">
+                <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th>Tipo</th>
+                        <th>Alunos na Turma</th>
+                        <th>Professor</th>
+                        <th>Dia da Semana</th>
+                        <th>Horário Inícial</th>
+                        <th>Horário FInal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListaMatriculaTurma.Count == 0)
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.ListaMatriculaTurma)
+                        {
+                            <tr>
+                                <td class="left">
+                                    <label>
+                                        <input type="checkbox" id="@item.Id" />
+                                        <span>@item.Descricao</span>
+                                    </label>
+                                </td>
+                                <td>@item.Tipo</td>
+                                <td>@item.Quantidade</td>
+                                <td><strong>@item.Nome</strong></td>
+                                <td>@item.DiaDaSemana</td>
+                                <td>@item.HorarioInicial</td>
+                                <td>@item.HorarioFinal</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+    </div>
+</div>
+
