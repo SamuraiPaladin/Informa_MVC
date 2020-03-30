@@ -21,9 +21,11 @@ namespace Web.Controllers
         private readonly IDAO<Mensalidade> dAO = new MensalidadeDAO();
         private readonly MensalidadeDAO dAOMensalidade = new MensalidadeDAO();
 
+        public Mensalidade model = new Mensalidade();
+
         public ActionResult Index()
         {
-            var model = new Mensalidade
+            model = new Mensalidade
             {
                 ListaMensalidade = dAOMensalidade.ListaMensalidade(),
                 ListaAluno = dAOMensalidade.ReturnMensalidadeAlunoLista(),
@@ -49,6 +51,29 @@ namespace Web.Controllers
                 return Json(dAO.Adicionar(Mensalidade));
             }
         }
+
+        public ActionResult BuscaPorNome(string Nome)
+        {
+            var model = new Mensalidade();
+            if (!String.IsNullOrEmpty(Nome)) {
+                model = new Mensalidade
+                {
+                    ListaMensalidade = dAOMensalidade.ListaMensalidadePorNome(Nome),
+                    ListaAluno = dAOMensalidade.ReturnMensalidadeAlunoLista(),
+                    ListaModalidade = dAOMensalidade.ReturnMensalidadeModalidadesLista(),
+                    ListaTurma = dAOMensalidade.ReturnMensalidadeTurmasLista(),
+                    FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
+                    StatusDasMensalidades = Enum.GetValues(typeof(EnumPaymentStatus.PaymentStatus))
+                };
+            }
+            else
+            {
+                return Json("Preenchimento obrigatório");
+            }
+
+            return PartialView("Index", model);
+        }
+
 
         private static bool VerificaSeTemCampoVazioOuNulo(Mensalidade Mensalidade)
         {

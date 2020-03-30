@@ -176,6 +176,51 @@ namespace Web.BD.Repository
                 con.Close();
                 return Mensalidades;
             }
+        }    
+        
+        
+        public List<Mensalidade> ListaMensalidadePorNome(string Nome)
+        {
+            string query = @"SELECT t.*, a.Nome, m.TipoModalidade, m.Descricao DescricaoModalidade, a.Nome, u.Descricao  DescricaoTurma
+                            from Mensalidades t 
+                            inner join Turmas u on t.TurmaId = u.Id
+                            inner join Modalidades m on t.ModalidadeId = m.Id 
+                            inner join Alunos a on t.Alunoid = a.Id
+                            WHERE 
+                            a.Nome LIKE '%' + @Nome + '%'";
+
+            List<Mensalidade> Mensalidades = new List<Mensalidade>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Nome", Nome);
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        var model = new Mensalidade
+                        {
+                            Id = (int)sdr["Id"],
+                            AlunoId = (int)sdr["AlunoId"],
+                            Aluno = new Aluno { Id = (int)sdr["AlunoId"], Nome = sdr["Nome"].ToString() },
+                            ModalidadeId = (int)sdr["ModalidadeId"],
+                            Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
+                            TurmaId = (int)sdr["TurmaId"],
+                            Turma = new Turma { Id = (int)sdr["TurmaId"], Descricao = sdr["DescricaoTurma"].ToString() },
+                            DataDeVencimento = (DateTime)sdr["DataDeVencimento"],
+                            StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
+                            FormaDePagamento = sdr["FormaDePagamento"].ToString()
+                        };
+                        Mensalidades.Add(model);
+                    }
+                }
+                con.Close();
+                return Mensalidades;
+            }
         }
 
         public List<Aluno> ReturnMensalidadeAlunoLista()
