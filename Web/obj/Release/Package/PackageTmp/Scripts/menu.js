@@ -32,4 +32,71 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('select').formSelect();
+    $('.dropdown-trigger').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger2').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger3').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger4').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger5').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger6').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger7').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger8').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger9').dropdown();
+});
+
+
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger10').dropdown();
+});
+
+
+$(document).ready(function () {
+});
+
+$(document).ready(function () {
+    $('.collapsible').collapsible();
+});
+
+$(document).ready(function () {
+    $('.tabs').tabs();
 });
