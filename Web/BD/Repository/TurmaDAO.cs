@@ -17,7 +17,7 @@ namespace Web.BD.Repository
         {
 
             string query = @"INSERT INTO Turmas
-           (UnidadeId,
+           (UnidadeId
       ,ModalidadeId
       ,Descricao
       ,ColaboradorId
@@ -73,7 +73,7 @@ namespace Web.BD.Repository
             Tipo = @TipoNovo,
             DiaDaSemana = @DiaDaSemanaNovo,
             HorarioInicial = @HorarioInicialNovo,
-            HorarioFinal = @HorarioFinalNovo,
+            HorarioFinal = @HorarioFinalNovo
         WHERE   
             UnidadeId = @UnidadeIdAntigo AND
             ModalidadeId = @ModalidadeIdAntigo AND
@@ -210,7 +210,7 @@ namespace Web.BD.Repository
                             Id = (int)sdr["Id"],
                             Descricao = sdr["Descricao"].ToString(),
                             TipoModalidade = sdr["TipoModalidade"].ToString(),
-                            Ativo = (bool)sdr["Nome"]
+                            Ativo = (bool)sdr["Ativo"]
                         };
                         lista.Add(model);
                     }

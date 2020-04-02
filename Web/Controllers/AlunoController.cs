@@ -1,5 +1,6 @@
 ﻿using Model;
 using Model.Entity;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -42,13 +43,15 @@ namespace Web.Controllers
 
         public ActionResult Index()
        {
-            var model = new Aluno
+            var model = new AlunoInadimpente
             {
-                ListaAluno = dAOAluno.ReturnAlunosLisat()
+                //AlunosInadimplentes = dAOAluno.ReturnAlunosLisat()
+                AlunosInadimplentes = dAOAluno.ReturnAlunosInadimplentesLista()
             };
 
             return View(model);
         }
+
         public JsonResult Adicionar(Aluno Aluno)
         {
             if (VerificaSeTemCampoVazioOuNulo(Aluno))

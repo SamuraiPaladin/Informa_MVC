@@ -1,12 +1,11 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
+﻿<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@ViewData["Title"] - inForma</title>
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/materialize/css/materialize.min.css">
     <link rel="stylesheet" href="~/Content/Site.css">
     <link href="~/Content/paginas/principal.css" rel="stylesheet" />
@@ -24,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Principal" asp-action="Index" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
+                    <a asp-controller="Principal" href="@Url.Action("Index","Principal")" asp-action="Index" style="position:relative" class="brand-logo"><img src="~/imgs/informa.png" width="200" class="img-responsive"></a>
                 </li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -39,7 +38,7 @@
         <li>
             <div class="user-view">
                 <div class="background" style="background-color: #af2405;">
-                    <img src="~/imgs/icon-informa.png">
+                    <img src="~/imgs/icon-informa.png" class="right" width="140">
                 </div>
                 <a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
                 <a href="#name"><span class="white-text name">John Dee</span></a>
@@ -71,19 +70,23 @@
                                 <a href="@Url.Action("Index","Colaborador")"><span class="insideLink">Colaborador</span></a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index","Aluno")"><span class="insideLink">Aluno</span></a>
-                            </li>
-                            <li>
                                 <a href="@Url.Action("Index","Fornecedor")"><span class="insideLink">Fornecedor</span></a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-blue" asp-controller="Turma" asp-action="Index"><span class="insideLink">Turma</span></a>
+                                <a href="@Url.Action("Index","Turma")"><span class="insideLink">Turma</span></a>
                             </li>
                         </ul>
 
                     </div>
                 </li>
             </ul>
+        </li>
+
+        <li>
+            <div class="collapsible-header" onClick="redirecionaPaginaMatricula()">
+                <i class="material-icons" style="color: grey;">recent_actors</i>
+                <strong>Matricula</strong>
+            </div>
         </li>
 
 
@@ -98,9 +101,11 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a class="" href="#!"><span class="insideLink">Mensalidades</span></a>
+                                <a class="" href="@Url.Action("Index","Mensalidade")"><span class="insideLink">Mensalidades</span></a>
                             </li>
-
+                            <li>
+                                <a class="" href="@Url.Action("Index","Aluno")"><span class="insideLink">Alunos Inadimplentes</span></a>
+                            </li>
                         </ul>
 
                     </div>
@@ -150,7 +155,16 @@
     <script src="~/Scripts/menu.js"></script>
     <script src="~/Scripts/materialize/materialize.min.js"></script>
     <script src="~/Scripts/temperaturaAndLocale.js"></script>
-    @RenderSection("Scripts", required: false)
+    <script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/datatables/dataTables.bootstrap4.min.js"></script>
+
+    @RenderSection("Scripts", required: false);
+    <script>
+
+        const redirecionaPaginaMatricula = () => {
+            window.location.href="@Url.Action("Index", "Matricula")"
+        }
+
+    </script>
 
 </body>
-</html>

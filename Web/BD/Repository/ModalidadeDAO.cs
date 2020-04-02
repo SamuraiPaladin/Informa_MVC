@@ -14,7 +14,7 @@ namespace Web.BD.Repository
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Modalidade entity)
         {
-            string query = @"INSERT INTO Modalidades(Descricao, TipoModalidade) VALUES(@Descricao, @TipoModalidade);
+            string query = @"INSERT INTO Modalidades(Descricao, TipoModalidade, Ativo) VALUES(@Descricao, @TipoModalidade, @Ativo);
                             SELECT @@IDENTITY";
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
@@ -31,7 +31,8 @@ namespace Web.BD.Repository
 
                 cmd.Parameters.AddWithValue("@DescricaoAntigo", entityAntigo.Descricao);
                 cmd.Parameters.AddWithValue("@TipoModalidadeAntigo", entityAntigo.TipoModalidade);
-                return cmd.ExecuteNonQuery() > 0 ? true : false;
+                cmd.ExecuteNonQuery();
+                return true;
             }
         }
 
@@ -91,6 +92,7 @@ namespace Web.BD.Repository
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
                 cmd.Parameters.AddWithValue("@TipoModalidade", entity.TipoModalidade);
+                cmd.Parameters.AddWithValue("@Ativo", 1);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
         }

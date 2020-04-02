@@ -22,6 +22,7 @@ namespace Model.Entity
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Telefone { get; set; }
+        public string Email { get; set; }
 
         public List<Aluno> ListaAluno { get; set; }
 

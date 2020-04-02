@@ -467,3 +467,16 @@ C:\Projetos\Informa_MVC\Web\bin\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Projetos\Informa_MVC\Web\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Projetos\Informa_MVC\Web\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Projetos\Informa_MVC\Web\obj\Release\Web.csproj.CoreCompileInputs.cache
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.Logging.dll
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.Protocols.dll
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Projetos\Informa_MVC\Web\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.Data.SqlClient.xml
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.Logging.xml
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.Protocols.xml
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
+C:\Projetos\Informa_MVC\Web\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Projetos\Informa_MVC\Web\bin\System.IdentityModel.Tokens.Jwt.xml

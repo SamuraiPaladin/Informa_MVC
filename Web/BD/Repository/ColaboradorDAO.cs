@@ -42,7 +42,7 @@ namespace Web.BD.Repository
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@Nome", entity.Nome);
-                cmd.Parameters.AddWithValue("@Funcao", entity.FuncaoId);
+                cmd.Parameters.AddWithValue("@FuncaoId", entity.FuncaoId);
 
                 cmd.ExecuteNonQuery();
                 return true;

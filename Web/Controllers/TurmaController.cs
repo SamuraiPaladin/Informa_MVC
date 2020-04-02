@@ -1,5 +1,6 @@
 ﻿using Model;
 using Model.Entity;
+using Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,6 +30,8 @@ namespace Web.Controllers
                 ListaModalidade = dAOTurma.ReturnTurmaModalidadesLista(),
                 ListaColaborador = dAOTurma.ReturnTurmaColaboradorLista(),
                 ListaTurma = dAOTurma.ReturnTurmaLista(),
+                DiasDaSemana = Enum.GetValues(typeof(EnumDays.DaysOfWeek)),
+                TipoClientes = Enum.GetValues(typeof(EnumClients.Clients))
             };
 
             return View(model);
@@ -50,7 +53,7 @@ namespace Web.Controllers
 
         private static bool VerificaSeTemCampoVazioOuNulo(Turma Turma)
         {
-            return string.IsNullOrWhiteSpace(Turma.Descricao.Trim());
+            return string.IsNullOrWhiteSpace(Turma.Descricao);
         }
 
         public JsonResult Editar(Turma Turma, Turma TurmaEditar)

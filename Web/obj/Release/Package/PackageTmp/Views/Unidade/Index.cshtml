@@ -6,12 +6,15 @@
 <nav class="clean container">
     <div class="nav-wrapper">
         <div class="col s12">
-            <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-            <a href="#" class="breadcrumb">Cadastro</a>
-            <a href="@Url.Action("Index", "Unidade")" class="breadcrumb"><strong>Unidade</strong></a>
+            <span class="left">
+                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="#" class="breadcrumb">Cadastro</a>
+                <a href="@Url.Action("Index", "Unidade")" class="breadcrumb"><strong>Unidade</strong></a>
+            </span>
         </div>
     </div>
 </nav>
+
 
 <div class="row container">
     <a href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Unidade</a>
@@ -374,7 +377,7 @@
                 })
             });
         }
-                function PesquisaCEP() {
+        function PesquisaCEP() {
             let cep = document.getElementById('cep').value;
              $(function () {
                  $.ajax({

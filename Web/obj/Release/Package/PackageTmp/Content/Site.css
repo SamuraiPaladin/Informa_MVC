@@ -142,3 +142,8 @@ nav.clean {
     position: relative;
     top: 20px
 }
+
+nav {
+    background-color: #ff9100;
+    text-align:center;
+}
