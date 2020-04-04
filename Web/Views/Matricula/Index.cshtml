@@ -442,7 +442,7 @@
                 success: function (result) {
                     document.getElementById('tituloAlunoEditar').innerText = 'Editar Aluno ' + result.DadosMatriculaTurma.Nome;
                     document.getElementById('nomeEditar').value = result.DadosMatriculaTurma.Nome;
-                    document.getElementById('datadenascimentoEditar').value = result.DadosMatriculaTurma.DataNascimento;
+                    document.getElementById('datadenascimentoEditar').value = result.DadosMatriculaTurma.DataNascimento.substring(0, 10);
                     document.getElementById('cpfEditar').value = result.DadosMatriculaTurma.CPF;
                     document.getElementById('rgEditar').value = result.DadosMatriculaTurma.RG;
                     document.getElementById('telefoneEditar').value = result.DadosMatriculaTurma.Telefone;
