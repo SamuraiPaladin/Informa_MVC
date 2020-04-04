@@ -66,10 +66,31 @@ namespace Web.BD.Repository
 
         public bool Atualizar(Matricula entityAntigo, Matricula entityNovo)
         {
+            string query = @"DELETE FROM MatriculaTurma WHERE IdMatricula = @IdMatricula";
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@IdMatricula", entityNovo.Id);
+                cmd.ExecuteNonQuery();
+                for (int i = 0; i < entityNovo.Array.ToList().Count; i++)
+                {
+                    con.Close();
+                    query = @"INSERT INTO MatriculaTurma(IdMatricula, IdTurma) VALUES(@IdMatricula, @IdTurma)";
+                    con.Open();
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@IdMatricula", entityNovo.Id);
+                    cmd.Parameters.AddWithValue("@IdTurma", entityNovo.Array.ToList()[i]);
+                    cmd.ExecuteScalar();
+                }
+            }
 
+            return AtualizacaoDadosDoUsuario(entityAntigo, entityNovo);
+        }
 
-
-            string query = @"UPDATE Alunos 
+        private bool AtualizacaoDadosDoUsuario(Matricula entityAntigo, Matricula entityNovo)
+        {
+            string query = @"UPDATE Matriculas 
                 SET
                   Nome = @NomeNovo,
                   CPF = @CPFNovo,
@@ -84,7 +105,6 @@ namespace Web.BD.Repository
                   Telefone = @TelefoneNovo
                 WHERE   
                   ID = @IDAntigo";
-
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -103,10 +123,10 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@TelefoneNovo", entityNovo.Telefone);
 
                 cmd.Parameters.AddWithValue("@IDAntigo", entityAntigo.Id);
-                cmd.ExecuteNonQuery();
-                return true;
+                return cmd.ExecuteNonQuery() > 0 ? true : false;
             }
         }
+
         public bool Deletar(Matricula entity)
         {
 
@@ -167,7 +187,7 @@ namespace Web.BD.Repository
             string query = @"SELECT t.Id, count(1) Quantidade, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome
                                 FROM Colaboradores c
                                 JOIN Turmas t ON c.Id = t.ColaboradorId
-                                JOIN MatriculaTurma mt ON mt.IdTurma = t.Id
+                                --JOIN MatriculaTurma mt ON mt.IdTurma = t.Id
                                 GROUP BY t.id, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome
                                 ORDER BY t.HorarioInicial";
             var lista = new List<MatriculaTurma>();
@@ -221,8 +241,6 @@ namespace Web.BD.Repository
                             Cidade = @Cidade AND
                             Estado = @Estado AND
                             Telefone = @Telefone";
-
-
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
 
@@ -290,8 +308,8 @@ namespace Web.BD.Repository
                             CEP = sdr["CEP"].ToString(),
                             Endereco = sdr["Endereco"].ToString(),
                             Numero = sdr["Numero"].ToString(),
-                            Bairro  = sdr["Bairro"].ToString(),
-                            Cidade  = sdr["Cidade"].ToString(),
+                            Bairro = sdr["Bairro"].ToString(),
+                            Cidade = sdr["Cidade"].ToString(),
                             Estado = sdr["Estado"].ToString(),
                             Colaborador = sdr["Colaborador"].ToString(),
                             Descricao = sdr["Descricao"].ToString(),
@@ -299,7 +317,8 @@ namespace Web.BD.Repository
                             DiaDaSemana = sdr["DiaDaSemana"].ToString(),
                             HorarioInicial = sdr["HorarioInicial"].ToString(),
                             HorarioFinal = sdr["HorarioFinal"].ToString(),
-                            Nome = sdr["Nome"].ToString()
+                            Nome = sdr["Nome"].ToString(),
+                            Ativo = true
                         };
                         lista.Add(matricula);
                     }
@@ -322,7 +341,7 @@ namespace Web.BD.Repository
                 {
                     while (sdr.Read())
                     {
-                       return new MatriculaTurma
+                        return new MatriculaTurma
                         {
                             Id = Convert.ToInt32(sdr["Id"]),
                             Nome = sdr["Nome"].ToString(),

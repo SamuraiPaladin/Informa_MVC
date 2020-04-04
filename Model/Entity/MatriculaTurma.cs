@@ -7,6 +7,7 @@ namespace Model.Entity
     public class MatriculaTurma
     {
         public int Id { get; set; }
+        public bool Ativo { get; set; }
         public string DataNascimento { get; set; }
         public string CPF { get; set; }
         public string RG { get; set; }

@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <input placeholder="mm/dd/aaaa" type="date" id="datadenascimento" class="validate">
+                    <input placeholder="dd/mm/aaaa" type="date" id="datadenascimento" class="validate">
                     <label for="datadenascimento">Data de Nascimento</label>
                 </div>
 
@@ -314,6 +314,7 @@
             i.setAttribute("maxlength", "9");
             if (v.length == 5) i.value += "-";
         }
+
         function PesquisaCEP() {
         let cep = document.getElementById('cep').value;
             $(function () {
@@ -331,6 +332,26 @@
                 })
             });
         }
+
+        function PesquisaCEPEditar() {
+        let cep = document.getElementById('cepEditar').value;
+            $(function () {
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: "@Url.Action("BuscaCep", "Matricula")",
+                    data: { cep: cep },
+                    success: function (dados) {
+                    document.getElementById('bairroEditar').value = dados.Bairro;
+                        document.getElementById('enderecoEditar').value = dados.Endereco ;
+                        document.getElementById('cidadeEditar').value = dados.Cidade ;
+                        document.getElementById('estadoEditar').value = dados.Estado ;
+                    }
+                })
+            });
+        }
+
+
         function Adicionar() {
             let array = [];
             try {
@@ -404,7 +425,7 @@
                     }
             });
         }
-            function DeletarModal(id, nome, rg, cpf) {
+        function DeletarModal(id, nome, rg, cpf) {
                 valorId = id;
                 document.getElementById('deletarModalRG').innerHTML = rg;
                 document.getElementById('deletarModalNome').innerHTML = nome;
@@ -412,7 +433,7 @@
                 document.getElementById('deletarModalCabecalho').innerText = 'Tem certeza que deseja deletar o aluno ' + nome + '?';
         }
 
-           function EditarModal(id) {
+        function EditarModal(id) {
             $.ajax({
                      dataType: "json",
                      type: "POST",
@@ -449,8 +470,6 @@
 
                 }
             });
-
-
                $.ajax({
                    type: "POST",
                    url: "@Url.Action("Tabela", "Matricula")",
@@ -458,11 +477,13 @@
                    success: function (data) {
                        //Coloque aqui o local onde a View deverá ocupar
                        $(data).each(function () {
-                           $("#Grid").append("<tr><td class='left'>" + this.Descricao + "</td><td>" + this.Tipo + "</td><td>" + this.Colaborador + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
+                           if (this.Ativo === true) {
+                               $("#Grid").append("<tr><td class='left'><label><input type='checkbox'  id='" + this.Id + "' checked='checked'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Colaborador + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
+                           } else {
+                               $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.Id + "'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Colaborador + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
+                           }
                         });
                    },
-                   
-
                    error: function (ex) {
                        alert("Erro: " + ex.status);
                    }
@@ -502,17 +523,17 @@
             }
             var alunoEditar = {
                 Id: valorId,
-                Nome: valorNome,
-                DataNascimento:valorDataNascimento,
-                RG: valorRG,
-                CPF: valorCPF,
-                Endereco: valorEndereco,
-                Numero: valorNumero,
-                CEP: valorCep,
-                Telefone: valorTelefone,
-                Bairro: valorBairro,
-                Cidade: valorCidade,
-                Estado: valorEstado,
+                Nome: document.getElementById('nomeEditar').value,
+                DataNascimento: document.getElementById('datadenascimentoEditar').value,
+                RG: document.getElementById('rgEditar').value,
+                CPF: document.getElementById('cpfEditar').value,
+                Endereco: document.getElementById('enderecoEditar').value,
+                Numero: document.getElementById('numeroEditar').value,
+                CEP: document.getElementById('cepEditar').value,
+                Telefone: document.getElementById('telefoneEditar').value,
+                Bairro: document.getElementById('bairroEditar').value,
+                Cidade: document.getElementById('cidadeEditar').value,
+                Estado: document.getElementById('estadoEditar').value,
                 Array: arrayEditar
             }
             $.ajax({

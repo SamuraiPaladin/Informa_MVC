@@ -223,7 +223,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BD\Interface\IDAO.cs" />
+    <Compile Include="BD\Interface\IDAOMatricula.cs" />
     <Compile Include="BD\Repository\AlunoDAO.cs" />
+    <Compile Include="BD\Repository\MatriculaDAO.cs" />
     <Compile Include="BD\Repository\MensalidadeDAO.cs" />
     <Compile Include="BD\Repository\TurmaDAO.cs" />
     <Compile Include="BD\Repository\ColaboradorDAO.cs" />
@@ -250,6 +252,7 @@
     <Content Include="Content\cadastro.css" />
     <Content Include="Content\data-tables-content\dataTables.min.css" />
     <Content Include="Content\gerenciarPagamento.css" />
+    <Content Include="Content\images\sort_both.png" />
     <Content Include="Content\materialize\css\materialize.css" />
     <Content Include="Content\materialize\css\materialize.min.css" />
     <Content Include="Content\materialize\font\material-design-icons\LICENSE.txt" />
@@ -799,7 +802,8 @@
     <Content Include="imgs\weather-icons\13n.png" />
     <Content Include="imgs\weather-icons\50d.png" />
     <Content Include="imgs\weather-icons\50n.png" />
-    <Content Include="Scripts\data-tables\dataTables.min.js" />
+    <Content Include="Scripts\data-tables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\data-tables\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -840,6 +844,7 @@
     <Content Include="Views\Turma\Index.cshtml" />
     <Content Include="Views\Matricula\Index.cshtml" />
     <Content Include="Views\Mensalidade\Index.cshtml" />
+    <Content Include="Views\Matricula\_Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <input placeholder="mm/dd/aaaa" type="text" id="datadenascimentoEditar" class="validate">
+                    <input placeholder="dd/mm/aaaa" type="date" id="datadenascimentoEditar" class="validate">
                     <label for="datadenascimentoEditar"></label>
                 </div>
 
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEPEditar()" id="cepEditar" oninput="mascaraCEP(this)" type="number" class="validate" maxlength="8">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEPEditar()" id="cepEditar" oninput="mascaraCEP(this)"  class="validate" maxlength="9">
                     <label for="cepEditar"></label>
                 </div>
 
@@ -90,7 +90,7 @@
             <br /><br />
             <div class="col s12 l12">
                 <h4 class="flow-text subtitleModal">Turma Atual</h4>
-                <table class="centered">
+                <table class="centered" id="tabelaNova">
 
                     <thead>
                         <tr>
@@ -108,66 +108,7 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
-        <div class="col s12 l12">
-            <br /><br />
-            <div class="col s12 l6">
-                <h4 class="flow-text center subtitleModal" style="margin-top:25px;">Atrelar nova turma</h4>
-            </div>
-        </div>
-        <div class="col s12 l12">
-
-
-            <table class="table highlight centered " id="tabelaNova">
-                <thead>
-                    <tr>
-                        <th>Curso</th>
-                        <th>Tipo</th>
-                        <th>Alunos na Turma</th>
-                        <th>Professor</th>
-                        <th>Dia da Semana</th>
-                        <th>Horário Inícial</th>
-                        <th>Horário FInal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.ListaMatriculaTurma.Count == 0)
-                    {
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    }
-                    else
-                    {
-                        foreach (var item in Model.ListaMatriculaTurma)
-                        {
-                            <tr>
-                                <td class="left">
-                                    <label>
-                                        <input type="checkbox" id="@item.Id" />
-                                        <span>@item.Descricao</span>
-                                    </label>
-                                </td>
-                                <td>@item.Tipo</td>
-                                <td>@item.Quantidade</td>
-                                <td><strong>@item.Nome</strong></td>
-                                <td>@item.DiaDaSemana</td>
-                                <td>@item.HorarioInicial</td>
-                                <td>@item.HorarioFinal</td>
-                            </tr>
-                        }
-                    }
-                </tbody>
-            </table>
-        </div>
-
-
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
