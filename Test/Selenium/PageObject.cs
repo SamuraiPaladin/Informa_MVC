@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Xunit;
 
 namespace Test
@@ -26,7 +27,7 @@ namespace Test
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
 
@@ -49,7 +50,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
 
@@ -59,7 +60,7 @@ namespace Test
                 {
                     int count = 0;
                     Boolean clicked = false;
-                    if (count < 3 || clicked.Equals(false))
+                    if (clicked.Equals(false))
                     {
                         try
                         {
@@ -70,7 +71,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
                 }
@@ -79,7 +80,7 @@ namespace Test
                 {
                     int count = 0;
                     Boolean clicked = false;
-                    if (count < 3 || clicked.Equals(false))
+                    if (clicked.Equals(false))
                     {
                         try
                         {
@@ -90,7 +91,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
                 }
@@ -99,7 +100,7 @@ namespace Test
                 {
                     int count = 0;
                     Boolean clicked = false;
-                    if (count < 3 || clicked.Equals(false))
+                    if (clicked.Equals(false))
                     {
                         try
                         {
@@ -110,7 +111,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
                 }
@@ -119,7 +120,7 @@ namespace Test
                 {
                     int count = 0;
                     Boolean clicked = false;
-                    if (count < 3 || clicked.Equals(false))
+                    if (clicked.Equals(false))
                     {
                         try
                         {
@@ -130,7 +131,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
                 }
@@ -139,7 +140,7 @@ namespace Test
                 {
                     int count = 0;
                     Boolean clicked = false;
-                    if (count < 3 || clicked.Equals(false))
+                    if (clicked.Equals(false))
                     {
                         try
                         {
@@ -150,7 +151,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
                 }
@@ -174,7 +175,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
                 }
@@ -193,7 +194,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
                 }
@@ -216,7 +217,7 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
 
@@ -237,19 +238,39 @@ namespace Test
                         catch (Exception e)
                         {
                             count = count + 1;
-                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                             Assert.False(count > 3, "Descrição da Falha: " + e);
                         }
                     }
                 }
             }
         }
         public static class RegisterUnitScreen
-        { 
+        {
+            public static void CadastrarUnidadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/a"));
+                        Element.Click();
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+           
             public static void NomeUnidadeTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                while (Text.Equals(Unidade))
+                while (!Text.Equals(Unidade))
                 {
                     try
                     {
@@ -260,17 +281,17 @@ namespace Test
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
-                Assert.Contains(Unidade, Text);
+                 Assert.Contains(Unidade, Text);
             }
 
             public static void TelefoneTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                while (Text.Equals(Unidade))
+                while (!Text.Equals(Unidade))
                 {
                     try
                     {
@@ -281,17 +302,17 @@ namespace Test
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
-                Assert.Contains(Unidade, Text);
+                 Assert.Contains(Unidade, Text);
             }
 
             public static void CepTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                while (Text.Equals(Unidade))
+                while (!Text.Equals(Unidade))
                 {
                     try
                     {
@@ -302,17 +323,17 @@ namespace Test
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
-                Assert.Contains(Unidade, Text);
+                 Assert.Contains(Unidade, Text);
             }
 
             public static void EnderecoTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                while (Text.Equals(Unidade))
+                while (!Text.Equals(Unidade))
                 {
                     try
                     {
@@ -320,54 +341,44 @@ namespace Test
                         if (Element.GetAttribute("value").Equals(""))
                         { 
                             Element.SendKeys(Unidade + Keys.Tab);
-                        } else
-                        {
-                            Element.SendKeys(Keys.Tab);
-                        }
+                        } 
                         Text = Element.GetAttribute("value");
+                          Assert.True(Unidade.Equals(Text), "CEP informado não condiz com Endereço");
                     }
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
-                Assert.Contains(Unidade, Text);
             }
 
             public static void NumeroTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                while (Text.Equals(Unidade))
+                while (!Text.Equals(Unidade))
                 {
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.Id("numero"));
-                        if (Element.GetAttribute("value").Equals(""))
-                        {
-                            Element.SendKeys(Unidade + Keys.Tab);
-                        }
-                        else
-                        {
-                            Element.SendKeys(Keys.Tab);
-                        }
+                        Element.SendKeys(Unidade);
                         Text = Element.GetAttribute("value");
                     }
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
-                Assert.Contains(Unidade, Text);
+                  Assert.Contains(Unidade, Text);
             }
 
             public static void BairroTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                while (Text.Equals(Unidade))
+                while (!Text.Equals(Unidade))
                 {
                     try
                     {
@@ -376,26 +387,23 @@ namespace Test
                         {
                             Element.SendKeys(Unidade + Keys.Tab);
                         }
-                        else
-                        {
-                            Element.SendKeys(Keys.Tab);
-                        }
+                 
                         Text = Element.GetAttribute("value");
+                          Assert.True(Unidade.Equals(Text), "CEP informado não condiz com Bairro");
                     }
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
-                Assert.Contains(Unidade, Text);
             }
 
             public static void CidadeTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                while (Text.Equals(Unidade))
+                while (!Text.Equals(Unidade))
                 {
                     try
                     {
@@ -404,26 +412,23 @@ namespace Test
                         {
                             Element.SendKeys(Unidade + Keys.Tab);
                         }
-                        else
-                        {
-                            Element.SendKeys(Keys.Tab);
-                        }
+                       
                         Text = Element.GetAttribute("value");
+                          Assert.True(Unidade.Equals(Text), "CEP informado não condiz com Cidade");
                     }
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
-                Assert.Contains(Unidade, Text);
             }
 
             public static void EstadoTextBox(string Unidade)
             {
                 int count = 0;
                 string Text = "";
-                while (Text.Equals(Unidade))
+                while (!Text.Equals(Unidade))
                 {
                     try
                     {
@@ -432,20 +437,160 @@ namespace Test
                         {
                             Element.SendKeys(Unidade + Keys.Tab);
                         }
-                        else
-                        {
-                            Element.SendKeys(Keys.Tab);
-                        }
+                        
+                        Text = Element.GetAttribute("value");
+                          Assert.True(Unidade.Equals(Text), "CEP informado não condiz com Estado");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void FinalizarCadastrarButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modaCadastrar\"]/div[2]/a"));
+                        Element.Click();
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void MensagemOperacao(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(""))
+                {
+                    try
+                    {
+                        Text = Utilities.driver.FindElement(By.XPath("//*[@id=\"toast-container\"]/div")).Text;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Thread.Sleep(100);
+                         Assert.False(count == 30, "Sistema demorou tempo demais para retornar mensagem de sucesso!" + e);
+                    }
+                     Assert.True(Text.Contains(Unidade), "Mensagem esperada" + Unidade + "Mengadem obtida" + Text);
+                }
+            }
+
+            public static void ExcluirUnidadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[9]/a[2]/i"));
+                        Element.Click();
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void FinalizarExcluirUnidadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalDeletar\"]/div[2]/a[1]"));
+                        Element.Click();
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void EditarUnidadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[9]/a[1]/i"));
+                        Element.Click();
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void EditarNumeroTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("numeroEditar"));
+                        Element.Clear();
+                        Element.SendKeys(Unidade);
                         Text = Element.GetAttribute("value");
                     }
                     catch (Exception e)
                     {
                         count = count + 1;
-                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
-                Assert.Contains(Unidade, Text);
+                  Assert.Contains(Unidade, Text);
             }
-        }    
+
+            public static void FinalizarEditarUnidadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalEditar\"]/div[2]/a"));
+                        Element.Click();
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                         Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+        }
     }
 }

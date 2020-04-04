@@ -1,26 +1,22 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\Informa_MVC\\Test\\Test.csproj": {}
+    "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\Test.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\Informa_MVC\\Test\\Test.csproj": {
+    "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\Informa_MVC\\Test\\Test.csproj",
+        "projectUniqueName": "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "C:\\Projetos\\Informa_MVC\\Test\\Test.csproj",
-        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\Informa_MVC\\Test\\obj\\",
+        "projectPath": "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\Test.csproj",
+        "packagesPath": "C:\\Users\\Thauan Moser Doce\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Thauan Moser Doce\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net472"
@@ -38,10 +34,6 @@
       "frameworks": {
         "net472": {
           "dependencies": {
-            "Extended.Wpf.Toolkit": {
-              "target": "Package",
-              "version": "[3.8.1, )"
-            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.2.0, )"

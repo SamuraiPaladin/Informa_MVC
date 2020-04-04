@@ -1,10 +1,8 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Drawing;
 using System.IO;
+using System.Threading;
 using Test;
-using Xceed.Wpf.Toolkit;
-using Xunit;
 
 /// <summary>
 /// Summary description for Class1
@@ -14,12 +12,13 @@ public class Utilities
 	public static IWebDriver driver;
 	public static void OpenChrome()
 	{
+		//var t = Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().ToString().Length - 45);
 		var t = System.AppDomain.CurrentDomain.BaseDirectory.ToString().Remove(System.AppDomain.CurrentDomain.BaseDirectory.ToString().Length - 9);
 
 		driver = new OpenQA.Selenium.Chrome.ChromeDriver(t); //<-Add your path
 		driver.Manage().Window.Maximize();
 		////driver.Manage().Window.Size = new Size(1366, 800);
-		driver.Navigate().GoToUrl("http://localhost/informa/");
+		driver.Navigate().GoToUrl("http://localhost:5200/");
 	}
 
 	public static void AcessoGrid(String Modulo, String Sessao)
@@ -28,7 +27,9 @@ public class Utilities
 
 		if (Modulo.Equals("Cadastro"))
 		{
+			
 			PageObject.MainScreen.Cadastro.CadastroList();
+			Thread.Sleep(1000);
 
 			if(Sessao.Equals("Unidade"))
 			{
@@ -64,14 +65,5 @@ public class Utilities
 			}
 		}
 	}
-
-	public static void CepValidates(String Endereco, String Bairro, String Cidade, String Estado)
-	{
-		PageObject.RegisterUnitScreen.EnderecoTextBox(Endereco);
-		PageObject.RegisterUnitScreen.BairroTextBox(Bairro);
-		PageObject.RegisterUnitScreen.CidadeTextBox(Cidade);
-		PageObject.RegisterUnitScreen.EstadoTextBox(Estado);
-	}
-
 
 }
