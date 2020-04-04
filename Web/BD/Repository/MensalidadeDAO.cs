@@ -17,14 +17,14 @@ namespace Web.BD.Repository
         {
             var date = entity.DataDeVencimento;
 
-            if (date.Date > DateTime.Now.Date)
-            {
-                entity.StatusDaMensalidade = "EmHaver";
-            }
-            else if (date.Date == DateTime.Now.Date)
-            {
-                entity.StatusDaMensalidade = "Vencido";
-            }
+            //if (date.Date > DateTime.Now.Date)
+            //{
+            //    entity.StatusDaMensalidade = "EmHaver";
+            //}
+            //else if (date.Date == DateTime.Now.Date)
+            //{
+            //    entity.StatusDaMensalidade = "Vencido";
+            //}
 
             string query = @"INSERT INTO Mensalidades(
 	AlunoId, 
@@ -181,21 +181,21 @@ namespace Web.BD.Repository
                             FormaDePagamento = sdr["FormaDePagamento"].ToString()
                         };
 
-                        if (model.DataDeVencimento.Date > DateTime.Now.Date)
-                        {
-                            if (model.DataDeVencimento.Date >= (DateTime.Now.Date.AddDays(5)) && model.DataDeVencimento.Date <= (DateTime.Now.Date.AddDays(5)))
-                            {
-                                model.StatusDaMensalidade = "ProximoDaDataDeVencimento";
-                            }
-                            else
-                            {
-                                model.StatusDaMensalidade = "EmHaver";
-                            }
-                        }
-                        else if (model.DataDeVencimento.Date < DateTime.Now.Date)
-                        {
-                            model.StatusDaMensalidade = "Vencido";
-                        }
+                        //if (model.DataDeVencimento.Date > DateTime.Now.Date)
+                        //{
+                        //    if (model.DataDeVencimento.Date >= (DateTime.Now.Date.AddDays(5)) && model.DataDeVencimento.Date <= (DateTime.Now.Date.AddDays(5)))
+                        //    {
+                        //        model.StatusDaMensalidade = "ProximoDaDataDeVencimento";
+                        //    }
+                        //    else
+                        //    {
+                        //        model.StatusDaMensalidade = "EmHaver";
+                        //    }
+                        //}
+                        //else if (model.DataDeVencimento.Date < DateTime.Now.Date)
+                        //{
+                        //    model.StatusDaMensalidade = "Vencido";
+                        //}
 
 
                         Mensalidades.Add(model);
