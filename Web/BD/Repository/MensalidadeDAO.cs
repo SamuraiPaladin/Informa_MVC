@@ -15,6 +15,16 @@ namespace Web.BD.Repository
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Mensalidade entity)
         {
+            var date = entity.DataDeVencimento;
+
+            if (date.Date > DateTime.Now.Date)
+            {
+                entity.StatusDaMensalidade = "EmHaver";
+            }
+            else if (date.Date == DateTime.Now.Date)
+            {
+                entity.StatusDaMensalidade = "Vencido";
+            }
 
             string query = @"INSERT INTO Mensalidades(
 	AlunoId, 
@@ -170,15 +180,33 @@ namespace Web.BD.Repository
                             StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
                             FormaDePagamento = sdr["FormaDePagamento"].ToString()
                         };
+
+                        if (model.DataDeVencimento.Date > DateTime.Now.Date)
+                        {
+                            if (model.DataDeVencimento.Date >= (DateTime.Now.Date.AddDays(5)) && model.DataDeVencimento.Date <= (DateTime.Now.Date.AddDays(5)))
+                            {
+                                model.StatusDaMensalidade = "ProximoDaDataDeVencimento";
+                            }
+                            else
+                            {
+                                model.StatusDaMensalidade = "EmHaver";
+                            }
+                        }
+                        else if (model.DataDeVencimento.Date < DateTime.Now.Date)
+                        {
+                            model.StatusDaMensalidade = "Vencido";
+                        }
+
+
                         Mensalidades.Add(model);
                     }
                 }
                 con.Close();
                 return Mensalidades;
             }
-        }    
-        
-        
+        }
+
+
         public List<Mensalidade> ListaMensalidadePorNome(string Nome)
         {
             string query = @"SELECT t.*, a.Nome, m.TipoModalidade, m.Descricao DescricaoModalidade, a.Nome, u.Descricao  DescricaoTurma

@@ -144,23 +144,23 @@
 
 
 <div class="row container">
-    @*<div class="col s12 l12 ">
-        <div class="col s12 l8 ">
+    <div class="col s12 l12 ">
+        @*<div class="col s12 l8 ">
             <form>
                 <div class="input-field">
                     <input id="buscar" type="text" class="validate">
                     <label for="buscar">Pesquisar por Nome...</label>
                 </div>
             </form>
-        </div>
+        </div>*@
 
         <div class="col s12 l4 ">
-            <p class="right" id="mesVigente"> Mês Vigente: <strong id="mes" style="font-size:25px;"></strong> </p>
+            <p class="left" id="mesVigente"> Mês Vigente: <strong id="mes" style="font-size:25px;"></strong> </p>
         </div>
 
         <br><br>
 
-        <div class="col s12 l12">
+        @*<div class="col s12 l12">
 
             <ul class="collapsible">
                 <li>
@@ -226,12 +226,12 @@
                 </li>
 
             </ul>
-        </div>
+        </div>*@
 
-    </div>*@
+    </div>
 
     <div class="col s12 l12" id="tabelaGerenciaPagamento">
-        <table class="highlight centered tabelaPagamento">
+        <table id="tabelaPagamento" class="highlight centered tabelaPagamento">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -240,7 +240,7 @@
                     <th>Data de Vencimento</th>
                     <th>Forma de Pagamento</th>
                     <th>Status Mensalidade</th>
-                    @*<th>Ações</th>*@
+                    <th>Ações</th>
                 </tr>
             </thead>
 
@@ -268,7 +268,7 @@
                         </td>
                         <td>
                             <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Aluno.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Aluno.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Aluno.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
                             <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Aluno.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
         '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Aluno.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons">delete_forever</i></a>
                         </td>
@@ -627,7 +627,7 @@
         });
         }
 
-         function Buscar() {
+         @*function Buscar() {
 
              $(function () {
                  $.ajax({
@@ -654,12 +654,15 @@
                 }
             });
         });
-        }
+        }*@
 
         $(document).ready(function(){
           $('.modal').modal();
         });
 
+        $(document).ready(function () {
+            $('#tabelaPagamento').DataTable();
+        });
 
         $(document).keypress(
             function (event) {
@@ -669,16 +672,16 @@
                 }
             });
 
-        $(document).ready(function () {
-            document.getElementById("buscar").addEventListener("keyup", function (event) {
-                if (event.keyCode === 13) {
+        //$(document).ready(function () {
+        //    document.getElementById("buscar").addEventListener("keyup", function (event) {
+        //        if (event.keyCode === 13) {
                     
-                //event.preventDefault();
-                //alert(document.getElementById("buscar").value);
-                Buscar();
-            }
-            });
-        });
+        //        //event.preventDefault();
+        //        //alert(document.getElementById("buscar").value);
+        //        Buscar();
+        //    }
+        //    });
+        //});
         $(document).ready(function () {
             for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
                 var status = document.getElementsByClassName('statusStyle')[i].innerText;
