@@ -23,7 +23,12 @@
     <div id="modaCadastrar" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Cadastrar Turma</h4>
+                <h4 class="flow-text">Cadastrar Turma</h4>
+            </div>
+
+            <br /><br />
+            <div class="col s12 l12">
+                <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
             </div>
 
             <div class="col s12 l12">
@@ -36,8 +41,8 @@
 
                     <div class="input-field col s6">
                         @*<select id="nome" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
-                            </select>
-                            <label for="nome">Professor</label>*@
+                    </select>
+                    <label for="nome">Professor</label>*@
                         <!-- Dropdown Trigger -->
                         <a class='dropdown-trigger btn' href='#' data-target='nomeCadastrar' id="nomeDropDownCadastrar">Selecione um Colaborador</a>
                         <!-- Dropdown Structure -->
@@ -51,8 +56,8 @@
 
                     <div class="input-field col s6">
                         @*<select id="tipo" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
-                            </select>
-                            <label for="tipo">Tipo</label>*@
+                    </select>
+                    <label for="tipo">Tipo</label>*@
 
                         <a class='dropdown-trigger2 btn' href='#' data-target='tipoCadastrar' id="tipoDropDownCadastrar">Selecione o Tipo</a>
                         <!-- Dropdown Structure -->
@@ -66,8 +71,8 @@
 
                     <div class="input-field col s6">
                         @*<select id="diasdasemana" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
-                            </select>
-                            <label for="diasdasemana">Dias da semana</label>*@
+                    </select>
+                    <label for="diasdasemana">Dias da semana</label>*@
                         <a class='dropdown-trigger3 btn' href='#' data-target='diasdasemanaCadastrar' id="diasdasemanaDropDownCadastrar">Selecione o Dia</a>
                         <!-- Dropdown Structure -->
                         <ul id='diasdasemanaCadastrar' class='dropdown-content'>
@@ -90,8 +95,8 @@
 
                     <div class="input-field col s6">
                         @*<select id="unidade" class="validate" asp-items="@(new SelectList(item.Unidades, "Id", "Descricao"))">
-                            </select>
-                            <label for="unidade">Unidade</label>*@
+                    </select>
+                    <label for="unidade">Unidade</label>*@
 
                         <a class='dropdown-trigger4 btn' href='#' data-target='unidadeCadastrar' id="unidadeDropDownCadastrar">Selecione a Unidade</a>
                         <!-- Dropdown Structure -->
@@ -107,8 +112,8 @@
 
                     <div class="input-field col s6">
                         @*<select id="modalidade" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "TipoModalidade"))">
-                            </select>
-                            <label for="modalidade">Modalidade</label>*@
+                    </select>
+                    <label for="modalidade">Modalidade</label>*@
 
 
                         <a class='dropdown-trigger5 btn' href='#' data-target='modalidadeCadastrar' id="modalidadeDropDownCadastrar">Selecione a Modalidade</a>
@@ -153,7 +158,7 @@
     <table class="table highlight container ">
         <thead>
             <tr>
-                <th>Descrição</th>
+                <th>Turma</th>
                 <th>Professor</th>
                 <th>Tipo</th>
                 <th>Dia da semana</th>
@@ -208,7 +213,12 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="editarTurmaDescricao"></h4>
+            <h4 class="flow-text" id="editarTurmaDescricao"></h4>
+        </div>
+
+        <br /><br />
+        <div class="col s12 l12">
+            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
         </div>
 
         <div class="col s12 l12">
@@ -220,9 +230,9 @@
 
                 <div class="input-field col s6">
                     @*<select id="nomeEditar" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
-                            <option value="" disabled selected>Selecione um novo professor</option>
-                        </select>
-                        <label for="nomeEditar">Professor</label>*@
+                        <option value="" disabled selected>Selecione um novo professor</option>
+                    </select>
+                    <label for="nomeEditar">Professor</label>*@
 
                     <a class='dropdown-trigger6 btn' href='#' data-target='nomeEditar' id="nomeDropDownEditar">Selecione um Colaborador</a>
                     <!-- Dropdown Structure -->
@@ -236,9 +246,9 @@
 
                 <div class="input-field col s6">
                     @*<select id="tipoEditar" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
-                            <option value="" disabled selected>Selecione um tipo de aluno</option>
-                        </select>
-                        <label for="tipoEditar">Tipo</label>*@
+                        <option value="" disabled selected>Selecione um tipo de aluno</option>
+                    </select>
+                    <label for="tipoEditar">Tipo</label>*@
 
                     <a class='dropdown-trigger7 btn' href='#' data-target='tipoEditar' id="tipoDropDownEditar">Selecione o Tipo</a>
                     <!-- Dropdown Structure -->
@@ -253,9 +263,9 @@
 
                 <div class="input-field col s6">
                     @*<select id="diasdasemanaEditar" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
-                            <option value="" disabled selected>Selecione um dia da semana</option>
-                        </select>
-                        <label for="diasdasemanaEditar">Dias da semana</label>*@
+                        <option value="" disabled selected>Selecione um dia da semana</option>
+                    </select>
+                    <label for="diasdasemanaEditar">Dias da semana</label>*@
 
                     <a class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaEditar' id="diasdasemanaDropDownEditar">Selecione o Dia</a>
                     <!-- Dropdown Structure -->
@@ -279,9 +289,9 @@
 
                 <div class="input-field col s6">
                     @*<select id="unidadeEditar" class="validate" asp-items="@(new SelectList(item.Unidades, "Id", "Descricao"))">
-                            <option value="" disabled selected>Selecione uma nova unidade</option>
-                        </select>
-                        <label for="unidadeEditar">Unidade</label>*@
+                        <option value="" disabled selected>Selecione uma nova unidade</option>
+                    </select>
+                    <label for="unidadeEditar">Unidade</label>*@
 
                     <a class='dropdown-trigger9 btn' href='#' data-target='unidadeEditar' id="unidadeDropDownEditar">Selecione a Unidade</a>
                     <!-- Dropdown Structure -->
@@ -296,9 +306,9 @@
 
                 <div class="input-field col s6">
                     @*<select id="modalidadeEditar" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "TipoModalidade"))">
-                            <option value="" disabled selected>Selecione uma nova modalidade</option>
-                        </select>
-                        <label for="modalidadeEditar">Modalidade</label>*@
+                        <option value="" disabled selected>Selecione uma nova modalidade</option>
+                    </select>
+                    <label for="modalidadeEditar">Modalidade</label>*@
 
 
                     <a class='dropdown-trigger10 btn' href='#' data-target='modalidadeEditar' id="modalidadeDropDownEditar">Selecione a Modalidade</a>

@@ -107,7 +107,7 @@
         </div>
 
         <div class="col s12 l12">
-            <br /><br />
+
             <div class="col s12 l6">
                 <h4 class="flow-text center subtitleModal" style="margin-top:25px;">TURMAS DISPONÍVEIS</h4>
             </div>
@@ -170,36 +170,46 @@
 <table class="table highlight centered container" id="tabelaAdicionar">
     <thead>
         <tr>
-            <th>Nome</th>
-            <th>Data de Nascimento</th>
-            <th>RG</th>
-            <th>CPF</th>
-            <th>Endereço</th>
-            <th>Numero</th>
-            <th>Telefone</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th></th>
+            <th class="teste">Nome</th>
+            <th class="teste">Data de Nascimento</th>
+            <th class="teste">RG</th>
+            <th class="teste">CPF</th>
+            <th class="teste">Endereço</th>
+            <th class="teste">Numero</th>
+            <th class="teste">Telefone</th>
+            <th class="teste">Bairro</th>
+            <th class="teste">Cidade</th>
+            <th class="teste"></th>
         </tr>
     </thead>
-    <tbody>
-        @if (Model.ListaMatricula.Count == 0)
+    
+    <div class="row container">
+        <div class="center" id="centerPage"></div>
+    </div>
+
+    @if (Model.ListaMatricula.Count == 0)
+    {
+        <script>
+            const attributes = document.getElementsByClassName('teste');
+            const center = document.getElementById('centerPage')
+            const img = document.createElement('img')
+            img.src = '../../imgs/informa-naoharegistro.png';
+            img.width = 400
+
+            center.appendChild(img)
+
+            for (var number = 0; number <= attributes.length; number++) {
+                attributes[number].innerText = '';
+            }
+
+        </script>
+
+    }
+    else
+    {
+        foreach (var item in Model.ListaMatricula)
         {
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        }
-        else
-        {
-            foreach (var item in Model.ListaMatricula)
-            {
+            <tbody>
                 <tr>
                     <td>@item.Nome</td>
                     <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
@@ -216,9 +226,10 @@
                            onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
                     </td>
                 </tr>
-            }
+            </tbody>
         }
-    </tbody>
+    }
+
 </table>
 
 @Html.Partial("_Editar")
