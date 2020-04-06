@@ -1,5 +1,4 @@
 ﻿using Model.Entity;
-using Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -27,14 +26,14 @@ namespace Web.BD.Repository
             //}
 
             string query = @"INSERT INTO Mensalidades(
-	AlunoId, 
+	MatriculaId, 
 	ModalidadeId, 
 	TurmaId, 
 	DataDeVencimento, 
     StatusDaMensalidade,
 	FormaDePagamento)
 	Values(
-        @AlunoId, 
+        @MatriculaId, 
 	    @ModalidadeId, 
 	    @TurmaId, 
 	    @DataDeVencimento, 
@@ -46,7 +45,7 @@ namespace Web.BD.Repository
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@AlunoId", entity.AlunoId);
+                cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
 
                 cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
 
@@ -69,14 +68,14 @@ namespace Web.BD.Repository
 
             string query = @"UPDATE Mensalidades 
         SET
-            AlunoId = @AlunoIdNovo, 
+            MatriculaId = @MatriculaIdNovo, 
 	        ModalidadeId = @ModalidadeIdNovo, 
 	        TurmaId = @TurmaIdNovo, 
 	        DataDeVencimento = @DataDeVencimentoNovo, 
             StatusDaMensalidade = @StatusDaMensalidadeNovo,
 	        FormaDePagamento = @FormaDePagamentoNovo
         WHERE   
-            AlunoId = @AlunoIdAntigo AND
+            MatriculaId = @MatriculaIdAntigo AND
 	        ModalidadeId = @ModalidadeIdAntigo AND
 	        TurmaId = @TurmaIdAntigo AND
 	        DataDeVencimento = @DataDeVencimentoAntigo AND
@@ -87,14 +86,14 @@ namespace Web.BD.Repository
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@AlunoIdNovo", entityNovo.AlunoId);
+                cmd.Parameters.AddWithValue("@MatriculaIdNovo", entityNovo.MatriculaId);
                 cmd.Parameters.AddWithValue("@ModalidadeIdNovo", entityNovo.ModalidadeId);
                 cmd.Parameters.AddWithValue("@TurmaIdNovo", entityNovo.TurmaId);
                 cmd.Parameters.AddWithValue("@DataDeVencimentoNovo", entityNovo.DataDeVencimento);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidadeNovo", entityNovo.StatusDaMensalidade);
                 cmd.Parameters.AddWithValue("@FormaDePagamentoNovo", entityNovo.FormaDePagamento);
 
-                cmd.Parameters.AddWithValue("@AlunoIdAntigo", entityAntigo.AlunoId);
+                cmd.Parameters.AddWithValue("@MatriculaIdAntigo", entityAntigo.MatriculaId);
                 cmd.Parameters.AddWithValue("@ModalidadeIdAntigo", entityAntigo.ModalidadeId);
                 cmd.Parameters.AddWithValue("@TurmaIdAntigo", entityAntigo.TurmaId);
                 cmd.Parameters.AddWithValue("@DataDeVencimentoAntigo", entityAntigo.DataDeVencimento);
@@ -110,7 +109,7 @@ namespace Web.BD.Repository
 
             string query = @"DELETE FROM Mensalidades
                             WHERE 
-                            AlunoId = @AlunoId and 
+                            MatriculaId = @MatriculaId and 
 	                        ModalidadeId =   @ModalidadeId and 
 	                        TurmaId = @TurmaId and 
 	                        DataDeVencimento =  @DataDeVencimento and
@@ -122,7 +121,7 @@ namespace Web.BD.Repository
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@AlunoId", entity.AlunoId);
+                cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
 
                 cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
 
@@ -150,7 +149,7 @@ namespace Web.BD.Repository
                             from Mensalidades t 
                             inner join Turmas u on t.TurmaId = u.Id
                             inner join Modalidades m on t.ModalidadeId = m.Id 
-                            inner join Alunos a on t.Alunoid = a.Id
+                            inner join Matriculas a on t.Matriculaid = a.Id
                             WHERE 
                             MONTH(t.DataDeVencimento) = MONTH(GETDATE()) and
                             YEAR(t.DataDeVencimento) = YEAR(GETDATE())";
@@ -170,8 +169,8 @@ namespace Web.BD.Repository
                         var model = new Mensalidade
                         {
                             Id = (int)sdr["Id"],
-                            AlunoId = (int)sdr["AlunoId"],
-                            Aluno = new Aluno { Id = (int)sdr["AlunoId"], Nome = sdr["Nome"].ToString() },
+                            MatriculaId = (int)sdr["MatriculaId"],
+                            Matricula = new Matricula { Id = (int)sdr["MatriculaId"], Nome = sdr["Nome"].ToString() },
                             ModalidadeId = (int)sdr["ModalidadeId"],
                             Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
                             TurmaId = (int)sdr["TurmaId"],
@@ -213,7 +212,7 @@ namespace Web.BD.Repository
                             from Mensalidades t 
                             inner join Turmas u on t.TurmaId = u.Id
                             inner join Modalidades m on t.ModalidadeId = m.Id 
-                            inner join Alunos a on t.Alunoid = a.Id
+                            inner join Matriculas a on t.Matriculaid = a.Id
                             WHERE 
                             a.Nome LIKE '%' + @Nome + '%'";
 
@@ -233,8 +232,8 @@ namespace Web.BD.Repository
                         var model = new Mensalidade
                         {
                             Id = (int)sdr["Id"],
-                            AlunoId = (int)sdr["AlunoId"],
-                            Aluno = new Aluno { Id = (int)sdr["AlunoId"], Nome = sdr["Nome"].ToString() },
+                            MatriculaId = (int)sdr["MatriculaId"],
+                            Matricula = new Matricula { Id = (int)sdr["MatriculaId"], Nome = sdr["Nome"].ToString() },
                             ModalidadeId = (int)sdr["ModalidadeId"],
                             Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
                             TurmaId = (int)sdr["TurmaId"],
@@ -251,10 +250,10 @@ namespace Web.BD.Repository
             }
         }
 
-        public List<Aluno> ReturnMensalidadeAlunoLista()
+        public List<Matricula> ReturnMensalidadeMatriculaLista()
         {
-            string query = @"SELECT * FROM Alunos ORDER BY Nome";
-            List<Aluno> lista = new List<Aluno>();
+            string query = @"SELECT * FROM Matriculas ORDER BY Nome";
+            List<Matricula> lista = new List<Matricula>();
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -264,7 +263,7 @@ namespace Web.BD.Repository
                 {
                     while (sdr.Read())
                     {
-                        var model = new Aluno
+                        var model = new Matricula
                         {
                             Id = (int)sdr["Id"],
                             Nome = sdr["Nome"].ToString(),
@@ -364,7 +363,7 @@ namespace Web.BD.Repository
                                 FROM 
                                 	Mensalidades  
                                 WHERE
-                            AlunoId = @AlunoId and 
+                            MatriculaId = @MatriculaId and 
 	                        ModalidadeId =   @ModalidadeId and 
 	                        TurmaId = @TurmaId and 
 	                        DataDeVencimento =  @DataDeVencimento and
@@ -383,7 +382,7 @@ namespace Web.BD.Repository
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@AlunoId", entity.AlunoId);
+                cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
 
                 cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
 

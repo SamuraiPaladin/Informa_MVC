@@ -28,7 +28,7 @@ namespace Web.Controllers
             model = new Mensalidade
             {
                 ListaMensalidade = dAOMensalidade.ListaMensalidade(),
-                ListaAluno = dAOMensalidade.ReturnMensalidadeAlunoLista(),
+                ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
                 ListaModalidade = dAOMensalidade.ReturnMensalidadeModalidadesLista(),
                 ListaTurma = dAOMensalidade.ReturnMensalidadeTurmasLista(),
                 FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
@@ -59,7 +59,7 @@ namespace Web.Controllers
                 model = new Mensalidade
                 {
                     ListaMensalidade = dAOMensalidade.ListaMensalidadePorNome(Nome),
-                    ListaAluno = dAOMensalidade.ReturnMensalidadeAlunoLista(),
+                    ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
                     ListaModalidade = dAOMensalidade.ReturnMensalidadeModalidadesLista(),
                     ListaTurma = dAOMensalidade.ReturnMensalidadeTurmasLista(),
                     FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
@@ -77,7 +77,12 @@ namespace Web.Controllers
 
         private static bool VerificaSeTemCampoVazioOuNulo(Mensalidade Mensalidade)
         {
-            return string.IsNullOrWhiteSpace(Mensalidade.DataDeVencimento.ToString());
+            return string.IsNullOrWhiteSpace(Mensalidade.MatriculaId.ToString()) ||
+                   string.IsNullOrWhiteSpace(Mensalidade.ModalidadeId.ToString()) ||
+                   string.IsNullOrWhiteSpace(Mensalidade.TurmaId.ToString()) ||
+                   string.IsNullOrWhiteSpace(Mensalidade.StatusDaMensalidade.ToString()) ||
+                   string.IsNullOrWhiteSpace(Mensalidade.FormaDePagamento.ToString()) ||
+                   string.IsNullOrWhiteSpace(Mensalidade.DataDeVencimento.ToString());
         }
 
         public JsonResult Editar(Mensalidade Mensalidade, Mensalidade MensalidadeEditar)

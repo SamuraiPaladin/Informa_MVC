@@ -1,5 +1,4 @@
-﻿using Model.Entity;
-using Model.ViewModels;
+﻿using Model.Entity;     
 using System;
 using System.Collections.Generic;
 using System.Configuration;

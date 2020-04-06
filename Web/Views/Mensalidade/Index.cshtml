@@ -61,11 +61,11 @@
                 <form class="col s12 l12" id="formularioEditar">
 
                     <div class="input-field col s6">
-                        <a class='dropdown-trigger btn' href='#' data-target='alunoCadastrar' id="alunoDropDownCadastrar">Selecione um Aluno</a>
-                        <ul id='alunoCadastrar' class='dropdown-content'>
-                            @foreach (var item in Model.ListaAluno)
+                        <a class='dropdown-trigger btn' href='#' data-target='MatriculaCadastrar' id="MatriculaDropDownCadastrar">Selecione um Matricula</a>
+                        <ul id='MatriculaCadastrar' class='dropdown-content'>
+                            @foreach (var item in Model.ListaMatricula)
                             {
-                                <li><a onclick="editaAlunoSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
+                                <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
                             }
                         </ul>
                     </div>
@@ -146,13 +146,13 @@
 <div class="row container">
     <div class="col s12 l12 ">
         @*<div class="col s12 l8 ">
-            <form>
-                <div class="input-field">
-                    <input id="buscar" type="text" class="validate">
-                    <label for="buscar">Pesquisar por Nome...</label>
-                </div>
-            </form>
-        </div>*@
+                <form>
+                    <div class="input-field">
+                        <input id="buscar" type="text" class="validate">
+                        <label for="buscar">Pesquisar por Nome...</label>
+                    </div>
+                </form>
+            </div>*@
 
         <div class="col s12 l4 ">
             <p class="left" id="mesVigente"> Mês Vigente: <strong id="mes" style="font-size:25px;"></strong> </p>
@@ -162,71 +162,71 @@
 
         @*<div class="col s12 l12">
 
-            <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">search</i>Filtros de Pesquisa</div>
-                    <div class="collapsible-body">
-                        <p>
-                            <strong>Filtros de Mensalidade:  </strong>
-                            <span>
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Pago</span>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Em Haver</span>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Atrasado</span>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Vencido</span>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Prox. Data Vencimento</span>
-                                </label>
-                            </span>
-                        </p>
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">search</i>Filtros de Pesquisa</div>
+                        <div class="collapsible-body">
+                            <p>
+                                <strong>Filtros de Mensalidade:  </strong>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Pago</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Em Haver</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Atrasado</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Vencido</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Prox. Data Vencimento</span>
+                                    </label>
+                                </span>
+                            </p>
 
-                        <p>
-                            <strong>Filtros de Pagamento:  </strong>
-                            <span>
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Credito</span>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Débito</span>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Dinheiro</span>
-                                </label>
-                            </span>
+                            <p>
+                                <strong>Filtros de Pagamento:  </strong>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Credito</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Débito</span>
+                                    </label>
+                                </span>
+                                <span>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Dinheiro</span>
+                                    </label>
+                                </span>
 
-                        </p>
-                    </div>
-                </li>
+                            </p>
+                        </div>
+                    </li>
 
-            </ul>
-        </div>*@
+                </ul>
+            </div>*@
 
     </div>
 
@@ -249,7 +249,7 @@
                 {
                     <tr>
                         <td>
-                            @mensalidade.Aluno.Nome
+                            @mensalidade.Matricula.Nome
                         </td>
                         <td>
                             @mensalidade.Modalidade.TipoModalidade
@@ -267,10 +267,10 @@
                             @String.Join(" ", @System.Text.RegularExpressions.Regex.Split(mensalidade.StatusDaMensalidade, @"(?<!^)(?=[A-Z])"))
                         </td>
                         <td>
-                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Aluno.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Aluno.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
-                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Aluno.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Aluno.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons">delete_forever</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
+                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons">delete_forever</i></a>
                         </td>
                     </tr>
                 }
@@ -291,11 +291,11 @@
             <form class="col s12 l12" id="formularioEditar">
 
                 <div class="input-field col s6">
-                    <a class='dropdown-trigger6 btn' href='#' data-target='alunoEditar' id="alunoDropDownEditar">Selecione um Aluno</a>
-                    <ul id='alunoEditar' class='dropdown-content'>
-                        @foreach (var item in Model.ListaAluno)
+                    <a class='dropdown-trigger6 btn' href='#' data-target='MatriculaEditar' id="MatriculaDropDownEditar">Selecione um Matricula</a>
+                    <ul id='MatriculaEditar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaMatricula)
                         {
-                            <li><a onclick="editaAlunoSelecionado('@item.Nome', '@item.Id', 'Editar')">@item.Nome</a></li>
+                            <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Editar')">@item.Nome</a></li>
                         }
                     </ul>
                 </div>
@@ -383,11 +383,11 @@
 
 
                 <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='alunoDeletar' id="alunoDropDownDeletar">Selecione um Aluno</a>
-                    <ul id='alunoDeletar' class='dropdown-content'>
-                        @foreach (var item in Model.ListaAluno)
+                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='MatriculaDeletar' id="MatriculaDropDownDeletar">Selecione um Matricula</a>
+                    <ul id='MatriculaDeletar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaMatricula)
                         {
-                            <li><a onclick="editaAlunoSelecionado('@item.Nome', '@item.Id', 'Deletar')">@item.Nome</a></li>
+                            <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Deletar')">@item.Nome</a></li>
                         }
                     </ul>
                 </div>
@@ -463,21 +463,20 @@
 
 
 @section scripts{
-    <script src="js/main.js"></script>
     <script>
 
         let valorId;
-        let valorAluno;
+        let valorMatricula;
         let valorModalidade;
         let valorTurma;
         let valorVencimento;
         let valorFormaDePagamento;
         let valorStatusDaMensalidade;
 
-        function EditarModal(id, aluno, modalidade, turma, datadevencimento, formadepagamento, statusdamensalidade, model, nomeAluno, tipomodalidade, descricao) {
+        function EditarModal(id, Matricula, modalidade, turma, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, tipomodalidade, descricao) {
 
                 valorId = id;
-                valorAluno = aluno;
+                valorMatricula = Matricula;
                 valorModalidade = modalidade;
                 valorTurma = turma;
                 valorVencimento = datadevencimento;
@@ -494,8 +493,8 @@
             //document.getElementById("modalidade" + model).value = modalidade;
 
 
-            document.getElementById('alunoDropDown' + model).text = nomeAluno;
-            document.getElementById('alunoDropDown' + model).AlunoId = aluno;
+            document.getElementById('MatriculaDropDown' + model).text = nomeMatricula;
+            document.getElementById('MatriculaDropDown' + model).MatriculaId = Matricula;
 
             document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
             document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
@@ -519,7 +518,7 @@
         function Deletar() {
             var mensalidade = {
                 Id: valorId,
-                AlunoId: valorAluno,
+                MatriculaId: valorMatricula,
                 ModalidadeId: valorModalidade,
                 TurmaId: valorTurma,
                 DataDeVencimento: valorVencimento,
@@ -550,7 +549,7 @@
         function Editar() {
             var mensalidade = {
                 Id: valorId,
-                AlunoId: valorAluno,
+                MatriculaId: valorMatricula,
                 ModalidadeId: valorModalidade,
                 TurmaId: valorTurma,
                 DataDeVencimento: valorVencimento,
@@ -559,7 +558,7 @@
             };
             var mensalidadeEditar = {
                 Id: valorId,
-                AlunoId: document.getElementById('alunoDropDownEditar').AlunoId,
+                MatriculaId: document.getElementById('MatriculaDropDownEditar').MatriculaId,
                 ModalidadeId: document.getElementById('modalidadeDropDownEditar').ModalidadeId,
                 TurmaId: document.getElementById('turmaDropDownEditar').TurmaId,
                 DataDeVencimento: document.getElementById("datadevencimentoEditar").value,
@@ -594,7 +593,7 @@
 
         function Adicionar() {
             var mensalidade = {
-                AlunoId: document.getElementById('alunoDropDownCadastrar').AlunoId,
+                MatriculaId: document.getElementById('MatriculaDropDownCadastrar').MatriculaId,
                 ModalidadeId: document.getElementById('modalidadeDropDownCadastrar').ModalidadeId,
                 TurmaId: document.getElementById('turmaDropDownCadastrar').TurmaId,
                 DataDeVencimento: document.getElementById("datadevencimento").value,
@@ -648,7 +647,7 @@
                                  break;
                              default:
                                  M.toast({ html: 'Nenhum registro com esse nome foi encontrado.', classes: 'rounded red' });
-                                 break;  
+                                 break;
                          }
                          //completeCallback: function() { window.location.reload() }
                 }
@@ -668,14 +667,14 @@
             function (event) {
 
                 if (event.which == '13') {
-                    event.preventDefault();                    
+                    event.preventDefault();
                 }
             });
 
         //$(document).ready(function () {
         //    document.getElementById("buscar").addEventListener("keyup", function (event) {
         //        if (event.keyCode === 13) {
-                    
+
         //        //event.preventDefault();
         //        //alert(document.getElementById("buscar").value);
         //        Buscar();
@@ -749,9 +748,9 @@ switch (month) {
 });
 
 
-        function editaAlunoSelecionado(aluno, id, model) {
-            document.getElementById('alunoDropDown' + model).text = aluno;
-            document.getElementById('alunoDropDown' + model).AlunoId = id;
+        function editaMatriculaSelecionado(Matricula, id, model) {
+            document.getElementById('MatriculaDropDown' + model).text = Matricula;
+            document.getElementById('MatriculaDropDown' + model).MatriculaId = id;
         }
 
         function editaModalidadeSelecionado(tipomodalidade, id, model) {

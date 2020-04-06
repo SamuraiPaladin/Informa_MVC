@@ -8,9 +8,9 @@ namespace Model.Entity
     public class Mensalidade
     {
         public int Id { get; set; }
-        public List<Aluno> ListaAluno { get; set; }
-        public Aluno Aluno { get; set; }
-        public int AlunoId { get; set; }
+        public List<Matricula> ListaMatricula{ get; set; }
+        public Matricula Matricula { get; set; }
+        public int MatriculaId { get; set; }
         public List<Modalidade> ListaModalidade { get; set; }
         public Modalidade Modalidade { get; set; }
         public int ModalidadeId { get; set; }
