@@ -40,18 +40,23 @@
                     </div>
 
                     <div class="input-field col s6">
-                        @*<select id="nome" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
-                            </select>
-                            <label for="nome">Professor</label>*@
-                        <!-- Dropdown Trigger -->
-                        <a class='dropdown-trigger btn' href='#' data-target='nomeCadastrar' id="nomeDropDownCadastrar">Selecione um Colaborador</a>
+                        <select data-target='nomeCadastrar' id="nomeDropDownCadastrar">
+                            <option value="" disabled selected>Choose your option</option>
+                            @foreach (var item in Model.ListaColaborador)
+                            {
+                                <option value="@item.Id">@item.Nome</option>
+                            }
+                        </select>
+                        <label>Colaborador</label>
+
+                        @*@<a class='dropdown-trigger btn' href='#' data-target='nomeCadastrar' id="nomeDropDownCadastrar">Selecione um Colaborador</a>
                         <!-- Dropdown Structure -->
                         <ul id='nomeCadastrar' class='dropdown-content'>
                             @foreach (var item in Model.ListaColaborador)
                             {
                                 <li><a onclick="editaColaboradorSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
                             }
-                        </ul>
+                        </ul>*@
                     </div>
 
                     <div class="input-field col s6">
@@ -229,19 +234,17 @@
                 </div>
 
                 <div class="input-field col s6">
-                    @*<select id="nomeEditar" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
-                            <option value="" disabled selected>Selecione um novo professor</option>
-                        </select>
-                        <label for="nomeEditar">Professor</label>*@
 
-                    <a class='dropdown-trigger6 btn' href='#' data-target='nomeEditar' id="nomeDropDownEditar">Selecione um Colaborador</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='nomeEditar' class='dropdown-content'>
+                    @*<select data-target='nomeEditar' id="nomeDropDownEditar">*@
+                    <select id="teste123">
+                        @*<option value="" disabled >choose your option</option>*@
                         @foreach (var item in Model.ListaColaborador)
                         {
-                            <li><a onclick="editaColaboradorSelecionado('@item.Nome', '@item.Id', 'Editar')">@item.Nome</a></li>
+                            <option id="@item.Id" value="@item.Id">@item.Nome</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Colaborador</label>
+                    
                 </div>
 
                 <div class="input-field col s6">
@@ -492,7 +495,7 @@
             valorModalidade = modalidade;
 
             document.getElementById("descricao" + model).value = descricao;
-            document.getElementById("nome" + model).value = nome;
+            //document.getElementById("nome" + model).value = nome;
             document.getElementById("tipo" + model).value = tipo;
             document.getElementById("diasdasemana" + model).value = diasdasemana;
             document.getElementById("horarioinicial" + model).value = horarioinicial;
@@ -500,9 +503,10 @@
             document.getElementById("unidade" + model).value = unidade;
             document.getElementById("modalidade" + model).value = modalidade;
 
-
-            document.getElementById('nomeDropDown' + model).text = nomeColaborador;
-            document.getElementById('nomeDropDown' + model).ColaboradorId = nome;
+            document.getElementById(valorNome).selected = true;
+            document.getElementById('teste123').children[0].label = "12313465";
+            //document.getElementById('nomeDropDown' + model).text = nomeColaborador;
+            //document.getElementById('nomeDropDown' + model).ColaboradorId = nome;  
 
             document.getElementById('tipoDropDown' + model).text = tipo;
 
@@ -560,7 +564,7 @@
             var turmaEditar = {
                 Id: document.getElementById("idEditar").value,
                 Descricao: document.getElementById("descricaoEditar").value,
-                ColaboradorId: document.getElementById('nomeDropDownEditar').ColaboradorId,
+                ColaboradorId: document.getElementById('nomeDropDownEditar').value,
                 Tipo: document.getElementById('tipoDropDownEditar').text,
                 DiaDaSemana: document.getElementById('diasdasemanaDropDownEditar').text,
                 HorarioInicial: document.getElementById("horarioinicialEditar").value,
@@ -597,7 +601,7 @@
         function Adicionar() {
                     var turma = {
                         Descricao: document.getElementById("descricao").value,
-                        ColaboradorId: document.getElementById('nomeDropDownCadastrar').ColaboradorId,
+                        ColaboradorId: document.getElementById('nomeDropDownCadastrar').value,
                         Tipo: document.getElementById('tipoDropDownCadastrar').text,
                         DiaDaSemana: document.getElementById('diasdasemanaDropDownCadastrar').text,
                         HorarioInicial: document.getElementById("horarioinicial").value,
@@ -635,9 +639,8 @@
         });
 
         function editaColaboradorSelecionado(nome, id, model) {
-
             document.getElementById('nomeDropDown' + model).text = nome;
-            document.getElementById('nomeDropDown' + model).ColaboradorId = id;
+            document.getElementById('nomeDropDown' + model).ColaboradorId = document.getElementById('nomeDropDown' + model).selectedIndex;
         }
 
         function editaTipoSelecionado(tipo, model) {
