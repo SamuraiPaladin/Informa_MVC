@@ -115,7 +115,7 @@ nav.clean {
 ::-webkit-scrollbar-track {
     background-color: #F4F4F4;
 }
-
+consultaRapida
 ::-webkit-scrollbar {
     width: 6px;
     background: #F4F4F4;
@@ -151,4 +151,14 @@ nav {
 
 body {
     zoom: 90%;
+}
+
+.linkRapido {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.linkRapido:hover {
+    color: #af2405
 }
