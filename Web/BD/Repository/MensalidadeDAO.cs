@@ -16,15 +16,6 @@ namespace Web.BD.Repository
         {
             var date = entity.DataDeVencimento;
 
-            //if (date.Date > DateTime.Now.Date)
-            //{
-            //    entity.StatusDaMensalidade = "EmHaver";
-            //}
-            //else if (date.Date == DateTime.Now.Date)
-            //{
-            //    entity.StatusDaMensalidade = "Vencido";
-            //}
-
             string query = @"INSERT INTO Mensalidades(
 	MatriculaId, 
 	ModalidadeId, 
@@ -66,6 +57,27 @@ namespace Web.BD.Repository
         public bool Atualizar(Mensalidade entityAntigo, Mensalidade entityNovo)
         {
 
+            var date = entityNovo.DataDeVencimento;
+
+            if (entityNovo.StatusDaMensalidade != "Pago" && entityNovo.StatusDaMensalidade != "PagoComAtraso")
+            {
+                if (date > DateTime.Now)
+                {
+                    if ((DateTime.Now.Date.AddDays(5)) >= date && date <= (DateTime.Now.Date.AddDays(5)))
+                    {
+                        entityNovo.StatusDaMensalidade = "ProximoDaDataDeVencimento";
+                    }
+                    else
+                    {
+                        entityNovo.StatusDaMensalidade = "EmHaver";
+                    }
+                }
+
+                if (date.Date < DateTime.Now.Date)
+                {
+                    entityNovo.StatusDaMensalidade = "Vencido";
+                }
+            }
             string query = @"UPDATE Mensalidades 
         SET
             MatriculaId = @MatriculaIdNovo, 
