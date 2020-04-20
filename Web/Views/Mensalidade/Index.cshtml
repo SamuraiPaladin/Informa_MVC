@@ -328,7 +328,7 @@
                     <ul id='statusEditar' class='dropdown-content'>
                         @foreach (var item in Model.StatusDasMensalidades)
                         {
-                            <li><a onclick="editaStatusSelecionado('@item', 'Editar')"></a>@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</li>
+                            <li><a onclick="editaStatusSelecionado('@item', 'Editar')">@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
                         }
                     </ul>
                 </div>
