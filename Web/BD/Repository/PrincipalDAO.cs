@@ -18,7 +18,7 @@ namespace Web.BD.Repository
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
-                return Convert.ToInt32(cmd.ExecuteScalar());
+                return Convert.ToInt32(cmd.ExecuteScalar()); 
             }
         }
     }
