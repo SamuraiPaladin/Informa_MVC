@@ -3,36 +3,6 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
-    #pago {
-        color: #139E26;
-    }
-
-    #emHaver {
-        color: #F68300;
-    }
-
-    #pagoComAtraso {
-        color: #19DF33;
-    }
-
-    #vencido {
-        color: red;
-    }
-
-    #proximoDataVencimento {
-        color: #DCE224;
-    }
-
-    #mesVigente {
-        margin-top: 20px;
-    }
-
-    .filtroGerenciarPagamento {
-        padding: 10px;
-        /* margin-left: 2px; */
-    }
-</style>
 <!-- BREADCRUMB -->
 <nav class="clean container">
     <div class="nav-wrapper">
@@ -145,89 +115,9 @@
 
 <div class="row container">
     <div class="col s12 l12 ">
-        @*<div class="col s12 l8 ">
-                <form>
-                    <div class="input-field">
-                        <input id="buscar" type="text" class="validate">
-                        <label for="buscar">Pesquisar por Nome...</label>
-                    </div>
-                </form>
-            </div>*@
-
         <div class="col s12 l4 ">
             <p class="left" id="mesVigente"> Mês Vigente: <strong id="mes" style="font-size:25px;"></strong> </p>
         </div>
-
-        <br><br>
-
-        @*<div class="col s12 l12">
-
-                <ul class="collapsible">
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">search</i>Filtros de Pesquisa</div>
-                        <div class="collapsible-body">
-                            <p>
-                                <strong>Filtros de Mensalidade:  </strong>
-                                <span>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Pago</span>
-                                    </label>
-                                </span>
-                                <span>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Em Haver</span>
-                                    </label>
-                                </span>
-                                <span>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Atrasado</span>
-                                    </label>
-                                </span>
-                                <span>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Vencido</span>
-                                    </label>
-                                </span>
-                                <span>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Prox. Data Vencimento</span>
-                                    </label>
-                                </span>
-                            </p>
-
-                            <p>
-                                <strong>Filtros de Pagamento:  </strong>
-                                <span>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Credito</span>
-                                    </label>
-                                </span>
-                                <span>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Débito</span>
-                                    </label>
-                                </span>
-                                <span>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Dinheiro</span>
-                                    </label>
-                                </span>
-
-                            </p>
-                        </div>
-                    </li>
-
-                </ul>
-            </div>*@
-
     </div>
 
     <div class="col s12 l12" id="tabelaGerenciaPagamento">
@@ -483,16 +373,6 @@
                 valorFormaDePagamento = formadepagamento;
                 valorStatusDaMensalidade = statusdamensalidade;
 
-            //document.getElementById("descricao" + model).value = descricao;
-            //document.getElementById("nome" + model).value = nome;
-            //document.getElementById("tipo" + model).value = tipo;
-            //document.getElementById("diasdasemana" + model).value = diasdasemana;
-            //document.getElementById("horarioinicial" + model).value = horarioinicial;
-            //document.getElementById("horariofinal" + model).value = horariofinal;
-            //document.getElementById("unidade" + model).value = unidade;
-            //document.getElementById("modalidade" + model).value = modalidade;
-
-
             document.getElementById('MatriculaDropDown' + model).text = nomeMatricula;
             document.getElementById('MatriculaDropDown' + model).MatriculaId = Matricula;
 
@@ -515,6 +395,7 @@
                 document.getElementById("deletarMensalidadeDescricao").innerText = "Tem certeza que deseja deletar a Mensalidade?";
             }
         }
+
         function Deletar() {
             var mensalidade = {
                 Id: valorId,
@@ -525,6 +406,7 @@
                 FormaDePagamento: valorFormaDePagamento,
                 StatusDaMensalidade: valorStatusDaMensalidade
             };
+
             $(function () {
                  $.ajax({
                      dataType: "json",
@@ -565,6 +447,7 @@
                 FormaDePagamento: document.getElementById('formaDropDownEditar').text,
                 StatusDaMensalidade: document.getElementById('statusDropDownEditar').text.replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '')
             };
+
             $(function () {
                  $.ajax({
                      dataType: "json",
@@ -600,6 +483,7 @@
                 FormaDePagamento: document.getElementById('formaDropDownCadastrar').text,
                 StatusDaMensalidade: document.getElementById('statusDropDownCadastrar').text.replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '')
             };
+
              $(function () {
                  $.ajax({
                      dataType: "json",
@@ -626,39 +510,6 @@
         });
         }
 
-         @*function Buscar() {
-
-             $(function () {
-                 $.ajax({
-                     dataType: "json",
-                     type: "POST",
-                     url: "@Url.Action("BuscaPorNome", "Mensalidade")",
-                     data: { Nome: document.getElementById("buscar").value },
-                     success: function (dados) {
-                         switch (dados) {
-                             case "Preenchimento obrigatório":
-                                 M.toast({ html: dados, classes: 'rounded orange' });
-                                 break;
-                             case true:
-                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
-                                 break;
-                             case false:
-                                 M.toast({ html: 'Nenhum registro com esse nome foi encontrado.', classes: 'rounded red' });
-                                 break;
-                             default:
-                                 M.toast({ html: 'Nenhum registro com esse nome foi encontrado.', classes: 'rounded red' });
-                                 break;
-                         }
-                         //completeCallback: function() { window.location.reload() }
-                }
-            });
-        });
-        }*@
-
-        $(document).ready(function(){
-          $('.modal').modal();
-        });
-
         $(document).ready(function () {
             $('#tabelaPagamento').DataTable();
         });
@@ -671,16 +522,6 @@
                 }
             });
 
-        //$(document).ready(function () {
-        //    document.getElementById("buscar").addEventListener("keyup", function (event) {
-        //        if (event.keyCode === 13) {
-
-        //        //event.preventDefault();
-        //        //alert(document.getElementById("buscar").value);
-        //        Buscar();
-        //    }
-        //    });
-        //});
         $(document).ready(function () {
             for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
                 var status = document.getElementsByClassName('statusStyle')[i].innerText;
@@ -705,47 +546,47 @@
             }
         });
 
-$(document).ready(function(){
-    var month = new Date().getMonth() + 1;
-switch (month) {
-  case 1:
-    document.getElementById("mes").innerHTML  = "Janeiro";
-    break;
-  case 2:
-     document.getElementById("mes").innerHTML  = "Fevereiro";
-    break;
-  case 3:
-    document.getElementById("mes").innerHTML  = "Março";
-    break;
-  case 4:
-    document.getElementById("mes").innerHTML  = "Abril";
-    break;
-  case 5:
-    document.getElementById("mes").innerHTML  = "Maio";
-    break;
-  case 6:
-    document.getElementById("mes").innerHTML  = "Junho";
-    break;
-  case 7:
-    document.getElementById("mes").innerHTML  = "Julho";
-    break;
-  case 8:
-    document.getElementById("mes").innerHTML  = "Agosto";
-    break;
-  case 9:
-    document.getElementById("mes").innerHTML  = "Setembro";
-    break;
-  case 10:
-    document.getElementById("mes").innerHTML  = "Outubro";
-    break;
-  case 11:
-    document.getElementById("mes").innerHTML  = "Novembro";
-    break;
-  case 12:
-    document.getElementById("mes").innerHTML  = "Dezembro";
-    break;
-    }
-});
+        $(document).ready(function(){
+            var month = new Date().getMonth() + 1;
+        switch (month) {
+          case 1:
+            document.getElementById("mes").innerHTML  = "Janeiro";
+            break;
+          case 2:
+             document.getElementById("mes").innerHTML  = "Fevereiro";
+            break;
+          case 3:
+            document.getElementById("mes").innerHTML  = "Março";
+            break;
+          case 4:
+            document.getElementById("mes").innerHTML  = "Abril";
+            break;
+          case 5:
+            document.getElementById("mes").innerHTML  = "Maio";
+            break;
+          case 6:
+            document.getElementById("mes").innerHTML  = "Junho";
+            break;
+          case 7:
+            document.getElementById("mes").innerHTML  = "Julho";
+            break;
+          case 8:
+            document.getElementById("mes").innerHTML  = "Agosto";
+            break;
+          case 9:
+            document.getElementById("mes").innerHTML  = "Setembro";
+            break;
+          case 10:
+            document.getElementById("mes").innerHTML  = "Outubro";
+            break;
+          case 11:
+            document.getElementById("mes").innerHTML  = "Novembro";
+            break;
+          case 12:
+            document.getElementById("mes").innerHTML  = "Dezembro";
+            break;
+            }
+        });
 
 
         function editaMatriculaSelecionado(Matricula, id, model) {
@@ -770,7 +611,6 @@ switch (month) {
         function editaStatusSelecionado(statusdamensalidade, model) {
             document.getElementById('statusDropDown' + model).text = statusdamensalidade.split(/(?=[A-Z])/).toString().replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ');
         }
-
 
     </script>
 

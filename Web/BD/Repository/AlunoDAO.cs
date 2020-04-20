@@ -164,7 +164,7 @@ namespace Web.BD.Repository
             
             string query = @"
                             SELECT a.Id as IdAluno, a.Nome, a.DataNascimento, a.CPF, a.RG, a.Telefone, a.Email, m.Id as IdMensalidade, m.DataDeVencimento, m.StatusDaMensalidade FROM Alunos a
-                            INNER JOIN Mensalidades m ON a.Id = m.AlunoID
+                            INNER JOIN Mensalidades m ON a.Id = m.MatriculaId
                             WHERE m.StatusDaMensalidade = 'Vencido'
                             ORDER BY m.DataDeVencimento";
             List<AlunoInadimpente> alunos = new List<AlunoInadimpente>();
