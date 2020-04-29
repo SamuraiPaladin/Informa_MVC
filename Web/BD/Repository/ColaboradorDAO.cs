@@ -14,23 +14,7 @@ namespace Web.BD.Repository
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Colaborador entity)
         {
-   //         string query = @"INSERT INTO Colaboradores
-   //        (Nome
-   //        ,DataNascimento
-   //        ,CPF
-   //        ,RG
-   //        ,Endereco
-   //        ,CEP
-   //        ,Numero
-   //        ,Bairro
-   //        ,Cidade
-   //        ,Estado
-   //        ,Telefone
-   //        ,FuncaoId)
-			//Values(@Nome, @DataNascimento, @CPF, @RG, @Endereco, @CEP, @Numero, @Bairro, @Cidade, @Estado, @Telefone, @FuncaoId);
-   //         SELECT @@IDENTITY";            
-            
-        string query = @"INSERT INTO Colaboradores
+            string query = @"INSERT INTO Colaboradores
            (Nome
            ,FuncaoId)
 			Values(@Nome, @FuncaoId);
@@ -53,34 +37,6 @@ namespace Web.BD.Repository
 
         public bool Atualizar(Colaborador entityAntigo, Colaborador entityNovo)
         {
-        //    string query = @"UPDATE Colaboradores 
-        //SET
-        //  Nome = @NomeNovo,
-        //  DataNascimentoNovo = @DataNascimentoNovo,
-        //  CPF = @CPFNovo,
-        //  RG = @RGNovo,
-        //  Endereco = @EnderecoNovo, 
-        //  CEP = @CEPNovo, 
-        //  Numero = @NumeroNovo, 
-        //  Bairro =  @BairroNovo, 
-        //  Cidade = @CidadeNovo, 
-        //  Estado = @EstadoNovo ,
-        //  Telefone = @TelefoneNovo, 
-        //  FuncaoId =  @FuncaoIdNovo
-        //WHERE   
-        //  Nome = @NomeAntigo AND
-        //  DataNascimentoAntigo = @DataNascimentoAntigo AND
-        //  CPF = @CPFAntigo AND
-        //  RG = @RGAntigo AND
-        //  Endereco = @EnderecoAntigo AND
-        //  CEP = @CEPAntigo AND
-        //  Numero = @NumeroAntigo AND
-        //  Bairro =  @BairroAntigo AND
-        //  Cidade = @CidadeAntigo AND
-        //  Estado = @EstadoAntigo AND
-        //  Telefone = @TelefoneAntigo AND
-        //  FuncaoId =  @FuncaoIdAntigo";
-            
        string query = @"UPDATE Colaboradores 
         SET
           Nome = @NomeNovo,
@@ -94,29 +50,9 @@ namespace Web.BD.Repository
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@NomeNovo", entityNovo.Nome);
-                //cmd.Parameters.AddWithValue("@DataNascimentoNovo", entityNovo.DataNascimento);
-                //cmd.Parameters.AddWithValue("@CPFNovo", entityNovo.CPF);
-                //cmd.Parameters.AddWithValue("@RGNovo", entityNovo.RG);
-                //cmd.Parameters.AddWithValue("@EnderecoNovo", entityNovo.Endereco);
-                //cmd.Parameters.AddWithValue("@CEPNovo", entityNovo.CEP);
-                //cmd.Parameters.AddWithValue("@NumeroNovo", entityNovo.Numero);
-                //cmd.Parameters.AddWithValue("@BairroNovo", entityNovo.Bairro);
-                //cmd.Parameters.AddWithValue("@CidadeNovo", entityNovo.Cidade);
-                //cmd.Parameters.AddWithValue("@EstadoNovo", entityNovo.Estado);
-                //cmd.Parameters.AddWithValue("@TelefoneNovo", entityNovo.Telefone);
                 cmd.Parameters.AddWithValue("@FuncaoIdNovo", entityNovo.FuncaoId);
 
                 cmd.Parameters.AddWithValue("@NomeAntigo", entityAntigo.Nome);
-                //cmd.Parameters.AddWithValue("@DataNascimentoAntigo", entityAntigo.DataNascimento);
-                //cmd.Parameters.AddWithValue("@CPFAntigo", entityAntigo.CPF);
-                //cmd.Parameters.AddWithValue("@RGAntigo", entityAntigo.RG);
-                //cmd.Parameters.AddWithValue("@EnderecoAntigo", entityAntigo.Endereco);
-                //cmd.Parameters.AddWithValue("@CEPAntigo", entityAntigo.CEP);
-                //cmd.Parameters.AddWithValue("@NumeroAntigo", entityAntigo.Numero);
-                //cmd.Parameters.AddWithValue("@BairroAntigo", entityAntigo.Bairro);
-                //cmd.Parameters.AddWithValue("@CidadeAntigo", entityAntigo.Cidade);
-                //cmd.Parameters.AddWithValue("@EstadoAntigo", entityAntigo.Estado);
-                //cmd.Parameters.AddWithValue("@TelefoneAntigo", entityAntigo.Telefone);
                 cmd.Parameters.AddWithValue("@FuncaoIdAntigo", entityAntigo.FuncaoId);
                 cmd.ExecuteNonQuery();
                 return true;

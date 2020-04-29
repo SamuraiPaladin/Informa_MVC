@@ -44,8 +44,6 @@ namespace Web.BD.Repository
             }
         }
 
-    
-
         public bool Atualizar(Aluno entityAntigo, Aluno entityNovo)
         {
         
@@ -84,18 +82,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@TelefoneNovo", entityNovo.Telefone);
                 cmd.Parameters.AddWithValue("@EmailNovo", entityNovo.Email);
 
-                cmd.Parameters.AddWithValue("@IDAntigo", entityAntigo.Id);
-                //cmd.Parameters.AddWithValue("@DataNascimentoAntigo", entityAntigo.DataNascimento);
-                //cmd.Parameters.AddWithValue("@CPFAntigo", entityAntigo.CPF);
-                //cmd.Parameters.AddWithValue("@RGAntigo", entityAntigo.RG);
-                //cmd.Parameters.AddWithValue("@EnderecoAntigo", entityAntigo.Endereco);
-                //cmd.Parameters.AddWithValue("@CEPAntigo", entityAntigo.CEP);
-                //cmd.Parameters.AddWithValue("@NumeroAntigo", entityAntigo.Numero);
-                //cmd.Parameters.AddWithValue("@BairroAntigo", entityAntigo.Bairro);
-                //cmd.Parameters.AddWithValue("@CidadeAntigo", entityAntigo.Cidade);
-                //cmd.Parameters.AddWithValue("@EstadoAntigo", entityAntigo.Estado);
-                //cmd.Parameters.AddWithValue("@TelefoneAntigo", entityAntigo.Telefone);
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@IDAntigo", entityAntigo.Id);cmd.ExecuteNonQuery();
                 return true;
             }
         }

@@ -14,7 +14,7 @@ namespace Web.BD.Repository
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Mensalidade entity)
         {
-            var date = entity.DataDeVencimento;
+
 
             string query = @"INSERT INTO Mensalidades(
 	MatriculaId, 
@@ -22,33 +22,47 @@ namespace Web.BD.Repository
 	TurmaId, 
 	DataDeVencimento, 
     StatusDaMensalidade,
-	FormaDePagamento)
+	FormaDePagamento,
+    Valor)
 	Values(
         @MatriculaId, 
 	    @ModalidadeId, 
 	    @TurmaId, 
 	    @DataDeVencimento, 
         @StatusDaMensalidade,
-	    @FormaDePagamento);
+	    @FormaDePagamento,
+        @Valor);
             SELECT @@IDENTITY";
             using (var con = new SqlConnection(stringConexao))
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand(query, con);
+                var ano = DateTime.Now.Year;
+                var mes = DateTime.Now.Month;
+                for (int i = 1; i <= entity.QuantidadeDeMeses; i++)
+                {
+                    mes++;
+                    if (mes > 12)
+                    {
+                        ano++;
+                        mes = 1;
+                    }
 
-                cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
+                    var dataVencimento = new DateTime(ano, mes, entity.Dia);
 
-                cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
+                    cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
+                    cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
+                    cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
+                    cmd.Parameters.AddWithValue("@DataDeVencimento", dataVencimento);
+                    cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
+                    cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
+                    cmd.Parameters.AddWithValue("@Valor", entity.Valor);
+                    cmd.ExecuteNonQuery();
 
-                cmd.Parameters.AddWithValue("@DataDeVencimento", entity.DataDeVencimento);
+                    con.Close();
+                }
 
-                cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
-
-                cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
-
-                cmd.ExecuteNonQuery();
                 return true;
             }
 
@@ -378,9 +392,10 @@ namespace Web.BD.Repository
                             MatriculaId = @MatriculaId and 
 	                        ModalidadeId =   @ModalidadeId and 
 	                        TurmaId = @TurmaId and 
-	                        DataDeVencimento =  @DataDeVencimento and
+	                        --DataDeVencimento =  @DataDeVencimento and
                             StatusDaMensalidade = @StatusDaMensalidade and    
-	                        FormaDePagamento = @FormaDePagamento";
+	                        FormaDePagamento = @FormaDePagamento and    
+	                        Valor = @Valor";
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
 
@@ -395,16 +410,12 @@ namespace Web.BD.Repository
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
-
                 cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
-
                 cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
-
-                cmd.Parameters.AddWithValue("@DataDeVencimento", entity.DataDeVencimento);
-
+                //cmd.Parameters.AddWithValue("@DataDeVencimento", entity.DataDeVencimento);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
-
                 cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
+                cmd.Parameters.AddWithValue("@Valor", entity.Valor);
 
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
