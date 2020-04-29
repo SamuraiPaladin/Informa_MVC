@@ -45,7 +45,7 @@ namespace Web.Controllers
 
                 if (dAO.VerificarSeJaExiste(entity))
                 {
-                    return Json(false);
+                    return Json(dAO.AtivarMatricula(entity));
                 }
                 else
                 {
@@ -75,6 +75,12 @@ namespace Web.Controllers
         }
         public JsonResult Deletar(Matricula entity)
         {
+            List<int> listaIdMensalidade = dAO.ListaDeMensalidades(entity.Id);
+            if (listaIdMensalidade.Count > 0)
+            {
+                dAO.DeletarListaMensalidade(listaIdMensalidade);
+            }
+
             dAO.DeletarMatriculaTurma(entity.Id);
             return Json(dAO.Deletar(entity));
         }

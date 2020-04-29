@@ -130,9 +130,7 @@ namespace Web.BD.Repository
         public bool Deletar(Matricula entity)
         {
 
-            string query = @"DELETE FROM Matriculas
-                              WHERE 
-                              ID = @ID";
+            string query = @"UPDATE Matriculas SET Ativo = 0 WHERE Id = @ID";
 
             using (var con = new SqlConnection(stringConexao))
             {
@@ -146,7 +144,7 @@ namespace Web.BD.Repository
 
         public IList<Matricula> Lista()
         {
-            string query = "SELECT * FROM Matriculas ORDER BY Nome";
+            string query = "SELECT * FROM Matriculas WHERE Ativo = 1 ORDER BY Nome";
             List<Matricula> entity = new List<Matricula>();
             using (var con = new SqlConnection(stringConexao))
             {
@@ -326,7 +324,6 @@ namespace Web.BD.Repository
             }
             return lista;
         }
-
         public MatriculaTurma DadosMatriculaPorId(int id)
         {
             string query = @"SELECT  * FROM Matriculas WHERE Id = @ID";
@@ -359,6 +356,78 @@ namespace Web.BD.Repository
                     }
                 }
                 return new MatriculaTurma();
+            }
+        }
+        public bool AtivarMatricula(Matricula entity)
+        {
+            string query = @"UPDATE Matriculas SET Ativo = 1 
+                            WHERE 
+                            Nome = @Nome AND
+                            DataNascimento = @DataNascimento AND
+                            CPF = @CPF AND
+                            RG = @RG AND
+                            Endereco = @Endereco AND
+                            CEP = @CEP AND
+                            Numero = @Numero AND
+                            Bairro =  @Bairro AND
+                            Cidade = @Cidade AND
+                            Estado = @Estado AND
+                            Telefone = @Telefone";
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Nome", entity.Nome);
+                cmd.Parameters.AddWithValue("@DataNascimento", entity.DataNascimento);
+                cmd.Parameters.AddWithValue("@CPF", entity.CPF);
+                cmd.Parameters.AddWithValue("@RG", entity.RG);
+                cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
+                cmd.Parameters.AddWithValue("@CEP", entity.CEP);
+                cmd.Parameters.AddWithValue("@Numero", entity.Numero);
+                cmd.Parameters.AddWithValue("@Bairro", entity.Bairro);
+                cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
+                cmd.Parameters.AddWithValue("@Estado", entity.Estado);
+                cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
+                return Convert.ToInt32(cmd.ExecuteNonQuery()) > 0 ? true : false;
+            }
+        }
+
+        public List<int> ListaDeMensalidades(int id)
+        {
+            string query = @"SELECT Id FROM Mensalidades 
+                                WHERE StatusDaMensalidade = 'Em Haver' AND DataDeVencimento > GETDATE()
+                                AND MatriculaId = @Id";
+            List<int> lista = new List<int>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Id", id);
+                SqlDataReader sdr = cmd.ExecuteReader();
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        lista.Add(Convert.ToInt32(sdr["Id"]));
+                    }
+                }
+                return lista;
+            }
+        }
+
+        public void DeletarListaMensalidade(List<int> listaIdMensalidade)
+        {
+            string query = "DELETE Mensalidades WHERE Id = @Id";
+            using (var con = new SqlConnection(stringConexao))
+            {
+                foreach (var item in listaIdMensalidade)
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Id", item);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
             }
         }
     }
