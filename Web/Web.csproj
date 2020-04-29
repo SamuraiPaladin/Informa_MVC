@@ -226,9 +226,9 @@
     <Compile Include="BD\Interface\IDAOMatricula.cs" />
     <Compile Include="BD\Interface\IDAOPrincipal.cs" />
     <Compile Include="BD\Repository\AlunoDAO.cs" />
-    <Compile Include="BD\Repository\IDAOPrincipal.cs" />
     <Compile Include="BD\Repository\MatriculaDAO.cs" />
     <Compile Include="BD\Repository\MensalidadeDAO.cs" />
+    <Compile Include="BD\Repository\PrincipalDAO.cs" />
     <Compile Include="BD\Repository\TurmaDAO.cs" />
     <Compile Include="BD\Repository\ColaboradorDAO.cs" />
     <Compile Include="BD\Repository\FuncaoDAO.cs" />
