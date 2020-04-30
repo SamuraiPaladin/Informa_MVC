@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\Test.csproj": {}
+    "C:\\Users\\Thauan Moser Doce\\source\\repos\\inForma\\Test\\Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\Test.csproj": {
+    "C:\\Users\\Thauan Moser Doce\\source\\repos\\inForma\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\Test.csproj",
+        "projectUniqueName": "C:\\Users\\Thauan Moser Doce\\source\\repos\\inForma\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\Test.csproj",
+        "projectPath": "C:\\Users\\Thauan Moser Doce\\source\\repos\\inForma\\Test\\Test.csproj",
         "packagesPath": "C:\\Users\\Thauan Moser Doce\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thauan Moser Doce\\source\\repos\\TCC\\Test\\obj\\",
+        "outputPath": "C:\\Users\\Thauan Moser Doce\\source\\repos\\inForma\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
@@ -37,6 +37,10 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.2.0, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[3.141.0, )"
             },
             "Selenium.WebDriver": {
               "target": "Package",

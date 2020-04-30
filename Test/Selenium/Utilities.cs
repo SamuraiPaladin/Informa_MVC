@@ -1,8 +1,12 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Test;
+using Xunit;
+using System.Data.SqlClient;
 
 /// <summary>
 /// Summary description for Class1
@@ -10,6 +14,7 @@ using Test;
 public class Utilities
 {
 	public static IWebDriver driver;
+
 	public static void OpenChrome()
 	{
 		//var t = Directory.GetCurrentDirectory().Remove(Directory.GetCurrentDirectory().ToString().Length - 45);
@@ -65,5 +70,10 @@ public class Utilities
 			}
 		}
 	}
+
+
+
+
+
 
 }
