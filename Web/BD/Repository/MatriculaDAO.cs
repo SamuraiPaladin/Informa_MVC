@@ -395,7 +395,7 @@ namespace Web.BD.Repository
         public List<int> ListaDeMensalidades(int id)
         {
             string query = @"SELECT Id FROM Mensalidades 
-                                WHERE StatusDaMensalidade = 'Em Haver' AND DataDeVencimento > GETDATE()
+                                WHERE (StatusDaMensalidade = 'Em Haver' || 'ProximoDaDataDeVencimento') AND DataDeVencimento > GETDATE()
                                 AND MatriculaId = @Id";
             List<int> lista = new List<int>();
             using (var con = new SqlConnection(stringConexao))
