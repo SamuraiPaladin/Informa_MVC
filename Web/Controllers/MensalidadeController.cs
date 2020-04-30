@@ -81,8 +81,10 @@ namespace Web.Controllers
                    string.IsNullOrWhiteSpace(Mensalidade.ModalidadeId.ToString()) ||
                    string.IsNullOrWhiteSpace(Mensalidade.TurmaId.ToString()) ||
                    string.IsNullOrWhiteSpace(Mensalidade.StatusDaMensalidade.ToString()) ||
-                   string.IsNullOrWhiteSpace(Mensalidade.FormaDePagamento.ToString()) ||
-                   string.IsNullOrWhiteSpace(Mensalidade.DataDeVencimento.ToString());
+                   string.IsNullOrWhiteSpace(Mensalidade.DataDeVencimento.ToString()) ||
+                   string.IsNullOrWhiteSpace(Mensalidade.Dia.ToString()) ||
+                   string.IsNullOrWhiteSpace(Mensalidade.Valor.ToString()) ||
+                   string.IsNullOrWhiteSpace(Mensalidade.QuantidadeDeMeses.ToString());
         }
 
         public JsonResult Editar(Mensalidade Mensalidade, Mensalidade MensalidadeEditar)

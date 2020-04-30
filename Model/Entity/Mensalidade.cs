@@ -24,5 +24,9 @@ namespace Model.Entity
         public Array FormasDePagamentos { get; set; }
         public string FormaDePagamento { get; set; }
         public List<Mensalidade> ListaMensalidade { get; set; }
+        public int Dia { get; set; }
+        public int QuantidadeDeMeses { get; set; }
+        public decimal Valor { get; set; }
+        public bool EditarTodasMensalidades { get; set; }
     }
 }

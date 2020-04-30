@@ -32,12 +32,26 @@
     </div>
     <div class="col s12 l4 consultaRapida center">
         <i class="material-icons iconRapido large">attach_money</i>
-        <h5 style="margin-left:60px"><a href="" class="linkRapido">Situação de Alunos</a><span class="new badge" data-badge-caption="pendências" style="background-color: darkred;" id="retornaLenght">3</span></h5>
+        @if (ViewBag.Quantidade == 0)
+        {
+            <h5 style="margin-left:60px"><a href="@Url.Action("Index","Modalidade")" class="linkRapido">Situação de Alunos</a></h5>
+        }
+        else
+        {
+            if (ViewBag.Quantidade > 1)
+            {
+                <h5 style="margin-left:60px"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a><span class="new badge" data-badge-caption="Pendências" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></h5>
+            }
+            else
+            {
+                <h5 style="margin-left:60px"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a><span class="new badge" data-badge-caption="Pendência" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></h5>
+            }
+        }
         <p>Consulte a situação de mensalidades de todos os alunos</p>
     </div>
     <div class="col s12 l4 consultaRapida center">
         <i class="material-icons iconRapido large">person_outline</i>
-        <h5><a href="" class="linkRapido">Alunos e Matrículas</a></h5>
+        <h5><a href="@Url.Action("Index","Matricula")" class="linkRapido">Alunos e Matrículas</a></h5>
         <p>Consulte todas as matriculas dos alunos</p>
     </div>
     <div class="col s12 l4 consultaRapida center">

@@ -30,8 +30,11 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="@Url.Action("Index","Principal")">Home</a></li>
                 <li><a href="@Url.Action("Index","Unidade")">Unidade</a></li>
-                <li><a href="@Url.Action("Index","Modalidade")">Modalidade</a></li>
-                <li><a href="">Situação de Alunos<span class="new badge" data-badge-caption="pendências" style="background-color: darkred;" id="retornaLenght">3</span></a></li>
+                <li id="mensalidades"></li>
+                    
+                @*<li id="mensalidades"><a href="@Url.Action("Index","Mensalidade")">Situação de Alunos<span class="new badge" data-badge-caption="Pendência" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></a></li>*@
+                    
+                
             </ul>
         </div>
     </nav>
@@ -111,28 +114,6 @@
                 </li>
             </ul>
         </li>
-
-
-        <!--<li>
-            <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header">
-                        <i class="material-icons" style="color: grey;">edit</i>
-                        <strong>Estoque</strong>
-                        <i class="material-icons right" id="arrow">arrow_drop_down</i>
-                    </div>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a class=""><span class="insideLink">Link</span></a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </li>
-            </ul>
-        </li>
-            -->
         <li>
             <div class="divider"></div>
         </li>
@@ -160,12 +141,30 @@
 
 
     @RenderSection("Scripts", required: false);
-    <script>
+<script>
 
         const redirecionaPaginaMatricula = () => {
             window.location.href="@Url.Action("Index", "Matricula")"
         }
+    $(document).ready(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("QuantidadeDeAtrasados", "Principal")",
+                    success: function (data) {
+                        if (data === 0) {
+                            $("#mensalidades").append("<a href='@Url.Action("Index","Mensalidade")'>Situação de Alunos</a>");
+                        } else if(data  > 1 ){
+                            $("#mensalidades").append("<a href='@Url.Action("Index","Mensalidade")'>Situação de Alunos<span class='new badge' data-badge-caption='Pendências' style='background-color: darkred;' id='retornaLenght'>"+data+"</span></a>")
+                        } else {
+                            $("#mensalidades").append("<a href='@Url.Action("Index","Mensalidade")'>Situação de Alunos<span class='new badge' data-badge-caption='Pendência' style='background-color: darkred;' id='retornaLenght'>"+data+"</span></a>")
+                        }
 
-    </script>
+                    }, error: function (ex) {
+                        alert("Erro: " + ex.status);
+                    }
+                });
+                }
+        );
+</script>
 
 </body>
