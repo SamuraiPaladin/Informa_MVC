@@ -40,7 +40,7 @@
                         </ul>
                     </div>
 
-                    <div class="input-field col s6">
+                    @*<div class="input-field col s6">
                         <a class='dropdown-trigger2 btn' href='#' data-target='modalidadeCadastrar' id="modalidadeDropDownCadastrar">Selecione uma Modalidade</a>
                         <ul id='modalidadeCadastrar' class='dropdown-content'>
                             @foreach (var item in Model.ListaModalidade)
@@ -48,9 +48,9 @@
                                 <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Cadastrar')">@item.TipoModalidade</a></li>
                             }
                         </ul>
-                    </div>
+                    </div>*@
 
-                    <div class="input-field col s6">
+                    @*<div class="input-field col s6">
                         <a class='dropdown-trigger3 btn' href='#' data-target='turmaCadastrar' id="turmaDropDownCadastrar">Selecione uma Turma</a>
                         <ul id='turmaCadastrar' class='dropdown-content'>
                             @foreach (var item in Model.ListaTurma)
@@ -58,7 +58,7 @@
                                 <li><a onclick="editaTurmaSelecionado('@item.Descricao', '@item.Id', 'Cadastrar')">@item.Descricao</a></li>
                             }
                         </ul>
-                    </div>
+                    </div>*@
 
                     @*<div class="input-field col s6">
                             <a class='dropdown-trigger4 btn' href='#' data-target='statusCadastrar' id="statusDropDownCadastrar">Selecione o Status do Pagamento</a>
@@ -147,8 +147,8 @@
                 <tr>
                     <th>Pagamento</th>
                     <th>Nome</th>
-                    <th>Curso</th>
-                    <th>Turma</th>
+                    @*<th>Curso</th>
+                    <th>Turma</th>*@
                     <th>Data de Vencimento</th>
                     <th>Valor</th>
                     <th>Status Mensalidade</th>
@@ -161,18 +161,20 @@
                 {
                     <tr>
                         <td>
-                            <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons">attach_money</i></a>
+                            @*<a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons">attach_money</i></a>*@ 
+                            <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', 
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor')"><i class="material-icons">attach_money</i></a>
                         </td>
                         <td>
                             @mensalidade.Matricula.Nome
                         </td>
-                        <td>
+                        @*<td>
                             @mensalidade.Modalidade.TipoModalidade
                         </td>
                         <td>
                             @mensalidade.Turma.Descricao
-                        </td>
+                        </td>*@
                         <td>
                             @mensalidade.DataDeVencimento.ToString("dd/MM/yyyy")
                         </td>
@@ -183,10 +185,12 @@
                             @String.Join(" ", @System.Text.RegularExpressions.Regex.Split(mensalidade.StatusDaMensalidade, @"(?<!^)(?=[A-Z])"))
                         </td>
                         <td>
-                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
+                            @*<a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricu@*la.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
         '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao', '@mensalidade.Valor')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
                             <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao', '@mensalidade.Valor')"><i class="material-icons">delete_forever</i></a>
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao', '@mensalidade.Valor')"><i class="material-icons">delete_forever</i></a>*@              
+                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
+                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor')"><i class="material-icons">delete_forever</i></a>
                         </td>
                     </tr>
                 }
@@ -207,7 +211,7 @@
             <form class="col s12 l12" id="formularioEditar">
 
                 <div class="input-field col s6">
-                    <a class='dropdown-trigger6 btn' href='#' data-target='MatriculaEditar' id="MatriculaDropDownEditar">Selecione um Matricula</a>
+                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='MatriculaEditar' id="MatriculaDropDownEditar">Selecione um Matricula</a>
                     <ul id='MatriculaEditar' class='dropdown-content'>
                         @foreach (var item in Model.ListaMatricula)
                         {
@@ -216,7 +220,7 @@
                     </ul>
                 </div>
 
-                <div class="input-field col s6">
+                @*<div class="input-field col s6">
                     <a class='dropdown-trigger7 btn' href='#' data-target='modalidadeEditar' id="modalidadeDropDownEditar">Selecione uma Modalidade</a>
                     <ul id='modalidadeEditar' class='dropdown-content'>
                         @foreach (var item in Model.ListaModalidade)
@@ -234,7 +238,7 @@
                             <li><a onclick="editaTurmaSelecionado('@item.Descricao', '@item.Id', 'Editar')">@item.Descricao</a></li>
                         }
                     </ul>
-                </div>
+                </div>*@
 
 
                 @*<div class="input-field col s6">
@@ -321,7 +325,7 @@
                     </ul>
                 </div>
 
-                <div class="input-field col s6">
+                @*<div class="input-field col s6">
                     <a disabled class='dropdown-trigger7 btn' href='#' data-target='modalidadeDeletar' id="modalidadeDropDownDeletar">Selecione uma Modalidade</a>
                     <ul id='modalidadeDeletar' class='dropdown-content'>
                         @foreach (var item in Model.ListaModalidade)
@@ -339,7 +343,7 @@
                             <li><a onclick="editaTurmaSelecionado('@item.Descricao', '@item.Id', 'Deletar')">@item.Descricao</a></li>
                         }
                     </ul>
-                </div>
+                </div>*@
 
 
                 <div class="input-field col s6">
@@ -411,25 +415,25 @@
                     </ul>
                 </div>
 
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger7 btn' href='#' data-target='modalidadePagamento' id="modalidadeDropDownPagamento">Selecione uma Modalidade</a>
-                    <ul id='modalidadePagamento' class='dropdown-content'>
-                        @foreach (var item in Model.ListaModalidade)
-                        {
-                            <li><a>@item.TipoModalidade</a></li>
-                        }
-                    </ul>
-                </div>
+                @*<div class="input-field col s6">
+            <a disabled class='dropdown-trigger7 btn' href='#' data-target='modalidadePagamento' id="modalidadeDropDownPagamento">Selecione uma Modalidade</a>
+            <ul id='modalidadePagamento' class='dropdown-content'>
+                @foreach (var item in Model.ListaModalidade)
+                {
+                    <li><a>@item.TipoModalidade</a></li>
+                }
+            </ul>
+        </div>
 
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger8 btn' href='#' data-target='turmaPagamento' id="turmaDropDownPagamento">Selecione uma Turma</a>
-                    <ul id='turmaPagamento' class='dropdown-content'>
-                        @foreach (var item in Model.ListaTurma)
-                        {
-                            <li><a>@item.Descricao</a></li>
-                        }
-                    </ul>
-                </div>
+        <div class="input-field col s6">
+            <a disabled class='dropdown-trigger8 btn' href='#' data-target='turmaPagamento' id="turmaDropDownPagamento">Selecione uma Turma</a>
+            <ul id='turmaPagamento' class='dropdown-content'>
+                @foreach (var item in Model.ListaTurma)
+                {
+                    <li><a>@item.Descricao</a></li>
+                }
+            </ul>
+        </div>*@
 
 
                 <div class="input-field col s6">
@@ -444,8 +448,20 @@
                 </div>
 
                 <div class="input-field col s6">
+                    <label for="valor">Valor</label>
+                    <br />
+                    <input disabled min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                </div>
 
-                    <a class='dropdown-trigger10 btn' href='#' data-target='formaPagamento' id="formaDropDownPagamento">Selecione a Forma de Pagamento</a>
+                <div class="input-field col s6">
+                    <label min='2020-01-01' max='2099-12-31' for="diaDeVencimentoPagamento">Data de Vencimento:</label>
+                    <br />
+                    <input disabled type="date" id="diaDeVencimentoPagamento" name="datadevencimento">
+                </div>
+
+                <div class="input-field col s6">
+
+                    <a class='dropdown-trigger10 btn' href='#' data-target='formaPagamento' id="formaDropDownPagamento">Selecione a forma de pagamento</a>
 
                     <ul id='formaPagamento' class='dropdown-content'>
                         @foreach (var item in Model.FormasDePagamentos)
@@ -455,11 +471,17 @@
                     </ul>
                 </div>
 
-                <div class="input-field col s6">
-                    <label min='2020-01-01' max='2099-12-31' for="datadevencimentoPagamento">Data de Vencimento:</label>
-                    <br />
-                    <input disabled type="date" id="datadevencimentoPagamento" name="datadevencimento">
-                </div>
+                @*<div class="input-field col s6">
+            <label for="valor">Valor</label>
+            <br />
+            <input min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+        </div>
+
+        <div class="input-field col s6">
+            <label min='2020-01-01' max='2099-12-31' for="diaDeVencimentoPagamento">Data de Vencimento:</label>
+            <br />
+            <input disabled type="date" id="diaDeVencimentoPagamento" name="diaDeVencimento">
+        </div>*@
 
                 <div id="modalPagamentoMensalidade" class="modal">
                     <div class="modal-content">
@@ -495,12 +517,12 @@
         let valorFormaDePagamento;
         let valorStatusDaMensalidade;
 
-        function EditarModal(id, Matricula, modalidade, turma, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, tipomodalidade, descricao, valor) {
+        function EditarModal(id, Matricula, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, valor) {
 
                 valorId = id;
                 valorMatricula = Matricula;
-                valorModalidade = modalidade;
-                valorTurma = turma;
+                //valorModalidade = modalidade;
+                //valorTurma = turma;
                 valorVencimento = datadevencimento;
                 valorFormaDePagamento = formadepagamento;
                 valorStatusDaMensalidade = statusdamensalidade;
@@ -509,13 +531,13 @@
             document.getElementById('MatriculaDropDown' + model).text = nomeMatricula;
             document.getElementById('MatriculaDropDown' + model).MatriculaId = Matricula;
 
-            document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
-            document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
+            //document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
+            //document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
 
             document.getElementById('valor' + model).value = valor;
 
-            document.getElementById('turmaDropDown' + model).text = descricao;
-            document.getElementById('turmaDropDown' + model).TurmaId = turma;
+            //document.getElementById('turmaDropDown' + model).text = descricao;
+            //document.getElementById('turmaDropDown' + model).TurmaId = turma;
 
             if(document.getElementById('formaDropDown' + model) != null)
             document.getElementById('formaDropDown' + model).text = formadepagamento;
@@ -523,7 +545,12 @@
             if (document.getElementById('statusDropDown' + model) != null)
             document.getElementById('statusDropDown' + model).text = statusdamensalidade.split(/(?=[A-Z])/).toString().replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ');
 
-            document.getElementById('diaDeVencimento' + model).value = datadevencimento.split('-')[2];
+            if (model != "Pagamento") {
+                document.getElementById('diaDeVencimento' + model).value = datadevencimento.split('-')[2];
+            }
+            else {
+                document.getElementById('diaDeVencimento' + model).value = datadevencimento;
+            }
 
             if (model === "Editar") {
             document.getElementById("id" + model).value = id;
@@ -622,8 +649,8 @@
         function Adicionar() {
             var mensalidade = {
                 MatriculaId: document.getElementById('MatriculaDropDownCadastrar').MatriculaId,
-                ModalidadeId: document.getElementById('modalidadeDropDownCadastrar').ModalidadeId,
-                TurmaId: document.getElementById('turmaDropDownCadastrar').TurmaId,
+                //ModalidadeId: document.getElementById('modalidadeDropDownCadastrar').ModalidadeId,
+                //TurmaId: document.getElementById('turmaDropDownCadastrar').TurmaId,
                 Dia: document.getElementById("diaDeVencimento").value,
                 QuantidadeDeMeses: document.getElementById("quantidadeDeMeses").value,
                 Valor: document.getElementById("valor").value,
