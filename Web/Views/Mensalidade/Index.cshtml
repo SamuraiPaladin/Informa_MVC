@@ -383,7 +383,7 @@
 
                 <div class="input-field col s6">
                     <label>
-                        <input id="todoMes" type="checkbox" />
+                        <input id="todoMesDeletar" type="checkbox" />
                         <span style="color:red">Deletar Pagamento Para Todos os Meses</span>
                     </label>
                 </div>
@@ -590,9 +590,12 @@
                 MatriculaId: valorMatricula,
                 //ModalidadeId: valorModalidade,
                 //TurmaId: valorTurma,
+                Dia: document.getElementById("diaDeVencimentoDeletar").value,
                 DataDeVencimento: valorVencimento,
-                FormaDePagamento: valorFormaDePagamento,
-                StatusDaMensalidade: valorStatusDaMensalidade
+                //FormaDePagamento: valorFormaDePagamento,
+                StatusDaMensalidade: valorStatusDaMensalidade,
+                Valor: document.getElementById("valorDeletar").value,
+                EditarTodasMensalidades: document.getElementById('todoMesDeletar').checked
             };
 
             $(function () {
@@ -607,7 +610,7 @@
                                  M.toast({ html: dados, classes: 'rounded orange' });
                              break;
                              case true:
-                                 M.toast({ html: 'Mensalidade Deletada com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 M.toast({ html: 'Mensalidade(s) Deletada(s) com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              default:
                          }
@@ -696,7 +699,7 @@
                                  M.toast({ html: dados, classes: 'rounded orange' });
                              break;
                              case true:
-                                 M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 M.toast({ html: 'Mensalidade(s) editada(s) com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
                                  M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });

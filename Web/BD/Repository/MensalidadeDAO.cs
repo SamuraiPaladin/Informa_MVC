@@ -142,15 +142,21 @@ namespace Web.BD.Repository
         }
         public bool Deletar(Mensalidade entity)
         {
+            string unicaOuTodaMensalidade = entity.EditarTodasMensalidades ?
+                @"DataDeVencimento IS NOT NULL AND
+                  Valor IS NOT NULL AND"
+                :
+                @"DataDeVencimento = @DataDeVencimento AND
+                  Valor = @Valor AND";
 
-            string query = @"DELETE FROM Mensalidades
+            string query = $@"DELETE FROM Mensalidades
                             WHERE 
                             MatriculaId = @MatriculaId and 
-	                        ModalidadeId =   @ModalidadeId and 
-	                        TurmaId = @TurmaId and 
-	                        DataDeVencimento =  @DataDeVencimento and
-                            StatusDaMensalidade = @StatusDaMensalidade and    
-	                        FormaDePagamento = @FormaDePagamento";
+	                        --ModalidadeId =   @ModalidadeId and 
+	                        --TurmaId = @TurmaId and 
+	                        {unicaOuTodaMensalidade}
+                            StatusDaMensalidade = @StatusDaMensalidade     
+	                        --FormaDePagamento = @FormaDePagamento";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -158,16 +164,12 @@ namespace Web.BD.Repository
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
-
                 //cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
-
                 //cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
-
                 cmd.Parameters.AddWithValue("@DataDeVencimento", entity.DataDeVencimento);
-
+                cmd.Parameters.AddWithValue("@Valor", entity.Valor);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
-
-                cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
+                //cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
 
                 cmd.ExecuteNonQuery();
 
