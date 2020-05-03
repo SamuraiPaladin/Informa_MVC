@@ -90,25 +90,30 @@ namespace Web.BD.Repository
             //    }
             //}
 
-            string dataVencimento = entityNovo.EditarTodasMensalidades ? "DataDeVencimento IS NOT NULL AND" : "DataDeVencimento = @DataDeVencimentoAntigo AND";
+            string unicaOuTodaMensalidade = entityNovo.EditarTodasMensalidades ? 
+                @"DataDeVencimento IS NOT NULL AND
+                  Valor IS NOT NULL AND" 
+                :
+                @"DataDeVencimento = @DataDeVencimentoAntigo AND
+                  Valor = @ValorAntigo AND";
+
 
             string query = $@"UPDATE Mensalidades 
             SET
              MatriculaId = @MatriculaIdNovo, 
-             ModalidadeId = @ModalidadeIdNovo, 
-             TurmaId = @TurmaIdNovo, 
+             --ModalidadeId = @ModalidadeIdNovo, 
+             --TurmaId = @TurmaIdNovo, 
              DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimentoNovo))), 
              StatusDaMensalidade = @StatusDaMensalidadeNovo,
              --FormaDePagamento = @FormaDePagamentoNovo,
              Valor = @ValorNovo       
             WHERE   
              MatriculaId = @MatriculaIdAntigo AND
-             ModalidadeId = @ModalidadeIdAntigo AND
-             TurmaId = @TurmaIdAntigo AND 
-             {dataVencimento}
-             StatusDaMensalidade = @StatusDaMensalidadeAntigo AND
-             --FormaDePagamento = @FormaDePagamentoAntigo AND
-             Valor = @ValorAntigo";
+             --ModalidadeId = @ModalidadeIdAntigo AND
+             --TurmaId = @TurmaIdAntigo AND 
+             {unicaOuTodaMensalidade}
+             StatusDaMensalidade = @StatusDaMensalidadeAntigo --AND
+             --FormaDePagamento = @FormaDePagamentoAntigo";
 
             using (var con = new SqlConnection(stringConexao))
             {
@@ -389,16 +394,17 @@ namespace Web.BD.Repository
 
         public bool VerificarSeJaExiste(Mensalidade entity)
         {
+            var dataDeVencimentoQuery = entity.EditarTodasMensalidades || string.IsNullOrEmpty(entity.FormaDePagamento) ? "DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimento))) and" : "DataDeVencimento = @DataDeVencimento and";
 
-            string query = @"SELECT 
+            string query = $@"SELECT 
                                 	count(1) as qtd
                                 FROM 
                                 	Mensalidades  
                                 WHERE
-                            --MatriculaId = @MatriculaId and 
+                            MatriculaId = @MatriculaId and 
 	                        --ModalidadeId =   @ModalidadeId and 
 	                        --TurmaId = @TurmaId and 
-	                        DataDeVencimento =  CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimento)))  and
+	                        {dataDeVencimentoQuery}
                             StatusDaMensalidade = @StatusDaMensalidade and    
 	                        --FormaDePagamento = @FormaDePagamento and    
 	                        Valor = @Valor";
@@ -413,12 +419,14 @@ namespace Web.BD.Repository
             {
                 con.Open();
 
+                var dataDeVencimentoValor = entity.EditarTodasMensalidades || string.IsNullOrEmpty(entity.FormaDePagamento)  ? entity.Dia.ToString() : entity.DataDeVencimento.ToString($"yyyy-MM-{entity.Dia}");
+
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
                 //cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
                 //cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
-                cmd.Parameters.AddWithValue("@DataDeVencimento", entity.Dia);
+                cmd.Parameters.AddWithValue("@DataDeVencimento", dataDeVencimentoValor);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
                 //cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
                 cmd.Parameters.AddWithValue("@Valor", entity.Valor);

@@ -326,24 +326,24 @@
                 </div>
 
                 @*<div class="input-field col s6">
-                    <a disabled class='dropdown-trigger7 btn' href='#' data-target='modalidadeDeletar' id="modalidadeDropDownDeletar">Selecione uma Modalidade</a>
-                    <ul id='modalidadeDeletar' class='dropdown-content'>
-                        @foreach (var item in Model.ListaModalidade)
-                        {
-                            <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Deletar')">@item.TipoModalidade</a></li>
-                        }
-                    </ul>
-                </div>
+            <a disabled class='dropdown-trigger7 btn' href='#' data-target='modalidadeDeletar' id="modalidadeDropDownDeletar">Selecione uma Modalidade</a>
+            <ul id='modalidadeDeletar' class='dropdown-content'>
+                @foreach (var item in Model.ListaModalidade)
+                {
+                    <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Deletar')">@item.TipoModalidade</a></li>
+                }
+            </ul>
+        </div>
 
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger8 btn' href='#' data-target='turmaDeletar' id="turmaDropDownDeletar">Selecione uma Turma</a>
-                    <ul id='turmaDeletar' class='dropdown-content'>
-                        @foreach (var item in Model.ListaTurma)
-                        {
-                            <li><a onclick="editaTurmaSelecionado('@item.Descricao', '@item.Id', 'Deletar')">@item.Descricao</a></li>
-                        }
-                    </ul>
-                </div>*@
+        <div class="input-field col s6">
+            <a disabled class='dropdown-trigger8 btn' href='#' data-target='turmaDeletar' id="turmaDropDownDeletar">Selecione uma Turma</a>
+            <ul id='turmaDeletar' class='dropdown-content'>
+                @foreach (var item in Model.ListaTurma)
+                {
+                    <li><a onclick="editaTurmaSelecionado('@item.Descricao', '@item.Id', 'Deletar')">@item.Descricao</a></li>
+                }
+            </ul>
+        </div>*@
 
 
                 <div class="input-field col s6">
@@ -370,10 +370,24 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <label min='2020-01-01' max='2099-12-31' for="datadevencimentoDeletar">Data de Vencimento:</label>
+                    <label for="diaDeVencimento">Dia de Vencimento</label>
                     <br />
-                    <input disabled type="date" id="datadevencimentoDeletar" name="datadevencimento">
+                    <input disabled min='1' max='28' type="number" id="diaDeVencimentoDeletar" value="01" class="validate">
                 </div>
+
+                <div class="input-field col s6">
+                    <label for="valor">Valor</label>
+                    <br />
+                    <input disabled min='1' type="text" id="valorDeletar" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                </div>
+
+                <div class="input-field col s6">
+                    <label>
+                        <input id="todoMes" type="checkbox" />
+                        <span style="color:red">Deletar Pagamento Para Todos os Meses</span>
+                    </label>
+                </div>
+
                 <div id="modalCadastroMensalidade" class="modal">
                     <div class="modal-content">
                         <h4 class="flow-text center">Mensalidade Cadastrada!</h4>
@@ -461,12 +475,12 @@
 
                 <div class="input-field col s6">
 
-                    <a class='dropdown-trigger10 btn' href='#' data-target='formaPagamento' id="formaDropDownPagamento">Selecione a forma de pagamento</a>
+                    <a class='dropdown-trigger11 btn' href='#' data-target='formaPagamento' id="formaDropDownPagamento">Selecione a forma de pagamento</a>
 
                     <ul id='formaPagamento' class='dropdown-content'>
                         @foreach (var item in Model.FormasDePagamentos)
                         {
-                            <li><a>@item</a></li>
+                            <li><a onclick="editaFormaSelecionado('@item', 'Pagamento')">@item</a></li>
                         }
                     </ul>
                 </div>
@@ -501,7 +515,7 @@
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light green btn modal-trigger right btnCadastrar" onclick="Deletar()">PAGAR</a>
+        <a class="waves-effect waves-light green btn modal-trigger right btnCadastrar" onclick="Pagar()">PAGAR</a>
     </div>
 </div>
 
@@ -539,12 +553,17 @@
             //document.getElementById('turmaDropDown' + model).text = descricao;
             //document.getElementById('turmaDropDown' + model).TurmaId = turma;
 
-            if(document.getElementById('formaDropDown' + model) != null)
-            document.getElementById('formaDropDown' + model).text = formadepagamento;
+            if (document.getElementById('formaDropDown' + model) != null && formadepagamento != "") {
+                document.getElementById('formaDropDown' + model).text = formadepagamento;
+            }
+            else if (model == "Pagamento") {
+                document.getElementById('formaDropDown' + model).text = "Selecione a forma de pagamento"
+            }
 
-            if (document.getElementById('statusDropDown' + model) != null)
-            document.getElementById('statusDropDown' + model).text = statusdamensalidade.split(/(?=[A-Z])/).toString().replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ');
-
+            if (document.getElementById('statusDropDown' + model) != null) {
+                document.getElementById('statusDropDown' + model).text = statusdamensalidade.split(/(?=[A-Z])/).toString().replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ');
+            }
+           
             if (model != "Pagamento") {
                 document.getElementById('diaDeVencimento' + model).value = datadevencimento.split('-')[2];
             }
@@ -569,8 +588,8 @@
             var mensalidade = {
                 Id: valorId,
                 MatriculaId: valorMatricula,
-                ModalidadeId: valorModalidade,
-                TurmaId: valorTurma,
+                //ModalidadeId: valorModalidade,
+                //TurmaId: valorTurma,
                 DataDeVencimento: valorVencimento,
                 FormaDePagamento: valorFormaDePagamento,
                 StatusDaMensalidade: valorStatusDaMensalidade
@@ -597,12 +616,54 @@
         });
         }
 
+        function Pagar() {
+            var mensalidade = {
+                Id: valorId,
+                MatriculaId: valorMatricula,
+                DataDeVencimento: valorVencimento,
+                FormaDePagamento: valorFormaDePagamento,
+                StatusDaMensalidade: valorStatusDaMensalidade,
+                Valor: valorPagamento
+            };
+
+            var mensalidadeEditar = {
+                Id: valorId,
+                MatriculaId: valorMatricula,
+                DataDeVencimento: valorVencimento,
+                FormaDePagamento: document.getElementById("formaDropDownPagamento").text != "Selecione a forma de pagamento" ? document.getElementById("formaDropDownPagamento").text : "Debito",
+                StatusDaMensalidade: 'Pago',
+                Valor: valorPagamento,
+                EditarTodasMensalidades: false,
+                Dia: valorVencimento.split('-')[2]
+            };
+
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Mensalidade")",
+                     data: { mensalidade: mensalidade, mensalidadeEditar, mensalidadeEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Mensalidade paga com sucesso!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+
         function Editar() {
             var mensalidade = {
                 Id: valorId,
                 MatriculaId: valorMatricula,
-                ModalidadeId: valorModalidade,
-                TurmaId: valorTurma,
+                //ModalidadeId: valorModalidade,
+                //TurmaId: valorTurma,
                 DataDeVencimento: valorVencimento,
                 FormaDePagamento: valorFormaDePagamento,
                 StatusDaMensalidade: valorStatusDaMensalidade,
@@ -611,11 +672,11 @@
             var mensalidadeEditar = {
                 Id: valorId,
                 MatriculaId: document.getElementById('MatriculaDropDownEditar').MatriculaId,
-                ModalidadeId: document.getElementById('modalidadeDropDownEditar').ModalidadeId,
-                TurmaId: document.getElementById('turmaDropDownEditar').TurmaId,
+                //ModalidadeId: document.getElementById('modalidadeDropDownEditar').ModalidadeId,
+                //TurmaId: document.getElementById('turmaDropDownEditar').TurmaId,
                 Dia: document.getElementById("diaDeVencimentoEditar").value,
                 DataDeVencimento: valorVencimento,
-                StatusDaMensalidade: 'EmHaver',
+                StatusDaMensalidade: valorStatusDaMensalidade == "Pago" ? "Pago" : "EmHaver",
                 Valor: document.getElementById("valorEditar").value,
                 EditarTodasMensalidades: document.getElementById('todoMes').checked,
             };
@@ -654,7 +715,7 @@
                 Dia: document.getElementById("diaDeVencimento").value,
                 QuantidadeDeMeses: document.getElementById("quantidadeDeMeses").value,
                 Valor: document.getElementById("valor").value,
-                FormaDePagamento: ' ',
+                FormaDePagamento: '',
                 StatusDaMensalidade: 'EmHaver'
 
             };
