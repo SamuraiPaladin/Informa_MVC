@@ -25,8 +25,11 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
+            dAOMensalidade.AlterarMensalidadeParaVencido();
             model = new Mensalidade
             {
+
+                Juros = dAOMensalidade.Juros(),
                 ListaMensalidade = dAOMensalidade.ListaMensalidade(),
                 ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
                 //ListaModalidade = dAOMensalidade.ReturnMensalidadeModalidadesLista(),
@@ -37,6 +40,7 @@ namespace Web.Controllers
 
             return View(model);
         }
+
         public JsonResult Adicionar(Mensalidade Mensalidade)
         {
             if (VerificaSeTemCampoVazioOuNulo(Mensalidade))

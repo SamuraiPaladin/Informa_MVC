@@ -66,6 +66,19 @@ namespace Web.BD.Repository
 
         }
 
+        public void AlterarMensalidadeParaVencido()
+        {
+            string query = @"UPDATE Mensalidades SET StatusDaMensalidade = 'Vencido'
+                                WHERE DataDeVencimento BETWEEN DATEADD(DAY, -60, GETDATE()) AND DATEADD(DAY, -1, GETDATE())  
+                                AND StatusDaMensalidade != 'PAGO' AND StatusDaMensalidade != 'PagoComAtraso' AND StatusDaMensalidade != 'Vencido'";
+            using (var con  = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public bool Atualizar(Mensalidade entityAntigo, Mensalidade entityNovo)
         {
             //var date = entityNovo.DataDeVencimento;
@@ -177,20 +190,29 @@ namespace Web.BD.Repository
             }
         }
 
+        public decimal Juros()
+        {
+            string query = "SELECT TOP 1 Valor FROM Parametros";
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                return Convert.ToDecimal(cmd.ExecuteScalar() == null ? 0 : cmd.ExecuteScalar());
+            }
+            throw new NotImplementedException();
+        }
+
         public IList<Mensalidade> Lista()
         {
             throw new NotImplementedException();
         }
         public List<Mensalidade> ListaMensalidade()
         {
-            string query = @"SELECT t.*, a.Nome
+            string query = @"SELECT t.*, a.Nome, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos
                             from Mensalidades t 
-                            --inner join Turmas u on t.TurmaId = u.Id
-                            --inner join Modalidades m on t.ModalidadeId = m.Id 
                             inner join Matriculas a on t.Matriculaid = a.Id
-                            WHERE 
-                            MONTH(t.DataDeVencimento) = MONTH(GETDATE()) and
-                            YEAR(t.DataDeVencimento) = YEAR(GETDATE())";
+                            WHERE
+                            t.DataDeVencimento BETWEEN DATEADD(DAY, -60, GETDATE()) AND DATEADD(DAY, -1, GETDATE()) ";
 
             List<Mensalidade> Mensalidades = new List<Mensalidade>();
             using (var con = new SqlConnection(stringConexao))
@@ -216,7 +238,8 @@ namespace Web.BD.Repository
                             DataDeVencimento = (DateTime)sdr["DataDeVencimento"],
                             StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
                             FormaDePagamento = sdr["FormaDePagamento"].ToString(),
-                            Valor = (decimal)sdr["Valor"]
+                            Valor = (decimal)sdr["Valor"],
+                            DiasVencidos = (int)sdr["DiasVencidos"]
                         };
 
                         //if (model.DataDeVencimento.Date > DateTime.Now.Date)

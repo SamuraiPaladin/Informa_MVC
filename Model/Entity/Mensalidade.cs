@@ -28,5 +28,7 @@ namespace Model.Entity
         public int QuantidadeDeMeses { get; set; }
         public decimal Valor { get; set; }
         public bool EditarTodasMensalidades { get; set; }
+        public decimal Juros { get; set; }
+        public int DiasVencidos { get; set; }
     }
 }

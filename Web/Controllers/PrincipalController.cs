@@ -11,9 +11,9 @@ namespace Web.Controllers
     public class PrincipalController : Controller
     {
         private readonly IDAOPrincipal dAOPrincipal = new PrincipalDAO();
-        
         public ActionResult Index()
         {
+            new MensalidadeDAO().AlterarMensalidadeParaVencido();
             ViewBag.Quantidade = dAOPrincipal.QuantidadeDePagamentoAtraso();
             return View();
         }
