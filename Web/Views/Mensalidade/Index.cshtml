@@ -164,7 +164,7 @@
                             @*<a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
                                 '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons">attach_money</i></a>*@
                             <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Matricula.Id')"><i class="material-icons">attach_money</i></a>
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor')"><i class="material-icons">attach_money</i></a>
                         </td>
                         <td>
                             @mensalidade.Matricula.Nome
@@ -178,22 +178,8 @@
                         <td>
                             @mensalidade.DataDeVencimento.ToString("dd/MM/yyyy")
                         </td>
-                        <td id="@mensalidade.Matricula.Id">
-                            @{
-                                decimal valor = mensalidade.Valor + (mensalidade.DiasVencidos * Model.Juros);
-                            }
-                            @if (mensalidade.StatusDaMensalidade.Equals("Vencido"))
-                            {
-                                <div>
-                                    @valor.ToString()
-                                </div>
-                            }
-                            else
-                            {
-                                <div>
-                                    @mensalidade.Valor
-                                </div>
-                            }
+                        <td>
+                            @mensalidade.Valor
                         </td>
                         <td class="statusStyle">
                             @String.Join(" ", @System.Text.RegularExpressions.Regex.Split(mensalidade.StatusDaMensalidade, @"(?<!^)(?=[A-Z])"))
@@ -203,8 +189,8 @@
                                 '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao', '@mensalidade.Valor')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
                                                     <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
                                 '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao', '@mensalidade.Valor')"><i class="material-icons">delete_forever</i></a>*@
-                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Matricula.Id')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
-                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', @mensalidade.Matricula.Id)"><i class="material-icons">delete_forever</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor')"><i class="material-icons">delete_forever</i></a>
                         </td>
                     </tr>
                 }
@@ -553,8 +539,8 @@
                 //valorTurma = turma;
                 valorVencimento = datadevencimento;
                 valorFormaDePagamento = formadepagamento;
-            valorStatusDaMensalidade = statusdamensalidade;
-            valorPagamento = document.getElementById(valor).innerText;
+                valorStatusDaMensalidade = statusdamensalidade;
+                valorPagamento = valor;
 
             document.getElementById('MatriculaDropDown' + model).text = nomeMatricula;
             document.getElementById('MatriculaDropDown' + model).MatriculaId = Matricula;
@@ -562,7 +548,7 @@
             //document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
             //document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
 
-            document.getElementById('valor' + model).value = valorPagamento;
+            document.getElementById('valor' + model).value = valor;
 
             //document.getElementById('turmaDropDown' + model).text = descricao;
             //document.getElementById('turmaDropDown' + model).TurmaId = turma;
@@ -794,9 +780,17 @@
                         break;
                     case 'Pago Com Atraso':
                         document.getElementsByClassName('statusStyle')[i].style.color = "#19DF33";
+                        document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[2].setAttribute("disabled", "disabled");
                         break;
                     case 'Vencido':
                         document.getElementsByClassName('statusStyle')[i].style.color = "red";
+                        //document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[2].setAttribute("disabled", "disabled");
                         break;
                     case 'Proximo Da Data De Vencimento':
                         document.getElementsByClassName('statusStyle')[i].style.color = "#DCE224";
