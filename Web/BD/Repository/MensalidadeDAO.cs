@@ -105,7 +105,7 @@ namespace Web.BD.Repository
              --TurmaId = @TurmaIdNovo, 
              DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimentoNovo))), 
              StatusDaMensalidade = @StatusDaMensalidadeNovo,
-             --FormaDePagamento = @FormaDePagamentoNovo,
+             FormaDePagamento = @FormaDePagamentoNovo,
              Valor = @ValorNovo       
             WHERE   
              MatriculaId = @MatriculaIdAntigo AND
@@ -125,7 +125,7 @@ namespace Web.BD.Repository
                 //cmd.Parameters.AddWithValue("@TurmaIdNovo", entityNovo.TurmaId);
                 cmd.Parameters.AddWithValue("@DataDeVencimentoNovo", entityNovo.Dia);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidadeNovo", entityNovo.StatusDaMensalidade);
-                //cmd.Parameters.AddWithValue("@FormaDePagamentoNovo", entityNovo.FormaDePagamento);
+                cmd.Parameters.AddWithValue("@FormaDePagamentoNovo", entityNovo.FormaDePagamento);
                 cmd.Parameters.AddWithValue("@ValorNovo", entityNovo.Valor);
 
                 cmd.Parameters.AddWithValue("@MatriculaIdAntigo", entityAntigo.MatriculaId);

@@ -160,7 +160,7 @@
                 @foreach (var mensalidade in Model.ListaMensalidade)
                 {
                     <tr>
-                        <td>
+                        <td class="enabledBotaoPagamento">
                             @*<a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
         '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons">attach_money</i></a>*@ 
                             <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', 
@@ -184,7 +184,7 @@
                         <td class="statusStyle">
                             @String.Join(" ", @System.Text.RegularExpressions.Regex.Split(mensalidade.StatusDaMensalidade, @"(?<!^)(?=[A-Z])"))
                         </td>
-                        <td>
+                        <td class="enabledDeletarEditar">
                             @*<a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricu@*la.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
         '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao', '@mensalidade.Valor')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
                             <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
@@ -552,8 +552,8 @@
 
             //document.getElementById('turmaDropDown' + model).text = descricao;
             //document.getElementById('turmaDropDown' + model).TurmaId = turma;
-
-            if (document.getElementById('formaDropDown' + model) != null && formadepagamento != "") {
+            
+            if (document.getElementById('formaDropDown' + model) != null && formadepagamento != " " && formadepagamento != "") {
                 document.getElementById('formaDropDown' + model).text = formadepagamento;
             }
             else if (model == "Pagamento") {
@@ -679,6 +679,7 @@
                 //TurmaId: document.getElementById('turmaDropDownEditar').TurmaId,
                 Dia: document.getElementById("diaDeVencimentoEditar").value,
                 DataDeVencimento: valorVencimento,
+                FormaDePagamento: " ",
                 StatusDaMensalidade: valorStatusDaMensalidade == "Pago" ? "Pago" : "EmHaver",
                 Valor: document.getElementById("valorEditar").value,
                 EditarTodasMensalidades: document.getElementById('todoMes').checked,
@@ -718,7 +719,7 @@
                 Dia: document.getElementById("diaDeVencimento").value,
                 QuantidadeDeMeses: document.getElementById("quantidadeDeMeses").value,
                 Valor: document.getElementById("valor").value,
-                FormaDePagamento: '',
+                FormaDePagamento: ' ',
                 StatusDaMensalidade: 'EmHaver'
 
             };
@@ -753,6 +754,7 @@
             $('#tabelaPagamento').DataTable();
         });
 
+    
         $(document).keypress(
             function (event) {
 
@@ -768,6 +770,10 @@
                 switch (status) {
                     case 'Pago':
                         document.getElementsByClassName('statusStyle')[i].style.color = "#139E26";
+                        document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        document.getElementsByClassName('enabledDeletarEditar')[i].children[2].setAttribute("disabled", "disabled");
                         break;
                     case 'Em Haver':
                         document.getElementsByClassName('statusStyle')[i].style.color = "#F68300";
