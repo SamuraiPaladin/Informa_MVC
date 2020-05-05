@@ -210,9 +210,8 @@ namespace Web.BD.Repository
         {
             string query = @"SELECT t.*, a.Nome, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos
                             from Mensalidades t 
-                            inner join Matriculas a on t.Matriculaid = a.Id
-                            WHERE
-                            t.DataDeVencimento BETWEEN DATEADD(DAY, -60, GETDATE()) AND DATEADD(DAY, -1, GETDATE()) ";
+                            inner join Matriculas a on t.Matriculaid = a.Id AND
+                            t.DataDeVencimento BETWEEN DATEADD(DAY, 1, EOMONTH (GETDATE(), -2)) AND EOMONTH (GETDATE()) ";
 
             List<Mensalidade> Mensalidades = new List<Mensalidade>();
             using (var con = new SqlConnection(stringConexao))
