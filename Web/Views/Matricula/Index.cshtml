@@ -7,8 +7,8 @@
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
-                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-                <a href="@Url.Action("Index", "Aluno")" class="breadcrumb"><strong>Matricula</strong></a>
+                <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a id="paginaAluno" href="@Url.Action("Index", "Aluno")" class="breadcrumb"><strong>Matricula</strong></a>
             </span>
         </div>
     </div>
@@ -17,7 +17,7 @@
 
 <div class="row container">
     <div class="col s12 l12">
-        <a href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Aluno</a>
+        <a id="cadastrarAluno" href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Aluno</a>
     </div>
 </div>
 
@@ -98,7 +98,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
+                        <a id="adicionar" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
                     </div>
                 </div>
                 <input id="idEditar" style="display: none;" />
@@ -162,8 +162,8 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+        <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
 
@@ -221,8 +221,8 @@
                     <td>@item.Bairro</td>
                     <td>@item.Cidade</td>
                     <td>
-                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
+                        <a id="editarMatricula" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                        <a id="fecharMatricula" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
                            onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
                     </td>
                 </tr>
@@ -266,8 +266,8 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Sim, deletar</a>
+        <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Sim, deletar</a>
     </div>
 </div>
 
