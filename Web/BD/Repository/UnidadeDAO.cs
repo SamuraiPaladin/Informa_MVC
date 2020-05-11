@@ -109,7 +109,7 @@ namespace Web.BD.Repository
                                 	Unidades 
                                 WHERE 
                                 	Endereco = @Endereco AND Numero = @Numero AND CEP = @CEP AND Estado = @Estado
-                                	AND Telefone = @Telefone AND Bairro = @Bairro AND Cidade = @Cidade";
+                                	AND Telefone = @Telefone AND Bairro = @Bairro AND Cidade = @Cidade AND Descricao = @Descricao";
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
         private bool GravarERetornarVerdadeiroOuFalse(Unidade entity, string query)
