@@ -47,13 +47,26 @@ namespace Web.Controllers
             }
             else
             {
-                return Json(dAO.Adicionar(Turma));
+                if (VerificaHorario(Turma.HorarioInicial, Turma.HorarioFinal))
+                    return Json("Horário inicial não pode ser maior que o final.");
+                else
+                    return Json(dAO.Adicionar(Turma));
             }
         }
 
+
         private static bool VerificaSeTemCampoVazioOuNulo(Turma Turma)
         {
-            return string.IsNullOrWhiteSpace(Turma.Descricao);
+            return string.IsNullOrWhiteSpace(Turma.Descricao) || Turma.ColaboradorId == 0 || string.IsNullOrEmpty(Turma.DiaDaSemana) || string.IsNullOrEmpty(Turma.HorarioFinal)
+                 || string.IsNullOrEmpty(Turma.HorarioInicial) || Turma.ModalidadeId == 0 || string.IsNullOrEmpty(Turma.Tipo) || Turma.UnidadeId  == 0;
+        }   
+        
+        private bool VerificaHorario(string inicial, string final)
+        {
+            if (DateTime.Compare(Convert.ToDateTime(inicial), Convert.ToDateTime(final)) > 0)
+                return true;
+            else
+                return false;
         }
 
         public JsonResult Editar(Turma Turma, Turma TurmaEditar)
@@ -67,7 +80,10 @@ namespace Web.Controllers
             }
             else
             {
-                return Json(dAO.Atualizar(Turma, TurmaEditar));
+                if (VerificaHorario(Turma.HorarioInicial, Turma.HorarioFinal))
+                    return Json("Horário inicial não pode ser maior que o final.");
+                else
+                    return Json(dAO.Atualizar(Turma, TurmaEditar));
             }
         }
         public JsonResult Deletar(Turma Turma)
