@@ -108,9 +108,17 @@ namespace Web.BD.Repository
                                 FROM 
                                 	Unidades 
                                 WHERE 
-                                	Endereco = @Endereco AND Numero = @Numero AND CEP = @CEP AND Estado = @Estado
-                                	AND Telefone = @Telefone AND Bairro = @Bairro AND Cidade = @Cidade AND Descricao = @Descricao";
-            return GravarERetornarVerdadeiroOuFalse(entity, query);
+                                	Endereco = @Endereco AND
+                                    Descricao = @Descricao";
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
+                cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
+                var result = Convert.ToInt32(cmd.ExecuteScalar());
+                return result > 0 ? true : false;
+            }
         }
         private bool GravarERetornarVerdadeiroOuFalse(Unidade entity, string query)
         {
