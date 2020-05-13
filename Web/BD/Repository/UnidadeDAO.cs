@@ -109,13 +109,15 @@ namespace Web.BD.Repository
                                 	Unidades 
                                 WHERE 
                                 	Endereco = @Endereco AND
-                                    Descricao = @Descricao";
+                                    Descricao = @Descricao AND;
+                                    Numero = @Numero";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
                 cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
+                cmd.Parameters.AddWithValue("@Numero", entity.Numero);
                 var result = Convert.ToInt32(cmd.ExecuteScalar());
                 return result > 0 ? true : false;
             }
