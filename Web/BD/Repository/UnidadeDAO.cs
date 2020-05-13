@@ -109,7 +109,7 @@ namespace Web.BD.Repository
                                 	Unidades 
                                 WHERE 
                                 	Endereco = @Endereco AND
-                                    Descricao = @Descricao AND;
+                                    Descricao = @Descricao AND
                                     Numero = @Numero";
             using (var con = new SqlConnection(stringConexao))
             {
