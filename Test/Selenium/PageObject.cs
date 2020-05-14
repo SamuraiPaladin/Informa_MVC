@@ -45,7 +45,9 @@ namespace Test
                         try
                         {
                             IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[1]"));
-                            Element.Click();
+
+                            IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                            executor.ExecuteScript("arguments[0].click();", Element);
                             clicked = true;
                         }
                         catch (Exception e)
@@ -66,7 +68,8 @@ namespace Test
                         try
                         {
                             IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[1]/a"));
-                            Element.Click();
+                            IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                            executor.ExecuteScript("arguments[0].click();", Element);
                             clicked = true;
                         }
                         catch (Exception e)
@@ -86,7 +89,8 @@ namespace Test
                         try
                         {
                             IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[2]/a"));
-                            Element.Click();
+                            IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                            executor.ExecuteScript("arguments[0].click();", Element);
                             clicked = true;
                         }
                         catch (Exception e)
@@ -106,7 +110,8 @@ namespace Test
                         try
                         {
                             IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[3]/a"));
-                            Element.Click();
+                            IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                            executor.ExecuteScript("arguments[0].click();", Element);
                             clicked = true;
                         }
                         catch (Exception e)
@@ -126,7 +131,8 @@ namespace Test
                         try
                         {
                             IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[4]/a"));
-                            Element.Click();
+                            IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                            executor.ExecuteScript("arguments[0].click();", Element);
                             clicked = true;
                         }
                         catch (Exception e)
@@ -137,7 +143,7 @@ namespace Test
                     }
                 }
 
-                public static void CadastroFornecedoresLink()
+                public static void CadastroTurmaLink()
                 {
                     int count = 0;
                     Boolean clicked = false;
@@ -146,7 +152,8 @@ namespace Test
                         try
                         {
                             IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"slide-out\"]/li[3]/ul/li/div[2]/ul/li[5]/a"));
-                            Element.Click();
+                            IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                            executor.ExecuteScript("arguments[0].click();", Element);
                             clicked = true;
                         }
                         catch (Exception e)
@@ -257,7 +264,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/a"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -460,7 +468,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modaCadastrar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -500,7 +509,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[9]/a[2]/i"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -520,7 +530,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalDeletar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -540,7 +551,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[9]/a[1]/i"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -582,7 +594,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalEditar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -606,7 +619,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div/a"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -668,7 +682,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"cadastrarModalidade\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -688,7 +703,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div/table/tbody/tr/td[3]/a[1]/i"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -730,7 +746,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalEditar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -750,7 +767,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div/table/tbody/tr/td[3]/a[2]/i"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -770,7 +788,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalDeletar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -793,7 +812,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div/a"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -855,7 +875,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"cadastrarCargo\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -875,7 +896,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div/table/tbody[1]/tr/td[3]/a[1]/i"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -917,7 +939,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalEditar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -937,7 +960,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div/table/tbody[1]/tr/td[3]/a[2]/i"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -957,7 +981,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalDeletar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -980,7 +1005,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div/a"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -1021,7 +1047,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.Id("textoDropDownCadastrar"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -1041,7 +1068,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalCadastrar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -1061,7 +1089,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[3]/a[1]/i"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -1081,7 +1110,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.Id("textoDropDownEditar"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -1101,7 +1131,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalEditar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -1121,7 +1152,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[3]/a[2]/i"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -1141,7 +1173,8 @@ namespace Test
                     try
                     {
                         IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalDeletar\"]/div[2]/a[2]"));
-                        Element.Click();
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
                     }
                     catch (Exception e)
@@ -1151,6 +1184,214 @@ namespace Test
                     }
                 }
             }
+
+
+
+
+        }
+
+        public static class RegisterClass
+        {
+            public static void CadastrarTurmaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/a"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void NomeTurmaTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("descricao"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void SelecionaColaboradorButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("nomeDropDownCadastrar"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void SelecionaFaixaEtariaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("tipoDropDownCadastrar"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void HoraInicioTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("horarioinicial"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void HoraTerminoTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("horariofinal"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void SelecionaUnidadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("unidadeDropDownCadastrar"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void SelecionaModalidadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("modalidadeDropDownCadastrar"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void FinalizarCadastroTurmaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[1]/div[2]/a[2]"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

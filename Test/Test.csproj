@@ -60,6 +60,8 @@
     <Compile Include="Selenium\Modalidade\Modalidade_Testes.cs" />
     <Compile Include="Selenium\PageObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selenium\Turma\Turma_Metodos.cs" />
+    <Compile Include="Selenium\Turma\Turma_Testes.cs" />
     <Compile Include="Selenium\Unidade\Unidade_Metodos.cs" />
     <Compile Include="Selenium\Unidade\Unidade_Testes.cs" />
     <Compile Include="Selenium\Utilities.cs" />
@@ -70,7 +72,8 @@
     <Content Include="aaa.exe" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Selenium\Turma\" />
+    <Folder Include="Selenium\Financeiro\" />
+    <Folder Include="Selenium\Matrícula\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

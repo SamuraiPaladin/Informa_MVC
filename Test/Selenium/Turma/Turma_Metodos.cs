@@ -8,14 +8,14 @@ using Xunit;
 /// <summary>
 /// Summary description for Class1
 /// </summary>
-public class TestesColaboradorMetodos
+public class TestesTurmaMetodos
 {
 	public static IWebDriver driver;
 	
 	public static Boolean AguardaModalCadastro()
 	{
 		int aux = 0;
-		while (Utilities.driver.FindElement(By.Id("modalCadastrar")).Displayed.Equals(false))
+		while (Utilities.driver.FindElement(By.Id("modaCadastrar")).Displayed.Equals(false))
 		{
 			Thread.Sleep(1000);
 			 Assert.False(aux == 5,"Sistema não exibiu modal de Cadastro");
@@ -48,29 +48,7 @@ public class TestesColaboradorMetodos
 		return true;
 	}
 
-	public static void SelecionaCargo(String item)
-	{
-		int count = 0;
-		Boolean clicked = false;
-		while (clicked.Equals(false))
-		{
-			try
-			{
-				//IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[contains(text(),'Teste')]"));
-				IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[contains(text(),'" + item + "')]"));
-				IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
-				executor.ExecuteScript("arguments[0].click();", Element);
-				clicked = true;
-			}
-			catch (Exception e)
-			{
-				count = count + 1;
-				Assert.False(count > 3, "Descrição da Falha: " + e);
-			}
-		}
-	}
-
-	public static void EditaCargo(String item)
+	public static void SelecionaItemDropBox(String item)
 	{
 		int count = 0;
 		Boolean clicked = false;
@@ -92,6 +70,6 @@ public class TestesColaboradorMetodos
 		}
 	}
 
-
+	
 
 }

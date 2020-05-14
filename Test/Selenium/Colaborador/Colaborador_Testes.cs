@@ -39,7 +39,7 @@ namespace Test
         }
 
         [Fact]
-        public void CampoObrigatorioFaltante()
+        public void CampoObrigatorioCargo()
         {
             Utilities.OpenChrome();
 
@@ -55,7 +55,7 @@ namespace Test
 
             PageObject.RegisterEmployee.NomeColaboradorTextBox("Thauan Moser Doce");
 
-            PageObject.RegisterEmployee.SelecionarCargoButton();
+            //PageObject.RegisterEmployee.SelecionarCargoButton();
 
             Thread.Sleep(1000);
 
@@ -65,7 +65,40 @@ namespace Test
 
         }
 
-            [Fact]
+        [Fact]
+        public void CampoObrigatorioNomeColaborador()
+        {
+            Utilities.OpenChrome();
+
+            Assert.Equal("Principal - inForma", Utilities.driver.Title);
+
+            Utilities.AcessoGrid("Cadastro", "Colaborador");
+
+            Assert.Equal("Colaborador - inForma", Utilities.driver.Title);
+
+            PageObject.RegisterEmployee.CadastrarColaboradorButton();
+
+            TestesColaboradorMetodos.AguardaModalCadastro();
+
+            //PageObject.RegisterEmployee.NomeColaboradorTextBox("Thauan Moser Doce");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterEmployee.SelecionarCargoButton();
+
+            Thread.Sleep(250);
+
+            TestesColaboradorMetodos.SelecionaCargo("Professor");
+
+            Thread.Sleep(1500);
+
+            PageObject.RegisterEmployee.FinalizarCadastrarButton();
+
+            PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
+
+        }
+
+        [Fact]
         public void EditarColaborador()
         {
             Utilities.OpenChrome();
@@ -183,14 +216,6 @@ namespace Test
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
 
             Thread.Sleep(5000);
-
-            Utilities.OpenChrome();
-
-            Assert.Equal("Principal - inForma", Utilities.driver.Title);
-
-            Utilities.AcessoGrid("Cadastro", "Colaborador");
-
-            Assert.Equal("Colaborador - inForma", Utilities.driver.Title);
 
             PageObject.RegisterEmployee.CadastrarColaboradorButton();
 

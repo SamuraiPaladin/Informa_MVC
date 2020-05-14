@@ -24,6 +24,8 @@ namespace Test
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
+            Thread.Sleep(1500);
+
             PageObject.RegisterUnitScreen.CepTextBox("04664020");
 
             TestesUnidadeMetodos.CepValidates(
@@ -45,7 +47,128 @@ namespace Test
         }
 
         [Fact]
-        public void CampoObrigatorioFaltante()
+        public void CampoObrigatorioNomeUnidade()
+        {
+            Utilities.OpenChrome();
+
+            Assert.Equal("Principal - inForma", Utilities.driver.Title);
+
+            Utilities.AcessoGrid("Cadastro", "Unidade");
+
+            Assert.Equal("Unidade - inForma", Utilities.driver.Title);
+
+            PageObject.RegisterUnitScreen.CadastrarUnidadeButton();
+
+            TestesUnidadeMetodos.AguardaModalCadastro();
+
+            //PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+
+            PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
+
+            PageObject.RegisterUnitScreen.CepTextBox("04664020");
+
+            Thread.Sleep(1500);
+
+            TestesUnidadeMetodos.CepValidates(
+            "Avenida Ministro Álvaro de Souza Lima",     // Endereço
+            "Jardim Marajoara",                          // Bairro
+            "São Paulo",                                 // Cidade
+            "SP");                                       // Estado 
+
+            Thread.Sleep(1000);
+
+            PageObject.RegisterUnitScreen.NumeroTextBox("666");
+
+            Thread.Sleep(1000);
+
+            PageObject.RegisterUnitScreen.FinalizarCadastrarButton();
+
+            PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+        }
+
+        [Fact]
+        public void CampoObrigatorioTelefone()
+        {
+            Utilities.OpenChrome();
+
+            Assert.Equal("Principal - inForma", Utilities.driver.Title);
+
+            Utilities.AcessoGrid("Cadastro", "Unidade");
+
+            Assert.Equal("Unidade - inForma", Utilities.driver.Title);
+
+            PageObject.RegisterUnitScreen.CadastrarUnidadeButton();
+
+            TestesUnidadeMetodos.AguardaModalCadastro();
+
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+
+            //PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
+
+            PageObject.RegisterUnitScreen.CepTextBox("04664020");
+
+            Thread.Sleep(1500);
+
+            TestesUnidadeMetodos.CepValidates(
+            "Avenida Ministro Álvaro de Souza Lima",     // Endereço
+            "Jardim Marajoara",                          // Bairro
+            "São Paulo",                                 // Cidade
+            "SP");                                       // Estado 
+
+            Thread.Sleep(1000);
+
+            PageObject.RegisterUnitScreen.NumeroTextBox("666");
+
+            Thread.Sleep(1000);
+
+            PageObject.RegisterUnitScreen.FinalizarCadastrarButton();
+
+            PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+        }
+
+        [Fact]
+        public void CampoObrigatorioCEP()
+        {
+            Utilities.OpenChrome();
+
+            Assert.Equal("Principal - inForma", Utilities.driver.Title);
+
+            Utilities.AcessoGrid("Cadastro", "Unidade");
+
+            Assert.Equal("Unidade - inForma", Utilities.driver.Title);
+
+            PageObject.RegisterUnitScreen.CadastrarUnidadeButton();
+
+            TestesUnidadeMetodos.AguardaModalCadastro();
+
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+
+            PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
+
+            //PageObject.RegisterUnitScreen.CepTextBox("04664020");
+
+            //TestesUnidadeMetodos.CepValidates(
+            //"Avenida Ministro Álvaro de Souza Lima",     // Endereço
+            //"Jardim Marajoara",                          // Bairro
+            //"São Paulo",                                 // Cidade
+            //"SP");                                       // Estado 
+
+            Thread.Sleep(1000);
+
+            PageObject.RegisterUnitScreen.NumeroTextBox("666");
+
+            Thread.Sleep(1000);
+
+            PageObject.RegisterUnitScreen.FinalizarCadastrarButton();
+
+            PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+        }
+
+        [Fact]
+        public void CampoObrigatorioNumeroCEP()
         {
             Utilities.OpenChrome();
 
@@ -65,11 +188,17 @@ namespace Test
 
             PageObject.RegisterUnitScreen.CepTextBox("04664020");
 
+            Thread.Sleep(1500);
+
             TestesUnidadeMetodos.CepValidates(
             "Avenida Ministro Álvaro de Souza Lima",     // Endereço
             "Jardim Marajoara",                          // Bairro
             "São Paulo",                                 // Cidade
             "SP");                                       // Estado 
+
+            Thread.Sleep(1000);
+
+            //PageObject.RegisterUnitScreen.NumeroTextBox("666");
 
             Thread.Sleep(1000);
 
@@ -79,7 +208,7 @@ namespace Test
 
         }
 
-            [Fact]
+        [Fact]
         public void EditarUnidade()
         {
             Utilities.OpenChrome();
@@ -99,6 +228,8 @@ namespace Test
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
             PageObject.RegisterUnitScreen.CepTextBox("04664020");
+
+            Thread.Sleep(1500);
 
             TestesUnidadeMetodos.CepValidates(
             "Avenida Ministro Álvaro de Souza Lima",     // Endereço
@@ -126,7 +257,7 @@ namespace Test
 
             PageObject.RegisterUnitScreen.FinalizarEditarUnidadeButton();
 
-            PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
+            PageObject.RegisterUnitScreen.MensagemOperacao("Editado");
         }
         [Fact]
         public void DeletarUnidade()
@@ -148,6 +279,8 @@ namespace Test
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
             PageObject.RegisterUnitScreen.CepTextBox("04664020");
+
+            Thread.Sleep(1500);
 
             TestesUnidadeMetodos.CepValidates(
             "Avenida Ministro Álvaro de Souza Lima",     // Endereço
@@ -225,6 +358,8 @@ namespace Test
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
             PageObject.RegisterUnitScreen.CepTextBox("04664020");
+
+            Thread.Sleep(1500);
 
             TestesUnidadeMetodos.CepValidates(
             "Avenida Ministro Álvaro de Souza Lima",     // Endereço

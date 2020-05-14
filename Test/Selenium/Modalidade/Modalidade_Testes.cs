@@ -33,7 +33,7 @@ namespace Test
         }
 
         [Fact]
-        public void CampoObrigatorioFaltante()
+        public void CampoObrigatorioDescricao()
         {
             Utilities.OpenChrome();
 
@@ -57,7 +57,34 @@ namespace Test
 
         }
 
-            [Fact]
+        [Fact]
+        public void CampoObrigatorioNomeModalidade()
+        {
+            Utilities.OpenChrome();
+
+            Assert.Equal("Principal - inForma", Utilities.driver.Title);
+
+            Utilities.AcessoGrid("Cadastro", "Modalidade");
+
+            Assert.Equal("Modalidade - inForma", Utilities.driver.Title);
+
+            PageObject.RegisterModality.CadastrarModalidadeButton();
+
+            TestesModalidadeMetodos.AguardaModalCadastro();
+
+            //PageObject.RegisterModality.NomeModalideTextBox("Natação Infantil");
+
+            PageObject.RegisterModality.DescricaoModalideTextBox("Atividade para crianças de 7 a 9 anos.");
+
+            Thread.Sleep(1000);
+
+            PageObject.RegisterModality.FinalizarCadastrarButton();
+
+            PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+        }
+
+        [Fact]
         public void EditarModalidade()
         {
             Utilities.OpenChrome();

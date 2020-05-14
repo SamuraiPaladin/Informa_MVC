@@ -48,9 +48,9 @@ public class Utilities
 			} else if (Sessao.Equals("Colaborador"))
 			{
 				PageObject.MainScreen.Cadastro.CadastroColaboradoresLink();
-			} else if (Sessao.Equals("Fornecedor"))
+			} else if (Sessao.Equals("Turma"))
 			{
-				PageObject.MainScreen.Cadastro.CadastroFornecedoresLink();
+				PageObject.MainScreen.Cadastro.CadastroTurmaLink();
 			}
 
 		} else if (Modulo.Equals("Financeiro"))
