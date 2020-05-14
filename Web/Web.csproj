@@ -235,6 +235,7 @@
     <Compile Include="BD\Repository\ModalidadeDAO.cs" />
     <Compile Include="BD\Repository\UnidadeDAO.cs" />
     <Compile Include="Controllers\AlunoController.cs" />
+    <Compile Include="Controllers\AulaController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\MensalidadesController.cs" />
     <Compile Include="Controllers\MensalidadeController.cs" />
@@ -847,6 +848,7 @@
     <Content Include="Views\Matricula\Index.cshtml" />
     <Content Include="Views\Mensalidade\Index.cshtml" />
     <Content Include="Views\Matricula\_Editar.cshtml" />
+    <Content Include="Views\Aula\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -49,18 +49,28 @@ namespace Web.Controllers
             {
                 if (VerificaHorario(Turma.HorarioInicial, Turma.HorarioFinal))
                     return Json("Horário inicial não pode ser maior que o final.");
+                else if (VerificaSeExisteTurmaNesseHorarios(Turma))
+                {
+                    return Json($"Professor já tem aula nesse horário.");
+                }
                 else
+                {
                     return Json(dAO.Adicionar(Turma));
+                }
             }
         }
 
+        private bool VerificaSeExisteTurmaNesseHorarios(Turma turma)
+        {
+            return dAOTurma.VerificaSeExisteTurmaNesseHorarios(turma);
+        }
 
         private static bool VerificaSeTemCampoVazioOuNulo(Turma Turma)
         {
             return string.IsNullOrWhiteSpace(Turma.Descricao) || Turma.ColaboradorId == 0 || string.IsNullOrEmpty(Turma.DiaDaSemana) || string.IsNullOrEmpty(Turma.HorarioFinal)
-                 || string.IsNullOrEmpty(Turma.HorarioInicial) || Turma.ModalidadeId == 0 || string.IsNullOrEmpty(Turma.Tipo) || Turma.UnidadeId  == 0;
-        }   
-        
+                 || string.IsNullOrEmpty(Turma.HorarioInicial) || Turma.ModalidadeId == 0 || string.IsNullOrEmpty(Turma.Tipo) || Turma.UnidadeId == 0;
+        }
+
         private bool VerificaHorario(string inicial, string final)
         {
             if (DateTime.Compare(Convert.ToDateTime(inicial), Convert.ToDateTime(final)) > 0)

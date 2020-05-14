@@ -618,6 +618,9 @@
                                  break;
                              case "Horário inicial não pode ser maior que o final.":
                                  M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case "Professor já tem aula nesse horário.":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
                              break;
                              case true:
                                  M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
