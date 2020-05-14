@@ -1,4 +1,4 @@
-﻿using Model.Entity;     
+﻿using Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -345,5 +345,46 @@ namespace Web.BD.Repository
             }
         }
 
+        public bool VerificaSeExisteTurmaNesseHorarios(Turma entity)
+        {
+            string query = @"select *
+                    from [inForma].[dbo].[Turmas]
+                        where 
+                         ColaboradorId = @ColaboradorId and 
+                           (@HorarioInicial   between HorarioInicial and HorarioFinal)
+                             or @HorarioFinal between HorarioInicial and HorarioFinal
+                             and ( HorarioInicial >= @HorarioInicial and HorarioFinal<= @HorarioFinal)";
+
+                var result = false;
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@ColaboradorId", entity.ColaboradorId);
+                cmd.Parameters.AddWithValue("@HorarioInicial", entity.HorarioInicial);
+                cmd.Parameters.AddWithValue("@HorarioFinal", entity.HorarioFinal);
+
+                SqlDataReader sdr = cmd.ExecuteReader();
+                var lista = new List<Turma>();
+
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        var turma = new Turma()
+                        {
+                            DiaDaSemana = sdr["DiaDaSemana"].ToString()
+                        };
+                        lista.Add(turma);
+                    }
+                }
+                foreach (var item in lista)
+                {
+                    if (item.DiaDaSemana == entity.DiaDaSemana)
+                        return true;
+                }
+            }
+            return result;
+        }
     }
 }

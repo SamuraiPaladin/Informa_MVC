@@ -14,20 +14,18 @@ namespace Web.BD.Repository
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Mensalidade entity)
         {
-
-
             string query = @"INSERT INTO Mensalidades(
 	MatriculaId, 
-	ModalidadeId, 
-	TurmaId, 
+	--ModalidadeId, 
+	--TurmaId, 
 	DataDeVencimento, 
     StatusDaMensalidade,
 	FormaDePagamento,
     Valor)
 	Values(
         @MatriculaId, 
-	    @ModalidadeId, 
-	    @TurmaId, 
+	    --@ModalidadeId, 
+	    --@TurmaId, 
 	    @DataDeVencimento, 
         @StatusDaMensalidade,
 	    @FormaDePagamento,
@@ -52,8 +50,8 @@ namespace Web.BD.Repository
                     SqlCommand cmd = new SqlCommand(query, con);
 
                     cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
-                    cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
-                    cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
+                    //cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
+                    //cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
                     cmd.Parameters.AddWithValue("@DataDeVencimento", dataVencimento);
                     cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
                     cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
@@ -68,63 +66,88 @@ namespace Web.BD.Repository
 
         }
 
+        public void AlterarMensalidadeParaVencido()
+        {
+            string query = @"UPDATE Mensalidades SET StatusDaMensalidade = 'Vencido'
+                                WHERE DataDeVencimento BETWEEN DATEADD(DAY, -60, GETDATE()) AND DATEADD(DAY, -1, GETDATE())  
+                                AND StatusDaMensalidade != 'PAGO' AND StatusDaMensalidade != 'PagoComAtraso' AND StatusDaMensalidade != 'Vencido'";
+            using (var con  = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public bool Atualizar(Mensalidade entityAntigo, Mensalidade entityNovo)
         {
+            //var date = entityNovo.DataDeVencimento;
 
-            var date = entityNovo.DataDeVencimento;
+            //if (entityNovo.StatusDaMensalidade != "Pago" && entityNovo.StatusDaMensalidade != "PagoComAtraso")
+            //{
+            //    if (date > DateTime.Now)
+            //    {
+            //        if ((DateTime.Now.Date.AddDays(5)) >= date && date <= (DateTime.Now.Date.AddDays(5)))
+            //        {
+            //            entityNovo.StatusDaMensalidade = "ProximoDaDataDeVencimento";
+            //        }
+            //        else
+            //        {
+            //            entityNovo.StatusDaMensalidade = "EmHaver";
+            //        }
+            //    }
 
-            if (entityNovo.StatusDaMensalidade != "Pago" && entityNovo.StatusDaMensalidade != "PagoComAtraso")
-            {
-                if (date > DateTime.Now)
-                {
-                    if ((DateTime.Now.Date.AddDays(5)) >= date && date <= (DateTime.Now.Date.AddDays(5)))
-                    {
-                        entityNovo.StatusDaMensalidade = "ProximoDaDataDeVencimento";
-                    }
-                    else
-                    {
-                        entityNovo.StatusDaMensalidade = "EmHaver";
-                    }
-                }
+            //    if (date.Date < DateTime.Now.Date)
+            //    {
+            //        entityNovo.StatusDaMensalidade = "Vencido";
+            //    }
+            //}
 
-                if (date.Date < DateTime.Now.Date)
-                {
-                    entityNovo.StatusDaMensalidade = "Vencido";
-                }
-            }
-            string query = @"UPDATE Mensalidades 
-        SET
-            MatriculaId = @MatriculaIdNovo, 
-	        ModalidadeId = @ModalidadeIdNovo, 
-	        TurmaId = @TurmaIdNovo, 
-	        DataDeVencimento = @DataDeVencimentoNovo, 
-            StatusDaMensalidade = @StatusDaMensalidadeNovo,
-	        FormaDePagamento = @FormaDePagamentoNovo
-        WHERE   
-            MatriculaId = @MatriculaIdAntigo AND
-	        ModalidadeId = @ModalidadeIdAntigo AND
-	        TurmaId = @TurmaIdAntigo AND
-	        DataDeVencimento = @DataDeVencimentoAntigo AND
-            StatusDaMensalidade = @StatusDaMensalidadeAntigo AND
-	        FormaDePagamento = @FormaDePagamentoAntigo";
+            string unicaOuTodaMensalidade = entityNovo.EditarTodasMensalidades ? 
+                @"DataDeVencimento IS NOT NULL AND
+                  Valor IS NOT NULL AND" 
+                :
+                @"DataDeVencimento = @DataDeVencimentoAntigo AND
+                  Valor = @ValorAntigo AND";
+
+
+            string query = $@"UPDATE Mensalidades 
+            SET
+             MatriculaId = @MatriculaIdNovo, 
+             --ModalidadeId = @ModalidadeIdNovo, 
+             --TurmaId = @TurmaIdNovo, 
+             DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimentoNovo))), 
+             StatusDaMensalidade = @StatusDaMensalidadeNovo,
+             FormaDePagamento = @FormaDePagamentoNovo,
+             Valor = @ValorNovo       
+            WHERE   
+             MatriculaId = @MatriculaIdAntigo AND
+             --ModalidadeId = @ModalidadeIdAntigo AND
+             --TurmaId = @TurmaIdAntigo AND 
+             {unicaOuTodaMensalidade}
+             StatusDaMensalidade = @StatusDaMensalidadeAntigo --AND
+             --FormaDePagamento = @FormaDePagamentoAntigo";
+
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@MatriculaIdNovo", entityNovo.MatriculaId);
-                cmd.Parameters.AddWithValue("@ModalidadeIdNovo", entityNovo.ModalidadeId);
-                cmd.Parameters.AddWithValue("@TurmaIdNovo", entityNovo.TurmaId);
-                cmd.Parameters.AddWithValue("@DataDeVencimentoNovo", entityNovo.DataDeVencimento);
+                //cmd.Parameters.AddWithValue("@ModalidadeIdNovo", entityNovo.ModalidadeId);
+                //cmd.Parameters.AddWithValue("@TurmaIdNovo", entityNovo.TurmaId);
+                cmd.Parameters.AddWithValue("@DataDeVencimentoNovo", entityNovo.Dia);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidadeNovo", entityNovo.StatusDaMensalidade);
                 cmd.Parameters.AddWithValue("@FormaDePagamentoNovo", entityNovo.FormaDePagamento);
+                cmd.Parameters.AddWithValue("@ValorNovo", entityNovo.Valor);
 
                 cmd.Parameters.AddWithValue("@MatriculaIdAntigo", entityAntigo.MatriculaId);
-                cmd.Parameters.AddWithValue("@ModalidadeIdAntigo", entityAntigo.ModalidadeId);
-                cmd.Parameters.AddWithValue("@TurmaIdAntigo", entityAntigo.TurmaId);
+                //cmd.Parameters.AddWithValue("@ModalidadeIdAntigo", entityAntigo.ModalidadeId);
+                //cmd.Parameters.AddWithValue("@TurmaIdAntigo", entityAntigo.TurmaId);
                 cmd.Parameters.AddWithValue("@DataDeVencimentoAntigo", entityAntigo.DataDeVencimento);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidadeAntigo", entityAntigo.StatusDaMensalidade);
-                cmd.Parameters.AddWithValue("@FormaDePagamentoAntigo", entityAntigo.FormaDePagamento);
+                //cmd.Parameters.AddWithValue("@FormaDePagamentoAntigo", entityAntigo.FormaDePagamento);
+                cmd.Parameters.AddWithValue("@ValorAntigo", entityAntigo.Valor);
 
                 cmd.ExecuteNonQuery();
                 return true;
@@ -132,15 +155,21 @@ namespace Web.BD.Repository
         }
         public bool Deletar(Mensalidade entity)
         {
+            string unicaOuTodaMensalidade = entity.EditarTodasMensalidades ?
+                @"DataDeVencimento IS NOT NULL AND
+                  Valor IS NOT NULL AND"
+                :
+                @"DataDeVencimento = @DataDeVencimento AND
+                  Valor = @Valor AND";
 
-            string query = @"DELETE FROM Mensalidades
+            string query = $@"DELETE FROM Mensalidades
                             WHERE 
                             MatriculaId = @MatriculaId and 
-	                        ModalidadeId =   @ModalidadeId and 
-	                        TurmaId = @TurmaId and 
-	                        DataDeVencimento =  @DataDeVencimento and
-                            StatusDaMensalidade = @StatusDaMensalidade and    
-	                        FormaDePagamento = @FormaDePagamento";
+	                        --ModalidadeId =   @ModalidadeId and 
+	                        --TurmaId = @TurmaId and 
+	                        {unicaOuTodaMensalidade}
+                            StatusDaMensalidade = @StatusDaMensalidade     
+	                        --FormaDePagamento = @FormaDePagamento";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -148,21 +177,29 @@ namespace Web.BD.Repository
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
-
-                cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
-
-                cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
-
+                //cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
+                //cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
                 cmd.Parameters.AddWithValue("@DataDeVencimento", entity.DataDeVencimento);
-
+                cmd.Parameters.AddWithValue("@Valor", entity.Valor);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
-
-                cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
+                //cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
 
                 cmd.ExecuteNonQuery();
 
                 return true;
             }
+        }
+
+        public decimal Juros()
+        {
+            string query = "SELECT TOP 1 Valor FROM Parametros";
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                return Convert.ToDecimal(cmd.ExecuteScalar() == null ? 0 : cmd.ExecuteScalar());
+            }
+            throw new NotImplementedException();
         }
 
         public IList<Mensalidade> Lista()
@@ -171,14 +208,10 @@ namespace Web.BD.Repository
         }
         public List<Mensalidade> ListaMensalidade()
         {
-            string query = @"SELECT t.*, a.Nome, m.TipoModalidade, m.Descricao DescricaoModalidade, a.Nome, u.Descricao  DescricaoTurma
+            string query = @"SELECT t.*, a.Nome, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos
                             from Mensalidades t 
-                            inner join Turmas u on t.TurmaId = u.Id
-                            inner join Modalidades m on t.ModalidadeId = m.Id 
-                            inner join Matriculas a on t.Matriculaid = a.Id
-                            WHERE 
-                            MONTH(t.DataDeVencimento) = MONTH(GETDATE()) and
-                            YEAR(t.DataDeVencimento) = YEAR(GETDATE())";
+                            inner join Matriculas a on t.Matriculaid = a.Id AND
+                            t.DataDeVencimento BETWEEN DATEADD(DAY, 1, EOMONTH (GETDATE(), -2)) AND EOMONTH (GETDATE()) ";
 
             List<Mensalidade> Mensalidades = new List<Mensalidade>();
             using (var con = new SqlConnection(stringConexao))
@@ -197,13 +230,15 @@ namespace Web.BD.Repository
                             Id = (int)sdr["Id"],
                             MatriculaId = (int)sdr["MatriculaId"],
                             Matricula = new Matricula { Id = (int)sdr["MatriculaId"], Nome = sdr["Nome"].ToString() },
-                            ModalidadeId = (int)sdr["ModalidadeId"],
-                            Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
-                            TurmaId = (int)sdr["TurmaId"],
-                            Turma = new Turma { Id = (int)sdr["TurmaId"], Descricao = sdr["DescricaoTurma"].ToString() },
+                            //ModalidadeId = (int)sdr["ModalidadeId"],
+                            //Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
+                            //TurmaId = (int)sdr["TurmaId"],
+                            //Turma = new Turma { Id = (int)sdr["TurmaId"], Descricao = sdr["DescricaoTurma"].ToString() },
                             DataDeVencimento = (DateTime)sdr["DataDeVencimento"],
                             StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
-                            FormaDePagamento = sdr["FormaDePagamento"].ToString()
+                            FormaDePagamento = sdr["FormaDePagamento"].ToString(),
+                            Valor = (decimal)sdr["Valor"],
+                            DiasVencidos = (int)sdr["DiasVencidos"]
                         };
 
                         //if (model.DataDeVencimento.Date > DateTime.Now.Date)
@@ -260,10 +295,10 @@ namespace Web.BD.Repository
                             Id = (int)sdr["Id"],
                             MatriculaId = (int)sdr["MatriculaId"],
                             Matricula = new Matricula { Id = (int)sdr["MatriculaId"], Nome = sdr["Nome"].ToString() },
-                            ModalidadeId = (int)sdr["ModalidadeId"],
-                            Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
-                            TurmaId = (int)sdr["TurmaId"],
-                            Turma = new Turma { Id = (int)sdr["TurmaId"], Descricao = sdr["DescricaoTurma"].ToString() },
+                            //ModalidadeId = (int)sdr["ModalidadeId"],
+                            //Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
+                            //TurmaId = (int)sdr["TurmaId"],
+                            //Turma = new Turma { Id = (int)sdr["TurmaId"], Descricao = sdr["DescricaoTurma"].ToString() },
                             DataDeVencimento = (DateTime)sdr["DataDeVencimento"],
                             StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
                             FormaDePagamento = sdr["FormaDePagamento"].ToString()
@@ -383,18 +418,19 @@ namespace Web.BD.Repository
 
         public bool VerificarSeJaExiste(Mensalidade entity)
         {
+            var dataDeVencimentoQuery = entity.EditarTodasMensalidades || string.IsNullOrEmpty(entity.FormaDePagamento) ? "DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimento))) and" : "DataDeVencimento = @DataDeVencimento and";
 
-            string query = @"SELECT 
+            string query = $@"SELECT 
                                 	count(1) as qtd
                                 FROM 
                                 	Mensalidades  
                                 WHERE
                             MatriculaId = @MatriculaId and 
-	                        ModalidadeId =   @ModalidadeId and 
-	                        TurmaId = @TurmaId and 
-	                        --DataDeVencimento =  @DataDeVencimento and
+	                        --ModalidadeId =   @ModalidadeId and 
+	                        --TurmaId = @TurmaId and 
+	                        {dataDeVencimentoQuery}
                             StatusDaMensalidade = @StatusDaMensalidade and    
-	                        FormaDePagamento = @FormaDePagamento and    
+	                        --FormaDePagamento = @FormaDePagamento and    
 	                        Valor = @Valor";
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
@@ -407,14 +443,16 @@ namespace Web.BD.Repository
             {
                 con.Open();
 
+                var dataDeVencimentoValor = entity.EditarTodasMensalidades || string.IsNullOrEmpty(entity.FormaDePagamento)  ? entity.Dia.ToString() : entity.DataDeVencimento.ToString($"yyyy-MM-{entity.Dia}");
+
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
-                cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
-                cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
-                //cmd.Parameters.AddWithValue("@DataDeVencimento", entity.DataDeVencimento);
+                //cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
+                //cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
+                cmd.Parameters.AddWithValue("@DataDeVencimento", dataDeVencimentoValor);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
-                cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
+                //cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
                 cmd.Parameters.AddWithValue("@Valor", entity.Valor);
 
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;

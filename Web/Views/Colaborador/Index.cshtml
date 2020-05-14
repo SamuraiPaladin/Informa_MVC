@@ -9,9 +9,9 @@
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
-                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
                 <a href="#" class="breadcrumb">Cadastro</a>
-                <a href="@Url.Action("Index", "Colaborador")" class="breadcrumb"><strong>Colaborador</strong></a>
+                <a id="paginaColaborador" href="@Url.Action("Index", "Colaborador")" class="breadcrumb"><strong>Colaborador</strong></a>
             </span>
         </div>
     </div>
@@ -20,7 +20,7 @@
 
 <div class="row container">
     <div class="col s12 l12">
-        <a href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Colaborador</a>
+        <a id="cadastrarColaborador" href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Colaborador</a>
     </div>
 </div>
 
@@ -46,7 +46,7 @@
                 <div class="input-field col s6">
 
                     <!-- Dropdown Trigger -->
-                    <a class='dropdown-trigger btn' href='#' data-target='funcaoCadastrar' id="textoDropDownCadastrar">Selecione a Função</a>
+                    <a class='dropdown-trigger btn' href='#' data-target='funcaoCadastrar' id="textoDropDownCadastrar">Selecione o Cargo</a>
                     <!-- Dropdown Structure -->
                     <ul id='funcaoCadastrar' class='dropdown-content'>
                         @foreach (var item in Model.ListaFuncao)
@@ -55,25 +55,6 @@
                         }
                     </ul>
                 </div>
-                @*<div class="input-field col s6">
-                        <input type="date" id="datadenascimento" class="validate">
-                        <label for="datadenascimento">Data de Nascimento</label>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <input id="cpf" oninput="mascaraCPF(this)" type="text">
-                        <label for="cpf">CPF</label>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <input id="rg" oninput="mascaraRG(this)" type="text">
-                        <label for="rg">RG</label>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate" maxlength="11">
-                        <label for="telefone">Telefone</label>
-                    </div>*@
 
                 <div id="modalCadastroColaborador" class="modal">
                     <div class="modal-content">
@@ -90,8 +71,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+        <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="cadastar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
 
@@ -116,9 +97,9 @@
                         @Html.DisplayFor(modelItem => item.Funcao.TipoFuncao)
                     </td>
                     <td>
-                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
+                        <a id="editarColaborador" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
                                                                                                                                                       'Editar', '@item.Funcao.TipoFuncao')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
+                        <a id="deletarColaborador" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
                                                                                                                                                       'Deletar', '@item.Funcao.TipoFuncao')"><i class="material-icons">delete_forever</i></a>
                     </td>
                 </tr>
@@ -146,12 +127,6 @@
                     <label for="nomeEditar">Nome do Funcionário</label>
                 </div>
 
-                @*<div class="input-field col s6">
-                        <select id="funcaoEditar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
-                            <option value="" disabled selected>Selecione uma função</option>
-                        </select>
-                        <label for="funcaoEditar">Cargo</label>
-                    </div>*@
                 <div class="input-field col s6">
                     <a class='dropdown-trigger2 btn' href='#' data-target='funcaoEditar' id="textoDropDownEditar">Selecione a Função</a>
                     <!-- Dropdown Structure -->
@@ -161,11 +136,6 @@
                             <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Editar')">@item.TipoFuncao</a></li>
                         }
                     </ul>
-
-                    @*<select id="funcao" class="validate" asp-items="@(new SelectList(Model.ListaFuncao, "Id", "TipoFuncao"))">
-                        </select>
-                        <label for="funcao">Cargo</label>*@
-
                 </div>
 
                 <div id="modalCadastroColaborador" class="modal">
@@ -184,8 +154,8 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+        <a id="fecharEditar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="editar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
     </div>
 </div>
 
@@ -205,9 +175,6 @@
                 </div>
 
                 <div class="input-field col s6">
-                    @*<select disabled id="funcaoDeletar" class="validate" asp-items="@(new SelectList(item.Funcoes, "Id", "TipoFuncao"))">
-                        </select>
-                        <label for="funcaoDeletar">Cargo</label>*@
                     <a disabled class='dropdown-trigger btn' href='#' data-target='funcaoDeletar' id="textoDropDownDeletar">Selecione a Função</a>
                     <!-- Dropdown Structure -->
                     <ul id='funcaoDeletar' class='dropdown-content'>
@@ -234,8 +201,8 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+        <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
     </div>
 </div>
 
@@ -255,7 +222,6 @@
             document.getElementById("nome" + model).value = nome;
             document.getElementById('textoDropDown' + model).text = tipoFuncao;
             document.getElementById('textoDropDown' + model).FuncaoId = funcao;
-            //document.getElementById("funcao" + model).value = funcao;
 
             if (model === "Editar") {
             document.getElementById("id" + model).value = id;

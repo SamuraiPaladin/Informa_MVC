@@ -25,18 +25,22 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
+            dAOMensalidade.AlterarMensalidadeParaVencido();
             model = new Mensalidade
             {
+
+                Juros = dAOMensalidade.Juros(),
                 ListaMensalidade = dAOMensalidade.ListaMensalidade(),
                 ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
-                ListaModalidade = dAOMensalidade.ReturnMensalidadeModalidadesLista(),
-                ListaTurma = dAOMensalidade.ReturnMensalidadeTurmasLista(),
+                //ListaModalidade = dAOMensalidade.ReturnMensalidadeModalidadesLista(),
+                //ListaTurma = dAOMensalidade.ReturnMensalidadeTurmasLista(),
                 FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
                 StatusDasMensalidades = Enum.GetValues(typeof(EnumPaymentStatus.PaymentStatus))
             };
 
             return View(model);
         }
+
         public JsonResult Adicionar(Mensalidade Mensalidade)
         {
             if (VerificaSeTemCampoVazioOuNulo(Mensalidade))
@@ -60,8 +64,8 @@ namespace Web.Controllers
                 {
                     ListaMensalidade = dAOMensalidade.ListaMensalidadePorNome(Nome),
                     ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
-                    ListaModalidade = dAOMensalidade.ReturnMensalidadeModalidadesLista(),
-                    ListaTurma = dAOMensalidade.ReturnMensalidadeTurmasLista(),
+                    //ListaModalidade = dAOMensalidade.ReturnMensalidadeModalidadesLista(),
+                    //ListaTurma = dAOMensalidade.ReturnMensalidadeTurmasLista(),
                     FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
                     StatusDasMensalidades = Enum.GetValues(typeof(EnumPaymentStatus.PaymentStatus))
                 };
@@ -78,8 +82,8 @@ namespace Web.Controllers
         private static bool VerificaSeTemCampoVazioOuNulo(Mensalidade Mensalidade)
         {
             return string.IsNullOrWhiteSpace(Mensalidade.MatriculaId.ToString()) ||
-                   string.IsNullOrWhiteSpace(Mensalidade.ModalidadeId.ToString()) ||
-                   string.IsNullOrWhiteSpace(Mensalidade.TurmaId.ToString()) ||
+                   //string.IsNullOrWhiteSpace(Mensalidade.ModalidadeId.ToString()) ||
+                   //string.IsNullOrWhiteSpace(Mensalidade.TurmaId.ToString()) ||
                    string.IsNullOrWhiteSpace(Mensalidade.StatusDaMensalidade.ToString()) ||
                    string.IsNullOrWhiteSpace(Mensalidade.DataDeVencimento.ToString()) ||
                    string.IsNullOrWhiteSpace(Mensalidade.Dia.ToString()) ||
@@ -101,6 +105,7 @@ namespace Web.Controllers
                 return Json(dAO.Atualizar(Mensalidade, MensalidadeEditar));
             }
         }
+
         public JsonResult Deletar(Mensalidade Mensalidade)
         {
             if (VerificaSeTemCampoVazioOuNulo(Mensalidade))

@@ -134,7 +134,6 @@
     </div>
 </div>
 @section scripts{
-    <script src="js/main.js"></script>
     <script>
         var valorModalidade;
         var valorDescricao;
@@ -156,7 +155,7 @@
                                  M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
-                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                                 M.toast({ html: 'Já existe essa Modalidade no sistema.', classes: 'rounded red' });
                              default:
                          }
                 }
@@ -198,7 +197,7 @@
                                  M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
-                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                                 M.toast({ html: 'Já existe essa Modalidade no sistema.', classes: 'rounded red' });
                              default:
                          }
                 }

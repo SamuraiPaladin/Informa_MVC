@@ -81,8 +81,15 @@ namespace Web.BD.Repository
                                 FROM 
                                 	Modalidades
                                 WHERE 
-                                	TipoModalidade = @TipoModalidade AND Descricao = @Descricao";
-            return GravarERetornarVerdadeiroOuFalse(entity, query);
+                                	TipoModalidade = @TipoModalidade";
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@TipoModalidade", entity.TipoModalidade);
+                var result = Convert.ToInt32(cmd.ExecuteScalar());
+                return result > 0 ? true : false;
+            }
         }
         private bool GravarERetornarVerdadeiroOuFalse(Modalidade entity, string query)
         {
@@ -93,7 +100,8 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
                 cmd.Parameters.AddWithValue("@TipoModalidade", entity.TipoModalidade);
                 cmd.Parameters.AddWithValue("@Ativo", 1);
-                return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
+                var result = Convert.ToInt32(cmd.ExecuteScalar());
+                return  result > 0 ? true : false;
             }
         }
     }

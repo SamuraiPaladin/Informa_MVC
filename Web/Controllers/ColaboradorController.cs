@@ -54,7 +54,7 @@ namespace Web.Controllers
 
         private static bool VerificaSeTemCampoVazioOuNulo(Colaborador Colaborador)
         {
-            return string.IsNullOrWhiteSpace(Colaborador.Nome.Trim());
+            return string.IsNullOrWhiteSpace(Colaborador.Nome) || Colaborador.FuncaoId == 0;
         }
 
         public JsonResult Editar(Colaborador Colaborador, Colaborador ColaboradorEditar)

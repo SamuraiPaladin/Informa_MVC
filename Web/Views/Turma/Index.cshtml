@@ -9,8 +9,8 @@
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
-                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-                <a href="@Url.Action("Index", "Turma")" class="breadcrumb"><strong>Turma</strong></a>
+                <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a id="paginaTurma" href="@Url.Action("Index", "Turma")" class="breadcrumb"><strong>Turma</strong></a>
             </span>
         </div>
     </div>
@@ -18,7 +18,7 @@
 
 
 <div class="row container">
-    <a href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Turma</a>
+    <a id="cadastrarTurma" href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Turma</a>
 
     <div id="modaCadastrar" class="modal">
         <div class="modal-content">
@@ -144,8 +144,8 @@
 
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+            <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+            <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
         </div>
     </div>
 
@@ -198,9 +198,9 @@
                         @Html.DisplayFor(modelItem => turma.Modalidade.TipoModalidade)
                     </td>
                     <td>
-                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
+                        <a id="editarTurma" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
         '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Editar', '@turma.Colaborador.Nome', '@turma.Unidade.Descricao', '@turma.Modalidade.TipoModalidade')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
+                        <a id="deletarTurma" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
         '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Deletar', '@turma.Colaborador.Nome', '@turma.Unidade.Descricao', '@turma.Modalidade.TipoModalidade')"><i class="material-icons">delete_forever</i></a>
                     </td>
                 </tr>
@@ -340,8 +340,8 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+        <a id="fecharEditar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="editar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
     </div>
 </div>
 
@@ -460,8 +460,8 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+        <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
     </div>
 </div>
 
@@ -616,7 +616,10 @@
                              case "Preenchimento obrigatório":
                                  M.toast({ html: dados, classes: 'rounded orange' });
                                  break;
-                              case "Horario inválido":
+                             case "Horário inicial não pode ser maior que o final.":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case "Professor já tem aula nesse horário.":
                                  M.toast({ html: dados, classes: 'rounded orange' });
                              break;
                              case true:

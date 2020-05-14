@@ -113,7 +113,7 @@
                     <td>@item.DataDeVencimento.ToString("dd/MM/yyyy")</td>
 
                     @*//TODO: LInk para tela de mensalidades, assim que o front de mensalidades estiver pronto *@
-                    <td><font color="red">@item.StatusDaMensalidade</font></td>
+                    <td id="statusMensalidade"><font color="red">@item.StatusDaMensalidade</font></td>
                     @*<td>
                         <a class="btn-floating btn-sm waves-effect waves-light blue modal-trigger" onclick="mandarEmail('@item.IdAluno', '@item.Nome', '@item.Email', '@item.DataDeVencimento')"><i class="material-icons" style="background-color:#808080">email</i></a>
                     </td>*@
@@ -194,4 +194,4 @@
 
     </script>*@
 }
-}
+

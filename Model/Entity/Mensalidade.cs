@@ -11,13 +11,13 @@ namespace Model.Entity
         public List<Matricula> ListaMatricula{ get; set; }
         public Matricula Matricula { get; set; }
         public int MatriculaId { get; set; }
-        public List<Modalidade> ListaModalidade { get; set; }
-        public Modalidade Modalidade { get; set; }
-        public int ModalidadeId { get; set; }
+        //public List<Modalidade> ListaModalidade { get; set; }
+        //public Modalidade Modalidade { get; set; }
+        //public int ModalidadeId { get; set; }
         //[Required(ErrorMessage = "Preenchimento obrigatório campo Descrição")]
-        public List<Turma> ListaTurma { get; set; }
-        public Turma Turma { get; set; }
-        public int TurmaId { get; set; }
+        //public List<Turma> ListaTurma { get; set; }
+        //public Turma Turma { get; set; }
+        //public int TurmaId { get; set; }
         public DateTime DataDeVencimento { get; set; }
         public Array StatusDasMensalidades { get; set; }
         public string StatusDaMensalidade { get; set; }
@@ -28,5 +28,7 @@ namespace Model.Entity
         public int QuantidadeDeMeses { get; set; }
         public decimal Valor { get; set; }
         public bool EditarTodasMensalidades { get; set; }
+        public decimal Juros { get; set; }
+        public int DiasVencidos { get; set; }
     }
 }
