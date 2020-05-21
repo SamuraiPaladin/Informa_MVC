@@ -16,8 +16,8 @@ namespace Web.BD.Repository
         {
 
             string query = @"INSERT INTO Matriculas
-               (Nome, CPF, DataNascimento, RG, CEP, Endereco, Numero, Bairro, Cidade, Estado, Telefone)
-			    Values(@Nome, @CPF, @DataNascimento, @RG, @CEP, @Endereco, @Numero, @Bairro, @Cidade, @Estado, @Telefone);
+               (Nome, CPF, DataNascimento, RG, CEP, Endereco, Numero, Bairro, Cidade, Estado, Telefone, Email, DataCadastro)
+			    Values(@Nome, @CPF, @DataNascimento, @RG, @CEP, @Endereco, @Numero, @Bairro, @Cidade, @Estado, @Telefone, @Email, getdate());
                 SELECT @@IDENTITY";
 
             using (var con = new SqlConnection(stringConexao))
@@ -36,6 +36,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
                 cmd.Parameters.AddWithValue("@Estado", entity.Estado);
                 cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
+                cmd.Parameters.AddWithValue("@Email", entity.Email);
                 var ultimoIdInserido = cmd.ExecuteScalar();
                 var retorno = Convert.ToInt32(ultimoIdInserido) > 0 ? true : false;
                 return SalvarMatriculaTurma(entity, Convert.ToInt32(ultimoIdInserido)); ;
@@ -102,7 +103,8 @@ namespace Web.BD.Repository
                   Bairro = @BairroNovo,
                   Cidade = @CidadeNovo,
                   Estado = @EstadoNovo,
-                  Telefone = @TelefoneNovo
+                  Telefone = @TelefoneNovo,
+                  Email = @Email
                 WHERE   
                   ID = @IDAntigo";
             using (var con = new SqlConnection(stringConexao))
@@ -121,6 +123,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@CidadeNovo", entityNovo.Cidade);
                 cmd.Parameters.AddWithValue("@EstadoNovo", entityNovo.Estado);
                 cmd.Parameters.AddWithValue("@TelefoneNovo", entityNovo.Telefone);
+                cmd.Parameters.AddWithValue("@Email", entityNovo.Email);
 
                 cmd.Parameters.AddWithValue("@IDAntigo", entityAntigo.Id);
                 return cmd.ExecuteNonQuery() > 0 ? true : false;
@@ -171,6 +174,7 @@ namespace Web.BD.Repository
                             Cidade = sdr["Cidade"].ToString(),
                             Estado = sdr["Estado"].ToString(),
                             Telefone = sdr["Telefone"].ToString(),
+                            Email = sdr["Email"].ToString()
                         };
                         entity.Add(model);
                     }
@@ -185,7 +189,6 @@ namespace Web.BD.Repository
             string query = @"SELECT t.Id, count(1) Quantidade, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome
                                 FROM Colaboradores c
                                 JOIN Turmas t ON c.Id = t.ColaboradorId
-                                --JOIN MatriculaTurma mt ON mt.IdTurma = t.Id
                                 GROUP BY t.id, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome
                                 ORDER BY t.HorarioInicial";
             var lista = new List<MatriculaTurma>();
@@ -238,6 +241,7 @@ namespace Web.BD.Repository
                             Bairro =  @Bairro AND
                             Cidade = @Cidade AND
                             Estado = @Estado AND
+                            Email = @Email AND
                             Telefone = @Telefone";
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
@@ -259,6 +263,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
                 cmd.Parameters.AddWithValue("@Estado", entity.Estado);
                 cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
+                cmd.Parameters.AddWithValue("@Email", entity.Email);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
         }
@@ -351,7 +356,8 @@ namespace Web.BD.Repository
                             Bairro = sdr["Bairro"].ToString(),
                             Cidade = sdr["Cidade"].ToString(),
                             Estado = sdr["Estado"].ToString(),
-                            Telefone = sdr["Telefone"].ToString()
+                            Telefone = sdr["Telefone"].ToString(),
+                            Email =sdr["Email"].ToString()
                         };
                     }
                 }
@@ -372,7 +378,8 @@ namespace Web.BD.Repository
                             Bairro =  @Bairro AND
                             Cidade = @Cidade AND
                             Estado = @Estado AND
-                            Telefone = @Telefone";
+                            Telefone = @Telefone AND
+                            Email = @Email";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();

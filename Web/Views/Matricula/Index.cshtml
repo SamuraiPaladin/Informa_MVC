@@ -52,6 +52,11 @@
                 </div>
 
                 <div class="input-field col s6">
+                    <input placeholder="Ex: email@email.com" id="email" type="email">
+                    <label for="email">E-mail</label>
+                </div>
+
+                <div class="input-field col s6">
                     <input placeholder="Ex: 99.999.999-9" id="rg" oninput="mascaraRG(this)" type="text">
                     <label for="rg">RG</label>
                 </div>
@@ -170,16 +175,17 @@
 <table class="table highlight centered container" id="tabelaAdicionar">
     <thead>
         <tr>
-            <th class="teste">Nome</th>
-            <th class="teste">Data de Nascimento</th>
-            <th class="teste">RG</th>
-            <th class="teste">CPF</th>
-            <th class="teste">Endereço</th>
-            <th class="teste">Numero</th>
-            <th class="teste">Telefone</th>
-            <th class="teste">Bairro</th>
-            <th class="teste">Cidade</th>
-            <th class="teste"></th>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>E-mail</th>
+            <th>RG</th>
+            <th>CPF</th>
+            <th>Endereço</th>
+            <th>Numero</th>
+            <th>Telefone</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -213,6 +219,7 @@
                 <tr>
                     <td>@item.Nome</td>
                     <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
+                    <td>@item.Email</td>
                     <td>@item.RG</td>
                     <td>@item.CPF</td>
                     <td>@item.Endereco</td>
@@ -285,24 +292,22 @@
         let valorCidade;
         let valorEstado;
         let valorDataNascimento;
+        let valorEmail;
+
         $(document).ready(function () {
             $('#tabelaAdicionar').DataTable();
             $('#tabelaEditar').DataTable();
         });
 
         function mascaraCPF(i) {
-
             var v = i.value;
-
             if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
                 i.value = v.substring(0, v.length - 1);
                 return;
             }
-
             i.setAttribute("maxlength", "14");
             if (v.length == 3 || v.length == 7) i.value += ".";
             if (v.length == 11) i.value += "-";
-
         }
 
         function mascaraRG(i) {
@@ -316,6 +321,7 @@
             if (v.length == 2 || v.length == 6) i.value += ".";
             if (v.length == 10) i.value += "-";
         }
+
         function mascaraCEP(i) {
             var v = i.value;
             if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
@@ -362,7 +368,6 @@
             });
         }
 
-
         function Adicionar() {
             let array = [];
             try {
@@ -392,6 +397,7 @@
                         Bairro: document.getElementById("bairro").value,
                         Cidade: document.getElementById("cidade").value,
                         Estado: document.getElementById("estado").value,
+                        Email: document.getElementById("email").value,
                         Array: array
                     };
                  $.ajax({
@@ -414,6 +420,7 @@
                 }
             });
         }
+
         function Deletar() {
             var entity = {
                 Id: valorId
@@ -436,6 +443,7 @@
                     }
             });
         }
+
         function DeletarModal(id, nome, rg, cpf) {
                 valorId = id;
                 document.getElementById('deletarModalRG').innerHTML = rg;
@@ -463,6 +471,7 @@
                     document.getElementById('bairroEditar').value = result.DadosMatriculaTurma.Bairro;
                     document.getElementById('cidadeEditar').value = result.DadosMatriculaTurma.Cidade;
                     document.getElementById('estadoEditar').value = result.DadosMatriculaTurma.Estado;
+                    document.getElementById('emailEditar').value = result.DadosMatriculaTurma.Email;
 
 
                     valorId = id;
@@ -477,6 +486,7 @@
                     valorBairro = result.DadosMatriculaTurma.Bairro;
                     valorCidade = result.DadosMatriculaTurma.Cidade;
                     valorEstado = result.DadosMatriculaTurma.Estado;
+                    valorEmail = result.DadosMatriculaTurma.Email;
 
 
                 }
@@ -530,7 +540,8 @@
                 Telefone: valorTelefone,
                Bairro: valorBairro,
                 Cidade: valorCidade,
-                Estado: valorEstado
+                Estado: valorEstado,
+                Email: valorEmail
             }
             var alunoEditar = {
                 Id: valorId,
@@ -545,6 +556,7 @@
                 Bairro: document.getElementById('bairroEditar').value,
                 Cidade: document.getElementById('cidadeEditar').value,
                 Estado: document.getElementById('estadoEditar').value,
+                Email: document.getElementById('emailEditar').value,
                 Array: arrayEditar
             }
             $.ajax({

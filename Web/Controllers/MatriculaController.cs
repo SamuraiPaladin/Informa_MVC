@@ -56,7 +56,8 @@ namespace Web.Controllers
         private static bool VerificaSeTemCampoVazioOuNulo(Matricula entity)
         {
             if (entity.DataNascimento.ToString("dd/MM/yyyy HH:mm:ss") == "01/01/0001 00:00:00" || string.IsNullOrWhiteSpace(entity.Nome) || string.IsNullOrWhiteSpace(entity.CPF) || string.IsNullOrWhiteSpace(entity.RG) || string.IsNullOrWhiteSpace(entity.CEP) || string.IsNullOrWhiteSpace(entity.Endereco)
-                || string.IsNullOrWhiteSpace(entity.Numero) || string.IsNullOrWhiteSpace(entity.Bairro) || string.IsNullOrWhiteSpace(entity.Cidade) || string.IsNullOrWhiteSpace(entity.Estado) || string.IsNullOrWhiteSpace(entity.Telefone) || entity.Array == null)
+                || string.IsNullOrWhiteSpace(entity.Numero) || string.IsNullOrWhiteSpace(entity.Bairro) || string.IsNullOrWhiteSpace(entity.Cidade) || string.IsNullOrWhiteSpace(entity.Estado) || string.IsNullOrWhiteSpace(entity.Telefone) || entity.Array == null
+                || string.IsNullOrWhiteSpace(entity.Email) || !entity.Email.Contains('@'))
             {
                 return true;
             }
