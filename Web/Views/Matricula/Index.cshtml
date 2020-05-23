@@ -21,262 +21,71 @@
     </div>
 </div>
 
-<div id="modalCadastrar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="flow-text ">Cadastrar Aluno</h4>
-        </div>
-        <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
+@Html.Partial("_Cadastrar")
 
-        <br />
+<div style="padding: 20px">
 
-        <div class="col s12 l12">
-            <form class="col s12 l12">
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nome" type="text" class="validate">
-                    <label for="nome">Nome do Aluno</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="dd/mm/aaaa" type="date" id="datadenascimento" class="validate">
-                    <label for="datadenascimento">Data de Nascimento</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 999.999.999-99" id="cpf" oninput="mascaraCPF(this)" type="text">
-                    <label for="cpf">CPF</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: email@email.com" id="email" type="email">
-                    <label for="email">E-mail</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 99.999.999-9" id="rg" oninput="mascaraRG(this)" type="text">
-                    <label for="rg">RG</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate" maxlength="11">
-                    <label for="telefone">Telefone</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cep" oninput="mascaraCEP(this)" type="text" class="validate" maxlength="9">
-                    <label for="cep">CEP</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate" maxlength="45" disabled>
-                    <label for="endereco">Endereco</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 4300..." id="numero" type="number" class="validate" maxlength="5">
-                    <label for="numero">Numero</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate" maxlength="30" disabled>
-                    <label for="bairro">Bairro</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Poá, Suzano..." id="cidade" type="text" class="validate" maxlength="30" disabled>
-                    <label for="cidade">Cidade</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: SP, MG..." id="estado" type="text" class="validate" disabled>
-                    <label for="estado">Estado</label>
-                </div>
-
-                <div id="modalCadastroAluno" class="modal">
-                    <div class="modal-content">
-                        <h4 class="flow-text center">Aluno Cadastrado!</h4>
-                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
-
-                    </div>
-                    <div class="modal-footer">
-                        <a id="adicionar" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
-                    </div>
-                </div>
-                <input id="idEditar" style="display: none;" />
-            </form>
-            <br /><br />
-        </div>
-
-        <div class="col s12 l12">
-
-            <div class="col s12 l6">
-                <h4 class="flow-text center subtitleModal" style="margin-top:25px;">TURMAS DISPONÍVEIS</h4>
-            </div>
-        </div>
-
-        <table class="table highlight centered " id="tabelaAdicionar">
-            <thead>
+    <table id="tabelaPrincipal">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>E-mail</th>
+                <th>RG</th>
+                <th>CPF</th>
+                <th>Endereço</th>
+                <th>Numero</th>
+                <th>Telefone</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ListaMatriculaTurma.Count == 0)
+            {
                 <tr>
-                    <th>Curso</th>
-                    <th>Tipo</th>
-                    <th>Alunos na Turma</th>
-                    <th>Professor</th>
-                    <th>Dia da Semana</th>
-                    <th>Horário Inícial</th>
-                    <th>Horário FInal</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-            </thead>
-            <tbody>
-                @if (Model.ListaMatriculaTurma.Count == 0)
+            }
+            else
+            {
+                foreach (var item in Model.ListaMatricula)
                 {
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>@item.Nome</td>
+                        <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Email</td>
+                        <td>@item.RG</td>
+                        <td>@item.CPF</td>
+                        <td>@item.Endereco</td>
+                        <td>@item.Numero</td>
+                        <td>@item.Telefone</td>
+                        <td>@item.Bairro</td>
+                        <td>@item.Cidade</td>
+                        <td>
+                            <a id="editarMatricula" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a id="fecharMatricula" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
+                               onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
+                        </td>
                     </tr>
                 }
-                else
-                {
-                    foreach (var item in Model.ListaMatriculaTurma)
-                    {
-                        <tr>
-                            <td class="left">
-                                <label>
-                                    <input type="checkbox" id="@item.Id" />
-                                    <span>@item.Descricao</span>
-                                </label>
-                            </td>
-                            <td>@item.Tipo</td>
-                            <td>@item.Quantidade</td>
-                            <td><strong>@item.Nome</strong></td>
-                            <td>@item.DiaDaSemana</td>
-                            <td>@item.HorarioInicial</td>
-                            <td>@item.HorarioFinal</td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-
-    </div>
-    <div class="modal-footer">
-        <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
-    </div>
+            }
+        </tbody>
+    </table>
 </div>
 
-<table class="table highlight centered container" id="tabelaAdicionar">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Data de Nascimento</th>
-            <th>E-mail</th>
-            <th>RG</th>
-            <th>CPF</th>
-            <th>Endereço</th>
-            <th>Numero</th>
-            <th>Telefone</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th></th>
-        </tr>
-    </thead>
 
-    <div class="row container">
-        <div class="center" id="centerPage"></div>
-    </div>
-
-    @if (Model.ListaMatricula.Count == 0)
-    {
-        <script>
-            const attributes = document.getElementsByClassName('teste');
-            const center = document.getElementById('centerPage')
-            const img = document.createElement('img')
-            img.src = '../../imgs/informa-naoharegistro.png';
-            img.width = 400
-
-            center.appendChild(img)
-
-            for (var number = 0; number <= attributes.length; number++) {
-                attributes[number].innerText = '';
-            }
-
-        </script>
-
-    }
-    else
-    {
-        foreach (var item in Model.ListaMatricula)
-        {
-            <tbody>
-                <tr>
-                    <td>@item.Nome</td>
-                    <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
-                    <td>@item.Email</td>
-                    <td>@item.RG</td>
-                    <td>@item.CPF</td>
-                    <td>@item.Endereco</td>
-                    <td>@item.Numero</td>
-                    <td>@item.Telefone</td>
-                    <td>@item.Bairro</td>
-                    <td>@item.Cidade</td>
-                    <td>
-                        <a id="editarMatricula" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a id="fecharMatricula" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
-                           onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
-                    </td>
-                </tr>
-            </tbody>
-        }
-    }
-
-</table>
 
 @Html.Partial("_Editar")
+@Html.Partial("_Deletar")
 
-<div id="modalDeletar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 id="deletarModalCabecalho"></h4>
-        </div>
 
-        <div class="col s12 l12">
-            <div class="col s12 l4">
-                <p class="center">
-                    <strong style="font-weight:bold">Aluno</strong>
-                    <br />
-                    <label id="deletarModalNome">117979</label>
-                </p>
-            </div>
-            <div class="col s12 l4">
-                <p class="center">
-                    <strong style="font-weight:bold">RG</strong>
-                    <br />
-                    <label id="deletarModalRG"></label>
-                </p>
-            </div>
-            <div class="col s12 l4">
-                <p class="center">
-                    <strong style="font-weight:bold">CPF</strong>
-                    <br />
-                    <label id="deletarModalCPF"></label>
-                </p>
-            </div>
-        </div>
-
-    </div>
-    <div class="modal-footer">
-        <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Sim, deletar</a>
-    </div>
-</div>
 
 @section scripts{
     <script>
@@ -295,9 +104,11 @@
         let valorEmail;
 
         $(document).ready(function () {
-            $('#tabelaAdicionar').DataTable();
-            $('#tabelaEditar').DataTable();
+            $('#tabelaAdicionar').dataTable();
+            $('#tabelaPrincipal').dataTable();
         });
+
+
 
         function mascaraCPF(i) {
             var v = i.value;
@@ -497,6 +308,7 @@
                    data: { id: id },
                    success: function (data) {
                        //Coloque aqui o local onde a View deverá ocupar
+                       $("#Grid tr").remove();
                        $(data).each(function () {
                            if (this.Ativo === true) {
                                $("#Grid").append("<tr><td class='left'><label><input type='checkbox'  id='" + this.Id + "' checked='checked'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Colaborador + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
