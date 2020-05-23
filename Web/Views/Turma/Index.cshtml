@@ -155,7 +155,7 @@
 
 @if (Model != null)
 {
-    <table class="table highlight container ">
+    <table id="tabelaTurma" class="table highlight container ">
         <thead>
             <tr>
                 <th>Turma</th>
@@ -479,6 +479,10 @@
         let valorHorarioFinal;
         let valorUnidade;
         let valorModalidade;
+
+        $(document).ready(function () {
+            $('#tabelaTurma').DataTable();
+        });
 
         function EditarModal(id, descricao, nome, tipo, diasdasemana, horarioinicial, horariofinal, unidade, modalidade, model, nomeColaborador, unidadeDescricao, modalidadeTipoModalidade) {
             valorId = id;

@@ -154,7 +154,7 @@ namespace Web.BD.Repository
         public List<Colaborador> ReturnTurmaColaboradorLista()
         {
             string query = @"SELECT * FROM Colaboradores c inner join Funcoes f on c.FuncaoId = f.Id 
-                               WHERE f.TipoFuncao like '%prof%' ORDER BY c.Nome";
+                               WHERE f.TipoFuncao like '%prof%' AND c.Ativo = 1 ORDER BY c.Nome";
             List<Colaborador> lista = new List<Colaborador>();
             using (var con = new SqlConnection(stringConexao))
             {

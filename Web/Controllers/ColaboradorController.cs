@@ -42,7 +42,7 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(Colaborador))
                 return Json("Preenchimento obrigatório");
             else
-                if (dAO.VerificarSeJaExiste(Colaborador))
+                if (dAOColaborador.VerificarSeJaExiste(Colaborador, 0))
             {
                 return Json(false);
             }
@@ -52,9 +52,18 @@ namespace Web.Controllers
             }
         }
 
-        private static bool VerificaSeTemCampoVazioOuNulo(Colaborador Colaborador)
+        private static bool VerificaSeTemCampoVazioOuNulo(Colaborador entity)
         {
-            return string.IsNullOrWhiteSpace(Colaborador.Nome) || Colaborador.FuncaoId == 0;
+            if (entity.DataNascimento.ToString("dd/MM/yyyy HH:mm:ss") == "01/01/0001 00:00:00" || string.IsNullOrWhiteSpace(entity.Nome) || string.IsNullOrWhiteSpace(entity.CPF) || string.IsNullOrWhiteSpace(entity.RG) || string.IsNullOrWhiteSpace(entity.CEP) || string.IsNullOrWhiteSpace(entity.Endereco)
+            || string.IsNullOrWhiteSpace(entity.Numero) || string.IsNullOrWhiteSpace(entity.Bairro) || string.IsNullOrWhiteSpace(entity.Cidade) || string.IsNullOrWhiteSpace(entity.Estado) || string.IsNullOrWhiteSpace(entity.Telefone) 
+            || string.IsNullOrWhiteSpace(entity.Email) || !entity.Email.Contains('@') || entity.FuncaoId == 0) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public JsonResult Editar(Colaborador Colaborador, Colaborador ColaboradorEditar)
@@ -62,7 +71,7 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(ColaboradorEditar))
                 return Json("Preenchimento obrigatório");
             else
-               if (dAO.VerificarSeJaExiste(ColaboradorEditar))
+               if (dAOColaborador.VerificarSeJaExiste(ColaboradorEditar, 1))
             {
                 return Json(false);
             }
@@ -71,18 +80,12 @@ namespace Web.Controllers
                 return Json(dAO.Atualizar(Colaborador, ColaboradorEditar));
             }
         }
-        public JsonResult Deletar(Colaborador Colaborador)
+        public JsonResult Deletar(Colaborador colaborador)
         {
-            if (VerificaSeTemCampoVazioOuNulo(Colaborador))
+            if (colaborador.Id == 0)
                 return Json("Preenchimento obrigatório");
             else
-                return Json(dAO.Deletar(Colaborador));
+                return Json(dAO.Deletar(colaborador));
         }
-        //public ActionResult Cadastrar()
-        //{
-        //    var viewModel = dAOColaborador.ReturnColaboradorFormViewModel();
-
-        //    return View(viewModel);
-        //}
     }
 }
