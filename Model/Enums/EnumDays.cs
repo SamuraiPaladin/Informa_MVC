@@ -12,7 +12,9 @@ namespace Model.Enums
             Terça,
             Quarta,
             Quinta,
-            Sabado
+            Sexta,
+            Sábado,
+            Domingo
         };
     }
 }

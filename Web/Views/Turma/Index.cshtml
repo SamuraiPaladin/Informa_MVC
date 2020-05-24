@@ -73,14 +73,22 @@
                         @*<select id="diasdasemana" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
                             </select>
                             <label for="diasdasemana">Dias da semana</label>*@
-                        <a class='dropdown-trigger3 btn' href='#' data-target='diasdasemanaCadastrar' id="diasdasemanaDropDownCadastrar">Selecione o Dia</a>
-                        <!-- Dropdown Structure -->
-                        <ul id='diasdasemanaCadastrar' class='dropdown-content'>
+                        @* <a class='dropdown-trigger3 btn' href='#' data-target='diasdasemanaCadastrar' id="diasdasemanaDropDownCadastrar">Selecione o Dia</a>
+                            <!-- Dropdown Structure -->
+                            <ul id='diasdasemanaCadastrar' class='dropdown-content'>
+                                @foreach (var item in Model.DiasDaSemana)
+                                {
+                                    <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Cadastrar')">@item</a></li>
+                                }
+                            </ul>*@
+
+                        <select multiple id="diasdasemanaDropDownCadastrar">
                             @foreach (var item in Model.DiasDaSemana)
                             {
-                                <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Cadastrar')">@item</a></li>
+                                <option value="@item">@item</option>
                             }
-                        </ul>
+                        </select>
+                        <label>Dias da semana</label>
                     </div>
 
                     <div class="input-field col s6">
@@ -261,20 +269,28 @@
 
                 </div>
 
-                <div class="input-field col s6">
+                <div class="input-field col s6" id="diasdasemanaEditar">
                     @*<select id="diasdasemanaEditar" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
                             <option value="" disabled selected>Selecione um dia da semana</option>
                         </select>
                         <label for="diasdasemanaEditar">Dias da semana</label>*@
 
-                    <a class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaEditar' id="diasdasemanaDropDownEditar">Selecione o Dia</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='diasdasemanaEditar' class='dropdown-content'>
+                    @*<a class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaEditar' id="diasdasemanaDropDownEditar">Selecione o Dia</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='diasdasemanaEditar' class='dropdown-content'>
+                            @foreach (var item in Model.DiasDaSemana)
+                            {
+                                <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Editar')">@item</a></li>
+                            }
+                        </ul>*@
+                    <select multiple id="diasdasemanaDropDownEditar">
+
                         @foreach (var item in Model.DiasDaSemana)
                         {
-                            <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Editar')">@item</a></li>
+                            <option value="@item">@item</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Dias da semana</label>
                 </div>
 
                 <div class="input-field col s6">
@@ -389,19 +405,26 @@
 
                 </div>
 
-                <div class="input-field col s6">
+                <div class="input-field col s6" id="diasdasemanaDeletar">
                     @*<select disabled id="diasdasemanaDeletar" class="validate">
                         </select>
                         <label for="diasdasemanaDeletar">Dias da semana</label>*@
 
-                    <a disabled class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaDeletar' id="diasdasemanaDropDownDeletar">Selecione o Dia</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='diasdasemanaDeletar' class='dropdown-content'>
+                    @*<a disabled class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaDeletar' id="diasdasemanaDropDownDeletar">Selecione o Dia</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='diasdasemanaDeletar' class='dropdown-content'>
+                            @foreach (var item in Model.DiasDaSemana)
+                            {
+                                <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Deletar')">@item</a></li>
+                            }
+                        </ul>*@
+                    <select disabled multiple id="diasdasemanaDropDownDeletar">
                         @foreach (var item in Model.DiasDaSemana)
                         {
-                            <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Deletar')">@item</a></li>
+                            <option value="@item">@item</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Dias da semana</label>
                 </div>
 
                 <div class="input-field col s6">
@@ -498,7 +521,7 @@
             document.getElementById("descricao" + model).value = descricao;
             document.getElementById("nome" + model).value = nome;
             document.getElementById("tipo" + model).value = tipo;
-            document.getElementById("diasdasemana" + model).value = diasdasemana;
+            $('#diasdasemana' + model)[0].children[0].children[0].value = diasdasemana;
             document.getElementById("horarioinicial" + model).value = horarioinicial;
             document.getElementById("horariofinal" + model).value = horariofinal;
             document.getElementById("unidade" + model).value = unidade;
@@ -510,7 +533,7 @@
 
             document.getElementById('tipoDropDown' + model).text = tipo;
 
-            document.getElementById('diasdasemanaDropDown' + model).text = diasdasemana;
+            //document.getElementById('diasdasemanaDropDown' + model).text = diasdasemana;
 
             document.getElementById('unidadeDropDown' + model).text = unidadeDescricao;
             document.getElementById('unidadeDropDown' + model).UnidadeId = unidade;
@@ -521,7 +544,14 @@
             if (model === "Editar") {
             document.getElementById("id" + model).value = id;
             document.getElementById("editarTurmaDescricao").innerText = "Editar " + descricao;
-            } else {
+                var diaSelecionado = valorDiasDaSemana.replace(" ", "").split(',');
+                    for (i = 0; i <= $('#diasdasemanaDropDownEditar')[0].length; i++) {
+                        if (diaSelecionado.includes($('#diasdasemanaDropDownEditar')[0].children[i].value)) {
+                            $('#diasdasemanaDropDownEditar')[0].children[i].selected = true;
+                        }
+                    }
+            } else
+            {
                 document.getElementById("deletarTurmaDescricao").innerText = "Tem certeza que deseja deletar " + descricao +"?";
             }
         }
@@ -566,7 +596,7 @@
                 Descricao: document.getElementById("descricaoEditar").value,
                 ColaboradorId: document.getElementById('nomeDropDownEditar').ColaboradorId,
                 Tipo: document.getElementById('tipoDropDownEditar').text,
-                DiaDaSemana: document.getElementById('diasdasemanaDropDownEditar').text,
+                DiaDaSemana: $('#diasdasemanaEditar')[0].children[0].children[0].value,
                 HorarioInicial: document.getElementById("horarioinicialEditar").value,
                 HorarioFinal: document.getElementById("horariofinalEditar").value,
                 UnidadeId: document.getElementById('unidadeDropDownEditar').UnidadeId,
@@ -603,7 +633,7 @@
                         Descricao: document.getElementById("descricao").value,
                         ColaboradorId: document.getElementById('nomeDropDownCadastrar').ColaboradorId,
                         Tipo: document.getElementById('tipoDropDownCadastrar').text,
-                        DiaDaSemana: document.getElementById('diasdasemanaDropDownCadastrar').text,
+                        DiaDaSemana: $('#diasdasemanaDropDownCadastrar').val().join(),
                         HorarioInicial: document.getElementById("horarioinicial").value,
                         HorarioFinal: document.getElementById("horariofinal").value,
                         UnidadeId: document.getElementById('unidadeDropDownCadastrar').UnidadeId,
