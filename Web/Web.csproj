@@ -225,7 +225,6 @@
     <Compile Include="BD\Interface\IDAO.cs" />
     <Compile Include="BD\Interface\IDAOMatricula.cs" />
     <Compile Include="BD\Interface\IDAOPrincipal.cs" />
-    <Compile Include="BD\Repository\AlunoDAO.cs" />
     <Compile Include="BD\Repository\MatriculaDAO.cs" />
     <Compile Include="BD\Repository\MensalidadeDAO.cs" />
     <Compile Include="BD\Repository\PrincipalDAO.cs" />
@@ -234,8 +233,8 @@
     <Compile Include="BD\Repository\FuncaoDAO.cs" />
     <Compile Include="BD\Repository\ModalidadeDAO.cs" />
     <Compile Include="BD\Repository\UnidadeDAO.cs" />
-    <Compile Include="Controllers\AlunoController.cs" />
     <Compile Include="Controllers\AulaController.cs" />
+    <Compile Include="Controllers\InadimplentesController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\MensalidadesController.cs" />
     <Compile Include="Controllers\MensalidadeController.cs" />
