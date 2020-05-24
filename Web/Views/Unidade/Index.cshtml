@@ -98,7 +98,7 @@
 
 @if (Model.Count > 0)
 {
-    <table class="table highlight container centered ">
+    <table class="table highlight container centered " id="tabelaCadastrar">
         <thead>
             <tr>
                 <th>Descrição</th>
@@ -313,6 +313,7 @@
                 document.getElementById("deletarUnidadeDescricao").innerText = "Tem certeza que deseja deletar a Unidade " + descricao +"?";
             }
         }
+
         function Deletar() {
             var unidade = {
                 Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
@@ -337,6 +338,7 @@
             });
         });
         }
+
         function Editar() {
             var unidade = {
                 Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
@@ -367,6 +369,7 @@
             });
         });
         }
+
         function PesquisaCEPEditar() {
             let cep = document.getElementById('cepEditar').value;
              $(function () {
@@ -384,6 +387,7 @@
                 })
             });
         }
+
         function PesquisaCEP() {
             let cep = document.getElementById('cep').value;
              $(function () {
@@ -401,7 +405,8 @@
                 })
             });
         }
-         function Adicionar() {
+
+        function Adicionar() {
             var unidade = {
                 Descricao: document.getElementById("descricao").value, Endereco: document.getElementById("endereco").value, Numero: document.getElementById("numero").value, CEP: document.getElementById("cep").value,
                 Telefone: document.getElementById("telefone").value, Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value};
@@ -427,8 +432,9 @@
             });
         });
         }
-        $(document).ready(function(){
-          $('.modal').modal();
+
+        $(document).ready(function () {
+            $('#tabelaCadastrar').dataTable();
         });
     </script>
 

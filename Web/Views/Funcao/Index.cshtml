@@ -58,7 +58,7 @@
 
         @if (Model.Count > 0)
         {
-            <table class="highlight centered tabela">
+            <table class="highlight centered tabela" id="tabelaCadastrar">
                 <thead>
                     <tr>
                         <th>Cargo</th>
@@ -66,9 +66,9 @@
                         <th></th>
                     </tr>
                 </thead>
-                @foreach (var item in Model)
-                {
-                    <tbody>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>@item.TipoFuncao</td>
                             <td>@item.Descricao</td>
@@ -77,8 +77,8 @@
                                 <a id="deletarCargo" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.TipoFuncao', '@item.Descricao', '@item.Id','Deletar')"><i class="material-icons">delete_forever</i></a>
                             </td>
                         </tr>
-                    </tbody>
-                }
+                    }
+                </tbody>
             </table>
         }
     </div>
@@ -173,6 +173,7 @@
             });
         });
         }
+
         function EditarModal(funcao, descricao, id, model) {
             valorFuncao = funcao;
             valorDescricao = descricao;
@@ -190,6 +191,7 @@
 
             }
         }
+
         function Editar(funcao, descricao) {
             var funcao = { TipoFuncao: valorFuncao, Descricao: valorDescricao };
             var funcaoEditar = { TipoFuncao: document.getElementById("funcaoEditar").value, Descricao: document.getElementById("descricaoEditar").value, Ativo: true, Id : document.getElementById("idEditar").value };
@@ -215,6 +217,7 @@
             });
         });
         }
+
         function Adicionar() {
             var funcao = { TipoFuncao: document.getElementById("funcao").value, Descricao: document.getElementById("descricao").value, Ativo: true };
              $(function () {
@@ -239,6 +242,7 @@
             });
         });
         }
+
         function Deletar() {
             //teste commit
             var funcao = { TipoFuncao: document.getElementById("funcaoDeletar").value, Descricao: document.getElementById("descricaoDeletar").value, Ativo: true, Id: document.getElementById("idDeletar").value };
@@ -262,6 +266,10 @@
             });
         });
         }
+
+        $(document).ready(function () {
+            $("#tabelaCadastrar").DataTable();
+        })
     </script>
 
 }

@@ -849,6 +849,8 @@
     <Content Include="Views\Mensalidade\Index.cshtml" />
     <Content Include="Views\Matricula\_Editar.cshtml" />
     <Content Include="Views\Aula\Index.cshtml" />
+    <Content Include="Views\Matricula\_Deletar.cshtml" />
+    <Content Include="Views\Matricula\_Cadastrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
