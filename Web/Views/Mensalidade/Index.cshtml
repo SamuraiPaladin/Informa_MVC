@@ -40,56 +40,6 @@
                         </ul>
                     </div>
 
-                    @*<div class="input-field col s6">
-                            <a class='dropdown-trigger2 btn' href='#' data-target='modalidadeCadastrar' id="modalidadeDropDownCadastrar">Selecione uma Modalidade</a>
-                            <ul id='modalidadeCadastrar' class='dropdown-content'>
-                                @foreach (var item in Model.ListaModalidade)
-                                {
-                                    <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Cadastrar')">@item.TipoModalidade</a></li>
-                                }
-                            </ul>
-                        </div>*@
-
-                    @*<div class="input-field col s6">
-                            <a class='dropdown-trigger3 btn' href='#' data-target='turmaCadastrar' id="turmaDropDownCadastrar">Selecione uma Turma</a>
-                            <ul id='turmaCadastrar' class='dropdown-content'>
-                                @foreach (var item in Model.ListaTurma)
-                                {
-                                    <li><a onclick="editaTurmaSelecionado('@item.Descricao', '@item.Id', 'Cadastrar')">@item.Descricao</a></li>
-                                }
-                            </ul>
-                        </div>*@
-
-                    @*<div class="input-field col s6">
-                            <a class='dropdown-trigger4 btn' href='#' data-target='statusCadastrar' id="statusDropDownCadastrar">Selecione o Status do Pagamento</a>
-
-                            <ul id='statusCadastrar' class='dropdown-content'>
-                                @foreach (var item in Model.StatusDasMensalidades)
-                                {
-                                    <li><a onclick="editaStatusSelecionado('@item', 'Cadastrar')">@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
-                                }
-                            </ul>
-                        </div>*@
-
-                    @*<div class="input-field col s6">
-
-                            <a class='dropdown-trigger5 btn' href='#' data-target='formaCadastrar' id="formaDropDownCadastrar">Selecione a Forma de Pagamento</a>
-
-                            <ul id='formaCadastrar' class='dropdown-content'>
-                                @foreach (var item in Model.FormasDePagamentos)
-                                {
-                                    <li><a onclick="editaFormaSelecionado('@item', 'Cadastrar')">@item</a></li>
-                                }
-                            </ul>
-                        </div>*@
-
-                    @*<div class="input-field col s6">
-                            <label for="datadevencimento">Data de Vencimento:</label>
-                            <br />
-                            <input min='2020-01-01' max='2099-12-31' type="date" id="datadevencimento" class="validate">
-                        </div>*@
-
-
                     <div class="input-field col s6">
                         <label for="diaDeVencimento">Dia de Vencimento</label>
                         <br />
@@ -147,8 +97,7 @@
                 <tr>
                     <th>Pagamento</th>
                     <th>Nome</th>
-                    @*<th>Curso</th>
-                        <th>Turma</th>*@
+                    <th>CPF</th>
                     <th>Data de Vencimento</th>
                     <th>Valor</th>
                     <th>Status Mensalidade</th>
@@ -169,12 +118,9 @@
                         <td>
                             @mensalidade.Matricula.Nome
                         </td>
-                        @*<td>
-                                @mensalidade.Modalidade.TipoModalidade
-                            </td>
-                            <td>
-                                @mensalidade.Turma.Descricao
-                            </td>*@
+                        <td>
+                            @mensalidade.CPF
+                        </td>
                         <td>
                             @mensalidade.DataDeVencimento.ToString("dd/MM/yyyy")
                         </td>
@@ -429,27 +375,6 @@
                     </ul>
                 </div>
 
-                @*<div class="input-field col s6">
-                        <a disabled class='dropdown-trigger7 btn' href='#' data-target='modalidadePagamento' id="modalidadeDropDownPagamento">Selecione uma Modalidade</a>
-                        <ul id='modalidadePagamento' class='dropdown-content'>
-                            @foreach (var item in Model.ListaModalidade)
-                            {
-                                <li><a>@item.TipoModalidade</a></li>
-                            }
-                        </ul>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <a disabled class='dropdown-trigger8 btn' href='#' data-target='turmaPagamento' id="turmaDropDownPagamento">Selecione uma Turma</a>
-                        <ul id='turmaPagamento' class='dropdown-content'>
-                            @foreach (var item in Model.ListaTurma)
-                            {
-                                <li><a>@item.Descricao</a></li>
-                            }
-                        </ul>
-                    </div>*@
-
-
                 <div class="input-field col s6">
                     <a disabled class='dropdown-trigger9 btn' href='#' data-target='statusPagamento' id="statusDropDownPagamento">Selecione o Status do Pagamento</a>
 
@@ -485,18 +410,6 @@
                         }
                     </ul>
                 </div>
-
-                @*<div class="input-field col s6">
-                        <label for="valor">Valor</label>
-                        <br />
-                        <input min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
-                    </div>
-
-                    <div class="input-field col s6">
-                        <label min='2020-01-01' max='2099-12-31' for="diaDeVencimentoPagamento">Data de Vencimento:</label>
-                        <br />
-                        <input disabled type="date" id="diaDeVencimentoPagamento" name="diaDeVencimento">
-                    </div>*@
 
                 <div id="modalPagamentoMensalidade" class="modal">
                     <div class="modal-content">

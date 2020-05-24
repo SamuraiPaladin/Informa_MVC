@@ -66,6 +66,45 @@ namespace Web.BD.Repository
 
         }
 
+        public List<Mensalidade> ListaMensalidadeVencida()
+        {
+            string query = @"SELECT t.*, a.CPF, a.Nome, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos
+                            from Mensalidades t 
+                            inner join Matriculas a on t.Matriculaid = a.Id AND
+                            t.DataDeVencimento BETWEEN DATEADD(DAY, 1, EOMONTH (GETDATE(), -2)) AND EOMONTH (GETDATE())
+                            WHERE t.StatusDaMensalidade = 'Vencido'";
+
+            List<Mensalidade> Mensalidades = new List<Mensalidade>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        var model = new Mensalidade
+                        {
+                            Id = (int)sdr["Id"],
+                            MatriculaId = (int)sdr["MatriculaId"],
+                            Matricula = new Matricula { Id = (int)sdr["MatriculaId"], Nome = sdr["Nome"].ToString() },
+                            DataDeVencimento = (DateTime)sdr["DataDeVencimento"],
+                            StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
+                            FormaDePagamento = sdr["FormaDePagamento"].ToString(),
+                            Valor = (decimal)sdr["Valor"],
+                            CPF = sdr["CPF"].ToString(),
+                            DiasVencidos = (int)sdr["DiasVencidos"]
+                        };
+                        Mensalidades.Add(model);
+                    }
+                }
+                con.Close();
+                return Mensalidades;
+            }
+        }
         public void AlterarMensalidadeParaVencido()
         {
             string query = @"UPDATE Mensalidades SET StatusDaMensalidade = 'Vencido'
@@ -81,28 +120,7 @@ namespace Web.BD.Repository
 
         public bool Atualizar(Mensalidade entityAntigo, Mensalidade entityNovo)
         {
-            //var date = entityNovo.DataDeVencimento;
-
-            //if (entityNovo.StatusDaMensalidade != "Pago" && entityNovo.StatusDaMensalidade != "PagoComAtraso")
-            //{
-            //    if (date > DateTime.Now)
-            //    {
-            //        if ((DateTime.Now.Date.AddDays(5)) >= date && date <= (DateTime.Now.Date.AddDays(5)))
-            //        {
-            //            entityNovo.StatusDaMensalidade = "ProximoDaDataDeVencimento";
-            //        }
-            //        else
-            //        {
-            //            entityNovo.StatusDaMensalidade = "EmHaver";
-            //        }
-            //    }
-
-            //    if (date.Date < DateTime.Now.Date)
-            //    {
-            //        entityNovo.StatusDaMensalidade = "Vencido";
-            //    }
-            //}
-
+            
             string unicaOuTodaMensalidade = entityNovo.EditarTodasMensalidades ? 
                 @"DataDeVencimento IS NOT NULL AND
                   Valor IS NOT NULL AND" 
@@ -208,7 +226,7 @@ namespace Web.BD.Repository
         }
         public List<Mensalidade> ListaMensalidade()
         {
-            string query = @"SELECT t.*, a.Nome, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos
+            string query = @"SELECT t.*, a.Nome, a.CPF, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos
                             from Mensalidades t 
                             inner join Matriculas a on t.Matriculaid = a.Id AND
                             t.DataDeVencimento BETWEEN DATEADD(DAY, 1, EOMONTH (GETDATE(), -2)) AND EOMONTH (GETDATE()) ";
@@ -230,34 +248,13 @@ namespace Web.BD.Repository
                             Id = (int)sdr["Id"],
                             MatriculaId = (int)sdr["MatriculaId"],
                             Matricula = new Matricula { Id = (int)sdr["MatriculaId"], Nome = sdr["Nome"].ToString() },
-                            //ModalidadeId = (int)sdr["ModalidadeId"],
-                            //Modalidade = new Modalidade { Id = (int)sdr["ModalidadeId"], TipoModalidade = sdr["TipoModalidade"].ToString(), Descricao = sdr["DescricaoModalidade"].ToString() },
-                            //TurmaId = (int)sdr["TurmaId"],
-                            //Turma = new Turma { Id = (int)sdr["TurmaId"], Descricao = sdr["DescricaoTurma"].ToString() },
                             DataDeVencimento = (DateTime)sdr["DataDeVencimento"],
                             StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
                             FormaDePagamento = sdr["FormaDePagamento"].ToString(),
                             Valor = (decimal)sdr["Valor"],
-                            DiasVencidos = (int)sdr["DiasVencidos"]
+                            DiasVencidos = (int)sdr["DiasVencidos"],
+                            CPF = sdr["CPF"].ToString(),
                         };
-
-                        //if (model.DataDeVencimento.Date > DateTime.Now.Date)
-                        //{
-                        //    if (model.DataDeVencimento.Date >= (DateTime.Now.Date.AddDays(5)) && model.DataDeVencimento.Date <= (DateTime.Now.Date.AddDays(5)))
-                        //    {
-                        //        model.StatusDaMensalidade = "ProximoDaDataDeVencimento";
-                        //    }
-                        //    else
-                        //    {
-                        //        model.StatusDaMensalidade = "EmHaver";
-                        //    }
-                        //}
-                        //else if (model.DataDeVencimento.Date < DateTime.Now.Date)
-                        //{
-                        //    model.StatusDaMensalidade = "Vencido";
-                        //}
-
-
                         Mensalidades.Add(model);
                     }
                 }
