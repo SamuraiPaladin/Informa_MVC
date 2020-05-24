@@ -355,7 +355,7 @@ namespace Web.BD.Repository
                              or @HorarioFinal between HorarioInicial and HorarioFinal
                              and ( HorarioInicial >= @HorarioInicial and HorarioFinal<= @HorarioFinal)";
 
-                var result = false;
+            var result = false;
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -380,7 +380,7 @@ namespace Web.BD.Repository
                 }
                 foreach (var item in lista)
                 {
-                    if (item.DiaDaSemana == entity.DiaDaSemana)
+                    if (item.DiaDaSemana.Replace(" ", "").Split(',').Intersect(entity.DiaDaSemana.Replace(" ", "").Split(',')).Any())
                         return true;
                 }
             }
