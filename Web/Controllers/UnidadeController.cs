@@ -58,7 +58,7 @@ namespace Web.Controllers
                 return Json("Preenchimento obrigatório");
             else
                 if (!dAOUnidade.VerificarSeJaExiste(unidadeEditar, 1))
-                return Json(!dAO.Atualizar(unidade, unidadeEditar));
+                return Json(dAO.Atualizar(unidade, unidadeEditar));
             else
                 return Json(false);
         }
