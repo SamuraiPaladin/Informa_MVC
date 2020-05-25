@@ -2,23 +2,15 @@
     ViewData["Title"] = "Principal";
 }
 
-<head>
-
-</head>
-<div class="parallax-container" id="parallaxIndex" style="height:220px">
+<div class="parallax-container" id="parallaxIndex" style="height: 200px">
     <div class="parallax"><img src="~/imgs/img-parallaxx.jfif"></div>
     <div class="row container">
         <div class="col s12 l6">
             <h5 id="bemvindo">Bem vindo, <strong>Diego</strong> ;)</h5>
-            <h5 id="data"></h5>
-            <p id="temperaturaDados">
-                <span id="locale"> </span><br>
-                <img id="iconweather" width="60" />
-                <span id="icontemperature"><span id="graus"></span> °c</span>
-            </p>
+            <h5 id="data" style="position:relative;top:40px;"></h5>
         </div>
         <div class="col s12 l6">
-            <span class="right" id="horario"><i class="material-icons small" style="position:relative;top:5px">av_timer</i> <span id="horarioAtual"></span> </span>
+            <span class="right" id="horario" style="position:relative;top:-10px;"><i class="material-icons small" style="position:relative;top:5px">av_timer</i> <span id="horarioAtual"></span> </span>
         </div>
     </div>
 </div>
@@ -34,7 +26,7 @@
         <i class="material-icons iconRapido large">attach_money</i>
         @if (ViewBag.Quantidade == 0)
         {
-            <h5 id="situacaoAlunos" style="margin-left:60px"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a></h5>
+            <h5 id="situacaoAlunos"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a></h5>
         }
         else
         {
