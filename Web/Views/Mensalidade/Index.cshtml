@@ -2,7 +2,13 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<head>
+    <style>
+        .dropdown-content li > a, .dropdown-content li > span {
+            color: #af2405;
+        }
+    </style>
+</head>
 <!-- BREADCRUMB -->
 <nav class="clean container">
     <div class="nav-wrapper">
@@ -24,39 +30,40 @@
     <div id="modaCadastrar" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Cadastrar Mensalidade</h4>
+                <h4 class="flow-text center">CADASTRAR MENSALIDADE</h4>
             </div>
+            <br /><br />
 
             <div class="col s12 l12">
                 <form class="col s12 l12" id="formularioEditar">
 
-                    <div class="input-field col s6">
-                        <a class='dropdown-trigger btn' href='#' data-target='MatriculaCadastrar' id="MatriculaDropDownCadastrar">Selecione um Matricula</a>
-                        <ul id='MatriculaCadastrar' class='dropdown-content'>
-                            @foreach (var item in Model.ListaMatricula)
-                            {
-                                <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
-                            }
-                        </ul>
-                    </div>
-
-                    <div class="input-field col s6">
+                    <div class="input-field col s4">
                         <label for="diaDeVencimento">Dia de Vencimento</label>
                         <br />
                         <input min='1' max='28' type="number" id="diaDeVencimento" value="01" class="validate">
                     </div>
 
 
-                    <div class="input-field col s6">
+                    <div class="input-field col s4">
                         <label for="quantidadeDeMeses">Quantidade de Meses:</label>
                         <br />
                         <input min='1' max='24' type="number" id="quantidadeDeMeses" value="1" class="validate">
                     </div>
 
-                    <div class="input-field col s6">
+                    <div class="input-field col s4">
                         <label for="valor">Valor</label>
                         <br />
-                        <input min='1' type="text" id="valor" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                        <input min='1' type="text" id="valor" placeholder="teste" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                    </div>
+
+                    <div class="input-field col s6">
+                        <a class='dropdown-trigger btn' href='#' data-target='MatriculaCadastrar' id="MatriculaDropDownCadastrar">Selecione uma Matricula</a>
+                        <ul id='MatriculaCadastrar' class='dropdown-content'>
+                            @foreach (var item in Model.ListaMatricula)
+                            {
+                                <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
+                            }
+                        </ul>
                     </div>
 
                     <div id="modalCadastroMensalidade" class="modal">
@@ -150,65 +157,57 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="editarMensalidadeDescricao"></h4>
+            <h4 class="flow-text center" id="editarMensalidadeDescricao"></h4>
         </div>
+        <br /><br />
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioEditar">
 
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='MatriculaEditar' id="MatriculaDropDownEditar">Selecione um Matricula</a>
-                    <ul id='MatriculaEditar' class='dropdown-content'>
-                        @foreach (var item in Model.ListaMatricula)
-                        {
-                            <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Editar')">@item.Nome</a></li>
-                        }
-                    </ul>
-                </div>
 
                 @*<div class="input-field col s6">
-                        <a class='dropdown-trigger7 btn' href='#' data-target='modalidadeEditar' id="modalidadeDropDownEditar">Selecione uma Modalidade</a>
-                        <ul id='modalidadeEditar' class='dropdown-content'>
-                            @foreach (var item in Model.ListaModalidade)
-                            {
-                                <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Editar')">@item.TipoModalidade</a></li>
-                            }
-                        </ul>
-                    </div>
+            <a class='dropdown-trigger7 btn' href='#' data-target='modalidadeEditar' id="modalidadeDropDownEditar">Selecione uma Modalidade</a>
+            <ul id='modalidadeEditar' class='dropdown-content'>
+                @foreach (var item in Model.ListaModalidade)
+                {
+                    <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Editar')">@item.TipoModalidade</a></li>
+                }
+            </ul>
+        </div>
 
-                    <div class="input-field col s6">
-                        <a class='dropdown-trigger8 btn' href='#' data-target='turmaEditar' id="turmaDropDownEditar">Selecione uma Turma</a>
-                        <ul id='turmaEditar' class='dropdown-content'>
-                            @foreach (var item in Model.ListaTurma)
-                            {
-                                <li><a onclick="editaTurmaSelecionado('@item.Descricao', '@item.Id', 'Editar')">@item.Descricao</a></li>
-                            }
-                        </ul>
-                    </div>*@
+        <div class="input-field col s6">
+            <a class='dropdown-trigger8 btn' href='#' data-target='turmaEditar' id="turmaDropDownEditar">Selecione uma Turma</a>
+            <ul id='turmaEditar' class='dropdown-content'>
+                @foreach (var item in Model.ListaTurma)
+                {
+                    <li><a onclick="editaTurmaSelecionado('@item.Descricao', '@item.Id', 'Editar')">@item.Descricao</a></li>
+                }
+            </ul>
+        </div>*@
 
 
                 @*<div class="input-field col s6">
-                        <a class='dropdown-trigger9 btn' href='#' data-target='statusEditar' id="statusDropDownEditar">Selecione o Status do Pagamento</a>
+            <a class='dropdown-trigger9 btn' href='#' data-target='statusEditar' id="statusDropDownEditar">Selecione o Status do Pagamento</a>
 
-                        <ul id='statusEditar' class='dropdown-content'>
-                            @foreach (var item in Model.StatusDasMensalidades)
-                            {
-                                <li><a onclick="editaStatusSelecionado('@item', 'Editar')">@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
-                            }
-                        </ul>
-                    </div>*@
+            <ul id='statusEditar' class='dropdown-content'>
+                @foreach (var item in Model.StatusDasMensalidades)
+                {
+                    <li><a onclick="editaStatusSelecionado('@item', 'Editar')">@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
+                }
+            </ul>
+        </div>*@
 
                 @*<div class="input-field col s6">
 
-                        <a class='dropdown-trigger10 btn' href='#' data-target='formaEditar' id="formaDropDownEditar">Selecione a Forma de Pagamento</a>
+            <a class='dropdown-trigger10 btn' href='#' data-target='formaEditar' id="formaDropDownEditar">Selecione a Forma de Pagamento</a>
 
-                        <ul id='formaEditar' class='dropdown-content'>
-                            @foreach (var item in Model.FormasDePagamentos)
-                            {
-                                <li><a onclick="editaFormaSelecionado('@item', 'Editar')">@item</a></li>
-                            }
-                        </ul>
-                    </div>*@
+            <ul id='formaEditar' class='dropdown-content'>
+                @foreach (var item in Model.FormasDePagamentos)
+                {
+                    <li><a onclick="editaFormaSelecionado('@item', 'Editar')">@item</a></li>
+                }
+            </ul>
+        </div>*@
 
                 <div class="input-field col s6">
                     <label for="diaDeVencimento">Dia de Vencimento</label>
@@ -222,11 +221,21 @@
                     <input min='1' type="text" id="valorEditar" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
                 </div>
 
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <label>
                         <input id="todoMes" type="checkbox" />
-                        <span style="color:red">Alterar Pagamento Para Todos os Meses</span>
+                        <span style="color:red; font-weight:600">Alterar Pagamento Para Todos os Meses</span>
                     </label>
+                </div>
+
+                <div class="input-field col s6">
+                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='MatriculaEditar' id="MatriculaDropDownEditar">Selecione um Matricula</a>
+                    <ul id='MatriculaEditar' class='dropdown-content'>
+                        @foreach (var item in Model.ListaMatricula)
+                        {
+                            <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Editar')">@item.Nome</a></li>
+                        }
+                    </ul>
                 </div>
 
                 <div id="modalCadastroMensalidade" class="modal">
@@ -254,7 +263,7 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="deletarMensalidadeDescricao"></h4>
+            <h4 class="flow-text center" id="deletarMensalidadeDescricao"></h4>
         </div>
 
         <div class="col s12 l12">
@@ -358,7 +367,7 @@
 <div id="modalPagamento" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="pagarMensalidadeDescricao"></h4>
+            <h4 class="flow-text" id="pagarMensalidadeDescricao"></h4>
         </div>
 
         <div class="col s12 l12">
