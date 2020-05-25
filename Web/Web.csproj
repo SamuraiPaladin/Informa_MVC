@@ -850,6 +850,7 @@
     <Content Include="Views\Aula\Index.cshtml" />
     <Content Include="Views\Matricula\_Deletar.cshtml" />
     <Content Include="Views\Matricula\_Cadastrar.cshtml" />
+    <Content Include="Views\Inadimplentes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
