@@ -1,15 +1,18 @@
 ﻿@model  Model.Entity.Matricula
-
+    <head>
+        <style>
+            [type="checkbox"]:checked + span:not(.lever):before {
+                border-right: 2px solid #af2405;
+                border-bottom: 2px solid #af2405;
+            }
+        </style>
+    </head>
 <div id="modalCadastrar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text ">Cadastrar Aluno</h4>
+            <h4 class="flow-text center">CADASTRAR ALUNO</h4>
         </div>
         <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
-        <br />
         <div class="col s12 l12">
             <form class="col s12 l12">
                 <div class="input-field col s6">
