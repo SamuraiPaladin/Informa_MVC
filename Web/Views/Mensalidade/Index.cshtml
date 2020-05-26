@@ -2,13 +2,13 @@
 @{
     ViewData["Title"] = "Index";
 }
-<head>
-    <style>
-        .dropdown-content li > a, .dropdown-content li > span {
-            color: #af2405;
-        }
-    </style>
-</head>
+    <head>
+        <style>
+            .dropdown-content li > a, .dropdown-content li > span {
+                color: #000000;
+            }
+        </style>
+    </head>
 <!-- BREADCRUMB -->
 <nav class="clean container">
     <div class="nav-wrapper">
@@ -28,7 +28,7 @@
     <a id="cadastrarMensalidade" href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Mensalidade</a>
 
     <div id="modaCadastrar" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="height:400px">
             <div class="modal-header">
                 <h4 class="flow-text center">CADASTRAR MENSALIDADE</h4>
             </div>
@@ -37,7 +37,7 @@
             <div class="col s12 l12">
                 <form class="col s12 l12" id="formularioEditar">
 
-                    <div class="input-field col s6">
+                    <div class="input-field col s12">
 
                         <select id="MatriculaDropDownCadastrar">
                             <option disabled selected value="">Selecione a matricula</option>
@@ -50,22 +50,19 @@
 
                     </div>
 
-                    <div class="input-field col s6">
+                    <div class="input-field col s4">
                         <label for="diaDeVencimento">Dia de Vencimento</label>
-                        <br />
                         <input min='1' max='28' type="number" id="diaDeVencimento" value="01" class="validate">
                     </div>
 
 
                     <div class="input-field col s4">
                         <label for="quantidadeDeMeses">Quantidade de Meses:</label>
-                        <br />
                         <input min='1' max='24' type="number" id="quantidadeDeMeses" value="1" class="validate">
                     </div>
 
                     <div class="input-field col s4">
                         <label for="valor">Valor</label>
-                        <br />
                         <input min='1' type="text" id="valor" placeholder="100.00, 200.00, 300.00" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
                     </div>
 
