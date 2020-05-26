@@ -31,13 +31,16 @@
                 <form class="col s12 l12" id="formularioEditar">
 
                     <div class="input-field col s6">
-                        <a class='dropdown-trigger btn' href='#' data-target='MatriculaCadastrar' id="MatriculaDropDownCadastrar">Selecione um Matricula</a>
-                        <ul id='MatriculaCadastrar' class='dropdown-content'>
+
+                        <select id="MatriculaDropDownCadastrar">
+                            <option disabled selected value="">Selecione a matricula</option>
                             @foreach (var item in Model.ListaMatricula)
                             {
-                                <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
+                                <option value="@item.Id">@item.Nome</option>
                             }
-                        </ul>
+                        </select>
+                        <label>Matricula</label>
+
                     </div>
 
                     <div class="input-field col s6">
@@ -156,14 +159,14 @@
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioEditar">
 
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='MatriculaEditar' id="MatriculaDropDownEditar">Selecione um Matricula</a>
-                    <ul id='MatriculaEditar' class='dropdown-content'>
+                <div id="MatriculaEditar" class="input-field col s6">
+                    <select disabled id="MatriculaDropDownEditar">
                         @foreach (var item in Model.ListaMatricula)
                         {
-                            <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Editar')">@item.Nome</a></li>
+                            <option value="@item.Id">@item.Nome</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Matricula</label>
                 </div>
 
                 @*<div class="input-field col s6">
@@ -260,15 +263,14 @@
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioDeletar">
 
-
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='MatriculaDeletar' id="MatriculaDropDownDeletar">Selecione um Matricula</a>
-                    <ul id='MatriculaDeletar' class='dropdown-content'>
+                <div id="MatriculaDeletar" class="input-field col s6">
+                    <select disabled id="MatriculaDropDownDeletar">
                         @foreach (var item in Model.ListaMatricula)
                         {
-                            <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Deletar')">@item.Nome</a></li>
+                            <option value="@item.Id">@item.Nome</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Matricula</label>
                 </div>
 
                 @*<div class="input-field col s6">
@@ -292,28 +294,28 @@
                     </div>*@
 
 
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger9 btn' href='#' data-target='statusDeletar' id="statusDropDownDeletar">Selecione o Status do Pagamento</a>
+                @*<div class="input-field col s6">
+                        <a disabled class='dropdown-trigger9 btn' href='#' data-target='statusDeletar' id="statusDropDownDeletar">Selecione o Status do Pagamento</a>
 
-                    <ul id='statusDeletar' class='dropdown-content'>
-                        @foreach (var item in Model.StatusDasMensalidades)
-                        {
-                            <li><a onclick="editaStatusSelecionado('@item', 'Deletar')">@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
-                        }
-                    </ul>
-                </div>
+                        <ul id='statusDeletar' class='dropdown-content'>
+                            @foreach (var item in Model.StatusDasMensalidades)
+                            {
+                                <li><a onclick="editaStatusSelecionado('@item', 'Deletar')">@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
+                            }
+                        </ul>
+                    </div>
 
-                <div class="input-field col s6">
+                    <div class="input-field col s6">
 
-                    <a disabled class='dropdown-trigger10 btn' href='#' data-target='formaDeletar' id="formaDropDownDeletar">Selecione a Forma de Pagamento</a>
+                        <a disabled class='dropdown-trigger10 btn' href='#' data-target='formaDeletar' id="formaDropDownDeletar">Selecione a Forma de Pagamento</a>
 
-                    <ul id='formaDeletar' class='dropdown-content'>
-                        @foreach (var item in Model.FormasDePagamentos)
-                        {
-                            <li><a onclick="editaFormaSelecionado('@item', 'Deletar')">@item</a></li>
-                        }
-                    </ul>
-                </div>
+                        <ul id='formaDeletar' class='dropdown-content'>
+                            @foreach (var item in Model.FormasDePagamentos)
+                            {
+                                <li><a onclick="editaFormaSelecionado('@item', 'Deletar')">@item</a></li>
+                            }
+                        </ul>
+                    </div>*@
 
                 <div class="input-field col s6">
                     <label for="diaDeVencimento">Dia de Vencimento</label>
@@ -364,18 +366,18 @@
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioPagamento">
 
-
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='MatriculaPagamento' id="MatriculaDropDownPagamento">Selecione um Matricula</a>
-                    <ul id='MatriculaDropDownPagamento' class='dropdown-content'>
+                <div disabled id="MatriculaPagamento" class="input-field col s6">
+                    <select disabled id="MatriculaDropDownPagamento">
                         @foreach (var item in Model.ListaMatricula)
                         {
-                            <li><a>@item.Nome</a></li>
+                            <option value="@item.Id">@item.Nome</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Matricula</label>
                 </div>
 
-                <div class="input-field col s6">
+
+                @*<div class="input-field col s6">
                     <a disabled class='dropdown-trigger9 btn' href='#' data-target='statusPagamento' id="statusDropDownPagamento">Selecione o Status do Pagamento</a>
 
                     <ul id='statusPagamento' class='dropdown-content'>
@@ -384,13 +386,13 @@
                             <li><a>@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
                         }
                     </ul>
-                </div>
+                </div>*@
 
                 <div class="input-field col s6">
 
                     <label for="valor" id="labelValorAPagar">Valor</label>
                     <br />
-                    <input disabled min='1' type="text" id="valorPagamento" class="validate"  onKeyPress="return(moeda(this,'.',',',event))">
+                    <input disabled min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
                 </div>
 
                 <div class="input-field col s6">
@@ -399,17 +401,18 @@
                     <input disabled type="date" id="diaDeVencimentoPagamento" name="datadevencimento">
                 </div>
 
-                <div class="input-field col s6">
+                <div id="formaPagamento" class="input-field col s6">
 
-                    <a class='dropdown-trigger11 btn' href='#' data-target='formaPagamento' id="formaDropDownPagamento">Selecione a forma de pagamento</a>
-
-                    <ul id='formaPagamento' class='dropdown-content'>
+                    <select id="formaDropDownPagamento">
+                        <option disabled selected value="">Selecione a forma de pagamento</option>
                         @foreach (var item in Model.FormasDePagamentos)
                         {
-                            <li><a onclick="editaFormaSelecionado('@item', 'Pagamento')">@item</a></li>
+                            <option value="@item">@item</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Forma de pagamento</label>
                 </div>
+
 
                 <div id="modalPagamentoMensalidade" class="modal">
                     <div class="modal-content">
@@ -457,7 +460,14 @@
                 valorPagamento = valor;
 
 
-            document.getElementById('MatriculaDropDown' + model).text = nomeMatricula;
+            $('#Matricula' + model)[0].children[0].children[0].value = nomeMatricula;
+
+            for (i = 0; i < $('#MatriculaDropDown' + model)[0].length; i++) {
+                if ($('#MatriculaDropDown' + model)[0].children[i].value == parseInt(Matricula)) {
+                    $('#MatriculaDropDown' + model)[0].children[i].selected = true;
+                }
+            }
+
             document.getElementById('MatriculaDropDown' + model).MatriculaId = Matricula;
 
             //document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
@@ -562,7 +572,7 @@
                 Id: valorId,
                 MatriculaId: valorMatricula,
                 DataDeVencimento: valorVencimento,
-                FormaDePagamento: document.getElementById("formaDropDownPagamento").text != "Selecione a forma de pagamento" ? document.getElementById("formaDropDownPagamento").text : "Debito",
+                FormaDePagamento: $('#formaDropDownPagamento').val() == null ? "Debito" : $('#formaDropDownPagamento').val(),
                 StatusDaMensalidade: 'Pago',
                 Valor: document.getElementById('valorPagamento').value,
                 EditarTodasMensalidades: false,
@@ -642,7 +652,7 @@
 
         function Adicionar() {
             var mensalidade = {
-                MatriculaId: document.getElementById('MatriculaDropDownCadastrar').MatriculaId,
+                MatriculaId: $('#MatriculaDropDownCadastrar').val(),
                 //ModalidadeId: document.getElementById('modalidadeDropDownCadastrar').ModalidadeId,
                 //TurmaId: document.getElementById('turmaDropDownCadastrar').TurmaId,
                 Dia: document.getElementById("diaDeVencimento").value,

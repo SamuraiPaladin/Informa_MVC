@@ -79,7 +79,7 @@ namespace Web.Controllers
 
         private static bool VerificaSeTemCampoVazioOuNulo(Mensalidade Mensalidade)
         {
-            return string.IsNullOrWhiteSpace(Mensalidade.MatriculaId.ToString()) ||
+            return string.IsNullOrWhiteSpace(Mensalidade.MatriculaId.ToString()) || Mensalidade.MatriculaId == 0 ||
                    //string.IsNullOrWhiteSpace(Mensalidade.ModalidadeId.ToString()) ||
                    //string.IsNullOrWhiteSpace(Mensalidade.TurmaId.ToString()) ||
                    string.IsNullOrWhiteSpace(Mensalidade.StatusDaMensalidade.ToString()) ||
