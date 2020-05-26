@@ -66,10 +66,10 @@
                     <div class="input-field col s4">
                         <label for="valor">Valor</label>
                         <br />
-                        <input min='1' type="text" id="valor" placeholder="teste" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                        <input min='1' type="text" id="valor" placeholder="100.00, 200.00, 300.00" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
                     </div>
 
-                    <div class="input-field col s6">
+                    @*<div class="input-field col s6">
                         <a class='dropdown-trigger btn' href='#' data-target='MatriculaCadastrar' id="MatriculaDropDownCadastrar">Selecione uma Matricula</a>
                         <ul id='MatriculaCadastrar' class='dropdown-content'>
                             @foreach (var item in Model.ListaMatricula)
@@ -77,7 +77,7 @@
                                 <li><a onclick="editaMatriculaSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
                             }
                         </ul>
-                    </div>
+                    </div>*@
 
                     <div id="modalCadastroMensalidade" class="modal">
                         <div class="modal-content">
