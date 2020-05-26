@@ -23,19 +23,14 @@
 <div id="cadastrarAulaModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text">Cadastrar Aula</h4>
+            <h4 class="flow-text center">Cadastrar Aula</h4>
         </div>
-
         <br /><br />
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="">
-                <div class="input-field col s4">
-                    <input placeholder="Ex: T01, T02" id="" type="text" id="codigoTurma" class="validate">
-                    <label for="codigoTurma">Código Turma</label>
-                </div>
 
-                <div class="input-field col s4">
+                <div class="input-field col s9">
                     <select>
                         <option value="" disabled selected>Escolha a Turma</option>
                         <option value="1">Turma x</option>
@@ -45,30 +40,42 @@
                     <label>Turma</label>
                 </div>
 
-                <div class="input-field col s4">
-                    <input placeholder="Ex: 31/10/199" id="dataAula" type="text" class="validate">
-                    <label for="dataAula">Data da Aula</label>
+                <div class="input-field col s3">
+                    <input placeholder="Di032" id="codigoAula" type="text" class="validate">
+                    <label for="codigoAula">Codigo da Turma</label>
+                </div>
+
+                <div class="input-field col s3">
+                    <input placeholder="Diego Souza" id="professorTurma" type="text" class="validate" disabled>
+                    <label for="professorTurma">Professor da Turma</label>
+                </div>
+
+                <div class="input-field col s3">
+                    <input placeholder="Judo" type="text" id="modalidade" class="validate" disabled>
+                    <label for="modalidade">Modalidade</label>
+                </div>
+
+                <div class="input-field col s3">
+                    <input placeholder="Infantil" id="faixaEtaria" type="text" class="validate" disabled>
+                    <label for="faixaEtaria">Faixa Etária</label>
+                </div>
+
+
+                <div class="input-field col s3">
+                    <input placeholder="Seg, Ter, Sab" id="diasSemanas" type="text" class="validate" disabled>
+                    <label for="diasSemanas">Dias da semana</label>
                 </div>
 
                 <div class="input-field col s6">
-                    <select>
-                        <option value="" disabled selected>Escolha o Curso</option>
-                        <option value="1">Curso x</option>
-                        <option value="2">Curso y</option>
-                        <option value="3">Curso z</option>
-                    </select>
-                    <label>Curso</label>
+                    <input placeholder="12:00" id="dataAulaInicio" type="text" class="validate" disabled>
+                    <label for="dataAulaInicio">Horário inicio</label>
                 </div>
 
                 <div class="input-field col s6">
-                    <select>
-                        <option value="" disabled selected>Escolha o Período</option>
-                        <option value="1">Manhã</option>
-                        <option value="2">Tarde</option>
-                        <option value="3">Noite</option>
-                    </select>
-                    <label>Período do Curso</label>
+                    <input placeholder="12:30" id="dataAulaFim" type="text" class="validate" disabled>
+                    <label for="dataAulaFim">Horário final</label>
                 </div>
+
 
             </form>
         </div>
@@ -87,11 +94,14 @@
         <table class="highlight centered tabela">
             <thead>
                 <tr>
-                    <th>Código</th>
+                    <th>Código Aula</th>
                     <th>Turma</th>
-                    <th>Data</th>
-                    <th>Curso</th>
-                    <th>Período</th>
+                    <th>Professor</th>
+                    <th>Faixa Etaria</th>
+                    <th>Dias da Aula</th>
+                    <th>Inicio</th>
+                    <th>Final</th>
+
                     <th></th>
                 </tr>
             </thead>
@@ -99,9 +109,11 @@
                 <tr>
                     <td>T010</td>
                     <td>Turma 012</td>
-                    <td>31/10/1999</td>
-                    <td>Natação</td>
-                    <td>Manhã </td>
+                    <td>Diego Souza</td>
+                    <td>Infantil</td>
+                    <td>Seg, Ter, Sab</td>
+                    <td>13:30</td>
+                    <td>14:00</td>
                     <td>
                         <a id="editarCargo" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
                         <a id="deletarCargo" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"><i class="material-icons">delete_forever</i></a>
@@ -115,17 +127,11 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text" id="editarAulaModal">Editar Dados da Aula 'tal'</h4>
+            <h4 class="flow-text center" id="editarAulaModal">Editar Dados da Aula 'tal'</h4>
         </div>
-
         <br /><br />
 
-        <div class="input-field col s4">
-            <input placeholder="Ex: T01, T02" id="" type="text" id="codigoTurma" class="validate">
-            <label for="codigoTurma">Código Turma</label>
-        </div>
-
-        <div class="input-field col s4">
+        <div class="input-field col s9">
             <select>
                 <option value="" disabled selected>Escolha a Turma</option>
                 <option value="1">Turma x</option>
@@ -135,29 +141,53 @@
             <label>Turma</label>
         </div>
 
-        <div class="input-field col s4">
-            <input placeholder="Ex: 31/10/199" id="dataAula" type="text" class="validate">
-            <label for="dataAula">Data da Aula</label>
+        <div class="input-field col s3">
+            <input placeholder="Di032" id="codigoAula" type="text" class="validate">
+            <label for="codigoAula">Codigo da Turma</label>
+        </div>
+
+        <div class="input-field col s3">
+            <input placeholder="Diego Souza" id="professorTurma" type="text" class="validate" disabled>
+            <label for="professorTurma">Professor da Turma</label>
+        </div>
+
+        <div class="input-field col s3">
+            <input placeholder="Judo" type="text" id="modalidade" class="validate" disabled>
+            <label for="modalidade">Modalidade</label>
+        </div>
+
+        <div class="input-field col s3">
+            <input placeholder="Infantil" id="faixaEtaria" type="text" class="validate" disabled>
+            <label for="faixaEtaria">Faixa Etária</label>
+        </div>
+
+
+        <div class="input-field col s3">
+            <input placeholder="Seg, Ter, Sab" id="diasSemanas" type="text" class="validate" disabled>
+            <label for="diasSemanas">Dias da semana</label>
         </div>
 
         <div class="input-field col s6">
-            <select>
-                <option value="" disabled selected>Escolha o Curso</option>
-                <option value="1">Curso x</option>
-                <option value="2">Curso y</option>
-                <option value="3">Curso z</option>
-            </select>
-            <label>Curso</label>
+            <input placeholder="12:00" id="dataAulaInicio" type="text" class="validate" disabled>
+            <label for="dataAulaInicio">Horário inicio</label>
         </div>
 
         <div class="input-field col s6">
-            <select>
-                <option value="" disabled selected>Escolha o Período</option>
-                <option value="1">Manhã</option>
-                <option value="2">Tarde</option>
-                <option value="3">Noite</option>
-            </select>
-            <label>Período do Curso</label>
+            <input placeholder="12:30" id="dataAulaFim" type="text" class="validate" disabled>
+            <label for="dataAulaFim">Horário final</label>
+        </div>
+
+        <h4 class="flow-text center subtitleModal">MATRICULAS ATRELADAS</h4>
+        <div class="input-field col s12">
+            <div class="chip">Diego Souza</div>
+            <div class="chip">Diego Souza</div>
+            <div class="chip">Diego Souza</div>
+            <div class="chip">Diego Souza</div>
+            <div class="chip">Diego Souza</div>
+            <div class="chip">Diego Souza</div>
+            <div class="chip">Diego Souza</div>
+            <div class="chip">Diego Souza</div>
+            <div class="chip">Diego Souza</div>
         </div>
 
 
@@ -212,4 +242,9 @@
         <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Deletar</a>
     </div>
 </div>
-
+@section scripts{
+    <script>
+        $('.chips').chips();
+       
+    </script>
+}
