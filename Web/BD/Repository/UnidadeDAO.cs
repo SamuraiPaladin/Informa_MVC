@@ -7,9 +7,10 @@ using System.Linq;
 using System.Web;
 using Web.BD.Interface;
 
+
 namespace Web.BD.Repository
 {
-    public class UnidadeDAO : IDAO<Unidade>
+    public class UnidadeDAO : IUnidadeDAO<Unidade>
     {
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Unidade entity)
@@ -128,10 +129,6 @@ namespace Web.BD.Repository
             return GravarERetornarVerdadeiroOuFalse(entity, query, acao);
         }
 
-        public bool VerificarSeJaExiste(Unidade entity)
-        {
-            throw new NotImplementedException();
-        }
 
         private bool GravarERetornarVerdadeiroOuFalse(Unidade entity, string query, int acao)
         {

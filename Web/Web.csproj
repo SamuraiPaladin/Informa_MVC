@@ -222,9 +222,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BD\Interface\IAulaTurmaDAO.cs" />
     <Compile Include="BD\Interface\IDAO.cs" />
     <Compile Include="BD\Interface\IDAOMatricula.cs" />
     <Compile Include="BD\Interface\IDAOPrincipal.cs" />
+    <Compile Include="BD\Interface\IUnidadeDAO.cs" />
+    <Compile Include="BD\Repository\AulaTurmaDAO.cs" />
     <Compile Include="BD\Repository\MatriculaDAO.cs" />
     <Compile Include="BD\Repository\MensalidadeDAO.cs" />
     <Compile Include="BD\Repository\PrincipalDAO.cs" />

@@ -14,8 +14,7 @@ namespace Web.Controllers
 {
     public class UnidadeController : Controller
     {
-        private readonly IDAO<Unidade> dAO = new UnidadeDAO();
-        private readonly UnidadeDAO dAOUnidade = new UnidadeDAO();
+        private readonly IUnidadeDAO<Unidade> dAO = new UnidadeDAO();
 
         public ActionResult Index()
         {
@@ -40,7 +39,7 @@ namespace Web.Controllers
                 return Json("Preenchimento obrigatório");
             else
             {
-                if (!dAOUnidade.VerificarSeJaExiste(unidade, 0))
+                if (!dAO.VerificarSeJaExiste(unidade, 0))
                     return Json(dAO.Adicionar(unidade));
                 else
                     return Json(false);
@@ -57,7 +56,7 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(unidadeEditar))
                 return Json("Preenchimento obrigatório");
             else
-                if (!dAOUnidade.VerificarSeJaExiste(unidadeEditar, 1))
+                if (!dAO.VerificarSeJaExiste(unidadeEditar, 1))
                 return Json(dAO.Atualizar(unidade, unidadeEditar));
             else
                 return Json(false);
@@ -67,7 +66,7 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(unidade))
                 return Json("Preenchimento obrigatório");
             else
-                if (dAOUnidade.VerificarSeJaExiste(unidade, 0))
+                if (dAO.VerificarSeJaExiste(unidade, 0))
                 return Json(dAO.Deletar(unidade));
             else
                 return Json(false);

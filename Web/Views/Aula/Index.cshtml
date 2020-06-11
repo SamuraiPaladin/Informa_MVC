@@ -1,4 +1,4 @@
-﻿@model IList<Model.Entity.Funcao>
+﻿@model IList<Model.Entity.Aula>
 @{
     ViewData["Title"] = "Aulas";
 }
@@ -14,11 +14,11 @@
     </div>
 </nav>
 
-<div class="row container">
+@*<div class="row container">
     <div class="col s12 l12">
         <a id="cadastrarAula" class="btn waves-effect waves-light modal-trigger right" href="#cadastrarAulaModal">Cadastrar Aula</a>
     </div>
-</div>
+</div>*@
 
 <div id="cadastrarAulaModal" class="modal">
     <div class="modal-content">
@@ -96,37 +96,39 @@
 <div class="row container">
     <div class="col s12 l12">
 
-        <table class="highlight centered tabela">
+        @if (Model.Count > 0)
+        {
+            <table class="highlight centered" id="tabela">
             <thead>
                 <tr>
-                    <th>Código Aula</th>
                     <th>Turma</th>
                     <th>Professor</th>
                     <th>Faixa Etaria</th>
                     <th>Dias da Aula</th>
                     <th>Inicio</th>
                     <th>Final</th>
-
-                    <th></th>
+                    <th>Lista Alunos</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>T010</td>
-                    <td>Turma 012</td>
-                    <td>Diego Souza</td>
-                    <td>Infantil</td>
-                    <td>Seg, Ter, Sab</td>
-                    <td>13:30</td>
-                    <td>14:00</td>
-                    <td>
-                        <a id="editarCargo" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a id="deletarCargo" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"><i class="material-icons">delete_forever</i></a>
-                    </td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.DescricaoTurma</td>
+                        <td>@item.NomeColaborador</td>
+                        <td>@item.TipoFaixaEtaria</td>
+                        <td>@item.DiaDaSemana</td>
+                        <td>@item.HorarioInicial</td>
+                        <td>@item.HorarioFinal</td>
+                        <td>
+                            <a id="editarAula" class="btn-floating btn-sm waves-effect waves-light blue modal-trigger" href="#modalEditar" onclick="ModalListaPresenca(@item.TurmaId)"><i class="material-icons" >playlist_add_check</i></a>
+                        </td>
+                    </tr>
+                }
             </tbody>
 
         </table>
+        }
     </div>
 </div>
 <div id="modalEditar" class="modal">
@@ -216,7 +218,7 @@
         </div>
         <div class="col s12 l12">
             <div class="input-field col s4">
-                <input placeholder="Ex: T01, T02" id="" type="text" id="codigoTurma" class="validate" disabled>
+                <input placeholder="Ex: T01, T02"  type="text" id="codigoTurma" class="validate" disabled>
                 <label for="codigoTurma">Código Turma</label>
             </div>
 
