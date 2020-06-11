@@ -13,6 +13,47 @@ namespace Web.BD.Repository
     {
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
 
+        public IList<Aula> AlunosPorTurma()
+        {
+            string query = @"SELECT a.Id, a.MatriculaId, a.TurmaId, m.Nome, m.Email, m.CPF, m.DataNascimento, a.Presenca, t.Descricao, 
+                                t.HorarioInicial, t.HorarioFinal, t.DiaDaSemana
+                              FROM Matriculas m
+                              JOIN Aulas a ON m.Id = a.MatriculaId
+                              JOIN Turmas t ON t.Id = a.TurmaId
+                             WHERE a.Data = CONVERT(date, GETDATE()); ";
+            List<Aula> listaAulas = new List<Aula>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataReader sdr = cmd.ExecuteReader();
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        var aula = new Aula()
+                        {
+                            AulaId = Convert.ToInt32(sdr["Id"]),
+                            MatriculaId = Convert.ToInt32(sdr["MatriculaId"]),
+                            TurmaId = Convert.ToInt32(sdr["TurmaId"]),
+                            NomeAluno = sdr["Nome"].ToString(),
+                            Email = sdr["Email"].ToString(),
+                            CPF = sdr["CPF"].ToString(),
+                            DataNascimento = sdr["DataNascimento"].ToString(),
+                            Presenca = Convert.ToBoolean(sdr["Presenca"]),
+                            DescricaoTurma = sdr["Descricao"].ToString(),
+                            HorarioInicial = sdr["HorarioInicial"].ToString(),
+                            HorarioFinal = sdr["HorarioFinal"].ToString(),
+                            DiaDaSemana = sdr["DiaDaSemana"].ToString()
+                        };
+
+                        listaAulas.Add(aula);
+                    }
+                }
+            }
+            return listaAulas;
+        }
+
         public IList<Aula> AulasNaDataDeHoje()
         {
             string query = @"SET LANGUAGE 'Brazilian';

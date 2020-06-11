@@ -16,6 +16,8 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             IList<Aula> aulasNaDataDeHoje = _service.AulasNaDataDeHoje();
+            //Usar esse método no modal de matricula
+            IList<Aula> listaDeAulasPorTurma = _service.AlunosPorTurma();
             if (aulasNaDataDeHoje.Count() < 1)
             {
                 var listaDeAlunosParaPresencaAtual = _service.ListaDeAlunosParaPresencaAtual();
@@ -23,6 +25,7 @@ namespace Web.Controllers
                 {
                     _service.SalvarListaDePresencaParaDataAtual(listaDeAlunosParaPresencaAtual);
                 }
+
             }
             return View(_service.ListaDeTurmas());
         }
