@@ -854,6 +854,8 @@
     <Content Include="Views\Matricula\_Deletar.cshtml" />
     <Content Include="Views\Matricula\_Cadastrar.cshtml" />
     <Content Include="Views\Inadimplentes\Index.cshtml" />
+    <Content Include="Views\Aula\_TabelaTurmas.cshtml" />
+    <Content Include="Views\Aula\_ModelEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

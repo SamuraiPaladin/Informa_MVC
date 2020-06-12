@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Aulas";
 }
+
 <nav class="clean container">
     <div class="nav-wrapper">
         <div class="col s12">
@@ -14,250 +15,43 @@
     </div>
 </nav>
 
-@*<div class="row container">
-    <div class="col s12 l12">
-        <a id="cadastrarAula" class="btn waves-effect waves-light modal-trigger right" href="#cadastrarAulaModal">Cadastrar Aula</a>
-    </div>
-</div>*@
+@Html.Partial("_TabelaTurmas", Model)
+@Html.Partial("_ModelEditar", Model)
 
-<div id="cadastrarAulaModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="flow-text center">CADASTRAR AULA</h4>
-        </div>
-        <br /><br />
-
-        <div class="col s12 l12">
-            <form class="col s12 l12" id="">
-
-                <div class="input-field col s6">
-                    <select>
-                        <option value="" disabled selected>Escolha a Turma</option>
-                        <option value="1">Turma x</option>
-                        <option value="2">Turma y</option>
-                        <option value="3">Turma z</option>
-                    </select>
-                    <label>Turma</label>
-                </div>
-
-                <div class="input-field col s3">
-                    <input placeholder="Ex: Di032...." id="codigoAula" type="text" class="validate">
-                    <label for="codigoAula">Codigo da Turma</label>
-                </div>
-
-                <div class="input-field col s3">
-                    <input placeholder="Ex: 14" id="diaAula" type="text" class="validate">
-                    <label for="diaAula">Dia da Aula</label>
-                </div>
-
-                <div class="input-field col s3">
-                    <input placeholder="Diego Souza" id="professorTurma" type="text" class="validate" disabled>
-                    <label for="professorTurma">Professor da Turma</label>
-                </div>
-
-                <div class="input-field col s3">
-                    <input placeholder="Judo" type="text" id="modalidade" class="validate" disabled>
-                    <label for="modalidade">Modalidade</label>
-                </div>
-
-                <div class="input-field col s3">
-                    <input placeholder="Infantil" id="faixaEtaria" type="text" class="validate" disabled>
-                    <label for="faixaEtaria">Faixa Etária</label>
-                </div>
-
-
-                <div class="input-field col s3">
-                    <input placeholder="Seg, Ter, Sab" id="diasSemanas" type="text" class="validate" disabled>
-                    <label for="diasSemanas">Dias da semana</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="12:00" id="dataAulaInicio" type="text" class="validate" disabled>
-                    <label for="dataAulaInicio">Horário inicio</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="12:30" id="dataAulaFim" type="text" class="validate" disabled>
-                    <label for="dataAulaFim">Horário final</label>
-                </div>
-
-
-            </form>
-        </div>
-
-
-    </div>
-    <div class="modal-footer">
-        <a id="fecharCadastrarAula" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="cadastrarAula" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Cadastrar</a>
-    </div>
-</div>
-
-<div class="row container">
-    <div class="col s12 l12">
-
-        @if (Model.Count > 0)
-        {
-            <table class="highlight centered" id="tabela">
-            <thead>
-                <tr>
-                    <th>Turma</th>
-                    <th>Professor</th>
-                    <th>Faixa Etaria</th>
-                    <th>Dias da Aula</th>
-                    <th>Inicio</th>
-                    <th>Final</th>
-                    <th>Lista Chamada</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.DescricaoTurma</td>
-                        <td>@item.NomeColaborador</td>
-                        <td>@item.TipoFaixaEtaria</td>
-                        <td>@item.DiaDaSemana</td>
-                        <td>@item.HorarioInicial</td>
-                        <td>@item.HorarioFinal</td>
-                        <td>
-                            <a id="editarAula" class="btn-floating btn-sm waves-effect waves-light blue modal-trigger" href="#modalEditar" onclick="ModalListaPresenca(@item.TurmaId)"><i class="material-icons" >playlist_add_check</i></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-
-        </table>
-        }
-    </div>
-</div>
-
-<div id="modalEditar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="flow-text center" id="editarAulaModal">Editar Dados da Aula 'tal'</h4>
-        </div>
-        <br /><br />
-
-        <div class="input-field col s6">
-            <select>
-                <option value="" disabled selected>Escolha a Turma</option>
-                <option value="1">Turma x</option>
-                <option value="2">Turma y</option>
-                <option value="3">Turma z</option>
-            </select>
-            <label>Turma</label>
-        </div>
-
-        <div class="input-field col s3">
-            <input placeholder="Di032" id="codigoAula" type="text" class="validate">
-            <label for="codigoAula">Codigo da Turma</label>
-        </div>
-
-        <div class="input-field col s3">
-            <input placeholder="Ex: 14" id="diaAula" type="text" class="validate">
-            <label for="diaAula">Dia da Aula</label>
-        </div>
-
-        <div class="input-field col s3">
-            <input placeholder="Diego Souza" id="professorTurma" type="text" class="validate" disabled>
-            <label for="professorTurma">Professor da Turma</label>
-        </div>
-
-        <div class="input-field col s3">
-            <input placeholder="Judo" type="text" id="modalidade" class="validate" disabled>
-            <label for="modalidade">Modalidade</label>
-        </div>
-
-        <div class="input-field col s3">
-            <input placeholder="Infantil" id="faixaEtaria" type="text" class="validate" disabled>
-            <label for="faixaEtaria">Faixa Etária</label>
-        </div>
-
-
-        <div class="input-field col s3">
-            <input placeholder="Seg, Ter, Sab" id="diasSemanas" type="text" class="validate" disabled>
-            <label for="diasSemanas">Dias da semana</label>
-        </div>
-
-        <div class="input-field col s6">
-            <input placeholder="12:00" id="dataAulaInicio" type="text" class="validate" disabled>
-            <label for="dataAulaInicio">Horário inicio</label>
-        </div>
-
-        <div class="input-field col s6">
-            <input placeholder="12:30" id="dataAulaFim" type="text" class="validate" disabled>
-            <label for="dataAulaFim">Horário final</label>
-        </div>
-
-        <h4 class="flow-text center subtitleModal">MATRICULAS ATRELADAS</h4>
-        <div class="input-field col s12">
-            <div class="chip">Diego Souza</div>
-            <div class="chip">Diego Souza</div>
-            <div class="chip">Diego Souza</div>
-            <div class="chip">Diego Souza</div>
-            <div class="chip">Diego Souza</div>
-            <div class="chip">Diego Souza</div>
-            <div class="chip">Diego Souza</div>
-            <div class="chip">Diego Souza</div>
-            <div class="chip">Diego Souza</div>
-        </div>
-
-
-    </div>
-    <div class="modal-footer">
-        <a id="fecharEditar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="editar" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Atualizar</a>
-    </div>
-</div>
-
-
-<div id="modalDeletar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 id="deletarAulaModal">Tem certeza que deseja deletar a aula 'tal'?</h4>
-        </div>
-        <div class="col s12 l12">
-            <div class="input-field col s4">
-                <input placeholder="Ex: T01, T02"  type="text" id="codigoTurma" class="validate" disabled>
-                <label for="codigoTurma">Código Turma</label>
-            </div>
-
-            <div class="input-field col s4">
-                <select>
-                    <option value="" disabled selected>Escolha a Turma</option>
-                </select>
-                <label>Turma</label>
-            </div>
-
-            <div class="input-field col s4">
-                <input placeholder="Ex: 31/10/199" id="dataAula" type="text" class="validate">
-                <label for="dataAula">Data da Aula</label>
-            </div>
-
-            <div class="input-field col s6">
-                <select>
-                    <option value="" disabled selected>Escolha o Curso</option>
-                </select>
-                <label>Curso</label>
-            </div>
-
-            <div class="input-field col s6">
-                <select>
-                    <option value="" disabled selected>Escolha o Período</option>
-                </select>
-                <label>Período do Curso</label>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Deletar</a>
-    </div>
-</div>
 @section scripts{
     <script>
-        $('.chips').chips();
-       
+        function ModalListaPresenca(turmaId) {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("CarregarListaDeChamada", "Aula")",
+                     data: { turmaId: turmaId },
+                     success: function (dados) {
+                         if (dados.length > 0)
+                         {
+                             now = new Date;
+                             document.getElementById("editarAulaModal").innerText = "Lista de chamada Turma: " + dados[0].DescricaoTurma;
+                             document.getElementById("turma").value = dados[0].DescricaoTurma;
+                             document.getElementById("diaAula").value = now.getDay();
+                             document.getElementById("diasSemanas").value = dados[0].DiaDaSemana;
+                             document.getElementById("professorTurma").value = dados[0].NomeColaborador;
+                             document.getElementById("modalidade").value = dados[0].TipoModalidade;
+                             document.getElementById("faixaEtaria").value = dados[0].TipoFaixaEtaria;
+                             document.getElementById("dataAulaInicio").value = dados[0].HorarioInicial;
+                             document.getElementById("dataAulaFim").value = dados[0].HorarioFinal;
+                         }
+                         $("#Grid tr").remove();
+                         $(dados).each(function () {
+                             if (this.Presenca === true) {
+                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.Id + "' checked='checked' /><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                             } else {
+
+                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.Id + "'/><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0,10) + "</td></tr>");
+                             }
+                         });
+                }
+            });
+        }
+
     </script>
 }

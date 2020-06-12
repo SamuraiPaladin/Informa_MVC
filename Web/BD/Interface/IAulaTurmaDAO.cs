@@ -12,6 +12,6 @@ namespace Web.BD.Interface
         IList<Aula> AulasNaDataDeHoje();
         IList<Aula> ListaDeAlunosParaPresencaAtual();
         void SalvarListaDePresencaParaDataAtual(IList<Aula> listaDeAlunosParaPresencaAtual);
-        IList<Aula> AlunosPorTurma();
+        IList<Aula> AlunosPorTurma(int turmaId);
     }
 }

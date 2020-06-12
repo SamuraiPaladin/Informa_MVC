@@ -22,5 +22,6 @@ namespace Model.Entity
         public string CPF { get; set; }
         public string DataNascimento { get; set; }
         public DateTime Data { get; set; }
+        public string TipoModalidade { get; set; }
     }
 }

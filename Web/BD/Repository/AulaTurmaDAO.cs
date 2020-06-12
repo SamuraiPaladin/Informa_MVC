@@ -13,19 +13,23 @@ namespace Web.BD.Repository
     {
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
 
-        public IList<Aula> AlunosPorTurma()
+        public IList<Aula> AlunosPorTurma(int turmaId)
         {
             string query = @"SELECT a.Id, a.MatriculaId, a.TurmaId, m.Nome, m.Email, m.CPF, m.DataNascimento, a.Presenca, t.Descricao, 
-                                t.HorarioInicial, t.HorarioFinal, t.DiaDaSemana
-                              FROM Matriculas m
+                                t.HorarioInicial, t.HorarioFinal, t.DiaDaSemana, c.Nome as NomeColaborador,
+								ms.TipoModalidade, t.Tipo
+							  FROM Matriculas m
                               JOIN Aulas a ON m.Id = a.MatriculaId
                               JOIN Turmas t ON t.Id = a.TurmaId
-                             WHERE a.Data = CONVERT(date, GETDATE()); ";
+							  JOIN Colaboradores c ON c.Id = t.ColaboradorId
+							  JOIN Modalidades ms ON ms.Id = t.ModalidadeId
+                             WHERE  t.Id =  @TurmaId  AND a.Data = CONVERT(date, GETDATE()); ";
             List<Aula> listaAulas = new List<Aula>();
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@TurmaId", turmaId);
                 SqlDataReader sdr = cmd.ExecuteReader();
                 if (sdr.HasRows)
                 {
@@ -44,7 +48,10 @@ namespace Web.BD.Repository
                             DescricaoTurma = sdr["Descricao"].ToString(),
                             HorarioInicial = sdr["HorarioInicial"].ToString(),
                             HorarioFinal = sdr["HorarioFinal"].ToString(),
-                            DiaDaSemana = sdr["DiaDaSemana"].ToString()
+                            DiaDaSemana = sdr["DiaDaSemana"].ToString(),
+                            NomeColaborador= sdr["NomeColaborador"].ToString(),
+                            TipoModalidade = sdr["TipoModalidade"].ToString(),
+                            TipoFaixaEtaria = sdr["Tipo"].ToString()
                         };
 
                         listaAulas.Add(aula);
