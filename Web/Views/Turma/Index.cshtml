@@ -46,18 +46,7 @@
                     </div>
 
                     <div class="input-field col s6">
-                        @*<select id="diasdasemana" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
-            </select>
-            <label for="diasdasemana">Dias da semana</label>*@
-                        @* <a class='dropdown-trigger3 btn' href='#' data-target='diasdasemanaCadastrar' id="diasdasemanaDropDownCadastrar">Selecione o Dia</a>
-            <!-- Dropdown Structure -->
-            <ul id='diasdasemanaCadastrar' class='dropdown-content'>
-                @foreach (var item in Model.DiasDaSemana)
-                {
-                    <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Cadastrar')">@item</a></li>
-                }
-            </ul>*@
-
+                 
                         <select multiple id="diasdasemanaDropDownCadastrar">
                             <option value="" disabled selected>Dias da Semana: </option>
                             @foreach (var item in Model.DiasDaSemana)
@@ -69,49 +58,42 @@
                     </div>
 
                     <div class="input-field col s4">
-                        @*<select id="nome" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
-            </select>
-            <label for="nome">Professor</label>*@
-                        <!-- Dropdown Trigger -->
-                        <a class='dropdown-trigger btn' href='#' data-target='nomeCadastrar' id="nomeDropDownCadastrar">Responsável pela Turma</a>
-                        <!-- Dropdown Structure -->
-                        <ul id='nomeCadastrar' class='dropdown-content'>
+                       
+                        <select id="nomeDropDownCadastrar">
+                            <option value="" disabled selected>Responsável pela Turma</option>
                             @foreach (var item in Model.ListaColaborador)
                             {
-                                <li><a onclick="editaColaboradorSelecionado('@item.Nome', '@item.Id', 'Cadastrar')">@item.Nome</a></li>
+                                <option value="@item.Id">@item.Nome</option>
                             }
-                        </ul>
+                        </select>
+                        <label>Responsável pela Turma</label>
+
                     </div>
 
                     <div class="input-field col s4">
                         @*<select id="tipo" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
-            </select>
-            <label for="tipo">Tipo</label>*@
+        </select>
+        <label for="tipo">Tipo</label>*@
 
-                        <a class='dropdown-trigger2 btn' href='#' data-target='tipoCadastrar' id="tipoDropDownCadastrar">Faixa Etária</a>
-                        <!-- Dropdown Structure -->
-                        <ul id='tipoCadastrar' class='dropdown-content'>
+                        <select id="tipoDropDownCadastrar">
+                            <option value="" disabled selected>Faixa Etária</option>
                             @foreach (var item in Model.TipoClientes)
                             {
-                                <li><a onclick="editaTipoSelecionado('@item', 'Cadastrar')">@item</a></li>
+                                <option value="@item">@item</option>
                             }
-                        </ul>
+                        </select>
+                        <label>Faixa Etária</label>
                     </div>
 
                     <div class="input-field col s4">
-                        @*<select id="modalidade" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "TipoModalidade"))">
-            </select>
-            <label for="modalidade">Modalidade</label>*@
-
-
-                        <a class='dropdown-trigger5 btn' href='#' data-target='modalidadeCadastrar' id="modalidadeDropDownCadastrar">Selecione a Modalidade</a>
-                        <!-- Dropdown Structure -->
-                        <ul id='modalidadeCadastrar' class='dropdown-content'>
+                        <select id="modalidadeDropDownCadastrar">
+                            <option value="" disabled selected>Selecione a Modalidade</option>
                             @foreach (var item in Model.ListaModalidade)
                             {
-                                <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Cadastrar')">@item.TipoModalidade</a></li>
+                                <option value="@item.Id">@item.TipoModalidade</option>
                             }
-                        </ul>
+                        </select>
+                        <label>Selecione a Modalidade</label>
 
                     </div>
 
@@ -126,18 +108,15 @@
                     </div>
 
                     <div class="input-field col s6">
-                        @*<select id="unidade" class="validate" asp-items="@(new SelectList(item.Unidades, "Id", "Descricao"))">
-                        </select>
-                        <label for="unidade">Unidade</label>*@
 
-                        <a class='dropdown-trigger4 btn' href='#' data-target='unidadeCadastrar' id="unidadeDropDownCadastrar">Selecione a Unidade</a>
-                        <!-- Dropdown Structure -->
-                        <ul id='unidadeCadastrar' class='dropdown-content'>
+                        <select id="unidadeDropDownCadastrar">
+                            <option value="" disabled selected>Selecione a Unidade</option>
                             @foreach (var item in Model.ListaUnidade)
                             {
-                                <li><a onclick="editaUnidadeSelecionado('@item.Descricao', '@item.Id', 'Cadastrar')">@item.Descricao</a></li>
+                                <option value="@item.Id">@item.Descricao</option>
                             }
-                        </ul>
+                        </select>
+                        <label>Selecione a Unidade</label>
 
 
                     </div>
@@ -242,19 +221,7 @@
                 </div>
 
                 <div class="input-field col s6" id="diasdasemanaEditar">
-                    @*<select id="diasdasemanaEditar" class="validate" asp-items="@(new SelectList(item.DiasDaSemana))">
-                <option value="" disabled selected>Selecione um dia da semana</option>
-            </select>
-            <label for="diasdasemanaEditar">Dias da semana</label>*@
-
-                    @*<a class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaEditar' id="diasdasemanaDropDownEditar">Selecione o Dia</a>
-            <!-- Dropdown Structure -->
-            <ul id='diasdasemanaEditar' class='dropdown-content'>
-                @foreach (var item in Model.DiasDaSemana)
-                {
-                    <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Editar')">@item</a></li>
-                }
-            </ul>*@
+               
                     <select multiple id="diasdasemanaDropDownEditar">
 
                         @foreach (var item in Model.DiasDaSemana)
@@ -265,55 +232,39 @@
                     <label>Dias da semana</label>
                 </div>
 
-                <div class="input-field col s4">
-                    @*<select id="nomeEditar" class="validate" asp-items="@(new SelectList(item.Professores, "Id", "Nome"))">
-                <option value="" disabled selected>Selecione um novo professor</option>
-            </select>
-            <label for="nomeEditar">Professor</label>*@
-
-                    <a class='dropdown-trigger6 btn' href='#' data-target='nomeEditar' id="nomeDropDownEditar">Responsável pela Turma</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='nomeEditar' class='dropdown-content'>
+                <div id="nomeEditar" class="input-field col s4">
+               
+                    <select id="nomeDropDownEditar">
                         @foreach (var item in Model.ListaColaborador)
                         {
-                            <li><a onclick="editaColaboradorSelecionado('@item.Nome', '@item.Id', 'Editar')">@item.Nome</a></li>
+                            <option value="@item.Id">@item.Nome</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Responsável pela Turma</label>
                 </div>
 
-                <div class="input-field col s4">
-                    @*<select id="tipoEditar" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
-                <option value="" disabled selected>Selecione um tipo de aluno</option>
-            </select>
-            <label for="tipoEditar">Tipo</label>*@
+                <div id="tipoEditar" class="input-field col s4">
 
-                    <a class='dropdown-trigger7 btn' href='#' data-target='tipoEditar' id="tipoDropDownEditar">Faixa Etária</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='tipoEditar' class='dropdown-content'>
+
+                    <select id="tipoDropDownEditar">
                         @foreach (var item in Model.TipoClientes)
                         {
-                            <li><a onclick="editaTipoSelecionado('@item', 'Editar')">@item</a></li>
+                            <option value="@item">@item</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Faixa Etária</label>
 
                 </div>
 
-                <div class="input-field col s4">
-                    @*<select id="modalidadeEditar" class="validate" asp-items="@(new SelectList(item.Modalidades, "Id", "TipoModalidade"))">
-                        <option value="" disabled selected>Selecione uma nova modalidade</option>
-                    </select>
-                    <label for="modalidadeEditar">Modalidade</label>*@
-
-
-                    <a class='dropdown-trigger10 btn' href='#' data-target='modalidadeEditar' id="modalidadeDropDownEditar">Selecione a Modalidade</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='modalidadeEditar' class='dropdown-content'>
+                <div id="modalidadeEditar" class="input-field col s4">
+                 
+                    <select id="modalidadeDropDownEditar">
                         @foreach (var item in Model.ListaModalidade)
                         {
-                            <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Editar')">@item.TipoModalidade</a></li>
+                            <option value="@item.Id">@item.TipoModalidade</option>
                         }
-                    </ul>
-
+                    </select>
+                    <label>Selecione a Modalidade</label>
 
                 </div>
 
@@ -329,21 +280,14 @@
                     <label for="horariofinalEditar">Horario Final</label>
                 </div>
 
-                <div class="input-field col s6">
-                    @*<select id="unidadeEditar" class="validate" asp-items="@(new SelectList(item.Unidades, "Id", "Descricao"))">
-                <option value="" disabled selected>Selecione uma nova unidade</option>
-            </select>
-            <label for="unidadeEditar">Unidade</label>*@
-
-                    <a class='dropdown-trigger9 btn' href='#' data-target='unidadeEditar' id="unidadeDropDownEditar">Selecione a Unidade</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='unidadeEditar' class='dropdown-content'>
+                <div id="unidadeEditar" class="input-field col s6">
+                    <select id="unidadeDropDownEditar">
                         @foreach (var item in Model.ListaUnidade)
                         {
-                            <li><a onclick="editaUnidadeSelecionado('@item.Descricao', '@item.Id', 'Editar')">@item.Descricao</a></li>
+                            <option value="@item.Id">@item.Descricao</option>
                         }
-                    </ul>
-
+                    </select>
+                    <label>Selecione a Unidade</label>
                 </div>
 
 
@@ -403,52 +347,46 @@
                     <label>Dias da semana</label>
                 </div>
 
-                <div class="input-field col s4">
+                <div id="nomeDeletar" class="input-field col s4">
                     @*<select disabled id="nomeDeletar" class="validate">
             </select>
             <label for="nomeDeletar">Professor</label>*@
 
-                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='nomeDeletar' id="nomeDropDownDeletar">Responsável pela Turma</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='nomeDeletar' class='dropdown-content'>
+                    <select disabled id="nomeDropDownDeletar">
                         @foreach (var item in Model.ListaColaborador)
                         {
-                            <li><a onclick="editaColaboradorSelecionado('@item.Nome', '@item.Id', 'Deletar')">@item.Nome</a></li>
+                            <option value="@item.Id">@item.Nome</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Responsável pela Turma</label>
                 </div>
 
-                <div class="input-field col s4">
+                <div id="tipoDeletar" class="input-field col s4">
                     @*<select disabled id="tipoDeletar" class="validate">
             </select>
             <label for="tipoDeletar">Tipo</label>*@
 
-                    <a disabled class='dropdown-trigger7 btn' href='#' data-target='tipoDeletar' id="tipoDropDownDeletar">Faixa Etária</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='tipoDeletar' class='dropdown-content'>
+                    <select disabled id="tipoDropDownDeletar">
                         @foreach (var item in Model.TipoClientes)
                         {
-                            <li><a onclick="editaTipoSelecionado('@item', 'Deletar')">@item</a></li>
+                            <option value="@item">@item</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Faixa Etária</label>
 
                 </div>
 
-                <div class="input-field col s4">
-                    @*<select disabled id="modalidadeDeletar" class="validate">
-                        </select>
-                        <label for="modalidadeDeletar">Modalidade</label>*@
+                <div id="modalidadeDeletar" class="input-field col s4">
 
-                    <a disabled class='dropdown-trigger10 btn' href='#' data-target='modalidadeDeletar' id="modalidadeDropDownDeletar">Selecione a Modalidade</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='modalidadeDeletar' class='dropdown-content'>
+                    <select disabled id="modalidadeDropDownDeletar">
                         @foreach (var item in Model.ListaModalidade)
                         {
-                            <li><a onclick="editaModalidadeSelecionado('@item.TipoModalidade', '@item.Id', 'Deletar')">@item.TipoModalidade</a></li>
+                            <option value="@item.Id">@item.TipoModalidade</option>
                         }
-                    </ul>
-                </div>
+                    </select>
+                    <label>Selecione a Modalidade</label>
 
+                </div>
 
                 <div class="input-field col s6">
                     <input disabled min="08:00" max="22:00" id="horarioinicialDeletar" type="time" class="validate" maxlength="5">
@@ -460,19 +398,15 @@
                     <label for="horariofinalDeletar">Horario Final</label>
                 </div>
 
-                <div class="input-field col s6">
-                    @*<select disabled id="unidadeDeletar" class="validate">
-            </select>
-            <label for="unidadeDeletar">Unidade</label>*@
 
-                    <a disabled class='dropdown-trigger9 btn' href='#' data-target='unidadeDeletar' id="unidadeDropDownDeletar">Selecione a Unidade</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='unidadeDeletar' class='dropdown-content'>
+                <div id="unidadeDeletar" class="input-field col s6">
+                    <select disabled id="unidadeDropDownDeletar">
                         @foreach (var item in Model.ListaUnidade)
                         {
-                            <li><a onclick="editaUnidadeSelecionado('@item.Descricao', '@item.Id', 'Deletar')">@item.Descricao</a></li>
+                            <option value="@item.Id">@item.Descricao</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Selecione a Unidade</label>
                 </div>
 
                 <div id="modalCadastroTurma" class="modal">
@@ -527,38 +461,70 @@
             valorModalidade = modalidade;
 
             document.getElementById("descricao" + model).value = descricao;
-            document.getElementById("nome" + model).value = nome;
-            document.getElementById("tipo" + model).value = tipo;
+            //document.getElementById("nome" + model).value = nome;
+            $('#nome' + model)[0].children[0].children[0].value = nomeColaborador;
+            //document.getElementById("tipo" + model).value = tipo;
+            $('#tipo' + model)[0].children[0].children[0].value = tipo;
             $('#diasdasemana' + model)[0].children[0].children[0].value = diasdasemana;
             document.getElementById("horarioinicial" + model).value = horarioinicial;
             document.getElementById("horariofinal" + model).value = horariofinal;
-            document.getElementById("unidade" + model).value = unidade;
-            document.getElementById("modalidade" + model).value = modalidade;
+            //document.getElementById("unidade" + model).value = unidade;
+            $('#unidade' + model)[0].children[0].children[0].value = unidadeDescricao;
+            //document.getElementById("modalidade" + model).value = modalidade;
+            $('#modalidade' + model)[0].children[0].children[0].value = modalidadeTipoModalidade;
 
 
-            document.getElementById('nomeDropDown' + model).text = nomeColaborador;
+            //document.getElementById('nomeDropDown' + model).text = nomeColaborador;
             document.getElementById('nomeDropDown' + model).ColaboradorId = nome;
 
             document.getElementById('tipoDropDown' + model).text = tipo;
 
             //document.getElementById('diasdasemanaDropDown' + model).text = diasdasemana;
 
-            document.getElementById('unidadeDropDown' + model).text = unidadeDescricao;
+            //document.getElementById('unidadeDropDown' + model).text = unidadeDescricao;
             document.getElementById('unidadeDropDown' + model).UnidadeId = unidade;
 
-            document.getElementById('modalidadeDropDown' + model).text = modalidadeTipoModalidade;
+            //document.getElementById('modalidadeDropDown' + model).text = modalidadeTipoModalidade;
             document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
 
             if (model === "Editar") {
             document.getElementById("id" + model).value = id;
             document.getElementById("editarTurmaDescricao").innerText = "Editar " + descricao;
                 var diaSelecionado = valorDiasDaSemana.replace(" ", "").split(',');
-                    for (i = 0; i <= $('#diasdasemanaDropDownEditar')[0].length; i++) {
+                    for (var i = 0; i <= $('#diasdasemanaDropDownEditar')[0].length; i++) {
                         if (diaSelecionado.includes($('#diasdasemanaDropDownEditar')[0].children[i].value)) {
                             $('#diasdasemanaDropDownEditar')[0].children[i].selected = true;
+                            break;
                         }
                     }
-            } else
+
+                for (i = 0; i < $('#nomeDropDownEditar')[0].length; i++) {
+                    if ($('#nomeDropDownEditar')[0].children[i].value == nome) {
+                        $('#nomeDropDownEditar')[0].children[i].selected = true;
+                    }
+                }
+
+
+                for (i = 0; i < $('#tipoDropDownEditar')[0].length; i++) {
+                    if ($('#tipoDropDownEditar')[0].children[i].value == tipo) {
+                        $('#tipoDropDownEditar')[0].children[i].selected = true;
+                    }
+                }
+
+                for (i = 0; i < $('#modalidadeDropDownEditar')[0].length; i++) {
+                    if ($('#modalidadeDropDownEditar')[0].children[i].value == modalidade) {
+                        $('#modalidadeDropDownEditar')[0].children[i].selected = true;
+                    }
+                }
+
+                for (i = 0; i < $('#unidadeDropDownEditar')[0].length; i++) {
+                    if ($('#unidadeDropDownEditar')[0].children[i].value == unidade) {
+                        $('#unidadeDropDownEditar')[0].children[i].selected = true;
+                    }
+                }
+
+            }
+            else
             {
                 document.getElementById("deletarTurmaDescricao").innerText = "Tem certeza que deseja deletar " + descricao +"?";
             }
@@ -602,13 +568,13 @@
             var turmaEditar = {
                 Id: document.getElementById("idEditar").value,
                 Descricao: document.getElementById("descricaoEditar").value,
-                ColaboradorId: document.getElementById('nomeDropDownEditar').ColaboradorId,
-                Tipo: document.getElementById('tipoDropDownEditar').text,
+                ColaboradorId: $('#nomeDropDownEditar').val(),
+                Tipo: $('#tipoDropDownEditar').val(),
                 DiaDaSemana: $('#diasdasemanaEditar')[0].children[0].children[0].value,
                 HorarioInicial: document.getElementById("horarioinicialEditar").value,
                 HorarioFinal: document.getElementById("horariofinalEditar").value,
-                UnidadeId: document.getElementById('unidadeDropDownEditar').UnidadeId,
-                ModalidadeId: document.getElementById('modalidadeDropDownEditar').ModalidadeId
+                UnidadeId: $('#unidadeDropDownEditar').val(),
+                ModalidadeId: $('#modalidadeDropDownEditar').val()
             };
             $(function () {
                  $.ajax({
@@ -639,13 +605,13 @@
         function Adicionar() {
                     var turma = {
                         Descricao: document.getElementById("descricao").value,
-                        ColaboradorId: document.getElementById('nomeDropDownCadastrar').ColaboradorId,
-                        Tipo: document.getElementById('tipoDropDownCadastrar').text,
+                        ColaboradorId: $('#nomeDropDownCadastrar').val(),
+                        Tipo: $('#tipoDropDownCadastrar').val(),
                         DiaDaSemana: $('#diasdasemanaDropDownCadastrar').val().join(),
                         HorarioInicial: document.getElementById("horarioinicial").value,
                         HorarioFinal: document.getElementById("horariofinal").value,
-                        UnidadeId: document.getElementById('unidadeDropDownCadastrar').UnidadeId,
-                        ModalidadeId: document.getElementById('modalidadeDropDownCadastrar').ModalidadeId
+                        UnidadeId: $('#unidadeDropDownCadastrar').val(),
+                        ModalidadeId: $('#modalidadeDropDownCadastrar').val()
             };
              $(function () {
                  $.ajax({
