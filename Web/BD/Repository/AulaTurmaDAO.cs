@@ -61,6 +61,24 @@ namespace Web.BD.Repository
             return listaAulas;
         }
 
+
+        public void Atualizar(Aula[] entity)
+        {
+            using (var con = new SqlConnection(stringConexao))
+            {
+                foreach (var item in entity)
+                {
+                    con.Open();
+                    string query = @"UPDATE Aulas set Presenca = @Presenca WHERE Id = @Id";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Id", item.AulaId);
+                    cmd.Parameters.AddWithValue("@Presenca", item.Presenca);
+                    cmd.ExecuteScalar();
+                    con.Close();
+                }
+            }
+        }
+
         public IList<Aula> AulasNaDataDeHoje()
         {
             string query = @"SET LANGUAGE 'Brazilian';

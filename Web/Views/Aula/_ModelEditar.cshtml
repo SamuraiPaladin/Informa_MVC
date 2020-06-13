@@ -49,9 +49,8 @@
             <label for="dataAulaFim">Horário final</label>
         </div>
 
-        <h4 class="flow-text center subtitleModal">MATRICULAS ATRELADAS</h4>
+        <h4 class="flow-text center subtitleModal">LISTA DE CHAMADA</h4>
         <table class="centered" id="tabelaNova">
-
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -60,14 +59,6 @@
                     <th>Data de Nascimento</th>
                 </tr>
             </thead>
-
-            
-
-
-
-
-
-
             <tbody id="Grid">
             </tbody>
         </table>
@@ -75,7 +66,7 @@
 
     <div class="modal-footer">
         <a id="fecharEditar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="editar" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Atualizar</a>
+        <a id="editar" onclick="Editar()" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Atualizar</a>
     </div>
 </div>
 

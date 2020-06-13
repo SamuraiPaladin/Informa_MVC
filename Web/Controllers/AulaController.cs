@@ -11,8 +11,8 @@ namespace Web.Controllers
 {
     public class AulaController : Controller
     {
-        private readonly IAulaTurmaDAO  _service = new AulaTurmaDAO();
-
+        private readonly IAulaTurmaDAO _service = new AulaTurmaDAO();
+        private IList<Aula> listaDeAulasPorTurma = new List<Aula>();
         public ActionResult Index()
         {
             IList<Aula> aulasNaDataDeHoje = _service.AulasNaDataDeHoje();
@@ -29,8 +29,14 @@ namespace Web.Controllers
         }
         public JsonResult CarregarListaDeChamada(int turmaId)
         {
-            var listaDeAulasPorTurma = _service.AlunosPorTurma(turmaId);
+            listaDeAulasPorTurma = _service.AlunosPorTurma(turmaId);
             return Json(listaDeAulasPorTurma);
+        }
+
+        public JsonResult Editar(Aula[] entity)
+        {
+            _service.Atualizar(entity);
+            return Json(true);
         }
     }
 }

@@ -43,15 +43,56 @@
                          $("#Grid tr").remove();
                          $(dados).each(function () {
                              if (this.Presenca === true) {
-                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.Id + "' checked='checked' /><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
                              } else {
 
-                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.Id + "'/><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0,10) + "</td></tr>");
+                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.AulaId + "'/><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0,10) + "</td></tr>");
                              }
                          });
                 }
             });
         }
+
+
+        function Editar(){
+            var arrayEditar = [];
+     
+            try {
+                var table = document.getElementById("tabelaNova");
+                var rows = table.getElementsByTagName('tr');
+
+                for (var ica = 1; ica < rows.length; ica++) {
+                    var cols = rows[ica].getElementsByTagName('td');
+                    var value = cols[0].getElementsByTagName('input')[0];
+                    arrayEditar.push({ AulaId: value.id, Presenca: value.checked });
+                }
+            }
+            catch (e) {
+                //alert(e);
+            }
+            $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Aula")",
+                data: { entity: arrayEditar},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('#tabela').dataTable();
+        });
 
     </script>
 }
