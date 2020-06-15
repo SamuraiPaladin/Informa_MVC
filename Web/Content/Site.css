@@ -162,3 +162,9 @@ body {
 .linkRapido:hover {
     color: #af2405
 }
+
+.containerConfigurado {
+    padding-right: 2em;
+    padding-left: 2em;
+    margin: 1em
+}

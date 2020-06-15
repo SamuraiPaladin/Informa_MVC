@@ -13,7 +13,7 @@
 
 <!-- BREADCRUMB -->
 
-<nav class="clean container">
+<nav class="clean containerConfigurado">
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
@@ -26,7 +26,7 @@
 </nav>
 
 
-<div class="row container">
+<div class="row containerConfigurado">
     <div class="col s12 l12">
         <a id="cadastrarColaborador" href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Colaborador</a>
     </div>
@@ -105,16 +105,6 @@
 
                 <div class="input-field col s6">
 
-                    <!-- Dropdown Trigger -->
-                    @*<a class='dropdown-trigger btn' href='#' data-target='funcaoCadastrar' id="textoDropDownCadastrar">Selecione o Cargo</a>
-                        <!-- Dropdown Structure -->
-                        <ul id='funcaoCadastrar' class='dropdown-content'>
-                            @foreach (var item in Model.ListaFuncao)
-                            {
-                                <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Cadastrar')">@item.TipoFuncao</a></li>
-                            }
-                        </ul>*@
-
                     <select id="textoDropDownCadastrar">
                         <option disabled selected value="">Selecione o cargo</option>
                         @foreach (var item in Model.ListaFuncao)
@@ -145,10 +135,11 @@
         <a id="cadastar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
+<div class="containerConfigurado">
 
 @if (Model.ListaColaborador.Count > 0)
 {
-    <table id="tabelaColaborador" class="table highlight centered container ">
+    <table id="tabelaColaborador" class="table highlight centered">
         <thead>
             <tr>
                 <th>Colaborador</th>
@@ -191,6 +182,7 @@
         </tbody>
     </table>
 }
+</div>
 
 
 <div id="modalEditar" class="modal">

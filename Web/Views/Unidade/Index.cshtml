@@ -3,20 +3,20 @@
 @{
     ViewData["Title"] = "Unidade";
 }
-<nav class="clean container">
-    <div class="nav-wrapper">
-        <div class="col s12">
-            <span class="left">
-                <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-                <a href="#" class="breadcrumb">Cadastro</a>
-                <a id="paginaUnidade" href="@Url.Action("Index", "Unidade")" class="breadcrumb"><strong>Unidade</strong></a>
-            </span>
-        </div>
-    </div>
-</nav>
+    <nav class="clean" style="padding-right:2em; padding-left:2em; margin:1em">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <span class="left">
+                        <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                        <a href="#" class="breadcrumb">Cadastro</a>
+                        <a id="paginaUnidade" href="@Url.Action("Index", "Unidade")" class="breadcrumb"><strong>Unidade</strong></a>
+                    </span>
+                </div>
+            </div>
+    </nav>
 
 
-<div class="row container">
+<div class="row" style="padding-right:2em; padding-left:2em; margin:3em">
     <a id="cadastrarUnidade" href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Unidade</a>
 
     <div id="modaCadastrar" class="modal">
@@ -93,45 +93,48 @@
 
 </div>
 
-@if (Model.Count > 0)
-{
-    <table class="table highlight container centered " id="tabelaCadastrar">
-        <thead>
-            <tr>
-                <th>Descrição</th>
-                <th>Endereço</th>
-                <th>Número</th>
-                <th>CEP</th>
-                <th>Telefone</th>
-                <th>Bairro</th>
-                <th>Cidade</th>
-                <th>Estado</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+<div style="padding-right:2em; padding-left:2em; margin:3em">
+
+    @if (Model.Count > 0)
+    {
+        <table class="table highlight centered " id="tabelaCadastrar">
+            <thead>
                 <tr>
-                    <td>@item.Descricao</td>
-                    <td>@item.Endereco</td>
-                    <td>@item.Numero</td>
-                    <td>@item.CEP</td>
-                    <td>@item.Telefone</td>
-                    <td>@item.Bairro</td>
-                    <td>@item.Cidade</td>
-                    <td>@item.Estado</td>
-                    <td>
-                        <a id="editarUnidade" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
-        '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a id="deletarUnidade" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
-        '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Deletar')"><i class="material-icons">delete_forever</i></a>
-                    </td>
+                    <th>Descrição</th>
+                    <th>Endereço</th>
+                    <th>Número</th>
+                    <th>CEP</th>
+                    <th>Telefone</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Descricao</td>
+                        <td>@item.Endereco</td>
+                        <td>@item.Numero</td>
+                        <td>@item.CEP</td>
+                        <td>@item.Telefone</td>
+                        <td>@item.Bairro</td>
+                        <td>@item.Cidade</td>
+                        <td>@item.Estado</td>
+                        <td>
+                            <a id="editarUnidade" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
+            '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a id="deletarUnidade" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
+            '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Deletar')"><i class="material-icons">delete_forever</i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">

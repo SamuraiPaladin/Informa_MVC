@@ -4,21 +4,8 @@
     ViewData["Title"] = "Turma";
 }
 
-<head>
-    <style>
-        [type="checkbox"]:checked + span:not(.lever):before {
-            border-right: 2px solid #af2405;
-            border-bottom: 2px solid #af2405;
-        }
-        .dropdown-content li > a, .dropdown-content li > span {
-            font-size: 16px;
-            color: #af2405;
-        }
-    </style>
-</head>
-
 <!-- BREADCRUMB -->
-<nav class="clean container">
+<nav class="clean containerConfigurado">
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
@@ -31,7 +18,7 @@
 </nav>
 
 
-<div class="row container">
+<div class="row containerConfigurado">
     <a id="cadastrarTurma" href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Turma</a>
 
     <div id="modaCadastrar" class="modal">
@@ -75,10 +62,6 @@
                     </div>
 
                     <div class="input-field col s4">
-                        @*<select id="tipo" class="validate" asp-items="@(new SelectList(item.TipoClientes))">
-        </select>
-        <label for="tipo">Tipo</label>*@
-
                         <select id="tipoDropDownCadastrar">
                             <option value="" disabled selected>Faixa Etária</option>
                             @foreach (var item in Model.TipoClientes)
@@ -150,63 +133,65 @@
 </div>
 
 
+<div class="containerConfigurado">
 
-@if (Model != null)
-{
-    <table id="tabelaTurma" class="table highlight container ">
-        <thead>
-            <tr>
-                <th>Turma</th>
-                <th>Professor</th>
-                <th>Tipo</th>
-                <th>Dia da semana</th>
-                <th>Horario Inicial</th>
-                <th>Horario Final</th>
-                <th>Unidade</th>
-                <th>Modalidade</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var turma in Model.ListaTurma)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => turma.Descricao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => turma.Colaborador.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => turma.Tipo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => turma.DiaDaSemana)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => turma.HorarioInicial)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => turma.HorarioFinal)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => turma.Unidade.Descricao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => turma.Modalidade.TipoModalidade)
-                    </td>
-                    <td>
-                        <a id="editarTurma" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
-        '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Editar', '@turma.Colaborador.Nome', '@turma.Unidade.Descricao', '@turma.Modalidade.TipoModalidade')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a id="deletarTurma" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
-        '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Deletar', '@turma.Colaborador.Nome', '@turma.Unidade.Descricao', '@turma.Modalidade.TipoModalidade')"><i class="material-icons">delete_forever</i></a>
-                    </td>
-                </tr>
+        @if (Model != null)
+        {
+            <table id="tabelaTurma" class="table highlight">
+                <thead>
+                    <tr>
+                        <th>Turma</th>
+                        <th>Professor</th>
+                        <th>Tipo</th>
+                        <th>Dia da semana</th>
+                        <th>Horario Inicial</th>
+                        <th>Horario Final</th>
+                        <th>Unidade</th>
+                        <th>Modalidade</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var turma in Model.ListaTurma)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => turma.Descricao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => turma.Colaborador.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => turma.Tipo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => turma.DiaDaSemana)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => turma.HorarioInicial)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => turma.HorarioFinal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => turma.Unidade.Descricao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => turma.Modalidade.TipoModalidade)
+                            </td>
+                            <td>
+                                <a id="editarTurma" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
+                '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Editar', '@turma.Colaborador.Nome', '@turma.Unidade.Descricao', '@turma.Modalidade.TipoModalidade')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                                <a id="deletarTurma" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@turma.Id', '@turma.Descricao', '@turma.Colaborador.Id',
+                '@turma.Tipo', '@turma.DiaDaSemana','@turma.HorarioInicial', '@turma.HorarioFinal', '@turma.Unidade.Id', '@turma.Modalidade.Id', 'Deletar', '@turma.Colaborador.Nome', '@turma.Unidade.Descricao', '@turma.Modalidade.TipoModalidade')"><i class="material-icons">delete_forever</i></a>
+                            </td>
+                        </tr>
 
-            }
-        </tbody>
-    </table>
-}
+                    }
+                </tbody>
+            </table>
+        }
+</div>
 
 <div id="modalEditar" class="modal">
     <div class="modal-content" style="height:600px;">

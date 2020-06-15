@@ -3,7 +3,7 @@
     ViewData["Title"] = "Matricula";
 }
 <!-- BREADCRUMB -->
-<nav class="clean container">
+<nav class="clean containerConfigurado">
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
@@ -15,7 +15,7 @@
 </nav>
 
 
-<div class="row container">
+<div class="row containerConfigurado">
     <div class="col s12 l12">
         <a id="cadastrarAluno" href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Aluno</a>
     </div>
@@ -23,7 +23,8 @@
 
 @Html.Partial("_Cadastrar")
 
-<div style="padding: 20px">
+
+<div class="containerConfigurado">
 
     <table id="tabelaPrincipal">
         <thead>
