@@ -440,3 +440,15 @@
         margin-top: 0.5em
     }
 }
+
+
+.pagination li.active {
+    background-color: #af2405 !important;
+}
+
+    .pagination li.active a:hover {
+        background-color: #fb6837 !important;
+        height: 30px;
+              
+        margin-top: -1px;
+    }
