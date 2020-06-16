@@ -41,21 +41,23 @@
 
     <ul id="slide-out" class="sidenav">
         <li>
-            <div class="user-view" style="height:80px">
-                <div class="background" style="background-color: #af2405;">
-                    <img src="~/imgs/icon-informa.png" class="right" width="50">
+            <div class="user-view" style="height:150px">
+                <div class="background" style="background-color: #af2405; ">
+                    
+                    <img src="~/imgs/icon-informa.png" class="right" width="80">
                     <p class="white-text container">
-                        <span><strong>inForma©</strong> - Natação Golfinho</span>
-                        <br />
-                        <span style="margin-top: -20px;">v1.2</span>
+                        <a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
+                        <a href="#name"><span class="white-text name">John Dee</span></a>
+                        <a href="#email"><span class="white-text email">Nivel de Acesso: <strong>Administrador</strong></span></a>
+                                               
                     </p>
                 </div>
                 <!--<img class="circle" src="~/imgs/avatar-batman.png">-->
 
-                
+
             </div>
         </li>
-        <li><a class="subheader">Módulos</a></li>
+        <li><a class="subheader">Módulos de Negócio</a></li>
         <li>
             <ul class="collapsible">
                 <li>
@@ -126,7 +128,14 @@
             <div class="divider"></div>
         </li>
 
-        <li><a class="subheader">Outro submenu</a></li>
+        <li><a class="subheader">Sistema</a></li>
+
+        <li>
+            <div id="matricula" class="collapsible-header" onClick="redirecionaPaginaSistema()">
+                <i class="material-icons" style="color: grey;">person</i>
+                <strong>Usuarios do Sistema</strong>
+            </div>
+        </li>
 
     </ul>
 
@@ -152,8 +161,13 @@
 <script>
 
         const redirecionaPaginaMatricula = () => {
-            window.location.href="@Url.Action("Index", "Matricula")"
-        }
+            window.location.href = "@Url.Action("Index", "Matricula")";
+    }
+
+    const redirecionaPaginaSistema = () => {
+        window.location.href = "@Url.Action("Index", "UsuarioSistema")";
+    }
+
     $(document).ready(function () {
                 $.ajax({
                     type: "POST",
