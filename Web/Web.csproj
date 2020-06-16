@@ -249,6 +249,7 @@
     <Compile Include="Controllers\ModalidadeController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\UnidadeController.cs" />
+    <Compile Include="Controllers\UsuarioSistemaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -857,8 +858,9 @@
     <Content Include="Views\Inadimplentes\Index.cshtml" />
     <Content Include="Views\Aula\_TabelaTurmas.cshtml" />
     <Content Include="Views\Aula\_ModelEditar.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\UsuarioSistema\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

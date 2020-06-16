@@ -357,7 +357,7 @@ namespace Web.BD.Repository
                             Cidade = sdr["Cidade"].ToString(),
                             Estado = sdr["Estado"].ToString(),
                             Telefone = sdr["Telefone"].ToString(),
-                            Email =sdr["Email"].ToString()
+                            Email = sdr["Email"].ToString()
                         };
                     }
                 }
@@ -395,6 +395,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
                 cmd.Parameters.AddWithValue("@Estado", entity.Estado);
                 cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
+                cmd.Parameters.AddWithValue("@Email", entity.Email);
                 return Convert.ToInt32(cmd.ExecuteNonQuery()) > 0 ? true : false;
             }
         }
