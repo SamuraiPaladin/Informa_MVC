@@ -1,0 +1,31 @@
+﻿@model IList<Model.Entity.Usuario>
+<div class="row containerConfigurado">
+    @if (Model.Count > 0)
+    {
+        <table class="highlight centered tabela" id="tabelaCadastrar">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nivel de Acesso</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nome</td>
+                        <td>@item.PerfilUsuario</td>
+                        <td>
+                            <a id="editarCargo" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="Modal('@item.Id', 'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a id="deletarCargo" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"  onclick="Modal('@item.Id', 'Deletar')"><i class="material-icons">delete_forever</i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    }
+
+</div>

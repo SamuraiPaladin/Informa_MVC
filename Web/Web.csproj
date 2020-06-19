@@ -228,6 +228,7 @@
     <Compile Include="BD\Interface\IDAOPrincipal.cs" />
     <Compile Include="BD\Interface\IUnidadeDAO.cs" />
     <Compile Include="BD\Repository\AulaTurmaDAO.cs" />
+    <Compile Include="BD\Interface\IUsuarioDAO.cs" />
     <Compile Include="BD\Repository\MatriculaDAO.cs" />
     <Compile Include="BD\Repository\MensalidadeDAO.cs" />
     <Compile Include="BD\Repository\PrincipalDAO.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="BD\Repository\FuncaoDAO.cs" />
     <Compile Include="BD\Repository\ModalidadeDAO.cs" />
     <Compile Include="BD\Repository\UnidadeDAO.cs" />
+    <Compile Include="BD\Repository\UsuarioDAO.cs" />
     <Compile Include="Controllers\AulaController.cs" />
     <Compile Include="Controllers\InadimplentesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -861,6 +863,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\UsuarioSistema\Index.cshtml" />
+    <Content Include="Views\UsuarioSistema\_tabelaInicial.cshtml" />
+    <Content Include="Views\UsuarioSistema\_ModalCadastrarUsuario.cshtml" />
+    <Content Include="Views\UsuarioSistema\_ModalEditarUsuario.cshtml" />
+    <Content Include="Views\UsuarioSistema\_ModalDeletar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

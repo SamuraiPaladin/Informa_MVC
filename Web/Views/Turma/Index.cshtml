@@ -315,18 +315,7 @@
                 </div>
 
                 <div class="input-field col s6" id="diasdasemanaDeletar">
-                    @*<select disabled id="diasdasemanaDeletar" class="validate">
-            </select>
-            <label for="diasdasemanaDeletar">Dias da semana</label>*@
-
-                    @*<a disabled class='dropdown-trigger8 btn' href='#' data-target='diasdasemanaDeletar' id="diasdasemanaDropDownDeletar">Selecione o Dia</a>
-            <!-- Dropdown Structure -->
-            <ul id='diasdasemanaDeletar' class='dropdown-content'>
-                @foreach (var item in Model.DiasDaSemana)
-                {
-                    <li><a onclick="editaDiasDaSemanaSelecionado('@item', 'Deletar')">@item</a></li>
-                }
-            </ul>*@
+                   
                     <select disabled multiple id="diasdasemanaDropDownDeletar">
                         @foreach (var item in Model.DiasDaSemana)
                         {
@@ -337,10 +326,7 @@
                 </div>
 
                 <div id="nomeDeletar" class="input-field col s4">
-                    @*<select disabled id="nomeDeletar" class="validate">
-            </select>
-            <label for="nomeDeletar">Professor</label>*@
-
+                   
                     <select disabled id="nomeDropDownDeletar">
                         @foreach (var item in Model.ListaColaborador)
                         {
@@ -351,10 +337,7 @@
                 </div>
 
                 <div id="tipoDeletar" class="input-field col s4">
-                    @*<select disabled id="tipoDeletar" class="validate">
-            </select>
-            <label for="tipoDeletar">Tipo</label>*@
-
+                    
                     <select disabled id="tipoDropDownDeletar">
                         @foreach (var item in Model.TipoClientes)
                         {

@@ -1,10 +1,10 @@
-﻿
+﻿@model IList<Model.Entity.Usuario>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cadastro Usuário";
 }
 
 
-    <div class="container">
+    <div class="containerConfigurado">
 
         <!-- BREADCRUMB -->
         <nav class="clean">
@@ -19,106 +19,17 @@
             </div>
         </nav>
 
-        <div class="row">
+        <div class="row containerConfigurado">
             <div class="col s12 l12">
                 <a id="cadastrarCargo" href="#cadastrarUsuario" class="btn waves-effect waves-light right modal-trigger">Cadastrar Usuário</a>
             </div>
         </div>
 
-        <div id="cadastrarUsuario" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="flow-text center">CADASTRAR USUARIO</h4>
-                </div>
-                <br /><br />
+        @Html.Partial("_ModalCadastrarUsuario")
+        @Html.Partial("_tabelaInicial", Model)
+        @Html.Partial("_ModalEditarUsuario")
+        @Html.Partial("_ModalDeletar")
 
-                <div class="col s12 l12">
-                    <form class="col s12 l12" id="formularioAdicionar">
-                        <div class="input-field col s6">
-                            <input placeholder="Ex:Diego, David..." id="nome" type="text" class="validate">
-                            <label for="funcao">Nome do Usuario</label>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <select>
-                                <option value="" disabled selected>Escolha o nivel de acesso</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-                            <label>Nivel de Acesso</label>
-                        </div>
-
-                    </form>
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-                <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Cadastrar</a>
-            </div>
-        </div>
-
-        <div class="row containerConfigurado">
-
-            <table class="highlight centered tabela" id="tabelaCadastrar">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Nivel de Acesso</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td>Diego</td>
-                        <td>Administrador</td>
-                        <td>
-                            <a id="editarCargo" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                            <a id="deletarCargo" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"><i class="material-icons">delete_forever</i></a>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-        </div>
-        <div id="modalEditar" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="flow-text center">Editar Usuario `tal`</h4>
-                </div>
-                <br /><br />
-
-                <div class="col s12 l12">
-                    <form class="col s12 l12" id="formularioAdicionar">
-                        <div class="input-field col s6">
-                            <input placeholder="Ex:Diego, David..." id="nome" type="text" class="validate">
-                            <label for="funcao">Nome do Usuario</label>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <select>
-                                <option value="" disabled selected>Escolha o nivel de acesso</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-                            <label>Nivel de Acesso</label>
-                        </div>
-
-                    </form>
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <a id="fecharEditar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-                <a id="editar" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Atualizar</a>
-            </div>
-        </div>
 
 
         <div id="modalDeletar" class="modal">
@@ -154,3 +65,109 @@
             </div>
         </div>
     </div>
+@section scripts{
+    <script>
+        let _usuario;
+        let _senha;
+        let _perfilUsuario;
+
+        function Adicionar() {
+                    var usuario = {
+                        Nome: document.getElementById("nome").value,
+                        Senha: document.getElementById("senha").value,
+                        PerfilUsuario: $('#perfilUsuario').val()
+                 };
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar", "UsuarioSistema")",
+                     data: { usuario: usuario },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case "Já existe este usuário no sistema":
+                                 M.toast({ html: dados, classes: 'rounded red' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+        });
+        }
+
+        function Deletar() {
+            var usuario = {
+                Id: document.getElementById("idDeletar").value
+            };
+            $.ajax({
+                dataType: "json",
+                type: "POST",
+                url: "@Url.Action("Deletar", "UsuarioSistema")",
+                data: { usuario: usuario },
+                success: function (dados) {
+                    switch (dados) {
+                        case true:
+                            M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function () { window.location.reload() } });
+                            break;
+                    }
+                }
+            });
+         }
+
+        function Atualizar() {
+                    var usuario = {
+                        Nome: document.getElementById("nomeEditar").value,
+                        Id: document.getElementById("idEditar").value,
+                        Senha: document.getElementById("senhaEditar").value,
+                        PerfilUsuario: $('#usuarioDropDownEditar')[0].children[0].children[0].value
+                 };
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Atualizar", "UsuarioSistema")",
+                     data: { usuario: usuario },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case "Já existe este usuário no sistema":
+                                 M.toast({ html: dados, classes: 'rounded red' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+        });
+        }
+        function Modal(id, modal) {
+             var usuario = {
+                        Id : id
+                 };
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar", "UsuarioSistema")",
+                     data: { usuario: usuario },
+                     success: function (dados) {
+                         document.getElementById('id' + modal).value = id;
+                         $('#usuarioDropDown' + modal)[0].children[0].children[0].value = dados.PerfilUsuario;
+                         document.getElementById('nome' + modal).value = dados.Nome;
+                 }
+        });
+        }
+
+
+
+    </script>
+}
