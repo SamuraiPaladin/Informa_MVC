@@ -22,35 +22,33 @@
         <div class="divider"></div>
         <br>
     </div>
-    <div class="col s12 l4 consultaRapida center">
+    <div class="col s12 l6 consultaRapida center">
         <i class="material-icons iconRapido large">attach_money</i>
         @if (ViewBag.Quantidade == 0)
         {
             <h5 id="situacaoAlunos"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a></h5>
-        }
-        else
+        } else
         {
             if (ViewBag.Quantidade > 1)
             {
                 <h5 id="situacaoAlunos" style="margin-left:60px"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a><span class="new badge" data-badge-caption="Pendências" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></h5>
-            }
-            else
+            } else
             {
                 <h5 id="situacaoAlunos" style="margin-left:60px"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a><span class="new badge" data-badge-caption="Pendência" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></h5>
             }
         }
         <p>Consulte a situação de mensalidades de todos os alunos</p>
     </div>
-    <div class="col s12 l4 consultaRapida center">
+    <div class="col s12 l6 consultaRapida center">
         <i class="material-icons iconRapido large">person_outline</i>
         <h5><a id="matriculaAlunos" href="@Url.Action("Index","Matricula")" class="linkRapido">Alunos e Matrículas</a></h5>
         <p>Consulte todas as matriculas dos alunos</p>
     </div>
-    <div class="col s12 l4 consultaRapida center">
+    <!--<div class="col s12 l4 consultaRapida center">
         <i class="material-icons iconRapido large">drag_indicator</i>
         <a id="estoque" href="" class="linkRapido"> <h5>Estoque</h5> </a>
         <p>texto texto texto texto texteo texto</p>
-    </div>
+    </div>-->
 
     <div class="col s12 l12">
         <br>
