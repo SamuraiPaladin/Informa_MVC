@@ -19,6 +19,10 @@ namespace Web.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            if (cache["DadosDoUsuario"] != null)
+            {
+                new Cache().Remove("DadosDoUsuario");
+            }
             return View();
         }
 
