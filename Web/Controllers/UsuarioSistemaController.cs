@@ -15,7 +15,13 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            return View(_service.Lista());
+            if (_service.ValidaUsuarioNoCache()) {
+                return View(_service.Lista());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult Adicionar(Usuario usuario)
         {

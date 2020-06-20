@@ -15,10 +15,19 @@ namespace Web.Controllers
     public class UnidadeController : Controller
     {
         private readonly IUnidadeDAO<Unidade> dAO = new UnidadeDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
 
         public ActionResult Index()
         {
-            return View(dAO.Lista());
+            if (_serviceUsuario.ValidaUsuarioNoCache())
+            {
+                return View(dAO.Lista());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult BuscaCep(string cep)
         {

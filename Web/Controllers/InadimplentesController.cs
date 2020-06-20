@@ -12,20 +12,29 @@ namespace Web.Controllers
     {
         private readonly IDAO<Mensalidade> dAO = new MensalidadeDAO();
         private readonly MensalidadeDAO dAOMensalidade = new MensalidadeDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
 
         public ActionResult Index()
         {
-            dAOMensalidade.AlterarMensalidadeParaVencido();
-            Mensalidade model = new Mensalidade
+            if (_serviceUsuario.ValidaUsuarioNoCache())
             {
-                Juros = dAOMensalidade.Juros(),
-                ListaMensalidade = dAOMensalidade.ListaMensalidadeVencida(),
-                ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
-                FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
-                StatusDasMensalidades = Enum.GetValues(typeof(EnumPaymentStatus.PaymentStatus))
-            };
+                dAOMensalidade.AlterarMensalidadeParaVencido();
+                Mensalidade model = new Mensalidade
+                {
+                    Juros = dAOMensalidade.Juros(),
+                    ListaMensalidade = dAOMensalidade.ListaMensalidadeVencida(),
+                    ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
+                    FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
+                    StatusDasMensalidades = Enum.GetValues(typeof(EnumPaymentStatus.PaymentStatus))
+                };
 
-            return View(model);
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
     }
 }

@@ -12,9 +12,17 @@ namespace Web.Controllers
     public class FuncaoController : Controller
     {
         private readonly IDAO<Funcao> _service = new FuncaoDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
         public ActionResult Index()
         {
-            return View(_service.Lista());
+            if (_serviceUsuario.ValidaUsuarioNoCache()) {
+                return View(_service.Lista()); 
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult Adicionar(Funcao funcao)
         {

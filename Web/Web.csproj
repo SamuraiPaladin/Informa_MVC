@@ -242,12 +242,10 @@
     <Compile Include="Controllers\InadimplentesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
-    <Compile Include="Controllers\MensalidadesController.cs" />
     <Compile Include="Controllers\MensalidadeController.cs" />
     <Compile Include="Controllers\TurmaController.cs" />
     <Compile Include="Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\FuncaoController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModalidadeController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\UnidadeController.cs" />

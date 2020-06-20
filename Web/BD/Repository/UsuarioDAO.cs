@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using Web.BD.Interface;
 
 namespace Web.BD.Repository
@@ -20,9 +21,9 @@ namespace Web.BD.Repository
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Nome",entity.Nome);
-                cmd.Parameters.AddWithValue("@Perfil",entity.PerfilUsuario);
-                cmd.Parameters.AddWithValue("@Senha",entity.Senha);
+                cmd.Parameters.AddWithValue("@Nome", entity.Nome);
+                cmd.Parameters.AddWithValue("@Perfil", entity.PerfilUsuario);
+                cmd.Parameters.AddWithValue("@Senha", entity.Senha);
                 return Convert.ToInt32(cmd.ExecuteNonQuery()) > 0 ? true : false;
             }
         }
@@ -107,6 +108,29 @@ namespace Web.BD.Repository
             return listaDeUsuarios;
         }
 
+        public Usuario Autentica(Usuario entity)
+        {
+            string query = "SELECT Id FROM Usuarios WHERE Nome = @Nome AND PWDCOMPARE(@Senha, Senha) = 1";
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Nome", entity.Nome);
+                cmd.Parameters.AddWithValue("@Senha", entity.Senha);
+                SqlDataReader sdr = cmd.ExecuteReader();
+                Usuario usuario = new Usuario();
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        usuario = DadosDoUsuario(Convert.ToInt32(sdr["Id"]));
+                    }
+                }
+
+                return usuario;
+            }
+        }
+
         public bool VerificarSeJaExiste(Usuario entity)
         {
             string query = "SELECT count(1) FROM Usuarios WHERE Nome = @Nome";
@@ -117,6 +141,11 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Nome", entity.Nome);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
+        }
+
+        public bool ValidaUsuarioNoCache()
+        {
+            return new Cache()["DadosDoUsuario"] != null ? true : false;
         }
     }
 }

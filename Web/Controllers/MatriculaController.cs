@@ -13,6 +13,8 @@ namespace Web.Controllers
     {
         private readonly IDAOMatricula<Matricula> dAO = new MatriculaDAO();
         private readonly MatriculaDAO dAOMatricula = new MatriculaDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
         public JsonResult BuscaCep(string cep)
         {
             var cepDados = ViaCEP.ViaCEPClient.Search(cep);
@@ -28,13 +30,19 @@ namespace Web.Controllers
         }
         public ActionResult Index()
         {
-            var model = new Matricula
+            if (_serviceUsuario.ValidaUsuarioNoCache()) {
+                var model = new Matricula
+                {
+                    ListaMatricula = dAOMatricula.Lista().ToList(),
+                    ListaMatriculaTurma = dAOMatricula.ListaMatriculaTurma().ToList(),
+                    DadosMatriculaTurma = new MatriculaTurma()
+                };
+                return View(model);
+            }
+            else
             {
-                ListaMatricula = dAOMatricula.Lista().ToList(),
-                ListaMatriculaTurma = dAOMatricula.ListaMatriculaTurma().ToList(),
-                DadosMatriculaTurma = new MatriculaTurma()
-            };
-            return View(model);
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult Adicionar(Matricula entity)
         {
