@@ -372,7 +372,7 @@
 </div>
 
 <div id="modalPagamento" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="height:550px">
         <div class="modal-header">
             <h4 class="flow-text" id="pagarMensalidadeDescricao"></h4>
         </div>
@@ -380,7 +380,7 @@
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioPagamento">
 
-                <div disabled id="MatriculaPagamento" class="input-field col s6">
+                <div disabled id="MatriculaPagamento" class="input-field col s12">
                     <select disabled id="MatriculaDropDownPagamento">
                         @foreach (var item in Model.ListaMatricula)
                         {
@@ -392,23 +392,36 @@
 
 
                 @*<div class="input-field col s6">
-                    <a disabled class='dropdown-trigger9 btn' href='#' data-target='statusPagamento' id="statusDropDownPagamento">Selecione o Status do Pagamento</a>
+            <a disabled class='dropdown-trigger9 btn' href='#' data-target='statusPagamento' id="statusDropDownPagamento">Selecione o Status do Pagamento</a>
 
-                    <ul id='statusPagamento' class='dropdown-content'>
-                        @foreach (var item in Model.StatusDasMensalidades)
-                        {
-                            <li><a>@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
-                        }
-                    </ul>
-                </div>*@
+            <ul id='statusPagamento' class='dropdown-content'>
+                @foreach (var item in Model.StatusDasMensalidades)
+                {
+                    <li><a>@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
+                }
+            </ul>
+        </div>*@
 
+                <!-- NOVO CAMPO!!! ALTERAR PARA TRAZER DO BACK O VALOR DA PARCELA!!-->
                 <div class="input-field col s6">
+                    <label for="valor">Valor da Mensalidade</label>
+                    <input disabled type="text" id="valorSerPago" class="validate" placeholder="R$250,00">
+                </div>
+
+                <!-- NOVO CAMPO!!! ALTERAR PARA TRAZER DO BACK O VALOR DO JUROS!!-->
+                <div class="input-field col s6">
+                    <label for="valor">Valor do Juros</label>
+                    <input disabled type="text" id="valorJuros" class="validate" placeholder="R$1,20">
+                </div>
+
+                <div class="input-field col s12">
 
                     <label for="valor" id="labelValorAPagar">Valor</label>
                     <br />
-                    <input disabled min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                    <input min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
                 </div>
 
+                <!-- CAMPO EDITADO!!! O USUARIO PODE EDITAR O VALOR!!-->
                 <div class="input-field col s6">
                     <label min='2020-01-01' max='2099-12-31' for="diaDeVencimentoPagamento">Data de Vencimento:</label>
                     <br />
@@ -416,8 +429,9 @@
                 </div>
 
                 <div id="formaPagamento" class="input-field col s6">
-
+                    <br />
                     <select id="formaDropDownPagamento">
+
                         <option disabled selected value="">Selecione a forma de pagamento</option>
                         @foreach (var item in Model.FormasDePagamentos)
                         {
@@ -425,6 +439,16 @@
                         }
                     </select>
                     <label>Forma de pagamento</label>
+                </div>
+
+                <!-- NOVO CAMPO!!! GERAR O RECIBO!!-->
+                <div class="input-field col s12">
+                    <p>
+                        <label>
+                            <input type="checkbox" />
+                            <span>Gerar Recibo?</span>
+                        </label>
+                    </p>
                 </div>
 
 
@@ -440,13 +464,14 @@
                     </div>
                 </div>
                 <input id="idEditar" style="display: none;" />
+
             </form>
         </div>
 
     </div>
     <div class="modal-footer">
         <a id="fecharPagar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="pagar" class="waves-effect waves-light green btn modal-trigger right btnCadastrar" onclick="Pagar()">PAGAR</a>
+        <a id="pagar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Pagar()">PAGAR</a>
     </div>
 </div>
 
