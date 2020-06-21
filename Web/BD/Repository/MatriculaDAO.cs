@@ -147,7 +147,7 @@ namespace Web.BD.Repository
 
         public IList<Matricula> Lista()
         {
-            string query = "SELECT * FROM Matriculas WHERE Ativo = 1 ORDER BY Nome";
+            string query = "SELECT * FROM Matriculas ORDER BY Nome";
             List<Matricula> entity = new List<Matricula>();
             using (var con = new SqlConnection(stringConexao))
             {
