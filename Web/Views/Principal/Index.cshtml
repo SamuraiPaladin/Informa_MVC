@@ -117,6 +117,9 @@
         var dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
 
         var dayNome = dias[dateObj.getDay() - 1];
+        if (dayNome == undefined) {
+            dayNome = "Domingo"
+        }
         month = meses[dateObj.getMonth()];
 
         newdate = dayNome + ", " + day + " de " + month;
