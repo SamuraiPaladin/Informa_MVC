@@ -13,19 +13,27 @@ namespace Web.Controllers
     {
         private readonly IAulaTurmaDAO _service = new AulaTurmaDAO();
         private IList<Aula> listaDeAulasPorTurma = new List<Aula>();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
         public ActionResult Index()
         {
-            IList<Aula> aulasNaDataDeHoje = _service.AulasNaDataDeHoje();
-            if (aulasNaDataDeHoje.Count() < 1)
-            {
-                var listaDeAlunosParaPresencaAtual = _service.ListaDeAlunosParaPresencaAtual();
-                if (listaDeAlunosParaPresencaAtual.Count() > 0)
+            if (_serviceUsuario.ValidaUsuarioNoCache()) {
+                IList<Aula> aulasNaDataDeHoje = _service.AulasNaDataDeHoje();
+                if (aulasNaDataDeHoje.Count() < 1)
                 {
-                    _service.SalvarListaDePresencaParaDataAtual(listaDeAlunosParaPresencaAtual);
-                }
+                    var listaDeAlunosParaPresencaAtual = _service.ListaDeAlunosParaPresencaAtual();
+                    if (listaDeAlunosParaPresencaAtual.Count() > 0)
+                    {
+                        _service.SalvarListaDePresencaParaDataAtual(listaDeAlunosParaPresencaAtual);
+                    }
 
+                }
+                return View(_service.ListaDeTurmas());
             }
-            return View(_service.ListaDeTurmas());
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult CarregarListaDeChamada(int turmaId)
         {

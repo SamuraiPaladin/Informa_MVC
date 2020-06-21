@@ -12,9 +12,17 @@ namespace Web.Controllers
     public class ModalidadeController : Controller
     {
         private readonly IDAO<Modalidade> _service = new ModalidadeDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
         public ActionResult Index()
         {
-            return View(_service.Lista());
+            if (_serviceUsuario.ValidaUsuarioNoCache()) {
+                return View(_service.Lista());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult Adicionar(Modalidade modalidade)
         {

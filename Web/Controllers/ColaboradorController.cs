@@ -25,17 +25,26 @@ namespace Web.Controllers
 
         private readonly IDAO<Colaborador> dAO = new ColaboradorDAO();
         private readonly ColaboradorDAO dAOColaborador = new ColaboradorDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
 
 
         public ActionResult Index()
         {
-            var model = new Colaborador
+            if (_serviceUsuario.ValidaUsuarioNoCache())
             {
-                ListaFuncao = dAOColaborador.ReturnColaboradorFuncoesLista(),
-                ListaColaborador = dAOColaborador.ReturnColaboradoresLista()
-            };
+                var model = new Colaborador
+                {
+                    ListaFuncao = dAOColaborador.ReturnColaboradorFuncoesLista(),
+                    ListaColaborador = dAOColaborador.ReturnColaboradoresLista()
+                };
 
-            return View(model);
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult Adicionar(Colaborador Colaborador)
         {
@@ -55,8 +64,8 @@ namespace Web.Controllers
         private static bool VerificaSeTemCampoVazioOuNulo(Colaborador entity)
         {
             if (entity.DataNascimento.ToString("dd/MM/yyyy HH:mm:ss") == "01/01/0001 00:00:00" || string.IsNullOrWhiteSpace(entity.Nome) || string.IsNullOrWhiteSpace(entity.CPF) || string.IsNullOrWhiteSpace(entity.RG) || string.IsNullOrWhiteSpace(entity.CEP) || string.IsNullOrWhiteSpace(entity.Endereco)
-            || string.IsNullOrWhiteSpace(entity.Numero) || string.IsNullOrWhiteSpace(entity.Bairro) || string.IsNullOrWhiteSpace(entity.Cidade) || string.IsNullOrWhiteSpace(entity.Estado) || string.IsNullOrWhiteSpace(entity.Telefone) 
-            || string.IsNullOrWhiteSpace(entity.Email) || !entity.Email.Contains('@') || entity.FuncaoId == 0) 
+            || string.IsNullOrWhiteSpace(entity.Numero) || string.IsNullOrWhiteSpace(entity.Bairro) || string.IsNullOrWhiteSpace(entity.Cidade) || string.IsNullOrWhiteSpace(entity.Estado) || string.IsNullOrWhiteSpace(entity.Telefone)
+            || string.IsNullOrWhiteSpace(entity.Email) || !entity.Email.Contains('@') || entity.FuncaoId == 0)
             {
                 return true;
             }
