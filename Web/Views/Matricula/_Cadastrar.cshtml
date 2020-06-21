@@ -1,12 +1,12 @@
 ﻿@model  Model.Entity.Matricula
-    <head>
-        <style>
-            [type="checkbox"]:checked + span:not(.lever):before {
-                border-right: 2px solid #af2405;
-                border-bottom: 2px solid #af2405;
-            }
-        </style>
-    </head>
+<head>
+    <style>
+        [type="checkbox"]:checked + span:not(.lever):before {
+            border-right: 2px solid #af2405;
+            border-bottom: 2px solid #af2405;
+        }
+    </style>
+</head>
 <div id="modalCadastrar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -159,8 +159,7 @@
                         <td></td>
                         <td></td>
                     </tr>
-                }
-                else
+                } else
                 {
                     foreach (var item in Model.ListaMatriculaTurma)
                     {
@@ -185,7 +184,34 @@
 
     </div>
     <div class="modal-footer">
-        <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black" onclick="fazPDF()">Fechar</a>
         <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
+
+<script>
+    var docDefinition = {
+        content: [
+            {
+                text: 'Contrato de Mátricula',
+                style: 'title'
+            }
+        ],
+        styles: {
+            title: {
+                fontSize: 18,
+                bold: true,
+                alignment: 'center'
+            },
+            
+        }
+    }
+
+    const fazPDF = () => {
+        pdfMake.createPdf(docDefinition).open();
+    }
+
+</script>
