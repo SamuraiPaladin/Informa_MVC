@@ -411,14 +411,22 @@
                 <!-- NOVO CAMPO!!! ALTERAR PARA TRAZER DO BACK O VALOR DO JUROS!!-->
                 <div class="input-field col s6">
                     <label for="valor">Valor do Juros</label>
-                    <input disabled type="text" id="valorJuros" class="validate" placeholder="R$1,20">
+                    <input disabled type="text" id="valorJuros" class="validate" placeholder="">
                 </div>
 
                 <div class="input-field col s12">
 
                     <label for="valor" id="labelValorAPagar">Valor</label>
                     <br />
-                    <input min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                    <input disabled min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                </div>
+
+                <!-- NOVO INPUT - VALOR FINAL QUE SERA DIGITADO PELO ADMINISTRAODOR DO SISTEMA-->
+                <div class="input-field col s12">
+
+                    <label for="valor" id="valorPago">Valor Pago</label>
+                    <br />
+                    <input type="text" id="valorPago" class="validate" >
                 </div>
 
                 <!-- CAMPO EDITADO!!! O USUARIO PODE EDITAR O VALOR!!-->
