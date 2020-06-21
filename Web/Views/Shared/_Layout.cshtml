@@ -48,8 +48,8 @@
                     <img src="~/imgs/icon-informa.png" class="right" width="80">
                     <p class="white-text container">
                         <a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
-                        <a href="#name"><span class="white-text name">John Dee</span></a>
-                        <a href="#email"><span class="white-text email">Nivel de Acesso: <strong>Administrador</strong></span></a>
+                        <a href="#name"><span class="white-text name">@Cache.Get("DadosDoUsuario.Nome")</span></a>
+                        <a href="#email"><span class="white-text email">Nivel de Acesso: <strong>@Cache.Get("DadosDoUsuario.PerfilUsuario")</strong></span></a>
 
                     </p>
                 </div>
