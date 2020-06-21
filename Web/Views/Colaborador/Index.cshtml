@@ -3,9 +3,17 @@
     ViewData["Title"] = "Colaborador";
 }
 
+<head>
+    <style>
+        .dropdown-content li > a, .dropdown-content li > span {
+            color: #000000;
+        }
+    </style>
+</head>
+
 <!-- BREADCRUMB -->
 
-<nav class="clean container">
+<nav class="clean containerConfigurado">
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
@@ -18,7 +26,7 @@
 </nav>
 
 
-<div class="row container">
+<div class="row containerConfigurado">
     <div class="col s12 l12">
         <a id="cadastrarColaborador" href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Colaborador</a>
     </div>
@@ -27,13 +35,9 @@
 <div id="modalCadastrar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text">Cadastrar Colaborador</h4>
+            <h4 class="flow-text center">CADASTRAR COLABORADOR</h4>
         </div>
-
         <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12">
@@ -44,16 +48,72 @@
                 </div>
 
                 <div class="input-field col s6">
+                    <input placeholder="dd/mm/aaaa" type="date" id="datadenascimento" class="validate">
+                    <label for="datadenascimento">Data de Nascimento</label>
+                </div>
 
-                    <!-- Dropdown Trigger -->
-                    <a class='dropdown-trigger btn' href='#' data-target='funcaoCadastrar' id="textoDropDownCadastrar">Selecione o Cargo</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='funcaoCadastrar' class='dropdown-content'>
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 999.999.999-99" id="cpf" oninput="mascaraCPF(this)" type="text">
+                    <label for="cpf">CPF</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: email@email.com" id="email" type="email">
+                    <label for="email">E-mail</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 99.999.999-9" id="rg" oninput="mascaraRG(this)" type="text">
+                    <label for="rg">RG</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate" maxlength="11">
+                    <label for="telefone">Telefone</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cep" oninput="mascaraCEP(this)" type="text" class="validate" maxlength="9">
+                    <label for="cep">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate" maxlength="45" disabled>
+                    <label for="endereco">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numero" type="number" class="validate" maxlength="5">
+                    <label for="numero">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate" maxlength="30" disabled>
+                    <label for="bairro">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidade" type="text" class="validate" maxlength="30" disabled>
+                    <label for="cidade">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estado" type="text" class="validate" disabled>
+                    <label for="estado">Estado</label>
+                </div>
+
+
+                <div class="input-field col s6">
+
+                    <select id="textoDropDownCadastrar">
+                        <option disabled selected value="">Selecione o cargo</option>
                         @foreach (var item in Model.ListaFuncao)
                         {
-                            <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Cadastrar')">@item.TipoFuncao</a></li>
+                            <option value="@item.Id">@item.TipoFuncao</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Cargo</label>
+
                 </div>
 
                 <div id="modalCadastroColaborador" class="modal">
@@ -75,13 +135,23 @@
         <a id="cadastar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
+<div class="containerConfigurado">
 
 @if (Model.ListaColaborador.Count > 0)
 {
-    <table class="table highlight centered container ">
+    <table id="tabelaColaborador" class="table highlight centered">
         <thead>
             <tr>
                 <th>Colaborador</th>
+                <th>Data de Nascimento</th>
+                <th>E-mail</th>
+                <th>RG</th>
+                <th>CPF</th>
+                <th>Endereço</th>
+                <th>Numero</th>
+                <th>Telefone</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
                 <th>Cargo</th>
                 <th></th>
             </tr>
@@ -90,35 +160,37 @@
             @foreach (var item in Model.ListaColaborador)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Funcao.TipoFuncao)
-                    </td>
+                    <td>@item.Nome</td>
+                    <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
+                    <td>@item.Email</td>
+                    <td>@item.RG</td>
+                    <td>@item.CPF</td>
+                    <td>@item.Endereco</td>
+                    <td>@item.Numero</td>
+                    <td>@item.Telefone</td>
+                    <td>@item.Bairro</td>
+                    <td>@item.Cidade</td>
+                    <td>@Html.DisplayFor(modelItem => item.Funcao.TipoFuncao)</td>
                     <td>
                         <a id="editarColaborador" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
-                                                                                                                                                      'Editar', '@item.Funcao.TipoFuncao')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                                                                                                                                                      'Editar', '@item.Funcao.TipoFuncao', '@item.RG','@item.CPF','@item.Endereco','@item.Numero','@item.CEP','@item.Telefone','@item.Bairro','@item.Cidade','@item.Estado','@item.DataNascimento.ToString("dd/MM/yyyy")','@item.Email')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
                         <a id="deletarColaborador" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
-                                                                                                                                                      'Deletar', '@item.Funcao.TipoFuncao')"><i class="material-icons">delete_forever</i></a>
+                                                                                                                                                      'Deletar', '@item.Funcao.TipoFuncao', '@item.RG','@item.CPF','@item.Endereco','@item.Numero','@item.CEP','@item.Telefone','@item.Bairro','@item.Cidade','@item.Estado','@item.DataNascimento.ToString("dd/MM/yyyy")','@item.Email')"><i class="material-icons">delete_forever</i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+</div>
 
 
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text" id="editarColaboradorNome"></h4>
+            <h4 class="flow-text center" id="editarColaboradorNome"></h4>
         </div>
-
         <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12">
@@ -128,14 +200,79 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <a class='dropdown-trigger2 btn' href='#' data-target='funcaoEditar' id="textoDropDownEditar">Selecione a Função</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='funcaoEditar' class='dropdown-content'>
+                    <input placeholder="dd/mm/aaaa" type="text" id="datadenascimentoEditar" maxlength="10" class="validate">
+                    <label for="datadenascimentoEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 999.999.999-99" id="cpfEditar" oninput="mascaraCPF(this)" type="text">
+                    <label for="cpfEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="teste@teste.com" id="emailEditar" type="email">
+                    <label for="emailEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 99.999.999-9" id="rgEditar" oninput="mascaraRG(this)" type="text">
+                    <label for="rgEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefoneEditar" type="text" class="validate" maxlength="11">
+                    <label for="telefoneEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEPEditar()" id="cepEditar" oninput="mascaraCEP(this)" class="validate" maxlength="9">
+                    <label for="cepEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="enderecoEditar" type="text" class="validate" maxlength="45" disabled>
+                    <label for="enderecoEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numeroEditar" type="number" class="validate" maxlength="5">
+                    <label for="numeroEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairroEditar" type="text" class="validate" maxlength="30" disabled>
+                    <label for="bairroEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidadeEditar" type="text" class="validate" maxlength="30" disabled>
+                    <label for="cidadeEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estadoEditar" type="text" class="validate" disabled>
+                    <label for="estadoEditar"></label>
+                </div>
+
+
+                <div id="textoEditar" class="input-field col s6">
+                    @*<a class='dropdown-trigger2 btn' href='#' data-target='funcaoEditar' id="textoDropDownEditar">Selecione a Função</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='funcaoEditar' class='dropdown-content'>
+                            @foreach (var item in Model.ListaFuncao)
+                            {
+                                <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Editar')">@item.TipoFuncao</a></li>
+                            }
+                        </ul>*@
+
+                    <select id="textoDropDownEditar">
                         @foreach (var item in Model.ListaFuncao)
                         {
-                            <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Editar')">@item.TipoFuncao</a></li>
+                            <option value="@item.Id">@item.TipoFuncao</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Cargo</label>
+
                 </div>
 
                 <div id="modalCadastroColaborador" class="modal">
@@ -163,9 +300,9 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="deletarColaboradorNome"></h4>
+            <h4 class="flow-text center" id="deletarColaboradorNome"></h4>
         </div>
-
+        <br /><br />
 
         <div class="col s12 l12">
             <form class="col s12 l12">
@@ -175,14 +312,77 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger btn' href='#' data-target='funcaoDeletar' id="textoDropDownDeletar">Selecione a Função</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='funcaoDeletar' class='dropdown-content'>
+                    <input disabled placeholder="dd/mm/aaaa" type="text" id="datadenascimentoDeletar" maxlength="10" class="validate">
+                    <label for="datadenascimentoDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: 999.999.999-99" id="cpfDeletar" oninput="mascaraCPF(this)" type="text">
+                    <label for="cpfDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="teste@teste.com" id="emailDeletar" type="email">
+                    <label for="emailDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: 99.999.999-9" id="rgDeletar" oninput="mascaraRG(this)" type="text">
+                    <label for="rgDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: 46361345, 84512574..." id="telefoneDeletar" type="text" class="validate" maxlength="11">
+                    <label for="telefoneDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: 08568520..." onblur="PesquisaCEPDeletar()" id="cepDeletar" oninput="mascaraCEP(this)" class="validate" maxlength="9">
+                    <label for="cepDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: Av. Paulista..." id="enderecoDeletar" type="text" class="validate" maxlength="45">
+                    <label for="enderecoDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: 4300..." id="numeroDeletar" type="number" class="validate" maxlength="5">
+                    <label for="numeroDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: Penha, Vila Leopoldina..." id="bairroDeletar" type="text" class="validate" maxlength="30">
+                    <label for="bairroDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: Poá, Suzano..." id="cidadeDeletar" type="text" class="validate" maxlength="30">
+                    <label for="cidadeDeletar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input disabled placeholder="Ex: SP, MG..." id="estadoDeletar" type="text" class="validate">
+                    <label for="estadoDeletar"></label>
+                </div>
+
+                <div id="textoDeletar" class="input-field col s6">
+                    @*<a disabled class='dropdown-trigger btn' href='#' data-target='funcaoDeletar' id="textoDropDownDeletar">Selecione a Função</a>
+        <!-- Dropdown Structure -->
+        <ul id='funcaoDeletar' class='dropdown-content'>
+            @foreach (var item in Model.ListaFuncao)
+            {
+                <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Deletar')">@item.TipoFuncao</a></li>
+            }
+        </ul>*@
+                    <select disabled id="textoDropDownDeletar">
                         @foreach (var item in Model.ListaFuncao)
                         {
-                            <li><a onclick="editaSelecionado('@item.TipoFuncao', '@item.Id', 'Deletar')">@item.TipoFuncao</a></li>
+                            <option value="@item.Id">@item.TipoFuncao</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Cargo</label>
+
                 </div>
                 <div id="modalCadastroColaborador" class="modal">
                     <div class="modal-content">
@@ -212,60 +412,171 @@
         let valorId;
         let valorNome;
         let valorFuncao;
+        let valorRG;
+        let valorCPF;
+        let valorEndereco;
+        let valorNumero;
+        let valorCep;
+        let valorTelefone;
+        let valorBairro;
+        let valorCidade;
+        let valorEstado;
+        let valorDataNascimento;
+        let valorEmail;
 
-        function EditarModal(id, nome, funcao, model, tipoFuncao) {
+        $(document).ready(function () {
+            $('#tabelaColaborador').DataTable();
+        });
+
+
+            function mascaraCPF(i) {
+            var v = i.value;
+            if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
+            i.setAttribute("maxlength", "14");
+            if (v.length == 3 || v.length == 7) i.value += ".";
+            if (v.length == 11) i.value += "-";
+        }
+
+        function mascaraRG(i) {
+            var v = i.value;
+            if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
+
+            i.setAttribute("maxlength", "12");
+            if (v.length == 2 || v.length == 6) i.value += ".";
+            if (v.length == 10) i.value += "-";
+        }
+
+        function mascaraCEP(i) {
+            var v = i.value;
+            if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
+            i.setAttribute("maxlength", "9");
+            if (v.length == 5) i.value += "-";
+        }
+
+        function PesquisaCEP() {
+        let cep = document.getElementById('cep').value;
+            $(function () {
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: "@Url.Action("BuscaCep", "Matricula")",
+                    data: { cep: cep },
+                    success: function (dados) {
+                    document.getElementById('bairro').value = dados.Bairro;
+                        document.getElementById('endereco').value = dados.Endereco ;
+                        document.getElementById('cidade').value = dados.Cidade ;
+                        document.getElementById('estado').value = dados.Estado ;
+                    }
+                })
+            });
+        }
+
+        function PesquisaCEPEditar() {
+        let cep = document.getElementById('cepEditar').value;
+            $(function () {
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: "@Url.Action("BuscaCep", "Matricula")",
+                    data: { cep: cep },
+                    success: function (dados) {
+                    document.getElementById('bairroEditar').value = dados.Bairro;
+                        document.getElementById('enderecoEditar').value = dados.Endereco ;
+                        document.getElementById('cidadeEditar').value = dados.Cidade ;
+                        document.getElementById('estadoEditar').value = dados.Estado ;
+                    }
+                })
+            });
+        }
+
+        function EditarModal(id, nome, funcao, model, tipoFuncao, RG, CPF, Endereco, Numero, Cep, Telefone, Bairro, Cidade, Estado, DataNascimento, Email) {
 
             valorId = id;
             valorNome = nome;
             valorFuncao = funcao;
+            valorRG = RG;
+            valorCPF = CPF;
+            valorEndereco = Endereco;
+            valorNumero = Numero;
+            valorCep = Cep;
+            valorTelefone = Telefone;
+            valorBairro = Bairro;
+            valorCidade = Cidade;
+            valorEstado = Estado;
+            valorDataNascimento = DataNascimento;
+            valorEmail = Email;
 
             document.getElementById("nome" + model).value = nome;
-            document.getElementById('textoDropDown' + model).text = tipoFuncao;
+            $('#texto' + model)[0].children[0].children[0].value = tipoFuncao;
             document.getElementById('textoDropDown' + model).FuncaoId = funcao;
+            document.getElementById("rg" + model).value = RG;
+            document.getElementById("cpf" + model).value = CPF;
+            document.getElementById("endereco" + model).value = Endereco;
+            document.getElementById("numero" + model).value = Numero;
+            document.getElementById("cep" + model).value = Cep;
+            document.getElementById("telefone" + model).value = Telefone;
+            document.getElementById("bairro" + model).value = Bairro;
+            document.getElementById("cidade" + model).value = Cidade;
+            document.getElementById("estado" + model).value = Estado;
+            document.getElementById("datadenascimento" + model).value = DataNascimento;
+            document.getElementById("email" + model).value = Email;
 
             if (model === "Editar") {
             document.getElementById("id" + model).value = id;
-            document.getElementById("editarColaboradorNome").innerText = "Editar Colaborador " + nome;
+                document.getElementById("editarColaboradorNome").innerText = "Editar Colaborador " + nome;
+                for (i = 0; i < $('#textoDropDownEditar')[0].length; i++) {
+                    if ($('#textoDropDownEditar')[0].children[i].value == parseInt(funcao))
+                    {
+                        $('#textoDropDownEditar')[0].children[i].selected = true;
+                    }
+                }
             } else {
                 document.getElementById("deletarColaboradorNome").innerText = "Tem certeza que deseja deletar o Colaborador " + nome +"?";
             }
         }
 
-        function Deletar() {
-            var colaborador = {
-                Id: valorId,
-                Nome: valorNome,
-                FuncaoId: valorFuncao
-            };
-            $(function () {
-                 $.ajax({
-                     dataType: "json",
-                     type: "POST",
-                     url: "@Url.Action("Deletar","Colaborador")",
-                     data: { colaborador: colaborador},
-                     success: function (dados) {
-                         switch (dados) {
-                             case "Preenchimento obrigatório":
-                                 M.toast({ html: dados, classes: 'rounded orange' });
-                             break;
-                             case true:
-                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
-                                 break;
-                             default:
-                         }
-                }
-            });
-        });
-        }
-
         function Editar() {
 
             var colaborador = {
-                Id: valorId, Nome: valorNome, FuncaoId: valorFuncao};
+                Id: valorId,
+                Nome: valorNome,
+                RG: valorRG,
+                CPF: valorCPF,
+                Endereco: valorEndereco,
+                Numero: valorNumero,
+                CEP: valorCep,
+                Telefone: valorTelefone,
+                Bairro: valorBairro,
+                Cidade: valorCidade,
+                Estado: valorEstado,
+                DataNascimento: valorDataNascimento,
+                Email: valorEmail,
+                FuncaoId: valorFuncao
+            };
             var colaboradorEditar = {
                 Id: document.getElementById("idEditar").value,
                 Nome: document.getElementById("nomeEditar").value,
-                FuncaoId: document.getElementById('textoDropDownEditar').FuncaoId
+                RG: document.getElementById("rgEditar").value,
+                CPF: document.getElementById("cpfEditar").value,
+                Endereco: document.getElementById("enderecoEditar").value,
+                Numero: document.getElementById("numeroEditar").value,
+                CEP: document.getElementById("cepEditar").value,
+                Telefone: document.getElementById("telefoneEditar").value,
+                Bairro: document.getElementById("bairroEditar").value,
+                Cidade: document.getElementById("cidadeEditar").value,
+                Estado: document.getElementById("estadoEditar").value,
+                DataNascimento: document.getElementById("datadenascimentoEditar").value,
+                Email: document.getElementById("emailEditar").value,
+                FuncaoId: $('#textoDropDownEditar').val()
             };
             $(function () {
                  $.ajax({
@@ -293,7 +604,19 @@
         function Adicionar() {
                     var colaborador = {
                         Nome: document.getElementById("nome").value,
-                        FuncaoId: document.getElementById('textoDropDownCadastrar').FuncaoId,
+                        RG: document.getElementById("rg").value,
+                        CPF: document.getElementById("cpf").value,
+                        Endereco: document.getElementById("endereco").value,
+                        Numero: document.getElementById("numero").value,
+                        CEP: document.getElementById("cep").value,
+                        Telefone: document.getElementById("telefone").value,
+                        Bairro: document.getElementById("bairro").value,
+                        Cidade: document.getElementById("cidade").value,
+                        Estado: document.getElementById("estado").value,
+                        DataNascimento: document.getElementById("datadenascimento").value,
+                        Email: document.getElementById("email").value,
+                        FuncaoId: $('#textoDropDownCadastrar').val(),
+                        Ativo: true
             };
              $(function () {
                  $.ajax({
@@ -310,6 +633,34 @@
                                  M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema. (CPF ou RG)', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        });
+        }
+
+
+    function Deletar() {
+        var colaborador = {
+            Id: parseInt(valorId)
+            };
+             $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Deletar","Colaborador")",
+                     data: { colaborador: colaborador},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
                                  M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
                              default:
                          }
@@ -317,6 +668,7 @@
             });
         });
         }
+
         $(document).ready(function(){
           $('.modal').modal();
         });

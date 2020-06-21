@@ -1,0 +1,46 @@
+﻿
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="flow-text center">DELETAR USUARIO</h4>
+        </div>
+        <br /><br />
+
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioDeletar">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex:Diego, David..." id="nomeDeletar" type="text" class="validate" disabled>
+                        <label for="funcao">Nome do Usuario</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="**********************" id="senhaDeletar" type="password" class="validate" disabled/>
+                        <label for="senha">Digite a sua Senha</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="usuarioDropDownDeletar" class="input-field col s6" disabled>
+                        <select id="perfilUsuarioDeletar" disabled>
+                            <option value="" disabled selected>Escolha o nivel de acesso</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Basico">Basico</option>
+                        </select>
+                        <label>Nivel de Acesso</label>
+                    </div>
+                    <div class="col s1" style="visibility:hidden">
+                        <input id="idDeletar" />
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right red" onclick="Deletar()">Deletar</a>
+    </div>
+</div>
+

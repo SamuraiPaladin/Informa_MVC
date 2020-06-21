@@ -1,8 +1,9 @@
-﻿@model IList<Model.Entity.Funcao>
+﻿@model IList<Model.Entity.Aula>
 @{
     ViewData["Title"] = "Aulas";
 }
-<nav class="clean container">
+
+<nav class="clean containerConfigurado">
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
@@ -14,202 +15,84 @@
     </div>
 </nav>
 
-<div class="row container">
-    <div class="col s12 l12">
-        <a id="cadastrarAula" class="btn waves-effect waves-light modal-trigger right" href="#cadastrarAulaModal">Cadastrar Aula</a>
-    </div>
-</div>
+@Html.Partial("_TabelaTurmas", Model)
+@Html.Partial("_ModelEditar", Model)
 
-<div id="cadastrarAulaModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="flow-text">Cadastrar Aula</h4>
-        </div>
+@section scripts{
+    <script>
+        function ModalListaPresenca(turmaId) {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("CarregarListaDeChamada", "Aula")",
+                     data: { turmaId: turmaId },
+                     success: function (dados) {
+                         if (dados.length > 0)
+                         {
+                             now = new Date;
+                             document.getElementById("editarAulaModal").innerText = "Lista de chamada Turma: " + dados[0].DescricaoTurma;
+                             document.getElementById("turma").value = dados[0].DescricaoTurma;
+                             document.getElementById("diaAula").value = now.getDay();
+                             document.getElementById("diasSemanas").value = dados[0].DiaDaSemana;
+                             document.getElementById("professorTurma").value = dados[0].NomeColaborador;
+                             document.getElementById("modalidade").value = dados[0].TipoModalidade;
+                             document.getElementById("faixaEtaria").value = dados[0].TipoFaixaEtaria;
+                             document.getElementById("dataAulaInicio").value = dados[0].HorarioInicial;
+                             document.getElementById("dataAulaFim").value = dados[0].HorarioFinal;
+                         }
+                         $("#Grid tr").remove();
+                         $(dados).each(function () {
+                             if (this.Presenca === true) {
+                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                             } else {
 
-        <br /><br />
-
-        <div class="col s12 l12">
-            <form class="col s12 l12" id="">
-                <div class="input-field col s4">
-                    <input placeholder="Ex: T01, T02" id="" type="text" id="codigoTurma" class="validate">
-                    <label for="codigoTurma">Código Turma</label>
-                </div>
-
-                <div class="input-field col s4">
-                    <select>
-                        <option value="" disabled selected>Escolha a Turma</option>
-                        <option value="1">Turma x</option>
-                        <option value="2">Turma y</option>
-                        <option value="3">Turma z</option>
-                    </select>
-                    <label>Turma</label>
-                </div>
-
-                <div class="input-field col s4">
-                    <input placeholder="Ex: 31/10/199" id="dataAula" type="text" class="validate">
-                    <label for="dataAula">Data da Aula</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <select>
-                        <option value="" disabled selected>Escolha o Curso</option>
-                        <option value="1">Curso x</option>
-                        <option value="2">Curso y</option>
-                        <option value="3">Curso z</option>
-                    </select>
-                    <label>Curso</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <select>
-                        <option value="" disabled selected>Escolha o Período</option>
-                        <option value="1">Manhã</option>
-                        <option value="2">Tarde</option>
-                        <option value="3">Noite</option>
-                    </select>
-                    <label>Período do Curso</label>
-                </div>
-
-            </form>
-        </div>
+                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.AulaId + "'/><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0,10) + "</td></tr>");
+                             }
+                         });
+                }
+            });
+        }
 
 
-    </div>
-    <div class="modal-footer">
-        <a id="fecharCadastrarAula" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="cadastrarAula" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="">Cadastrar</a>
-    </div>
-</div>
+        function Editar(){
+            var arrayEditar = [];
+     
+            try {
+                var table = document.getElementById("tabelaNova");
+                var rows = table.getElementsByTagName('tr');
 
-<div class="row container">
-    <div class="col s12 l12">
+                for (var ica = 1; ica < rows.length; ica++) {
+                    var cols = rows[ica].getElementsByTagName('td');
+                    var value = cols[0].getElementsByTagName('input')[0];
+                    arrayEditar.push({ AulaId: value.id, Presenca: value.checked });
+                }
+            }
+            catch (e) {
+                //alert(e);
+            }
+            $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Aula")",
+                data: { entity: arrayEditar},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('#tabela').dataTable();
+        });
 
-        <table class="highlight centered tabela">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Turma</th>
-                    <th>Data</th>
-                    <th>Curso</th>
-                    <th>Período</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>T010</td>
-                    <td>Turma 012</td>
-                    <td>31/10/1999</td>
-                    <td>Natação</td>
-                    <td>Manhã </td>
-                    <td>
-                        <a id="editarCargo" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a id="deletarCargo" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"><i class="material-icons">delete_forever</i></a>
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
-    </div>
-</div>
-<div id="modalEditar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="flow-text" id="editarAulaModal">Editar Dados da Aula 'tal'</h4>
-        </div>
-
-        <br /><br />
-
-        <div class="input-field col s4">
-            <input placeholder="Ex: T01, T02" id="" type="text" id="codigoTurma" class="validate">
-            <label for="codigoTurma">Código Turma</label>
-        </div>
-
-        <div class="input-field col s4">
-            <select>
-                <option value="" disabled selected>Escolha a Turma</option>
-                <option value="1">Turma x</option>
-                <option value="2">Turma y</option>
-                <option value="3">Turma z</option>
-            </select>
-            <label>Turma</label>
-        </div>
-
-        <div class="input-field col s4">
-            <input placeholder="Ex: 31/10/199" id="dataAula" type="text" class="validate">
-            <label for="dataAula">Data da Aula</label>
-        </div>
-
-        <div class="input-field col s6">
-            <select>
-                <option value="" disabled selected>Escolha o Curso</option>
-                <option value="1">Curso x</option>
-                <option value="2">Curso y</option>
-                <option value="3">Curso z</option>
-            </select>
-            <label>Curso</label>
-        </div>
-
-        <div class="input-field col s6">
-            <select>
-                <option value="" disabled selected>Escolha o Período</option>
-                <option value="1">Manhã</option>
-                <option value="2">Tarde</option>
-                <option value="3">Noite</option>
-            </select>
-            <label>Período do Curso</label>
-        </div>
-
-
-    </div>
-    <div class="modal-footer">
-        <a id="fecharEditar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="editar" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Atualizar</a>
-    </div>
-</div>
-
-
-<div id="modalDeletar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 id="deletarAulaModal">Tem certeza que deseja deletar a aula 'tal'?</h4>
-        </div>
-        <div class="col s12 l12">
-            <div class="input-field col s4">
-                <input placeholder="Ex: T01, T02" id="" type="text" id="codigoTurma" class="validate" disabled>
-                <label for="codigoTurma">Código Turma</label>
-            </div>
-
-            <div class="input-field col s4">
-                <select>
-                    <option value="" disabled selected>Escolha a Turma</option>
-                </select>
-                <label>Turma</label>
-            </div>
-
-            <div class="input-field col s4">
-                <input placeholder="Ex: 31/10/199" id="dataAula" type="text" class="validate">
-                <label for="dataAula">Data da Aula</label>
-            </div>
-
-            <div class="input-field col s6">
-                <select>
-                    <option value="" disabled selected>Escolha o Curso</option>
-                </select>
-                <label>Curso</label>
-            </div>
-
-            <div class="input-field col s6">
-                <select>
-                    <option value="" disabled selected>Escolha o Período</option>
-                </select>
-                <label>Período do Curso</label>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Deletar</a>
-    </div>
-</div>
-
+    </script>
+}

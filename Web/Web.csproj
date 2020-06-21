@@ -222,10 +222,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BD\Interface\IAulaTurmaDAO.cs" />
     <Compile Include="BD\Interface\IDAO.cs" />
     <Compile Include="BD\Interface\IDAOMatricula.cs" />
     <Compile Include="BD\Interface\IDAOPrincipal.cs" />
-    <Compile Include="BD\Repository\AlunoDAO.cs" />
+    <Compile Include="BD\Interface\IUnidadeDAO.cs" />
+    <Compile Include="BD\Repository\AulaTurmaDAO.cs" />
+    <Compile Include="BD\Interface\IUsuarioDAO.cs" />
     <Compile Include="BD\Repository\MatriculaDAO.cs" />
     <Compile Include="BD\Repository\MensalidadeDAO.cs" />
     <Compile Include="BD\Repository\PrincipalDAO.cs" />
@@ -234,18 +237,19 @@
     <Compile Include="BD\Repository\FuncaoDAO.cs" />
     <Compile Include="BD\Repository\ModalidadeDAO.cs" />
     <Compile Include="BD\Repository\UnidadeDAO.cs" />
-    <Compile Include="Controllers\AlunoController.cs" />
+    <Compile Include="BD\Repository\UsuarioDAO.cs" />
     <Compile Include="Controllers\AulaController.cs" />
+    <Compile Include="Controllers\InadimplentesController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
-    <Compile Include="Controllers\MensalidadesController.cs" />
     <Compile Include="Controllers\MensalidadeController.cs" />
     <Compile Include="Controllers\TurmaController.cs" />
     <Compile Include="Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\FuncaoController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModalidadeController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\UnidadeController.cs" />
+    <Compile Include="Controllers\UsuarioSistemaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -834,7 +838,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_SemLayout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -849,6 +853,18 @@
     <Content Include="Views\Mensalidade\Index.cshtml" />
     <Content Include="Views\Matricula\_Editar.cshtml" />
     <Content Include="Views\Aula\Index.cshtml" />
+    <Content Include="Views\Matricula\_Deletar.cshtml" />
+    <Content Include="Views\Matricula\_Cadastrar.cshtml" />
+    <Content Include="Views\Inadimplentes\Index.cshtml" />
+    <Content Include="Views\Aula\_TabelaTurmas.cshtml" />
+    <Content Include="Views\Aula\_ModelEditar.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\UsuarioSistema\Index.cshtml" />
+    <Content Include="Views\UsuarioSistema\_tabelaInicial.cshtml" />
+    <Content Include="Views\UsuarioSistema\_ModalCadastrarUsuario.cshtml" />
+    <Content Include="Views\UsuarioSistema\_ModalEditarUsuario.cshtml" />
+    <Content Include="Views\UsuarioSistema\_ModalDeletar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

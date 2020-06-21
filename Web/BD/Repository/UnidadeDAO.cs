@@ -7,9 +7,10 @@ using System.Linq;
 using System.Web;
 using Web.BD.Interface;
 
+
 namespace Web.BD.Repository
 {
-    public class UnidadeDAO : IDAO<Unidade>
+    public class UnidadeDAO : IUnidadeDAO<Unidade>
     {
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Unidade entity)
@@ -17,7 +18,7 @@ namespace Web.BD.Repository
             string query = @"INSERT INTO Unidades(Descricao, Endereco, Numero, Cep, Telefone, Bairro, Cidade, Estado)
 			                    Values(@Descricao, @Endereco, @Numero, @Cep, @Telefone, @Bairro, @Cidade, @Estado);
                              SELECT @@IDENTITY";
-            return GravarERetornarVerdadeiroOuFalse(entity, query);
+            return GravarERetornarVerdadeiroOuFalse(entity, query, 1);
         }
         public bool Atualizar(Unidade entityAntigo, Unidade entityNovo)
         {
@@ -101,41 +102,50 @@ namespace Web.BD.Repository
                 return lista;
             }
         }
-        public bool VerificarSeJaExiste(Unidade entity)
+        public bool VerificarSeJaExiste(Unidade entity, int acao)
         {
-            string query = @"SELECT 
+            string query = acao == 1 ? @"SELECT 
                                 	count(1) as qtd
                                 FROM 
                                 	Unidades 
                                 WHERE 
-                                	Endereco = @Endereco AND
                                     Descricao = @Descricao AND
-                                    Numero = @Numero";
-            using (var con = new SqlConnection(stringConexao))
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
-                cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
-                cmd.Parameters.AddWithValue("@Numero", entity.Numero);
-                var result = Convert.ToInt32(cmd.ExecuteScalar());
-                return result > 0 ? true : false;
-            }
+                                    Endereco = @Endereco AND
+                                    Numero   = @Numero AND
+                                    CEP      = @CEP AND
+                                    Estado   = @Estado AND
+                                    Telefone = @Telefone AND
+                                    Bairro  =  @Bairro AND
+                                    Cidade =   @Cidade 
+                                "
+                                   : 
+                                
+                                @"SELECT 
+                                	count(1) as qtd
+                                FROM 
+                                	Unidades 
+                                WHERE 
+                                    Descricao = @Descricao";
+            return GravarERetornarVerdadeiroOuFalse(entity, query, acao);
         }
-        private bool GravarERetornarVerdadeiroOuFalse(Unidade entity, string query)
+
+
+        private bool GravarERetornarVerdadeiroOuFalse(Unidade entity, string query, int acao)
         {
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
-                cmd.Parameters.AddWithValue("@Numero", entity.Numero);
-                cmd.Parameters.AddWithValue("@CEP", entity.CEP);
-                cmd.Parameters.AddWithValue("@Estado", entity.Estado);
-                cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
-                cmd.Parameters.AddWithValue("@Bairro", entity.Bairro);
-                cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
                 cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
+                if (acao == 1) {
+                    cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
+                    cmd.Parameters.AddWithValue("@Numero", entity.Numero);
+                    cmd.Parameters.AddWithValue("@CEP", entity.CEP);
+                    cmd.Parameters.AddWithValue("@Estado", entity.Estado);
+                    cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
+                    cmd.Parameters.AddWithValue("@Bairro", entity.Bairro);
+                    cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
+                }
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
         }

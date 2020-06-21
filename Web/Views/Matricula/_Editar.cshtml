@@ -12,17 +12,9 @@
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text" id="tituloAlunoEditar"></h4>
+            <h4 class="flow-text center" id="tituloAlunoEditar"></h4>
         </div>
-
         <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12">
-                <h4 class="flow-text subtitleModal">Dados pessoais</h4>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <br />
         <div class="col s12 l12">
             <form class="col s12 l12">
                 <div class="input-field col s6">
@@ -35,9 +27,54 @@
                     <label for="datadenascimentoEditar"></label>
                 </div>
 
+                <!-- NOVO INPUT -->
+                <div class="input-field col s12">
+                    <p>
+                        <label>
+                            <input type="checkbox" />
+                            <span>Menor de idade?</span>
+                        </label>
+                    </p>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s6">
+                    <input placeholder="Nome do resposável, caso for menor de idade" type="text" id="resposavel" class="validate">
+                    <label for="resposavel">Responsável</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s6">
+                    <input placeholder="Grau de parentesco" type="text" id="parentesco" class="validate">
+                    <label for="parentesco">Grau de Parentesco</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Dados de contato do resposável" type="text" id="contato" class="validate">
+                    <label for="contato">Telefone 1</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Dados de contato do resposável" type="text" id="contato" class="validate">
+                    <label for="contato">Telefone 2</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Dados de contato do resposável" type="text" id="contato" class="validate">
+                    <label for="contato">Telefone 3</label>
+                </div>
+
                 <div class="input-field col s6">
                     <input placeholder="Ex: 999.999.999-99" id="cpfEditar" oninput="mascaraCPF(this)" type="text">
                     <label for="cpfEditar"></label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="teste@teste.com" id="emailEditar" type="email">
+                    <label for="emailEditar"></label>
                 </div>
 
                 <div class="input-field col s6">

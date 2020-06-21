@@ -20,21 +20,29 @@ namespace Web.Controllers
 
         private readonly IDAO<Turma> dAO = new TurmaDAO();
         private readonly TurmaDAO dAOTurma = new TurmaDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
 
 
         public ActionResult Index()
         {
-            var model = new Turma
+            if (_serviceUsuario.ValidaUsuarioNoCache())
             {
-                ListaUnidade = dAOTurma.ReturnTurmaUnidadesLista(),
-                ListaModalidade = dAOTurma.ReturnTurmaModalidadesLista(),
-                ListaColaborador = dAOTurma.ReturnTurmaColaboradorLista(),
-                ListaTurma = dAOTurma.ReturnTurmaLista(),
-                DiasDaSemana = Enum.GetValues(typeof(EnumDays.DaysOfWeek)),
-                TipoClientes = Enum.GetValues(typeof(EnumClients.Clients))
-            };
+                var model = new Turma
+                {
+                    ListaUnidade = dAOTurma.ReturnTurmaUnidadesLista(),
+                    ListaModalidade = dAOTurma.ReturnTurmaModalidadesLista(),
+                    ListaColaborador = dAOTurma.ReturnTurmaColaboradorLista(),
+                    ListaTurma = dAOTurma.ReturnTurmaLista(),
+                    DiasDaSemana = Enum.GetValues(typeof(EnumDays.DaysOfWeek)),
+                    TipoClientes = Enum.GetValues(typeof(EnumClients.Clients))
+                };
 
-            return View(model);
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult Adicionar(Turma Turma)
         {

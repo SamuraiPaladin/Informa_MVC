@@ -13,6 +13,8 @@ namespace Web.Controllers
     {
         private readonly IDAOMatricula<Matricula> dAO = new MatriculaDAO();
         private readonly MatriculaDAO dAOMatricula = new MatriculaDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
         public JsonResult BuscaCep(string cep)
         {
             var cepDados = ViaCEP.ViaCEPClient.Search(cep);
@@ -28,13 +30,19 @@ namespace Web.Controllers
         }
         public ActionResult Index()
         {
-            var model = new Matricula
+            if (_serviceUsuario.ValidaUsuarioNoCache()) {
+                var model = new Matricula
+                {
+                    ListaMatricula = dAOMatricula.Lista().ToList(),
+                    ListaMatriculaTurma = dAOMatricula.ListaMatriculaTurma().ToList(),
+                    DadosMatriculaTurma = new MatriculaTurma()
+                };
+                return View(model);
+            }
+            else
             {
-                ListaMatricula = dAOMatricula.Lista().ToList(),
-                ListaMatriculaTurma = dAOMatricula.ListaMatriculaTurma().ToList(),
-                DadosMatriculaTurma = new MatriculaTurma()
-            };
-            return View(model);
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult Adicionar(Matricula entity)
         {
@@ -56,7 +64,8 @@ namespace Web.Controllers
         private static bool VerificaSeTemCampoVazioOuNulo(Matricula entity)
         {
             if (entity.DataNascimento.ToString("dd/MM/yyyy HH:mm:ss") == "01/01/0001 00:00:00" || string.IsNullOrWhiteSpace(entity.Nome) || string.IsNullOrWhiteSpace(entity.CPF) || string.IsNullOrWhiteSpace(entity.RG) || string.IsNullOrWhiteSpace(entity.CEP) || string.IsNullOrWhiteSpace(entity.Endereco)
-                || string.IsNullOrWhiteSpace(entity.Numero) || string.IsNullOrWhiteSpace(entity.Bairro) || string.IsNullOrWhiteSpace(entity.Cidade) || string.IsNullOrWhiteSpace(entity.Estado) || string.IsNullOrWhiteSpace(entity.Telefone) || entity.Array == null)
+                || string.IsNullOrWhiteSpace(entity.Numero) || string.IsNullOrWhiteSpace(entity.Bairro) || string.IsNullOrWhiteSpace(entity.Cidade) || string.IsNullOrWhiteSpace(entity.Estado) || string.IsNullOrWhiteSpace(entity.Telefone) || entity.Array == null
+                || string.IsNullOrWhiteSpace(entity.Email) || !entity.Email.Contains('@'))
             {
                 return true;
             }

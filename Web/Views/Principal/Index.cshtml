@@ -2,23 +2,15 @@
     ViewData["Title"] = "Principal";
 }
 
-<head>
-
-</head>
-<div class="parallax-container" id="parallaxIndex" style="height:220px">
+<div class="parallax-container" id="parallaxIndex" style="height: 200px">
     <div class="parallax"><img src="~/imgs/img-parallaxx.jfif"></div>
     <div class="row container">
         <div class="col s12 l6">
-            <h5 id="bemvindo">Bem vindo, <strong>Diego</strong> ;)</h5>
-            <h5 id="data"></h5>
-            <p id="temperaturaDados">
-                <span id="locale"> </span><br>
-                <img id="iconweather" width="60" />
-                <span id="icontemperature"><span id="graus"></span> °c</span>
-            </p>
+            <h5 id="bemvindo">Bem vindo ao <strong>inForma</strong> ;)</h5>
+            <h5 id="data" style="position:relative;top:40px;"></h5>
         </div>
         <div class="col s12 l6">
-            <span class="right" id="horario"><i class="material-icons small" style="position:relative;top:5px">av_timer</i> <span id="horarioAtual"></span> </span>
+            <span class="right" id="horario" style="position:relative;top:-10px;"><i class="material-icons small" style="position:relative;top:5px">av_timer</i> <span id="horarioAtual"></span> </span>
         </div>
     </div>
 </div>
@@ -30,35 +22,33 @@
         <div class="divider"></div>
         <br>
     </div>
-    <div class="col s12 l4 consultaRapida center">
+    <div class="col s12 l6 consultaRapida center">
         <i class="material-icons iconRapido large">attach_money</i>
         @if (ViewBag.Quantidade == 0)
         {
-            <h5 id="situacaoAlunos" style="margin-left:60px"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a></h5>
-        }
-        else
+            <h5 id="situacaoAlunos"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a></h5>
+        } else
         {
             if (ViewBag.Quantidade > 1)
             {
                 <h5 id="situacaoAlunos" style="margin-left:60px"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a><span class="new badge" data-badge-caption="Pendências" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></h5>
-            }
-            else
+            } else
             {
                 <h5 id="situacaoAlunos" style="margin-left:60px"><a href="@Url.Action("Index","Mensalidade")" class="linkRapido">Situação de Alunos</a><span class="new badge" data-badge-caption="Pendência" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></h5>
             }
         }
         <p>Consulte a situação de mensalidades de todos os alunos</p>
     </div>
-    <div class="col s12 l4 consultaRapida center">
+    <div class="col s12 l6 consultaRapida center">
         <i class="material-icons iconRapido large">person_outline</i>
         <h5><a id="matriculaAlunos" href="@Url.Action("Index","Matricula")" class="linkRapido">Alunos e Matrículas</a></h5>
         <p>Consulte todas as matriculas dos alunos</p>
     </div>
-    <div class="col s12 l4 consultaRapida center">
+    <!--<div class="col s12 l4 consultaRapida center">
         <i class="material-icons iconRapido large">drag_indicator</i>
         <a id="estoque" href="" class="linkRapido"> <h5>Estoque</h5> </a>
         <p>texto texto texto texto texteo texto</p>
-    </div>
+    </div>-->
 
     <div class="col s12 l12">
         <br>
@@ -126,7 +116,10 @@
         var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Setembro", "Dezembro"];
         var dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
 
-        var dayNome = dias[dateObj.getDay()];
+        var dayNome = dias[dateObj.getDay() - 1];
+        if (dayNome == undefined) {
+            dayNome = "Domingo"
+        }
         month = meses[dateObj.getMonth()];
 
         newdate = dayNome + ", " + day + " de " + month;

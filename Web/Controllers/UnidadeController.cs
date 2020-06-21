@@ -14,11 +14,20 @@ namespace Web.Controllers
 {
     public class UnidadeController : Controller
     {
-        private readonly IDAO<Unidade> dAO = new UnidadeDAO();
+        private readonly IUnidadeDAO<Unidade> dAO = new UnidadeDAO();
+        private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+
 
         public ActionResult Index()
         {
-            return View(dAO.Lista());
+            if (_serviceUsuario.ValidaUsuarioNoCache())
+            {
+                return View(dAO.Lista());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
         public JsonResult BuscaCep(string cep)
         {
@@ -39,7 +48,7 @@ namespace Web.Controllers
                 return Json("Preenchimento obrigatório");
             else
             {
-                if (!dAO.VerificarSeJaExiste(unidade))
+                if (!dAO.VerificarSeJaExiste(unidade, 0))
                     return Json(dAO.Adicionar(unidade));
                 else
                     return Json(false);
@@ -56,7 +65,7 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(unidadeEditar))
                 return Json("Preenchimento obrigatório");
             else
-                if (!dAO.VerificarSeJaExiste(unidadeEditar))
+                if (!dAO.VerificarSeJaExiste(unidadeEditar, 1))
                 return Json(dAO.Atualizar(unidade, unidadeEditar));
             else
                 return Json(false);
@@ -66,7 +75,7 @@ namespace Web.Controllers
             if (VerificaSeTemCampoVazioOuNulo(unidade))
                 return Json("Preenchimento obrigatório");
             else
-                if (dAO.VerificarSeJaExiste(unidade))
+                if (dAO.VerificarSeJaExiste(unidade, 0))
                 return Json(dAO.Deletar(unidade));
             else
                 return Json(false);

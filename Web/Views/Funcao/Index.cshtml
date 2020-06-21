@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Cargos";
 }
-<nav class="clean container">
+<nav class="clean containerConfigurado">
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
@@ -14,22 +14,18 @@
     </div>
 </nav>
 
-<div class="row container">
+<div class="row containerConfigurado">
     <div class="col s12 l12">
-        <a id="cadastrarCargo" class="btn waves-effect waves-light modal-trigger right" href="#cadastrarCargo">Cadastrar Cargo</a>
+        <a id="cadastrarCargo" href="#cadastrarCargoModal" class="btn waves-effect waves-light right modal-trigger">Cadastrar Cargo</a>
     </div>
 </div>
 
-<div id="cadastrarCargo" class="modal">
+<div id="cadastrarCargoModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text">Cadastrar Cargo</h4>
+            <h4 class="flow-text center">CADASTRAR CARGO</h4>
         </div>
-
         <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioAdicionar">
@@ -53,12 +49,11 @@
     </div>
 </div>
 
-<div class="row container">
-    <div class="col s12 l12">
+<div class="row containerConfigurado">
 
         @if (Model.Count > 0)
         {
-            <table class="highlight centered tabela">
+            <table class="highlight centered tabela" id="tabelaCadastrar">
                 <thead>
                     <tr>
                         <th>Cargo</th>
@@ -66,9 +61,9 @@
                         <th></th>
                     </tr>
                 </thead>
-                @foreach (var item in Model)
-                {
-                    <tbody>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>@item.TipoFuncao</td>
                             <td>@item.Descricao</td>
@@ -77,22 +72,17 @@
                                 <a id="deletarCargo" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.TipoFuncao', '@item.Descricao', '@item.Id','Deletar')"><i class="material-icons">delete_forever</i></a>
                             </td>
                         </tr>
-                    </tbody>
-                }
+                    }
+                </tbody>
             </table>
         }
-    </div>
 </div>
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text" id="editarCargoModal"></h4>
+            <h4 class="flow-text center" id="editarCargoModal"></h4>
         </div>
-
         <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioEditar">
@@ -121,7 +111,7 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="deletarCargoModal"></h4>
+            <h4 class="flow-text center" id="deletarCargoModal"></h4>
         </div>
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioDeletar">
@@ -173,6 +163,7 @@
             });
         });
         }
+
         function EditarModal(funcao, descricao, id, model) {
             valorFuncao = funcao;
             valorDescricao = descricao;
@@ -190,6 +181,7 @@
 
             }
         }
+
         function Editar(funcao, descricao) {
             var funcao = { TipoFuncao: valorFuncao, Descricao: valorDescricao };
             var funcaoEditar = { TipoFuncao: document.getElementById("funcaoEditar").value, Descricao: document.getElementById("descricaoEditar").value, Ativo: true, Id : document.getElementById("idEditar").value };
@@ -215,6 +207,7 @@
             });
         });
         }
+
         function Adicionar() {
             var funcao = { TipoFuncao: document.getElementById("funcao").value, Descricao: document.getElementById("descricao").value, Ativo: true };
              $(function () {
@@ -239,6 +232,7 @@
             });
         });
         }
+
         function Deletar() {
             //teste commit
             var funcao = { TipoFuncao: document.getElementById("funcaoDeletar").value, Descricao: document.getElementById("descricaoDeletar").value, Ativo: true, Id: document.getElementById("idDeletar").value };
@@ -262,6 +256,10 @@
             });
         });
         }
+
+        $(document).ready(function () {
+            $("#tabelaCadastrar").DataTable();
+        })
     </script>
 
 }

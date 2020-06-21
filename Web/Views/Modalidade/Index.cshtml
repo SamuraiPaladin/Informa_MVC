@@ -3,7 +3,7 @@
     ViewData["Title"] = "Modalidade";
 }
 
-<nav class="clean container">
+<nav class="clean containerConfigurado">
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
@@ -16,7 +16,7 @@
 </nav>
 
 
-<div class="row container">
+<div class="row containerConfigurado">
     <div class="col s12 l12">
         <a class="btn waves-effect waves-light modal-trigger right" href="#cadastrarModalidade">Cadastrar Modalidade</a>
     </div>
@@ -24,22 +24,18 @@
 <div id="cadastrarModalidade" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text">Cadastrar Modalidade </h4>
+            <h4 class="flow-text center">CADASTRAR MODALIDADE</h4>
         </div>
-
         <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioDeletar">
                 <div class="input-field col s6">
-                    <input placeholder="Ex:Natação, Hidroginastica, Musculação, Judô..." id="modalidade" type="text" class="validate" maxlength="20">
+                    <input placeholder="Ex: Natação, Hidroginastica, Musculação, Judô..." id="modalidade" type="text" class="validate" maxlength="20">
                     <label for="modalidade">Nome da Modalidade</label>
                 </div>
                 <div class="input-field col s6">
-                    <input placeholder="Ex: Esporte..." id="descricao" type="text" class="validate" maxlength="50">
+                    <input placeholder="Ex: Esporte que trabalha parte superior e posterior..." id="descricao" type="text" class="validate" maxlength="50">
                     <label for="descricao">Descrição</label>
                 </div>
             </form>
@@ -50,44 +46,42 @@
         <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
     </div>
 </div>
-<div class="row container">
+<div class="row containerConfigurado">
     <div class="col s12 l12">
         @if (Model.Count > 0)
         {
-            <table class="highlight centered tabela">
-                <thead>
-                    <tr>
-                        <th>Modalidade</th>
-                        <th>Descrição</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model)
+        <table class="highlight centered tabela" id="tabelaPrincipal">
+            <thead>
+                <tr>
+                    <th>Modalidade</th>
+                    <th>Descrição</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
                 {
-                    <tbody>
-                        <tr>
-                            <td>@item.TipoModalidade</td>
-                            <td>@item.Descricao</td>
-                            <td>
-                                <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.TipoModalidade', '@item.Descricao', '@item.Id','Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                                <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.TipoModalidade', '@item.Descricao', '@item.Id','Deletar')"><i class="material-icons">delete_forever</i></a>
-                            </td>
-                        </tr>
-                    </tbody>
+                <tr>
+                    <td>@item.TipoModalidade</td>
+                    <td>@item.Descricao</td>
+                    <td>
+                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.TipoModalidade', '@item.Descricao', '@item.Id','Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.TipoModalidade', '@item.Descricao', '@item.Id','Deletar')"><i class="material-icons">delete_forever</i></a>
+                    </td>
+                </tr>
+
                 }
-            </table>
+            </tbody>
+        </table>
         }
     </div>
 </div>
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="flow-text" id="editarModalidadeDescricao"></h4>
+            <h4 class="flow-text center" id="editarModalidadeDescricao"></h4>
         </div>
         <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioEditar">
@@ -111,8 +105,7 @@
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="deletarModalidadeDescricao"></h4>
-            @*<h4>Tem certeza que deseja deletar a modalidade'tal'? </h4>*@
+            <h4 class="flow-text center" id="deletarModalidadeDescricao"></h4>
         </div>
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioDeletar">
@@ -162,6 +155,7 @@
             });
         });
         }
+
         function EditarModal(modalidade, descricao, id, model) {
             valorModalidade = modalidade;
             valorDescricao = descricao;
@@ -179,6 +173,7 @@
 
          }
         }
+
         function Editar(modalidade, descricao) {
             var modalidade = { TipoModalidade: valorModalidade, Descricao: valorDescricao };
             var modalidadeEditar = { TipoModalidade: document.getElementById("modalidadeEditar").value, Descricao: document.getElementById("descricaoEditar").value, Ativo: true, Id : document.getElementById("idEditar").value };
@@ -204,6 +199,7 @@
             });
         });
         }
+
         function Adicionar() {
             var modalidade = { TipoModalidade: document.getElementById("modalidade").value, Descricao: document.getElementById("descricao").value, Ativo: true };
              $(function () {
@@ -228,6 +224,7 @@
             });
         });
         }
+
         function Deletar() {
             var modalidade = { TipoModalidade: document.getElementById("modalidadeDeletar").value, Descricao: document.getElementById("descricaoDeletar").value, Ativo: true, Id: document.getElementById("idDeletar").value };
              $(function () {
@@ -249,6 +246,10 @@
                 }
             });
         });
-    }
+        }
+
+        $(document).ready(function () {
+            $('#tabelaPrincipal').dataTable();
+        });
     </script>
 }

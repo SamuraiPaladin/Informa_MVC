@@ -1,0 +1,74 @@
+﻿@model IList<Model.Entity.Aula>
+
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="flow-text center" id="editarAulaModal">Lista de Chamada</h4>
+        </div>
+        <br /><br />
+
+        <div class="input-field col s5">
+            <input placeholder="Natação, Pilates" id="turma" type="text" class="validate" disabled>
+            <label for="turma">Turma</label>
+        </div>
+
+        <div class="input-field col s5">
+            <input placeholder="Seg, Ter, Sab" id="diasSemanas" type="text" class="validate" disabled>
+            <label for="diasSemanas">Dias de aula</label>
+        </div>
+
+        <div class="input-field col s2">
+            <input placeholder="Ex: 14" id="diaAula" type="text" class="validate" disabled>
+            <label for="diaAula">Dia da Aula</label>
+        </div>
+
+        <div class="input-field col s5">
+            <input placeholder="Diego Souza" id="professorTurma" type="text" class="validate" disabled>
+            <label for="professorTurma">Professor da Turma</label>
+        </div>
+
+        <div class="input-field col s5">
+            <input placeholder="Judo" type="text" id="modalidade" class="validate" disabled>
+            <label for="modalidade">Modalidade</label>
+        </div>
+
+        <div class="input-field col s2">
+            <input placeholder="Infantil" id="faixaEtaria" type="text" class="validate" disabled>
+            <label for="faixaEtaria">Faixa Etária</label>
+        </div>
+
+
+
+        <div class="input-field col s6">
+            <input placeholder="12:00" id="dataAulaInicio" type="text" class="validate" disabled>
+            <label for="dataAulaInicio">Horário inicial</label>
+        </div>
+
+        <div class="input-field col s6">
+            <input placeholder="12:30" id="dataAulaFim" type="text" class="validate" disabled>
+            <label for="dataAulaFim">Horário final</label>
+        </div>
+
+        <h4 class="flow-text center subtitleModal">LISTA DE CHAMADA</h4>
+        <table class="centered" id="tabelaNova">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>CPF</th>
+                    <th>Data de Nascimento</th>
+                </tr>
+            </thead>
+            <tbody id="Grid">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal-footer">
+        <a id="fecharEditar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="editar" onclick="Editar()" class="waves-effect waves-light btn modal-trigger right btnCadastrar">Atualizar</a>
+    </div>
+</div>
+
+
+

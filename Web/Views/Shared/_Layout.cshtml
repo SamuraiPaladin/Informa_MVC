@@ -31,6 +31,7 @@
                 <li><a id="principal" href="@Url.Action("Index","Principal")">Principal</a></li>
                 <li><a id="unidade" href="@Url.Action("Index","Unidade")">Unidade</a></li>
                 <li id="mensalidades"></li>
+                <li><a title="Sair" id="sair" href="@Url.Action("Index","Login")"><i class="material-icons">exit_to_app</i></a></li>
                     
                 @*<li id="mensalidades"><a href="@Url.Action("Index","Mensalidade")">Situação de Alunos<span class="new badge" data-badge-caption="Pendência" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></a></li>*@
                     
@@ -41,16 +42,23 @@
 
     <ul id="slide-out" class="sidenav">
         <li>
-            <div class="user-view">
-                <div class="background" style="background-color: #af2405;">
-                    <img src="~/imgs/icon-informa.png" class="right" width="140">
+            <div class="user-view" style="height:150px">
+                <div class="background" style="background-color: #af2405; ">
+
+                    <img src="~/imgs/icon-informa.png" class="right" width="80">
+                    <p class="white-text container">
+                        <a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
+                        <a href="#name"><span class="white-text name">@Cache.Get("DadosDoUsuario.Nome")</span></a>
+                        <a href="#email"><span class="white-text email">Nivel de Acesso: <strong>@Cache.Get("DadosDoUsuario.PerfilUsuario")</strong></span></a>
+
+                    </p>
                 </div>
-                <a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
-                <a href="#name"><span class="white-text name">John Dee</span></a>
-                <a href="#email"><span class="white-text email"><strong>Recepcionista</strong> - Osasco</span></a>
+                <!--<img class="circle" src="~/imgs/avatar-batman.png">-->
+
+
             </div>
         </li>
-        <li><a class="subheader">Módulos</a></li>
+        <li><a class="subheader">Módulos de Negócio</a></li>
         <li>
             <ul class="collapsible">
                 <li>
@@ -109,7 +117,7 @@
                                 <a id="financeiroMensalidade" class="" href="@Url.Action("Index","Mensalidade")"><span class="insideLink">Mensalidades</span></a>
                             </li>
                             <li>
-                                <a id="financeiroAluno" class="" href="@Url.Action("Index","Aluno")"><span class="insideLink">Alunos Inadimplentes</span></a>
+                                <a id="financeiroAluno" class="" href="@Url.Action("Index","Inadimplentes")"><span class="insideLink">Alunos Inadimplentes</span></a>
                             </li>
                         </ul>
 
@@ -117,11 +125,24 @@
                 </li>
             </ul>
         </li>
+
+        <li><a class="subheader">Relatórios</a></li>
+
         <li>
-            <div class="divider"></div>
+            <div id="matricula" class="collapsible-header" >
+                <i class="material-icons" style="color: grey;">article</i>
+                <strong>Movimento Financeiro</strong>
+            </div>
         </li>
 
-        <li><a class="subheader">Outro submenu</a></li>
+        <li><a class="subheader">Sistema</a></li>
+
+        <li>
+            <div id="matricula" class="collapsible-header" onClick="redirecionaPaginaSistema()">
+                <i class="material-icons" style="color: grey;">person</i>
+                <strong>Usuarios do Sistema</strong>
+            </div>
+        </li>
 
     </ul>
 
@@ -147,8 +168,13 @@
 <script>
 
         const redirecionaPaginaMatricula = () => {
-            window.location.href="@Url.Action("Index", "Matricula")"
-        }
+            window.location.href = "@Url.Action("Index", "Matricula")";
+    }
+
+    const redirecionaPaginaSistema = () => {
+        window.location.href = "@Url.Action("Index", "UsuarioSistema")";
+    }
+
     $(document).ready(function () {
                 $.ajax({
                     type: "POST",

@@ -1,0 +1,173 @@
+﻿@model IList<Model.Entity.Usuario>
+@{
+    ViewBag.Title = "Cadastro Usuário";
+}
+
+
+    <div class="containerConfigurado">
+
+        <!-- BREADCRUMB -->
+        <nav class="clean">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <span class="left">
+                        <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                        <a href="#" class="breadcrumb">Cadastros</a>
+                        <a id="paginaSistema" href="@Url.Action("Index", "UsuarioSistema")" class="breadcrumb"><strong>Usuários do sistema</strong></a>
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row containerConfigurado">
+            <div class="col s12 l12">
+                <a id="cadastrarCargo" href="#cadastrarUsuario" class="btn waves-effect waves-light right modal-trigger">Cadastrar Usuário</a>
+            </div>
+        </div>
+
+        @Html.Partial("_ModalCadastrarUsuario")
+        @Html.Partial("_tabelaInicial", Model)
+        @Html.Partial("_ModalEditarUsuario")
+        @Html.Partial("_ModalDeletar")
+
+
+
+        <div id="modalDeletar" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="flow-text center" id="deletarCargoModal">Tem certeza que deseja deletar usuario tal</h4>
+                </div>
+
+                <div class="col s12 l12">
+                    <form class="col s12 l12" id="formularioAdicionar">
+                        <div class="input-field col s6">
+                            <input placeholder="Ex:Diego, David..." id="nome" type="text" class="validate" disabled>
+                            <label for="funcao">Nome do Usuario</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select disabled>
+                                <option value="" disabled selected>Escolha o nivel de acesso</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                            <label>Nivel de Acesso</label>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+                <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+            </div>
+        </div>
+    </div>
+@section scripts{
+    <script>
+        let _usuario;
+        let _senha;
+        let _perfilUsuario;
+
+        function Adicionar() {
+                    var usuario = {
+                        Nome: document.getElementById("nome").value,
+                        Senha: document.getElementById("senha").value,
+                        PerfilUsuario: $('#perfilUsuario').val()
+                 };
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Adicionar", "UsuarioSistema")",
+                     data: { usuario: usuario },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case "Já existe este usuário no sistema":
+                                 M.toast({ html: dados, classes: 'rounded red' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+        });
+        }
+
+        function Deletar() {
+            var usuario = {
+                Id: document.getElementById("idDeletar").value
+            };
+            $.ajax({
+                dataType: "json",
+                type: "POST",
+                url: "@Url.Action("Deletar", "UsuarioSistema")",
+                data: { usuario: usuario },
+                success: function (dados) {
+                    switch (dados) {
+                        case true:
+                            M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function () { window.location.reload() } });
+                            break;
+                    }
+                }
+            });
+         }
+
+        function Atualizar() {
+                    var usuario = {
+                        Nome: document.getElementById("nomeEditar").value,
+                        Id: document.getElementById("idEditar").value,
+                        Senha: document.getElementById("senhaEditar").value,
+                        PerfilUsuario: $('#usuarioDropDownEditar')[0].children[0].children[0].value
+                 };
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Atualizar", "UsuarioSistema")",
+                     data: { usuario: usuario },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case "Já existe este usuário no sistema":
+                                 M.toast({ html: dados, classes: 'rounded red' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+        });
+        }
+        function Modal(id, modal) {
+             var usuario = {
+                        Id : id
+                 };
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar", "UsuarioSistema")",
+                     data: { usuario: usuario },
+                     success: function (dados) {
+                         document.getElementById('id' + modal).value = id;
+                         $('#usuarioDropDown' + modal)[0].children[0].children[0].value = dados.PerfilUsuario;
+                         document.getElementById('nome' + modal).value = dados.Nome;
+                 }
+        });
+        }
+
+
+
+    </script>
+}
