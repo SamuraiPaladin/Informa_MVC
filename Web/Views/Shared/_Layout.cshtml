@@ -131,7 +131,7 @@
         <li><a class="subheader">Relatórios</a></li>
 
         <li>
-            <div id="matricula" class="collapsible-header" >
+            <div id="matricula" class="collapsible-header" onClick="redirecionaPaginaPagamento()" >
                 <i class="material-icons" style="color: grey;">article</i>
                 <strong>Movimento Financeiro</strong>
             </div>
@@ -175,6 +175,10 @@
 
     const redirecionaPaginaSistema = () => {
         window.location.href = "@Url.Action("Index", "UsuarioSistema")";
+    }
+
+    const redirecionaPaginaPagamento = () => {
+        window.location.href = "@Url.Action("Index", "ConsultaPagamento")";
     }
 
     $(document).ready(function () {
