@@ -23,7 +23,7 @@ namespace Model.Entity
         public bool EditarTodasMensalidades { get; set; }
         public decimal Juros { get; set; }
         public int DiasVencidos { get; set; }
-
         public string CPF { get; set; }
+        public List<EntradasPorPagamento> EntradasPorPagamento { get; set; }
     }
 }

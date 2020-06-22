@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Web.BD.Interface;
+using Model.Entity;
 
 namespace Web.BD.Repository
 {
@@ -208,6 +209,7 @@ namespace Web.BD.Repository
             }
         }
 
+        //TODO ALTERAR QUERYE PARA PEGAR O JUROS DA UNIDADE
         public decimal Juros()
         {
             string query = "SELECT TOP 1 Valor FROM Parametros";
@@ -453,6 +455,38 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Valor", entity.Valor);
 
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
+            }
+        }
+
+        public List<EntradasPorPagamento> EntradasPorPagamento()
+        {
+            string query = @"SELECT SUM(Valor) AS ValorTotal,  FormaDePagamento FROM Mensalidades
+                             WHERE StatusDaMensalidade = 'Pago'
+                             GROUP BY FormaDePagamento";
+
+            List<EntradasPorPagamento> entradas = new List<EntradasPorPagamento>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        var model = new EntradasPorPagamento
+                        {
+                            ValorTotal = Convert.ToDecimal(sdr["ValorTotal"]),
+                            FormaDePagamento = sdr["FormaDePagamento"].ToString()
+
+                        };
+                        entradas.Add(model);
+                    }
+                }
+                con.Close();
+                return entradas;
             }
         }
 
