@@ -3,5 +3,106 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<nav class="clean containerConfigurado">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <span class="left">
+                <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="#" class="breadcrumb">Cadastro</a>
+                <a id="paginaCargo" href="@Url.Action("Index", "ConsultaPagamento")" class="breadcrumb"><strong>Consulta de Pagamentos</strong></a>
+            </span>
+        </div>
+    </div>
+</nav>
 
+
+<h4 class="flow-text center">RELATORIO DE PAGAMENTOS</h4>
+<div class="row container">
+    <table class="highlight centered tabela" id="tabelaCadastrar">
+        <thead>
+            <tr>
+                <th>Credito</th>
+                <th>Debito</th>
+                <th>Dinheiro</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>32132</td>
+                <td>32131</td>
+                <td>3123</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div class="row containerConfigurado">
+        <div class="col s12 l12">
+            <a id="gerarPDF" href="#!" class="btn right" onclick="fazPDF()">Gerar PDF</a>
+        </div>
+    </div>
+
+</div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
+
+<script>
+
+    let valorDebito = 314;
+    let valorCredito = 432;
+    let valorDinheiro = 4325
+
+    var docDefinition = {
+        content: [
+            {
+                text: 'Relatorio de Pagamento\n\n',
+                style: 'title',
+
+            },
+            {
+                text: [
+                    'Pagamento em ',
+                    { text: 'DINHEIRO', fontSize: 15, bold: true },
+                    `: R$${valorDinheiro}`,
+                    '\n\n',
+                ],
+
+            },
+            {
+                text: [
+                    'Pagamento em ',
+                    { text: 'DEBITO', fontSize: 15, bold: true },
+                    `: R$${valorDebito}`,
+                    '\n\n',
+                ],
+
+            },
+            {
+                text: [
+                    'Pagamento em ',
+                    { text: 'CREDITO', fontSize: 15, bold: true },
+                    `: R$${valorCredito}`,
+                    '\n\n',
+                ],
+
+            },
+            
+        ],
+        styles: {
+            title: {
+                fontSize: 18,
+                bold: true,
+                alignment: 'center'
+            },
+
+        }
+    }
+
+    const fazPDF = () => {
+        pdfMake.createPdf(docDefinition).open();
+    }
+
+</script>
