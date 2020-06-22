@@ -447,11 +447,8 @@ namespace Web.BD.Repository
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@MatriculaId", entity.MatriculaId);
-                //cmd.Parameters.AddWithValue("@ModalidadeId", entity.ModalidadeId);
-                //cmd.Parameters.AddWithValue("@TurmaId", entity.TurmaId);
                 cmd.Parameters.AddWithValue("@DataDeVencimento", dataDeVencimentoValor);
                 cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
-                //cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
                 cmd.Parameters.AddWithValue("@Valor", entity.Valor);
 
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
