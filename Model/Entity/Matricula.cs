@@ -23,5 +23,13 @@ namespace Model.Entity
         public List<Matricula> ListaMatricula { get; set; }
         public string[] Array { get; set; }
         public MatriculaTurma DadosMatriculaTurma { get; set; }
+        public string DescTelefone { get; set; }
+        public string Telefone2 { get; set; }
+        public string DescTelefone2 { get; set; }
+        public string Telefone3 { get; set; }
+        public string DescTelefone3 { get; set; }
+        public string GerarNota { get; set; }
+        public DateTime DataNascimentoResponsavel { get; set; }
+        public int MenorIdade { get; set; }
     }
 }
