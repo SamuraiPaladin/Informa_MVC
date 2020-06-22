@@ -14,6 +14,7 @@ namespace Web.Controllers
     {
         private readonly IDAOPrincipal dAOPrincipal = new PrincipalDAO();
         private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
+        private readonly IAulaTurmaDAO _service = new AulaTurmaDAO();
 
         public ActionResult Index()
         {
@@ -21,7 +22,17 @@ namespace Web.Controllers
             {
                 new MensalidadeDAO().AlterarMensalidadeParaVencido();
                 ViewBag.Quantidade = dAOPrincipal.QuantidadeDePagamentoAtraso();
-                return View();
+                IList<Aula> aulasNaDataDeHoje = _service.AulasNaDataDeHoje();
+                if (aulasNaDataDeHoje.Count() < 1)
+                {
+                    var listaDeAlunosParaPresencaAtual = _service.ListaDeAlunosParaPresencaAtual();
+                    if (listaDeAlunosParaPresencaAtual.Count() > 0)
+                    {
+                        _service.SalvarListaDePresencaParaDataAtual(listaDeAlunosParaPresencaAtual);
+                    }
+
+                }
+                return View(_service.ListaDeTurmas());
             }
             else
             {
