@@ -865,6 +865,7 @@
     <Content Include="Views\UsuarioSistema\_ModalCadastrarUsuario.cshtml" />
     <Content Include="Views\UsuarioSistema\_ModalEditarUsuario.cshtml" />
     <Content Include="Views\UsuarioSistema\_ModalDeletar.cshtml" />
+    <Content Include="Views\Principal\_TabelaTurmas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
