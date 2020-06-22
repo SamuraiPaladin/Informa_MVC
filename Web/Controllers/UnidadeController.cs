@@ -58,7 +58,7 @@ namespace Web.Controllers
         {
             return string.IsNullOrEmpty(unidade.Bairro) || string.IsNullOrEmpty(unidade.CEP) || string.IsNullOrEmpty(unidade.Cidade) ||
                 string.IsNullOrEmpty(unidade.Descricao) || string.IsNullOrEmpty(unidade.Endereco) || string.IsNullOrEmpty(unidade.Estado)
-                || string.IsNullOrEmpty(unidade.Numero) || string.IsNullOrEmpty(unidade.Telefone);
+                || string.IsNullOrEmpty(unidade.Numero) || string.IsNullOrEmpty(unidade.Telefone) || string.IsNullOrEmpty(unidade.JurosMensal.ToString());
         }
         public JsonResult Editar(Unidade unidade, Unidade unidadeEditar)
         {

@@ -7,3 +7,4 @@
 /.vs/informa/config
 /Model/bin/Debug/netstandard2.0
 /Model/obj
+/Test/obj/Debug/build.force

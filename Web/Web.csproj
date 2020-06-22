@@ -239,6 +239,7 @@
     <Compile Include="BD\Repository\UnidadeDAO.cs" />
     <Compile Include="BD\Repository\UsuarioDAO.cs" />
     <Compile Include="Controllers\AulaController.cs" />
+    <Compile Include="Controllers\EntradasPorFormaDePagamentoController.cs" />
     <Compile Include="Controllers\InadimplentesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
@@ -865,6 +866,7 @@
     <Content Include="Views\UsuarioSistema\_ModalCadastrarUsuario.cshtml" />
     <Content Include="Views\UsuarioSistema\_ModalEditarUsuario.cshtml" />
     <Content Include="Views\UsuarioSistema\_ModalDeletar.cshtml" />
+    <Content Include="Views\Principal\_TabelaTurmas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

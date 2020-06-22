@@ -21,7 +21,7 @@ namespace Web.Controllers
         {
             if (cache["DadosDoUsuario"] != null)
             {
-                new Cache().Remove("DadosDoUsuario");
+                cache.Remove("DadosDoUsuario");
             }
             return View();
         }
@@ -38,11 +38,13 @@ namespace Web.Controllers
                 {
                     Usuario usuarioEmCache = _service.Autentica(usuario);
 
-                    if (usuarioEmCache.Id == 0) 
+                    if (usuarioEmCache.Id == 0 || string.IsNullOrEmpty(usuarioEmCache.Nome) || string.IsNullOrEmpty(usuarioEmCache.PerfilUsuario)) 
                     {
                         return Json(false);
                     }
                     cache["DadosDoUsuario"] = usuarioEmCache;
+                    cache["DadosDoUsuario.Nome"] = usuarioEmCache.Nome;
+                    cache["DadosDoUsuario.PerfilUsuario"] = usuarioEmCache.PerfilUsuario;
                 }
                 else
                 {
