@@ -56,6 +56,11 @@
 </div>
 
 <script>
+    document.addEventListener('keypress', function (e) {
+        if (e.which == 13) {
+            Logar();
+        }
+    }, false);
     function Logar() {
                     var usuario = {
                         Nome: document.getElementById("login").value,
