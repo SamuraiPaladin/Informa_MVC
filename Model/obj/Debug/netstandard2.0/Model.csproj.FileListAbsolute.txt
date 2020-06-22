@@ -88,7 +88,6 @@ C:\Users\Diego\Desktop\projeto\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.
 C:\Users\Diego\Desktop\projeto\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.csproj.CopyComplete
 C:\Users\Diego\Desktop\projeto\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.dll
 C:\Users\Diego\Desktop\projeto\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.pdb
-C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.csprojAssemblyReference.cache
 C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\bin\Debug\netstandard2.0\Model.deps.json
 C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\bin\Debug\netstandard2.0\Model.dll
 C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\bin\Debug\netstandard2.0\Model.pdb
@@ -102,3 +101,4 @@ C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0
 C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.csproj.CopyComplete
 C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.dll
 C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.pdb
+C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.csprojAssemblyReference.cache

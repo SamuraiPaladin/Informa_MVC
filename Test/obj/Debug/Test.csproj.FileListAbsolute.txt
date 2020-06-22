@@ -29,3 +29,18 @@ C:\Users\Thauan Moser Doce\source\repos\inForma\Test\obj\Debug\Test.dll
 C:\Users\Thauan Moser Doce\source\repos\inForma\Test\obj\Debug\Test.pdb
 C:\Users\Thauan Moser Doce\source\repos\inForma\Test\obj\Debug\Test.csprojAssemblyReference.cache
 C:\Users\Thauan Moser Doce\source\repos\inForma\Test\bin\Debug\WebDriver.Support.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.runner.visualstudio.testadapter.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.runner.reporters.net452.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.runner.utility.net452.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.abstractions.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\Test.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\Test.pdb
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\WebDriver.Support.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\WebDriver.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.assert.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.core.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.execution.desktop.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\obj\Debug\Test.csproj.CopyComplete
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\obj\Debug\Test.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\obj\Debug\Test.pdb

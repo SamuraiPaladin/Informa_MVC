@@ -7,7 +7,6 @@ using System.Linq;
 using System.Web;
 using Web.BD.Interface;
 
-
 namespace Web.BD.Repository
 {
     public class UnidadeDAO : IUnidadeDAO<Unidade>
@@ -15,8 +14,8 @@ namespace Web.BD.Repository
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Unidade entity)
         {
-            string query = @"INSERT INTO Unidades(Descricao, Endereco, Numero, Cep, Telefone, Bairro, Cidade, Estado)
-			                    Values(@Descricao, @Endereco, @Numero, @Cep, @Telefone, @Bairro, @Cidade, @Estado);
+            string query = @"INSERT INTO Unidades(Descricao, Endereco, Numero, Cep, Telefone, Bairro, Cidade, Estado, JurosMensal)
+			                    Values(@Descricao, @Endereco, @Numero, @Cep, @Telefone, @Bairro, @Cidade, @Estado, @JurosMensal);
                              SELECT @@IDENTITY";
             return GravarERetornarVerdadeiroOuFalse(entity, query, 1);
         }
@@ -24,9 +23,9 @@ namespace Web.BD.Repository
         {
             string query = @"UPDATE Unidades 
                                 SET Endereco = @Endereco, Numero = @Numero, CEP = @CEP, Estado = @Estado,
-                                	Telefone = @Telefone, Bairro = @Bairro, Cidade = @Cidade
+                                	Telefone = @Telefone, Bairro = @Bairro, Cidade = @Cidade, JurosMensal = @JurosMensal
                                 WHERE Endereco = @AntigoEndereco AND Numero = @AntigoNumero AND CEP = @AntigoCEP AND Estado = @AntigoEstado
-                                	AND Telefone = @AntigoTelefone AND Bairro = @AntigoBairro AND Cidade = @AntigoCidade";
+                                	AND Telefone = @AntigoTelefone AND Bairro = @AntigoBairro AND Cidade = @AntigoCidade AND JurosMensal = @AntigoJurosMensal";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -39,6 +38,8 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Bairro", entityNovo.Bairro);
                 cmd.Parameters.AddWithValue("@Cidade", entityNovo.Cidade);
                 cmd.Parameters.AddWithValue("@Descricao", entityNovo.Descricao);
+                cmd.Parameters.AddWithValue("@JurosMensal", entityNovo.JurosMensal);
+
 
                 cmd.Parameters.AddWithValue("@AntigoEndereco", entityAntigo.Endereco);
                 cmd.Parameters.AddWithValue("@AntigoNumero", entityAntigo.Numero);
@@ -48,6 +49,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@AntigoBairro", entityAntigo.Bairro);
                 cmd.Parameters.AddWithValue("@AntigoCidade", entityAntigo.Cidade);
                 cmd.Parameters.AddWithValue("@AntigoDescricao", entityAntigo.Descricao);
+                cmd.Parameters.AddWithValue("@AntigoJurosMensal", entityAntigo.JurosMensal);
                 return cmd.ExecuteNonQuery() > 0 ? true : false;
             }
         }
@@ -55,7 +57,7 @@ namespace Web.BD.Repository
         {
             string query = @"DELETE FROM Unidades
                             WHERE Endereco = @Endereco AND Numero = @Numero AND CEP = @CEP AND Estado = @Estado
-                                	AND Telefone = @Telefone AND Bairro = @Bairro AND Cidade = @Cidade";
+                                	AND Telefone = @Telefone AND Bairro = @Bairro AND Cidade = @Cidade AND JurosMensal = @JurosMensal";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -68,6 +70,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Bairro", entity.Bairro);
                 cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
                 cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
+                cmd.Parameters.AddWithValue("@JurosMensal", entity.JurosMensal);
                 return cmd.ExecuteNonQuery() > 0 ? true : false;
             }
         }
@@ -109,14 +112,15 @@ namespace Web.BD.Repository
                                 FROM 
                                 	Unidades 
                                 WHERE 
-                                    Descricao = @Descricao AND
-                                    Endereco = @Endereco AND
-                                    Numero   = @Numero AND
-                                    CEP      = @CEP AND
-                                    Estado   = @Estado AND
-                                    Telefone = @Telefone AND
-                                    Bairro  =  @Bairro AND
-                                    Cidade =   @Cidade 
+                                    Descricao   = @Descricao AND
+                                    Endereco    = @Endereco AND
+                                    Numero      = @Numero AND
+                                    CEP         = @CEP AND
+                                    Estado      = @Estado AND
+                                    Telefone    = @Telefone AND
+                                    Bairro      = @Bairro AND
+                                    Cidade      = @Cidade AND
+                                    JurosMensal = @JurosMensal
                                 "
                                    : 
                                 
@@ -145,6 +149,7 @@ namespace Web.BD.Repository
                     cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
                     cmd.Parameters.AddWithValue("@Bairro", entity.Bairro);
                     cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
+                    cmd.Parameters.AddWithValue("@JurosMensal", entity.JurosMensal);
                 }
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
