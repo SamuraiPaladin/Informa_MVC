@@ -77,7 +77,7 @@
                                  M.toast({ html: dados, classes: 'rounded orange' });
                                  break;
                              case true:
-                                 M.toast({ html: 'Bem vindo', classes: 'rounded green', completeCallback: function () { window.location = "/Principal/Index?" } });
+                                  window.location = "/Principal/Index?";
                                  break;
                              case false:
                                  M.toast({ html: 'Usuário e/ou Senha inválidos', classes: 'rounded red' });
