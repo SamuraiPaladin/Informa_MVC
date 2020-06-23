@@ -11,5 +11,6 @@
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
+        public decimal JurosMensal { get; set; }
     }
 }

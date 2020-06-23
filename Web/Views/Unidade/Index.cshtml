@@ -69,6 +69,12 @@
                         <label for="estado">Estado</label>
                     </div>
 
+                    <!-- NOVO INPUT -->
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: 2" id="jurosMensal" type="number" class="validate">
+                        <label for="jurosMensal">Juros Mensal</label>
+                    </div>
+
                     <div id="modalCadastroUnidade" class="modal">
                         <div class="modal-content">
                             <h4 class="flow-text center">Unidade Cadastrada!</h4>
@@ -125,9 +131,9 @@
                         <td>@item.Estado</td>
                         <td>
                             <a id="editarUnidade" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
-            '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+            '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Editar', '@item.JurosMensal')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
                             <a id="deletarUnidade" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
-            '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Deletar')"><i class="material-icons">delete_forever</i></a>
+            '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Deletar', '@item.JurosMensal')"><i class="material-icons">delete_forever</i></a>
                         </td>
                     </tr>
                 }
@@ -145,7 +151,7 @@
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioEditar">
                 <div class="input-field col s6">
-                    <input placeholder="Ex: Osasco, Penha, Paulista" id="descricaoEditar" type="text" class="validate" maxlength="20">
+                    <input placeholder="Ex: Osasco, Penha, Paulista" id="descricaoEditar" type="text" class="validate" maxlength="20" disabled>
                     <label for="descricaoEditar">Nome da Unidade</label>
                 </div>
 
@@ -183,6 +189,12 @@
                 <div class="input-field col s6">
                     <input placeholder="Ex: SP, MG..." id="estadoEditar" type="text" class="validate" disabled>
                     <label for="estadoEditar">Estado</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 2" id="jurosMensalEditar" type="number" class="validate">
+                    <label for="jurosMensalEditar">Juros Mensal</label>
                 </div>
 
                 <div id="modalCadastroUnidade" class="modal">
@@ -255,6 +267,12 @@
                     <label for="estadoDeletar">Estado</label>
                 </div>
 
+                <!-- NOVO INPUT -->
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 2" id="jurosMensalDeletar" type="number" class="validate" readonly disabled>
+                    <label for="jurosMensalDeletar">Juros Mensal</label>
+                </div>
+
                 <div id="modalCadastroUnidade" class="modal">
                     <div class="modal-content">
                         <h4 class="flow-text center">Unidade Cadastrada!</h4>
@@ -286,7 +304,8 @@
         let valorBairro;
         let valorCidade;
         let valorEstado;
-        function EditarModal(id, descricao, endereco, numero, cep, telefone, bairro, cidade, estado, model) {
+        let valorJuros;
+        function EditarModal(id, descricao, endereco, numero, cep, telefone, bairro, cidade, estado, model, juros) {
             valorId = id;
             valorDescricao = descricao;
             valorEndereco = endereco;
@@ -296,6 +315,7 @@
             valorBairro = bairro;
             valorCidade = cidade;
             valorEstado = estado;
+            valorJuros = juros;
             document.getElementById("descricao" + model).value = descricao;
             document.getElementById("endereco" + model).value = endereco;
             document.getElementById("numero" + model).value = numero;
@@ -304,6 +324,7 @@
             document.getElementById("bairro" + model).value = bairro;
             document.getElementById("cidade" + model).value = cidade;
             document.getElementById("estado" + model).value = estado;
+            document.getElementById("jurosMensal" + model).value = parseFloat(juros);
             if (model === "Editar") {
             document.getElementById("id" + model).value = id;
             document.getElementById("editarUnidadeDescricao").innerText = "Editar Unidade " + descricao;
@@ -315,7 +336,7 @@
         function Deletar() {
             var unidade = {
                 Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
-                , Cidade: valorCidade, Estado: valorEstado};
+                , Cidade: valorCidade, Estado: valorEstado, JurosMensal: valorJuros };
             $(function () {
                  $.ajax({
                      dataType: "json",
@@ -340,11 +361,12 @@
         function Editar() {
             var unidade = {
                 Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
-                , Cidade: valorCidade, Estado: valorEstado};
+                , Cidade: valorCidade, Estado: valorEstado, JurosMensal: valorJuros
+            };
             var unidadeEditar = {
                 Id: document.getElementById("idEditar").value, Descricao: document.getElementById("descricaoEditar").value, Endereco: document.getElementById("enderecoEditar").value, Numero: document.getElementById("numeroEditar").value,
                 CEP: document.getElementById("cepEditar").value, Telefone: document.getElementById("telefoneEditar").value, Bairro: document.getElementById("bairroEditar").value
-                , Cidade: document.getElementById("cidadeEditar").value, Estado: document.getElementById("estadoEditar").value};
+                , Cidade: document.getElementById("cidadeEditar").value, Estado: document.getElementById("estadoEditar").value, JurosMensal: document.getElementById("jurosMensalEditar").value};
             $(function () {
                  $.ajax({
                      dataType: "json",
@@ -407,7 +429,7 @@
         function Adicionar() {
             var unidade = {
                 Descricao: document.getElementById("descricao").value, Endereco: document.getElementById("endereco").value, Numero: document.getElementById("numero").value, CEP: document.getElementById("cep").value,
-                Telefone: document.getElementById("telefone").value, Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value};
+                Telefone: document.getElementById("telefone").value, Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value, JurosMensal: document.getElementById("jurosMensal").value};
              $(function () {
                  $.ajax({
                      dataType: "json",

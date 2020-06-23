@@ -42,7 +42,7 @@
                             <option value="" disabled selected>Dias da Semana: </option>
                             @foreach (var item in Model.DiasDaSemana)
                             {
-                                <option value="@item">@item</option>
+                                <option id="@item" value="@item">@item</option>
                             }
                         </select>
                         <label>Dias da semana</label>
@@ -215,7 +215,7 @@
 
                         @foreach (var item in Model.DiasDaSemana)
                         {
-                            <option value="@item">@item</option>
+                            <option id="@item" value="@item">@item</option>
                         }
                     </select>
                     <label>Dias da semana</label>
@@ -319,7 +319,7 @@
                     <select disabled multiple id="diasdasemanaDropDownDeletar">
                         @foreach (var item in Model.DiasDaSemana)
                         {
-                            <option value="@item">@item</option>
+                            <option id="@item" value="@item">@item</option>
                         }
                     </select>
                     <label>Dias da semana</label>

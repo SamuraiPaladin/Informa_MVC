@@ -39,20 +39,23 @@
                 <th>Telefone</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
+                <th>Situacao aluno</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @if (Model.ListaMatriculaTurma.Count == 0)
             {
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
             }
             else
             {
@@ -69,10 +72,12 @@
                         <td>@item.Telefone</td>
                         <td>@item.Bairro</td>
                         <td>@item.Cidade</td>
+                        <td>Ativo ou Inativo</td>
                         <td>
                             <a id="editarMatricula" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
                             <a id="fecharMatricula" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
                                onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger"><i class="material-icons" style="background-color:green">assignment_turned_in</i></a>
                         </td>
                     </tr>
                 }
@@ -103,6 +108,17 @@
         let valorEstado;
         let valorDataNascimento;
         let valorEmail;
+        let valorTelefone2;
+        let valorTelefone3;
+        let valorContato;
+        let valorContato2;
+        let valorContato3;
+        let valorNomeResponsavel;
+        let valorDataNascimentoResponsavel;
+        let valorGerarNota;
+        let valorGrauParentesco;
+        let valorMenorDeIdade;
+
 
         $(document).ready(function () {
             $('#tabelaAdicionar').dataTable();
@@ -203,6 +219,11 @@
                         RG: document.getElementById("rg").value,
                         CPF: document.getElementById("cpf").value,
                         Telefone: document.getElementById("telefone").value,
+                        Telefone2: document.getElementById("telefone2").value,
+                        Telefone3: document.getElementById("telefone3").value,
+                        DescTelefone: document.getElementById("contato").value,
+                        DescTelefone2: document.getElementById("contato2").value,
+                        DescTelefone3: document.getElementById("contato3").value,
                         Endereco: document.getElementById("endereco").value,
                         Numero: document.getElementById("numero").value,
                         CEP: document.getElementById("cep").value,
@@ -210,7 +231,12 @@
                         Cidade: document.getElementById("cidade").value,
                         Estado: document.getElementById("estado").value,
                         Email: document.getElementById("email").value,
-                        Array: array
+                        Array: array,
+                        NomeReponsavel: document.getElementById("resposavel").value,
+                        Parentesco: document.getElementById("parentesco").value,
+                        DataNascimentoResponsavel: document.getElementById("Nascimentoparentesco").value,
+                        MenorIdade: document.getElementById('menorDeIdade').checked == true ? 1 : 0,
+                        GerarNota: document.getElementById('gerarNota').checked == true ? 1 : 0
                     };
                  $.ajax({
                      dataType: "json",
@@ -273,11 +299,20 @@
                 success: function (result) {
                     document.getElementById('tituloAlunoEditar').innerText = 'Editar Aluno ' + result.DadosMatriculaTurma.Nome;
                     document.getElementById('nomeEditar').value = result.DadosMatriculaTurma.Nome;
+                    document.getElementById('resposavelEditar').value = result.DadosMatriculaTurma.NomeResponsavel;
+                    document.getElementById('parentescoEditar').value = result.DadosMatriculaTurma.Parentesco;
                     document.getElementById('datadenascimentoEditar').value = result.DadosMatriculaTurma.DataNascimento.substring(0, 10);
+                    document.getElementById('NascimentoparentescoEditar').value = result.DadosMatriculaTurma.DataNascimentoResponsavel.substring(0, 10);
+                    document.getElementById('menorDeIdadeEditar').checked = result.DadosMatriculaTurma.MenorIdade == 0 || result.DadosMatriculaTurma.MenorIdade == null  ? false : true;
                     document.getElementById('cpfEditar').value = result.DadosMatriculaTurma.CPF;
                     document.getElementById('rgEditar').value = result.DadosMatriculaTurma.RG;
                     document.getElementById('telefoneEditar').value = result.DadosMatriculaTurma.Telefone;
+                    document.getElementById('telefone2Editar').value = result.DadosMatriculaTurma.Telefone2;
+                    document.getElementById('telefone3Editar').value = result.DadosMatriculaTurma.Telefone3;
                     document.getElementById('cepEditar').value = result.DadosMatriculaTurma.CEP;
+                    document.getElementById('contatoEditar').value = result.DadosMatriculaTurma.DescTelefone;
+                    document.getElementById('contato2Editar').value = result.DadosMatriculaTurma.DescTelefone2;
+                    document.getElementById('contato3Editar').value = result.DadosMatriculaTurma.DescTelefone3;
                     document.getElementById('enderecoEditar').value = result.DadosMatriculaTurma.Endereco;
                     document.getElementById('numeroEditar').value = result.DadosMatriculaTurma.Numero;
                     document.getElementById('bairroEditar').value = result.DadosMatriculaTurma.Bairro;
@@ -299,6 +334,15 @@
                     valorCidade = result.DadosMatriculaTurma.Cidade;
                     valorEstado = result.DadosMatriculaTurma.Estado;
                     valorEmail = result.DadosMatriculaTurma.Email;
+                    valorTelefone2 = result.DadosMatriculaTurma.Telefone2;
+                    valorTelefone3 = result.DadosMatriculaTurma.Telefone3;
+                    valorContato = result.DadosMatriculaTurma.DescTelefone;
+                    valorContato2 = result.DadosMatriculaTurma.DescTelefone2;
+                    valorContato3 = result.DadosMatriculaTurma.DescTelefone3;
+                    valorNomeResponsavel = result.DadosMatriculaTurma.NomeResponsavel;
+                    valorDataNascimentoResponsavel = result.DadosMatriculaTurma.DataNascimentoResponsavel;
+                    valorGrauParentesco = result.DadosMatriculaTurma.Parentesco;
+                    valorMenorDeIdade = result.DadosMatriculaTurma.MenorIdade == 0 || result.DadosMatriculaTurma.MenorIdade == null ? 0 : 1;
 
 
                 }
@@ -354,7 +398,16 @@
                Bairro: valorBairro,
                 Cidade: valorCidade,
                 Estado: valorEstado,
-                Email: valorEmail
+                Email: valorEmail,
+                Telefone2: valorTelefone2,
+                Telefone3:    valorTelefone3,
+                DescTelefone:    valorContato,
+                DescTelefone2:   valorContato2, 
+                DescTelefone3:    valorContato3, 
+                NomeReponsavel:    valorNomeResponsavel, 
+                DataNascimentoResponsavel: valorDataNascimentoResponsavel, 
+                Parentesco:    valorGrauParentesco, 
+                MenorIdade:  valorMenorDeIdade
             }
             var alunoEditar = {
                 Id: valorId,
@@ -370,7 +423,16 @@
                 Cidade: document.getElementById('cidadeEditar').value,
                 Estado: document.getElementById('estadoEditar').value,
                 Email: document.getElementById('emailEditar').value,
-                Array: arrayEditar
+                Array: arrayEditar,
+                Telefone2: document.getElementById('telefone2Editar').value,
+                Telefone3: document.getElementById('telefone3Editar').value,
+                DescTelefone: document.getElementById('contatoEditar').value,
+                DescTelefone2: document.getElementById('contato2Editar').value,
+                DescTelefone3: document.getElementById('contato3Editar').value,
+                NomeReponsavel: document.getElementById('resposavelEditar').value,
+                DataNascimentoResponsavel: document.getElementById('NascimentoparentescoEditar').value,
+                Parentesco: document.getElementById('parentescoEditar').value,
+                MenorIdade: document.getElementById('menorDeIdadeEditar').checked == true ? 1 : 0
             }
             $.ajax({
                      dataType: "json",

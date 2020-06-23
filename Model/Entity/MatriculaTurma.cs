@@ -28,5 +28,15 @@ namespace Model.Entity
         public string HorarioFinal { get; set; }
         public string Nome { get; set; }
 
+        public string DescTelefone { get; set; }
+        public string Telefone2 { get; set; }
+        public string DescTelefone2 { get; set; }
+        public string Telefone3 { get; set; }
+        public string DescTelefone3 { get; set; }
+        public int GerarNota { get; set; }
+        public string NomeResponsavel { get; set; }
+        public string Parentesco { get; set; }
+        public string DataNascimentoResponsavel { get; set; }
+        public int MenorIdade { get; set; }
     }
 }

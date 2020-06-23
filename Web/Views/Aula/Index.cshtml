@@ -14,7 +14,7 @@
         </div>
     </div>
 </nav>
-
+<input id="perfilLogado" value="@Cache.Get("DadosDoUsuario.PerfilUsuario")"/>
 @Html.Partial("_TabelaTurmas", Model)
 @Html.Partial("_ModelEditar", Model)
 
@@ -32,21 +32,27 @@
                              now = new Date;
                              document.getElementById("editarAulaModal").innerText = "Lista de chamada Turma: " + dados[0].DescricaoTurma;
                              document.getElementById("turma").value = dados[0].DescricaoTurma;
-                             document.getElementById("diaAula").value = now.getDay();
-                             document.getElementById("diasSemanas").value = dados[0].DiaDaSemana;
                              document.getElementById("professorTurma").value = dados[0].NomeColaborador;
-                             document.getElementById("modalidade").value = dados[0].TipoModalidade;
                              document.getElementById("faixaEtaria").value = dados[0].TipoFaixaEtaria;
                              document.getElementById("dataAulaInicio").value = dados[0].HorarioInicial;
                              document.getElementById("dataAulaFim").value = dados[0].HorarioFinal;
+
+
+                             if (document.getElementById('perfilLogado').value == 'Administrador') {
+                             document.getElementById("diasSemanas").value = dados[0].DiaDaSemana;
+                             document.getElementById("diaAula").value = now.getDay();
+                             document.getElementById("modalidade").value = dados[0].TipoModalidade;
+
+                             }
+
                          }
                          $("#Grid tr").remove();
                          $(dados).each(function () {
                              if (this.Presenca === true) {
-                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
                              } else {
 
-                                 $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.AulaId + "'/><span>" + this.NomeAluno + "</span></label></td><td>" + this.Email + "</td><td>" + this.CPF + "</td> <td>" + this.DataNascimento.substring(0,10) + "</td></tr>");
+                                 $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "'  /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
                              }
                          });
                 }
