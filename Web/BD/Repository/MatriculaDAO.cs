@@ -16,8 +16,8 @@ namespace Web.BD.Repository
         {
 
             string query = @"INSERT INTO Matriculas
-               (Nome, CPF, DataNascimento, RG, CEP, Endereco, Numero, Bairro, Cidade, Estado, Telefone, Email, DataCadastro, DescTelefone, Telefone2, DescTelefone2, Telefone3, DescTelefone3, GerarNota, DataNascimentoResponsavel, MenorIdade)
-			    Values(@Nome, @CPF, @DataNascimento, @RG, @CEP, @Endereco, @Numero, @Bairro, @Cidade, @Estado, @Telefone, @Email, getdate(), @DescTelefone,  @Telefone2, @DescTelefone2, @Telefone3, @DescTelefone3, @GerarNota, @DataNascimentoResponsavel, @MenorIdade);
+               (Nome, CPF, DataNascimento, RG, CEP, Endereco, Numero, Bairro, Cidade, Estado, Telefone, Email, DataCadastro, DescTelefone, Telefone2, DescTelefone2, Telefone3, DescTelefone3, GerarNota, DataNascimentoResponsavel, MenorIdade, NomeResponsavel, GrauParentesco)
+			    Values(@Nome, @CPF, @DataNascimento, @RG, @CEP, @Endereco, @Numero, @Bairro, @Cidade, @Estado, @Telefone, @Email, getdate(), @DescTelefone,  @Telefone2, @DescTelefone2, @Telefone3, @DescTelefone3, @GerarNota, @DataNascimentoResponsavel, @MenorIdade, @NomeResponsavel, @GrauParentesco);
                 SELECT @@IDENTITY";
 
             using (var con = new SqlConnection(stringConexao))
@@ -45,6 +45,10 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@GerarNota", entity.GerarNota);
                 cmd.Parameters.AddWithValue("@DataNascimentoResponsavel", entity.DataNascimentoResponsavel);
                 cmd.Parameters.AddWithValue("@MenorIdade", entity.MenorIdade);
+                cmd.Parameters.AddWithValue("@NomeResponsavel", entity.NomeReponsavel);
+                cmd.Parameters.AddWithValue("@GrauParentesco", entity.Parentesco);
+              
+
                 var ultimoIdInserido = cmd.ExecuteScalar();
                 var retorno = Convert.ToInt32(ultimoIdInserido) > 0 ? true : false;
                 return SalvarMatriculaTurma(entity, Convert.ToInt32(ultimoIdInserido)); ;
@@ -268,13 +272,13 @@ namespace Web.BD.Repository
                             Estado = @Estado AND
                             Email = @Email AND
                             Telefone = @Telefone AND
-                            DescTelefone = @DescTelefone AND,
-                            Telefone2 = @Telefone2 AND,
-                            DescTelefone2 = @DescTelefone2 AND,
-                            Telefone3 = @Telefone3 AND,
-                            DescTelefone3 = @DescTelefone3 AND,
-                            GerarNota = @GerarNota AND,
-                            DataNascimentoResponsavel = @DataNascimentoResponsavel AND,
+                            DescTelefone = @DescTelefone AND
+                            Telefone2 = @Telefone2 AND
+                            DescTelefone2 = @DescTelefone2 AND
+                            Telefone3 = @Telefone3 AND
+                            DescTelefone3 = @DescTelefone3 AND
+                            GerarNota = @GerarNota AND
+                            DataNascimentoResponsavel = @DataNascimentoResponsavel AND
                             MenorIdade = @MenorIdade";
             return GravarERetornarVerdadeiroOuFalse(entity, query);
         }
@@ -398,7 +402,16 @@ namespace Web.BD.Repository
                             Cidade = sdr["Cidade"].ToString(),
                             Estado = sdr["Estado"].ToString(),
                             Telefone = sdr["Telefone"].ToString(),
-                            Email = sdr["Email"].ToString()
+                            Email = sdr["Email"].ToString(),
+                            DescTelefone = sdr["DescTelefone"].ToString(),
+                            DescTelefone2 = sdr["DescTelefone2"].ToString(),
+                            DescTelefone3 = sdr["DescTelefone3"].ToString(),
+                            Telefone2 = sdr["Telefone2"].ToString(),
+                            Telefone3 = sdr["Telefone3"].ToString(),
+                            MenorIdade = string.IsNullOrEmpty(sdr["MenorIdade"].ToString()) ? 0 : 1,
+                            NomeResponsavel = sdr["NomeResponsavel"].ToString(),
+                            DataNascimentoResponsavel = sdr["DataNascimentoResponsavel"].ToString(),
+                            Parentesco = sdr["GrauParentesco"].ToString()
                         };
                     }
                 }

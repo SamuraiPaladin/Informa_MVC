@@ -28,7 +28,9 @@ namespace Model.Entity
         public string DescTelefone2 { get; set; }
         public string Telefone3 { get; set; }
         public string DescTelefone3 { get; set; }
-        public string GerarNota { get; set; }
+        public int GerarNota { get; set; }
+        public string NomeReponsavel { get; set; }
+        public string Parentesco { get; set; }
         public DateTime DataNascimentoResponsavel { get; set; }
         public int MenorIdade { get; set; }
     }
