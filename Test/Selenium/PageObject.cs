@@ -11,6 +11,73 @@ namespace Test
 {
     class PageObject
     {
+
+        public static class LoginScreen
+        {
+            public static void NomeUsuario(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("login"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void NomeSenha(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("password"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void LogarinFormaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div/div/div[2]/div/form/div[3]/a"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+        }
+
         public static class MainScreen
         {
             public static void GridIcone()
@@ -702,7 +769,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div/table/tbody/tr/td[3]/a[1]/i"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"tabelaPrincipal\"]/tbody/tr[1]/td[3]/a[1]/i"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -766,7 +833,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div/table/tbody/tr/td[3]/a[2]/i"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"tabelaPrincipal\"]/tbody/tr[1]/td[3]/a[2]/i"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -874,7 +941,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"cadastrarCargo\"]/div[2]/a[2]"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cadastrar"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -895,7 +962,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div/table/tbody[1]/tr/td[3]/a[1]/i"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"editarCargo\"]/i"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -938,7 +1005,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalEditar\"]/div[2]/a[2]"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("editar"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -959,7 +1026,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div/table/tbody[1]/tr/td[3]/a[2]/i"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"deletarCargo\"]/i"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -980,7 +1047,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalDeletar\"]/div[2]/a[2]"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("deletar"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1004,7 +1071,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div/a"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cadastrarColaborador"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1038,6 +1105,153 @@ namespace Test
                 Assert.Contains(Unidade, Text);
             }
 
+            public static void DataNascimentoTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (Text.Equals(""))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("datadenascimento"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+               //Assert.Contains(Unidade, Text);
+            }
+
+            public static void CPFColaboradorTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cpf"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void EmailColaboradorTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("email"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void RgColaboradorTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("rg"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void TelefoneColaboradorTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("telefone"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void CEPColaboradorTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cep"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void NumeroColaboradorTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("numero"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
             public static void SelecionarCargoButton()
             {
                 int count = 0;
@@ -1046,7 +1260,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.Id("textoDropDownCadastrar"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalCadastrar\"]/div[1]/div[2]/form/div[13]/div/input"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1067,7 +1281,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalCadastrar\"]/div[2]/a[2]"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cadastar"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1088,7 +1302,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[3]/a[1]/i"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"editarColaborador\"]/i"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1099,6 +1313,28 @@ namespace Test
                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
+            }
+
+            public static void EditarNumeroColaboradorTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("numeroEditar"));
+                        Element.Clear();
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
             }
 
             public static void EditarCargoButton()
@@ -1130,7 +1366,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalEditar\"]/div[2]/a[2]"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("editar"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1151,7 +1387,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[3]/a[2]/i"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"deletarColaborador\"]/i"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1172,7 +1408,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalDeletar\"]/div[2]/a[2]"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("Deletar"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1234,6 +1470,29 @@ namespace Test
                 Assert.Contains(Unidade, Text);
             }
 
+            public static void SelecionaDataButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"formularioEditar\"]/div[2]/div/input"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+
+
             public static void SelecionaColaboradorButton()
             {
                 int count = 0;
@@ -1242,7 +1501,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.Id("nomeDropDownCadastrar"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath ("//*[@id=\"formularioEditar\"]/div[3]/div/input"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1263,7 +1522,28 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.Id("tipoDropDownCadastrar"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("//*[@id=\"formularioEditar\"]/div[4]/div/input"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void Seleciona_ModalidadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"formularioEditar\"]/div[5]/div/input"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1326,7 +1606,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.Id("unidadeDropDownCadastrar"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"formularioEditar\"]/div[8]/div/input"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1368,7 +1648,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[1]/div[2]/a[2]"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cadastrar"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;

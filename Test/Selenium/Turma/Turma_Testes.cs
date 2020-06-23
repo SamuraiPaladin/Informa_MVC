@@ -10,6 +10,8 @@ namespace Test
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
             Utilities.AcessoGrid("Cadastro", "Turma");
@@ -20,19 +22,29 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
+            //PageObject.RegisterClass.SelecionaDataButton();
+
+            //TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            //TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
             PageObject.RegisterClass.SelecionaColaboradorButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Thauan Moser Doce");
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             PageObject.RegisterClass.SelecionaFaixaEtariaButton();
 
             TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
             Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
 
             PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
@@ -42,15 +54,17 @@ namespace Test
 
             PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
+            TestesTurmaMetodos.SelecionaItemDropBox("Poá");
 
-            PageObject.RegisterClass.SelecionaModalidadeButton();
+            //PageObject.RegisterClass.SelecionaModalidadeButton();
 
             TestesTurmaMetodos.SelecionaItemDropBox("Natação");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
+
+
         }
 
         [Fact]

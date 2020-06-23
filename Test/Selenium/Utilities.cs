@@ -26,6 +26,17 @@ public class Utilities
 		driver.Navigate().GoToUrl("http://localhost:5200/");
 	}
 
+	public static void LogininForma()
+	{
+		PageObject.LoginScreen.NomeUsuario("admin");
+
+		PageObject.LoginScreen.NomeSenha("123456");
+
+		PageObject.LoginScreen.LogarinFormaButton();
+
+		Thread.Sleep(7500);
+	}
+
 	public static void AcessoGrid(String Modulo, String Sessao)
 	{
 		PageObject.MainScreen.GridIcone();

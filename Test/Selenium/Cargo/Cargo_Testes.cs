@@ -10,6 +10,8 @@ namespace Test
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
             Utilities.AcessoGrid("Cadastro", "Cargos");
@@ -20,9 +22,9 @@ namespace Test
 
             TestesCargoMetodos.AguardaModalCadastro();
             
-            PageObject.RegisterJob.NomeCargoTextBox("Professor de Hidrostep");
+            PageObject.RegisterJob.NomeCargoTextBox("AAA Teste Integrado AAA");
 
-            PageObject.RegisterJob.DescricaoCargoTextBox("Subir, descer e saltar, com diferentes velocidades e possibilidades de alternar as pernas e repetir movimentos.");
+            PageObject.RegisterJob.DescricaoCargoTextBox("AAA Teste Integrado AAA");
 
             Thread.Sleep(1000);
 
@@ -30,12 +32,16 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
 
+            TestesCargoMetodos.FinalizarTeste(1);
+
         }
 
         [Fact]
         public void CampoObrigatorioDescricao()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -55,12 +61,16 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
+            TestesCargoMetodos.FinalizarTeste(2);
+
         }
 
         [Fact]
         public void CampoObrigatorioNomeCargo()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -74,8 +84,7 @@ namespace Test
 
             //PageObject.RegisterJob.NomeCargoTextBox("Professor de Hidrostep");
 
-            PageObject.RegisterJob.DescricaoCargoTextBox("Subir, descer e saltar, com diferentes velocidades e possibilidades de alternar as pernas e repetir movimentos.");
-
+            PageObject.RegisterJob.DescricaoCargoTextBox("Subir, descer e saltar, com diferentes velocidades.");
 
             Thread.Sleep(1000);
 
@@ -83,12 +92,16 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
+            TestesCargoMetodos.FinalizarTeste(2);
+
         }
 
         [Fact]
         public void EditarCargo()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -100,9 +113,9 @@ namespace Test
 
             TestesCargoMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterJob.NomeCargoTextBox("Professor de Hidrostep");
+            PageObject.RegisterJob.NomeCargoTextBox("AAA Teste Integrado AAA");
 
-            PageObject.RegisterJob.DescricaoCargoTextBox("Teste.");
+            PageObject.RegisterJob.DescricaoCargoTextBox("AAA Teste Integrado AAA");
 
             Thread.Sleep(1000);
 
@@ -116,16 +129,20 @@ namespace Test
 
             TestesCargoMetodos.AguardaModalEditar();
 
-            PageObject.RegisterJob.EditarDesricaoTextBox("Descrição alterada para teste.");
+            PageObject.RegisterJob.EditarDesricaoTextBox("AAA Descrição alterada para teste. AAA");
 
             PageObject.RegisterJob.FinalizarEditarCargoButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Editado");
+
+            TestesCargoMetodos.FinalizarTeste(1);
         }
         [Fact]
         public void DeletarCargo()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -137,9 +154,9 @@ namespace Test
 
             TestesCargoMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterJob.NomeCargoTextBox("Professor de Hidrostep");
+            PageObject.RegisterJob.NomeCargoTextBox("AAA Teste Integrado AAA");
 
-            PageObject.RegisterJob.DescricaoCargoTextBox("Subir, descer e saltar, com diferentes velocidades e possibilidades de alternar as pernas e repetir movimentos.");
+            PageObject.RegisterJob.DescricaoCargoTextBox("AAA Teste Integrado AAA");
 
             Thread.Sleep(1000);
 
@@ -156,11 +173,15 @@ namespace Test
             PageObject.RegisterJob.FinalizarExcluirCargoButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
+
+            TestesCargoMetodos.FinalizarTeste(2);
         }
         [Fact]
         public void DuplicarCargo()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -172,9 +193,9 @@ namespace Test
 
             TestesCargoMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterJob.NomeCargoTextBox("Professor de Hidrostep");
+            PageObject.RegisterJob.NomeCargoTextBox("AAA Teste Integrado AAA");
 
-            PageObject.RegisterJob.DescricaoCargoTextBox("Subir, descer e saltar, com diferentes velocidades e possibilidades de alternar as pernas e repetir movimentos.");
+            PageObject.RegisterJob.DescricaoCargoTextBox("AAA Teste Integrado AAA");
 
             Thread.Sleep(1000);
 
@@ -188,15 +209,17 @@ namespace Test
 
             TestesCargoMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterJob.NomeCargoTextBox("Professor de Hidrostep");
+            PageObject.RegisterJob.NomeCargoTextBox("AAA Teste Integrado AAA");
 
-            PageObject.RegisterJob.DescricaoCargoTextBox("Subir, descer e saltar, com diferentes velocidades e possibilidades de alternar as pernas e repetir movimentos.");
+            PageObject.RegisterJob.DescricaoCargoTextBox("AAA Teste Integrado AAA");
 
             Thread.Sleep(1000);
 
             PageObject.RegisterJob.FinalizarCadastrarButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Já existe essas informações");
+
+            TestesCargoMetodos.FinalizarTeste(1);
         }
     }
 }

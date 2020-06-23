@@ -10,6 +10,8 @@ namespace Test
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
             Utilities.AcessoGrid("Cadastro", "Modalidade");
@@ -20,7 +22,7 @@ namespace Test
 
             TestesModalidadeMetodos.AguardaModalCadastro();
             
-            PageObject.RegisterModality.NomeModalideTextBox("Natação Infantil");
+            PageObject.RegisterModality.NomeModalideTextBox("AA Teste AA");
 
             PageObject.RegisterModality.DescricaoModalideTextBox("Atividade para crianças de 7 a 9 anos.");
 
@@ -30,12 +32,16 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
 
+            TestesModalidadeMetodos.FinalizarTeste(1);
+
         }
 
         [Fact]
         public void CampoObrigatorioDescricao()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -47,13 +53,17 @@ namespace Test
 
             TestesModalidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterModality.NomeModalideTextBox("Natação Infantil");
+            PageObject.RegisterModality.NomeModalideTextBox("AA Teste AA");
+
+            //PageObject.RegisterModality.DescricaoModalideTextBox("Atividade para crianças de 7 a 9 anos.");
 
             Thread.Sleep(1000);
 
             PageObject.RegisterModality.FinalizarCadastrarButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+            TestesModalidadeMetodos.FinalizarTeste(2);
 
         }
 
@@ -62,6 +72,8 @@ namespace Test
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
             Utilities.AcessoGrid("Cadastro", "Modalidade");
@@ -72,7 +84,7 @@ namespace Test
 
             TestesModalidadeMetodos.AguardaModalCadastro();
 
-            //PageObject.RegisterModality.NomeModalideTextBox("Natação Infantil");
+            //PageObject.RegisterModality.NomeModalideTextBox("AA Teste AA");
 
             PageObject.RegisterModality.DescricaoModalideTextBox("Atividade para crianças de 7 a 9 anos.");
 
@@ -82,12 +94,16 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
+            TestesModalidadeMetodos.FinalizarTeste(2);
+
         }
 
         [Fact]
         public void EditarModalidade()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -99,7 +115,7 @@ namespace Test
 
             TestesModalidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterModality.NomeModalideTextBox("Natação Infantil");
+            PageObject.RegisterModality.NomeModalideTextBox("AA Teste AA");
 
             PageObject.RegisterModality.DescricaoModalideTextBox("Atividade para crianças de 7 a 9 anos.");
 
@@ -120,11 +136,16 @@ namespace Test
             PageObject.RegisterModality.FinalizarEditarModalidadeButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Editado");
+
+            TestesModalidadeMetodos.FinalizarTeste(1);
         }
+
         [Fact]
         public void DeletarModalidade()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -136,7 +157,7 @@ namespace Test
 
             TestesModalidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterModality.NomeModalideTextBox("Natação Infantil");
+            PageObject.RegisterModality.NomeModalideTextBox("AA Teste AA");
 
             PageObject.RegisterModality.DescricaoModalideTextBox("Atividade para crianças de 7 a 9 anos.");
 
@@ -155,11 +176,15 @@ namespace Test
             PageObject.RegisterModality.FinalizarExcluirModalidadeButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
+
+            TestesModalidadeMetodos.FinalizarTeste(2);
         }
         [Fact]
         public void DuplicarModalidade()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -196,6 +221,8 @@ namespace Test
             PageObject.RegisterModality.FinalizarCadastrarButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Já existe essas informações");
+
+            TestesModalidadeMetodos.FinalizarTeste(1);
         }
     }
 }

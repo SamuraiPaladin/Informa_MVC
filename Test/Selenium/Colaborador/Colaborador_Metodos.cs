@@ -92,6 +92,22 @@ public class TestesColaboradorMetodos
 		}
 	}
 
+	public static void FinalizarTeste(int Opercao)
+	{
+		if (Opercao == 1)
+		{
+			Thread.Sleep(5000);
 
+			PageObject.RegisterEmployee.ExcluirColaboradorButton();
+
+			TestesColaboradorMetodos.AguardaModalDeletar();
+
+			PageObject.RegisterEmployee.FinalizarExcluirColaboradorButton();
+
+			PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
+		}
+
+		Utilities.driver.Close();
+	}
 
 }
