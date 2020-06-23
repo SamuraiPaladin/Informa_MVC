@@ -39,20 +39,23 @@
                 <th>Telefone</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
+                <th>Situacao aluno</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @if (Model.ListaMatriculaTurma.Count == 0)
             {
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
             }
             else
             {
@@ -69,10 +72,12 @@
                         <td>@item.Telefone</td>
                         <td>@item.Bairro</td>
                         <td>@item.Cidade</td>
+                        <td>Ativo ou Inativo</td>
                         <td>
                             <a id="editarMatricula" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
                             <a id="fecharMatricula" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
                                onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
+                            <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger"><i class="material-icons" style="background-color:green">assignment_turned_in</i></a>
                         </td>
                     </tr>
                 }
