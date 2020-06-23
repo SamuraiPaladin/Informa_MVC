@@ -212,20 +212,95 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
 
 <script>
+
+    let nomeMatriculado = 'Diego Souza';
+    let rg = '432423';
+    let cpf = '432423';
+    let endereco = 'av. paulista';
+    let numero = '32';
+    let bairro = 'Bela Vista';
+    let cep = '2123243-2';
+    let estado = 'sao paulo';
+    let cidade = 'sp';
+
+    let nomeAcademia = 'Golfinho natacao';
+    let ruaAcademia = 'rua';
+    let numeroAcademia = '32';
+    let bairroAcademia = 'osasco';
+    let cidadeAcademia = 'sp';
+    let cepAcademia = '321321';
+    let estadoAcademia = 'sao paulo';
+    let cnpjAcademia = '42423';
+
     var docDefinition = {
         content: [
             {
-                text: 'Contrato de Mátricula',
+                text: 'CONTRATO DE PRESTAÇÃO DE SERVIÇOS\n\n',
                 style: 'title'
+            },
+            {
+                text: [
+                    { text: 'CONTRATANTE: ', fontSize: 13, bold: true },
+                    { text: `${nomeMatriculado}`, fontSize: 12, bold: true },
+                    ', portador do RG: ',
+                    { text: `${rg}`, fontSize: 12, bold: true },
+                    ', CPF: ',
+                    { text: `${cpf}`, fontSize: 12, bold: true },
+                    ', residente e domiciliado na ',
+                    { text: `${endereco}, ${numero}`, fontSize: 12, bold: true },
+                    ', bairro ',
+                    { text: `${bairro}`, fontSize: 12, bold: true },
+                    ', CEP:',
+                    { text: `${cep}`, fontSize: 12, bold: true },
+                    ' Cidade de ',
+                    { text: `${estado}`, fontSize: 12, bold: true },
+                    ', Estado de ',
+                    { text: `${cidade}`, fontSize: 12, bold: true },
+
+
+                    '\n\n',
+                ],
+
+            },
+            {
+                text: [
+                    { text: 'CONTRATADO: ', fontSize: 13, bold: true },
+                    { text: `${nomeAcademia}`, fontSize: 12, bold: true },
+                    ', com sede na Rua: ',
+                    { text: `${ruaAcademia}`, fontSize: 12, bold: true },
+                    ', numero: ',
+                    { text: `${numeroAcademia}`, fontSize: 12, bold: true },
+                    ', bairro ',
+                    { text: `${bairroAcademia}`, fontSize: 12, bold: true },
+                    ', cidade ',
+                    { text: `${cidadeAcademia}`, fontSize: 12, bold: true },
+                    ', CEP:',
+                    { text: `${cepAcademia}`, fontSize: 12, bold: true },
+                    ' no estado ',
+                    { text: `${estadoAcademia}`, fontSize: 12, bold: true },
+                    ',inscrita no CNPJ ',
+                    { text: `${cnpjAcademia}`, fontSize: 12, bold: true },
+
+
+                    '\n\n',
+                ],
+
+            },
+            {
+                text: [
+                    'As partes acima identificadas têm, entre si, justo e acertado o presente Contrato de Prestação de Serviços de Academia de Ginástica, que se regerá pelas cláusulas seguintes e pelas condições descritas no presente.\n\n',
+
+                ]
+
             }
         ],
         styles: {
             title: {
-                fontSize: 18,
+                fontSize: 15,
                 bold: true,
                 alignment: 'center'
             },
-            
+
         }
     }
 
