@@ -307,9 +307,9 @@ namespace Web.BD.Repository
                                 FROM 
                                 	Colaboradores  
                                 	                   WHERE 
-          CPF = @CPF           
-          AND RG = @RG
-          AND Ativo = 1";
+          Ativo = 1 AND
+          (CPF = @CPF           
+          OR RG = @RG)";
             return GravarERetornarVerdadeiroOuFalse(entity, query, acao);
         }
 
