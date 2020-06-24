@@ -249,6 +249,7 @@
                                  M.toast({ html: dados, classes: 'rounded orange' });
                                  break;
                              case true:
+                                 fazPDF();
                                  M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
