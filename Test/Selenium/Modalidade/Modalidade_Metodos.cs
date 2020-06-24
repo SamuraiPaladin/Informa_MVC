@@ -46,4 +46,13 @@ public class TestesModalidadeMetodos
 		}
 		return true;
 	}
+
+	public static void FinalizarTeste(int Operacao)
+	{
+		if (Operacao == 1)
+		{
+
+		}
+		Utilities.driver.Close();
+	}
 }

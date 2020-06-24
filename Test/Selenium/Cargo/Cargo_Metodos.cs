@@ -46,4 +46,23 @@ public class TestesCargoMetodos
 		}
 		return true;
 	}
+
+	public static void FinalizarTeste(int Oper)
+	{
+		if (Oper == 1)
+		{
+			Thread.Sleep(5500);
+
+			PageObject.RegisterJob.ExcluirCargoButton();
+
+			TestesCargoMetodos.AguardaModalDeletar();
+
+			PageObject.RegisterJob.FinalizarExcluirCargoButton();
+
+			PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
+		
+		} 
+
+		Utilities.driver.Close();
+	}
 }
