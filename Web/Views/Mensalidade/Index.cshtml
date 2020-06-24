@@ -119,7 +119,7 @@
                             @*<a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
                                 '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao')"><i class="material-icons">attach_money</i></a>*@
                             <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros')"><i class="material-icons">attach_money</i></a>
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@mensalidade.GerarRecibo')"><i class="material-icons">attach_money</i></a>
                         </td>
                         <td>
                             @mensalidade.Matricula.Nome
@@ -141,8 +141,8 @@
                                 '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao', '@mensalidade.Valor')"><i class="material-icons" style="background-color:#f79f00">create</i></a><br />
                                                     <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.Modalidade.Id', '@mensalidade.Turma.Id',
                                 '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Modalidade.TipoModalidade', '@mensalidade.Turma.Descricao', '@mensalidade.Valor')"><i class="material-icons">delete_forever</i></a>*@
-                            <a id="editarMensalidade" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                            <a id="deletarMensalidade" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros')"><i class="material-icons">delete_forever</i></a>
+                            <a id="editarMensalidade" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a id="deletarMensalidade" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"><i class="material-icons">delete_forever</i></a>
                         </td>
                     </tr>
                 }
@@ -424,7 +424,7 @@
                 <!-- NOVO INPUT - VALOR FINAL QUE SERA DIGITADO PELO ADMINISTRAODOR DO SISTEMA-->
                 <div class="input-field col s12">
 
-                    <label for="valor" id="valorPago">Valor Pago</label>
+                    <label for="valor">Valor Pago</label>
                     <br />
                     <input type="text" id="valorPago" class="validate" >
                 </div>
@@ -453,7 +453,7 @@
                 <div class="input-field col s12">
                     <p>
                         <label>
-                            <input type="checkbox" />
+                            <input id="gerarRecibo" type="checkbox" />
                             <span>Gerar Recibo?</span>
                         </label>
                     </p>
@@ -494,8 +494,9 @@
         let valorVencimento;
         let valorFormaDePagamento;
         let valorStatusDaMensalidade;
+        let valorGerarRecibo;
 
-        function EditarModal(id, Matricula, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, valor, diasVencidos, juros) {
+        function EditarModal(id, Matricula, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, valor, diasVencidos, juros, gerarRecibo) {
 
                 valorId = id;
                 valorMatricula = Matricula;
@@ -520,6 +521,8 @@
             //document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
             //document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
             if (model === 'Pagamento') {
+                valorGerarRecibo = gerarRecibo;
+                document.getElementById("gerarRecibo").checked = valorGerarRecibo;
                 if (diasVencidos > 0) {
                     var valorDivididoPeloJuros = parseInt(valorPagamento) * (3 / 100);
                     var valorPorDia = valorDivididoPeloJuros / 30;
@@ -612,7 +615,8 @@
                 DataDeVencimento: valorVencimento,
                 FormaDePagamento: valorFormaDePagamento,
                 StatusDaMensalidade: valorStatusDaMensalidade,
-                Valor: valorPagamento
+                Valor: valorPagamento,
+                GerarRecibo: valorGerarRecibo
             };
 
             var mensalidadeEditar = {
@@ -621,9 +625,10 @@
                 DataDeVencimento: valorVencimento,
                 FormaDePagamento: $('#formaDropDownPagamento').val() == null ? "Debito" : $('#formaDropDownPagamento').val(),
                 StatusDaMensalidade: 'Pago',
-                Valor: document.getElementById('valorPagamento').value,
+                Valor: document.getElementById("valorPago").value != "" ? document.getElementById("valorPago").value : document.getElementById('valorPagamento').value,
                 EditarTodasMensalidades: false,
-                Dia: valorVencimento.split('-')[2]
+                Dia: valorVencimento.split('-')[2],
+                GerarRecibo: document.getElementById("gerarRecibo").checked
             };
 
             $(function () {

@@ -129,7 +129,6 @@ namespace Web.BD.Repository
                 @"DataDeVencimento = @DataDeVencimentoAntigo AND
                   Valor = @ValorAntigo AND";
 
-
             string query = $@"UPDATE Mensalidades 
             SET
              MatriculaId = @MatriculaIdNovo, 
@@ -138,7 +137,7 @@ namespace Web.BD.Repository
              DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimentoNovo))), 
              StatusDaMensalidade = @StatusDaMensalidadeNovo,
              FormaDePagamento = @FormaDePagamentoNovo,
-             Valor = @ValorNovo       
+             Valor = @ValorNovo
             WHERE   
              MatriculaId = @MatriculaIdAntigo AND
              --ModalidadeId = @ModalidadeIdAntigo AND
@@ -146,6 +145,7 @@ namespace Web.BD.Repository
              {unicaOuTodaMensalidade}
              StatusDaMensalidade = @StatusDaMensalidadeAntigo --AND
              --FormaDePagamento = @FormaDePagamentoAntigo";
+
 
             using (var con = new SqlConnection(stringConexao))
             {
@@ -169,6 +169,15 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@ValorAntigo", entityAntigo.Valor);
 
                 cmd.ExecuteNonQuery();
+
+                if (entityNovo.GerarRecibo)
+                {
+                    string query2 = @"UPDATE Mensalidades SET GerarRecibo = 1 WHERE MatriculaId = @MatriculaIdNovo";
+                    SqlCommand cmd2 = new SqlCommand(query2, con);
+                    cmd2.Parameters.AddWithValue("@MatriculaIdNovo", entityNovo.MatriculaId);
+                    cmd2.ExecuteNonQuery();
+                }
+
                 return true;
             }
         }
@@ -209,10 +218,9 @@ namespace Web.BD.Repository
             }
         }
 
-        //TODO ALTERAR QUERYE PARA PEGAR O JUROS DA UNIDADE
         public decimal Juros()
         {
-            string query = "SELECT TOP 1 Valor FROM Parametros";
+            string query = "SELECT TOP 1 JurosMensal FROM Unidades";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -256,6 +264,7 @@ namespace Web.BD.Repository
                             Valor = (decimal)sdr["Valor"],
                             DiasVencidos = (int)sdr["DiasVencidos"],
                             CPF = sdr["CPF"].ToString(),
+                            GerarRecibo = string.IsNullOrEmpty(sdr["GerarRecibo"].ToString()) || sdr["GerarRecibo"].ToString() == "0" ? false : true
                         };
                         Mensalidades.Add(model);
                     }
