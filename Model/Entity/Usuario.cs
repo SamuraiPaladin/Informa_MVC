@@ -8,5 +8,6 @@ namespace Model.Entity
         public string Nome { get; set; }
         public string Senha { get; set; }
         public string PerfilUsuario { get; set; }
+        public int IdColaborador { get; set; }
     }
 }
