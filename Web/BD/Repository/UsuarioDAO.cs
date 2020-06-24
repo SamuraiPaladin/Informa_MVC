@@ -15,8 +15,8 @@ namespace Web.BD.Repository
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Usuario entity)
         {
-            string query = @"INSERT Usuarios(Nome, Perfil, Senha) 
-                                VALUES(@Nome, @Perfil, PWDENCRYPT(@Senha) )";
+            string query = @"INSERT Usuarios(Nome, Perfil, Senha, IdColaborador) 
+                                VALUES(@Nome, @Perfil, PWDENCRYPT(@Senha), @IdColab )";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -24,13 +24,14 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Nome", entity.Nome);
                 cmd.Parameters.AddWithValue("@Perfil", entity.PerfilUsuario);
                 cmd.Parameters.AddWithValue("@Senha", entity.Senha);
+                cmd.Parameters.AddWithValue("@IdColab", entity.IdColaborador);
                 return Convert.ToInt32(cmd.ExecuteNonQuery()) > 0 ? true : false;
             }
         }
 
         public bool Atualizar(Usuario entity)
         {
-            string query = @"UPDATE Usuarios SET Nome = @Nome, Perfil = @Perfil, Senha = PWDENCRYPT(@Senha) FROM Usuarios WHERE Id = @Id";
+            string query = @"UPDATE Usuarios SET Nome = @Nome, Perfil = @Perfil, Senha = PWDENCRYPT(@Senha), IdColaborador = @IdColab  FROM Usuarios WHERE Id = @Id";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -39,13 +40,14 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Perfil", entity.PerfilUsuario);
                 cmd.Parameters.AddWithValue("@Senha", entity.Senha);
                 cmd.Parameters.AddWithValue("@Id", entity.Id);
+                cmd.Parameters.AddWithValue("@IdColab", entity.IdColaborador);
                 return Convert.ToInt32(cmd.ExecuteNonQuery()) > 0 ? true : false;
             }
         }
 
         public Usuario DadosDoUsuario(int id)
         {
-            string query = @"SELECT Id, Nome, Perfil  FROM  Usuarios WHERE Id = @Id";
+            string query = @"SELECT Id, Nome, Perfil, IdColaborador  FROM  Usuarios WHERE Id = @Id";
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -61,7 +63,8 @@ namespace Web.BD.Repository
                         {
                             PerfilUsuario = sdr["Perfil"].ToString(),
                             Nome = sdr["Nome"].ToString(),
-                            Id = Convert.ToInt32(sdr["Id"])
+                            Id = Convert.ToInt32(sdr["Id"]),
+                            IdColaborador = Convert.ToInt32(sdr["IdColaborador"])
                         };
 
                     }
@@ -84,7 +87,7 @@ namespace Web.BD.Repository
 
         public IList<Usuario> Lista()
         {
-            string query = "SELECT Id, Nome, Perfil FROM Usuarios";
+            string query = "SELECT Id, Nome, Perfil, IdColaborador FROM Usuarios";
             var listaDeUsuarios = new List<Usuario>();
             using (var con = new SqlConnection(stringConexao))
             {
@@ -99,7 +102,8 @@ namespace Web.BD.Repository
                         {
                             Id = Convert.ToInt32(sdr["Id"]),
                             Nome = sdr["Nome"].ToString(),
-                            PerfilUsuario = sdr["Perfil"].ToString()
+                            PerfilUsuario = sdr["Perfil"].ToString(),
+                            IdColaborador = Convert.ToInt32(sdr["IdColaborador"])
                         };
                         listaDeUsuarios.Add(usuario);
                     }
