@@ -9,7 +9,7 @@ using Web.BD.Interface;
 
 namespace Web.BD.Repository
 {
-    public class ModalidadeDAO : IDAO<Modalidade>
+    public class ModalidadeDAO : IModalidadeDAO<Modalidade>
     {
         private readonly string stringConexao = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
         public bool Adicionar(Modalidade entity)
@@ -74,9 +74,18 @@ namespace Web.BD.Repository
                 return lista;
             }
         }
-        public bool VerificarSeJaExiste(Modalidade entity)
+        public bool VerificarSeJaExiste(Modalidade entity, bool acao)
         {
-            string query = @"SELECT 
+            string query = acao ? @"SELECT 
+                                	count(1) as qtd
+                                FROM 
+                                	Modalidades
+                                WHERE 
+                                	TipoModalidade = @TipoModalidade AND
+                                    Descricao = @Descricao"
+                        :
+
+                        @"SELECT 
                                 	count(1) as qtd
                                 FROM 
                                 	Modalidades
@@ -87,10 +96,19 @@ namespace Web.BD.Repository
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@TipoModalidade", entity.TipoModalidade);
+                if (acao) {
+                    cmd.Parameters.AddWithValue("@Descricao", entity.Descricao);
+                }
                 var result = Convert.ToInt32(cmd.ExecuteScalar());
                 return result > 0 ? true : false;
             }
         }
+
+        public bool VerificarSeJaExiste(Modalidade entity)
+        {
+            throw new NotImplementedException();
+        }
+
         private bool GravarERetornarVerdadeiroOuFalse(Modalidade entity, string query)
         {
             using (var con = new SqlConnection(stringConexao))

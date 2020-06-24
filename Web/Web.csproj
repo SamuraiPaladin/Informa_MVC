@@ -226,6 +226,7 @@
     <Compile Include="BD\Interface\IDAO.cs" />
     <Compile Include="BD\Interface\IDAOMatricula.cs" />
     <Compile Include="BD\Interface\IDAOPrincipal.cs" />
+    <Compile Include="BD\Interface\IModalidadeDAO.cs" />
     <Compile Include="BD\Interface\IUnidadeDAO.cs" />
     <Compile Include="BD\Repository\AulaTurmaDAO.cs" />
     <Compile Include="BD\Interface\IUsuarioDAO.cs" />
@@ -827,7 +828,6 @@
     <Content Include="Scripts\menu.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\site.js" />
-    <Content Include="Scripts\temperaturaAndLocale.js" />
     <Content Include="Scripts\tempo.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -848,7 +848,6 @@
     <Content Include="Views\Funcao\Index.cshtml" />
     <Content Include="Views\Principal\Index.cshtml" />
     <Content Include="Views\Colaborador\Index.cshtml" />
-    <Content Include="Views\Aluno\Index.cshtml" />
     <Content Include="Views\Turma\Index.cshtml" />
     <Content Include="Views\Matricula\Index.cshtml" />
     <Content Include="Views\Mensalidade\Index.cshtml" />
