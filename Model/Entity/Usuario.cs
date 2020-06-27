@@ -9,5 +9,8 @@ namespace Model.Entity
         public string Senha { get; set; }
         public string PerfilUsuario { get; set; }
         public int IdColaborador { get; set; }
+        public string NomeColaborador { get; set; }
+        public IList<Colaborador> ListaDeColaboradores { get; set; }
+        public IList<Usuario> ListaDeUsuarios { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IList<Model.Entity.Usuario>
+﻿@model Model.Entity.Usuario
 @{
     ViewBag.Title = "Cadastro Usuário";
 }
@@ -25,8 +25,8 @@
             </div>
         </div>
 
-        @Html.Partial("_ModalCadastrarUsuario")
-        @Html.Partial("_tabelaInicial", Model)
+        @Html.Partial("_ModalCadastrarUsuario", Model.ListaDeColaboradores)
+        @Html.Partial("_tabelaInicial", Model.ListaDeUsuarios)
         @Html.Partial("_ModalEditarUsuario")
         @Html.Partial("_ModalDeletar")
 
@@ -75,7 +75,8 @@
                     var usuario = {
                         Nome: document.getElementById("nome").value,
                         Senha: document.getElementById("senha").value,
-                        PerfilUsuario: $('#perfilUsuario').val()
+                        PerfilUsuario: $('#perfilUsuario').val(),
+                        IdColaborador: $('#usuarioCadastrado').val()
                  };
                  $.ajax({
                      dataType: "json",
@@ -163,6 +164,8 @@
                          document.getElementById('id' + modal).value = id;
                          $('#usuarioDropDown' + modal)[0].children[0].children[0].value = dados.PerfilUsuario;
                          document.getElementById('nome' + modal).value = dados.Nome;
+                         document.getElementById('nomeColaboradorEditar').value = dados.NomeColaborador;
+                         
                  }
         });
         }

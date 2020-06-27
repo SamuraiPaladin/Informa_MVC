@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,6 @@ namespace Web.BD.Interface
         bool Atualizar(T entity);
         bool Deletar(T entity);
         bool ValidaUsuarioNoCache();
+        IList<Colaborador> ListaColaboradores();
     }
 }

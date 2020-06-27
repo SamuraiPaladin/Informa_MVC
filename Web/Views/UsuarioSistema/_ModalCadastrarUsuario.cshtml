@@ -1,4 +1,5 @@
-﻿<div id="cadastrarUsuario" class="modal">
+﻿@model IList<Model.Entity.Colaborador>
+<div id="cadastrarUsuario" class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <h4 class="flow-text center">CADASTRAR USUARIO</h4>
@@ -17,13 +18,23 @@
                         <label for="senha">Digite a sua Senha</label>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="input-field col s6">
                         <select id="perfilUsuario">
                             <option value="" disabled selected>Escolha o nivel de acesso</option>
                             <option value="Administrador">Administrador</option>
                             <option value="Basico">Basico</option>
+                        </select>
+                        <label>Nivel de Acesso</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="usuarioCadastrado">
+                            <option value="" disabled selected>Escolha o nivel de acesso</option>
+                            @foreach (var item in Model)
+                            {
+                        <option value="@item.Id">@item.Nome</option>
+                            }
                         </select>
                         <label>Nivel de Acesso</label>
                     </div>

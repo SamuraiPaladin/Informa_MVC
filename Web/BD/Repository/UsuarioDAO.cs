@@ -47,7 +47,8 @@ namespace Web.BD.Repository
 
         public Usuario DadosDoUsuario(int id)
         {
-            string query = @"SELECT Id, Nome, Perfil, IdColaborador  FROM  Usuarios WHERE Id = @Id";
+            string query = @"SELECT u.Id, u.Nome, Perfil, IdColaborador, c.Nome NomeColaborador FROM Usuarios u
+                                JOIN Colaboradores c ON c.Id = u.IdColaborador WHERE u.Id = @Id";
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -64,7 +65,8 @@ namespace Web.BD.Repository
                             PerfilUsuario = sdr["Perfil"].ToString(),
                             Nome = sdr["Nome"].ToString(),
                             Id = Convert.ToInt32(sdr["Id"]),
-                            IdColaborador = Convert.ToInt32(sdr["IdColaborador"])
+                            IdColaborador = Convert.ToInt32(sdr["IdColaborador"]),
+                            NomeColaborador = sdr["NomeColaborador"].ToString()
                         };
 
                     }
@@ -87,7 +89,8 @@ namespace Web.BD.Repository
 
         public IList<Usuario> Lista()
         {
-            string query = "SELECT Id, Nome, Perfil, IdColaborador FROM Usuarios";
+            string query = @"SELECT u.Id, u.Nome, Perfil, IdColaborador, c.Nome NomeColaborador FROM Usuarios u
+                                JOIN Colaboradores c ON c.Id = u.IdColaborador";
             var listaDeUsuarios = new List<Usuario>();
             using (var con = new SqlConnection(stringConexao))
             {
@@ -103,7 +106,8 @@ namespace Web.BD.Repository
                             Id = Convert.ToInt32(sdr["Id"]),
                             Nome = sdr["Nome"].ToString(),
                             PerfilUsuario = sdr["Perfil"].ToString(),
-                            IdColaborador = Convert.ToInt32(sdr["IdColaborador"])
+                            IdColaborador = Convert.ToInt32(sdr["IdColaborador"]),
+                            NomeColaborador = sdr["NomeColaborador"].ToString()
                         };
                         listaDeUsuarios.Add(usuario);
                     }
@@ -150,6 +154,31 @@ namespace Web.BD.Repository
         public bool ValidaUsuarioNoCache()
         {
             return new Cache()["DadosDoUsuario"] != null ? true : false;
+        }
+
+        public IList<Colaborador> ListaColaboradores()
+        {
+            string query = "SELECT Id, Nome FROM Colaboradores";
+            var listaDeColaborador = new List<Colaborador>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataReader sdr = cmd.ExecuteReader();
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        var colaborador = new Colaborador()
+                        {
+                            Id = Convert.ToInt32(sdr["Id"]),
+                            Nome = sdr["Nome"].ToString(),
+                        };
+                        listaDeColaborador.Add(colaborador);
+                    }
+                }
+            }
+            return listaDeColaborador;
         }
     }
 }
