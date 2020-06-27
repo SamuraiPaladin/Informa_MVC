@@ -49,10 +49,18 @@
                          $("#Grid tr").remove();
                          $(dados).each(function () {
                              if (this.Presenca === true) {
-                                 $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
-                             } else {
+                                 if (document.getElementById('perfilLogado').value == 'Administrador') {
+                                     $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.Telefone + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 } else {
+                                     $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 }
+                                 } else {
 
-                                 $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "'  /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 if (document.getElementById('perfilLogado').value == 'Administrador') {
+                                     $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.Telefone + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 } else {
+                                     $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 }
                              }
                          });
                 }

@@ -23,5 +23,6 @@ namespace Model.Entity
         public string DataNascimento { get; set; }
         public DateTime Data { get; set; }
         public string TipoModalidade { get; set; }
+        public string Telefone { get; set; }
     }
 }
