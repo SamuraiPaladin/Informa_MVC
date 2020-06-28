@@ -868,6 +868,7 @@
     <Content Include="Views\UsuarioSistema\_ModalDeletar.cshtml" />
     <Content Include="Views\Principal\_TabelaTurmas.cshtml" />
     <Content Include="Views\ConsultaPagamento\Index.cshtml" />
+    <Content Include="Views\Matricula\_Ativar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

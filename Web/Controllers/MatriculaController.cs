@@ -30,7 +30,8 @@ namespace Web.Controllers
         }
         public ActionResult Index()
         {
-            if (_serviceUsuario.ValidaUsuarioNoCache()) {
+            if (_serviceUsuario.ValidaUsuarioNoCache())
+            {
                 var model = new Matricula
                 {
                     ListaMatricula = dAOMatricula.Lista().ToList(),
@@ -59,6 +60,18 @@ namespace Web.Controllers
                 {
                     return Json(dAO.Adicionar(entity));
                 }
+            }
+        }
+
+        public JsonResult Ativar(Matricula entity)
+        {
+            try
+            {
+                return Json(dAO.AtivarMatricula(entity));
+            }
+            catch (Exception e)
+            {
+                return Json("Erro ao ativar aluno");
             }
         }
         private static bool VerificaSeTemCampoVazioOuNulo(Matricula entity)

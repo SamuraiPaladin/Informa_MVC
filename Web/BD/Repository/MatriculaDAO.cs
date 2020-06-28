@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using Web.BD.Interface;
@@ -37,16 +38,16 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Estado", entity.Estado);
                 cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
                 cmd.Parameters.AddWithValue("@Email", entity.Email);
-                cmd.Parameters.AddWithValue("@DescTelefone", entity.DescTelefone);
-                cmd.Parameters.AddWithValue("@Telefone2", entity.Telefone2);
-                cmd.Parameters.AddWithValue("@DescTelefone2", entity.DescTelefone2);
-                cmd.Parameters.AddWithValue("@Telefone3", entity.Telefone3);
-                cmd.Parameters.AddWithValue("@DescTelefone3", entity.DescTelefone3);
+                cmd.Parameters.AddWithValue("@DescTelefone", string.IsNullOrEmpty(entity.DescTelefone) ? SqlString.Null : entity.DescTelefone);
+                cmd.Parameters.AddWithValue("@Telefone2", string.IsNullOrEmpty(entity.Telefone2) ? SqlString.Null : entity.Telefone2);
+                cmd.Parameters.AddWithValue("@DescTelefone2", string.IsNullOrEmpty(entity.DescTelefone2) ? SqlString.Null : entity.DescTelefone2);
+                cmd.Parameters.AddWithValue("@Telefone3", string.IsNullOrEmpty(entity.Telefone3) ? SqlString.Null : entity.Telefone3);
+                cmd.Parameters.AddWithValue("@DescTelefone3", string.IsNullOrEmpty(entity.DescTelefone3) ? SqlString.Null : entity.DescTelefone3);
                 cmd.Parameters.AddWithValue("@GerarNota", entity.GerarNota);
-                cmd.Parameters.AddWithValue("@DataNascimentoResponsavel", entity.DataNascimentoResponsavel);
+                cmd.Parameters.AddWithValue("@DataNascimentoResponsavel", entity.DataNascimentoResponsavel == new DateTime() ? SqlDateTime.Null : entity.DataNascimentoResponsavel);
                 cmd.Parameters.AddWithValue("@MenorIdade", entity.MenorIdade);
-                cmd.Parameters.AddWithValue("@NomeResponsavel", entity.NomeReponsavel);
-                cmd.Parameters.AddWithValue("@GrauParentesco", entity.Parentesco);
+                cmd.Parameters.AddWithValue("@NomeResponsavel", string.IsNullOrEmpty(entity.NomeReponsavel) ? SqlString.Null : entity.NomeReponsavel);
+                cmd.Parameters.AddWithValue("@GrauParentesco", string.IsNullOrEmpty(entity.Parentesco) ? SqlString.Null : entity.Parentesco);
               
 
                 var ultimoIdInserido = cmd.ExecuteScalar();
@@ -145,14 +146,16 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@TelefoneNovo", entityNovo.Telefone);
                 cmd.Parameters.AddWithValue("@Email", entityNovo.Email);
 
-                cmd.Parameters.AddWithValue("@DescTelefone", entityNovo.DescTelefone);
-                cmd.Parameters.AddWithValue("@Telefone2", entityNovo.Telefone2);
-                cmd.Parameters.AddWithValue("@DescTelefone2", entityNovo.DescTelefone2);
-                cmd.Parameters.AddWithValue("@Telefone3", entityNovo.Telefone3);
-                cmd.Parameters.AddWithValue("@DescTelefone3", entityNovo.DescTelefone3);
+                cmd.Parameters.AddWithValue("@DescTelefone", string.IsNullOrEmpty(entityNovo.DescTelefone) ? SqlString.Null : entityNovo.DescTelefone);
+                cmd.Parameters.AddWithValue("@Telefone2", string.IsNullOrEmpty(entityNovo.Telefone2) ? SqlString.Null : entityNovo.Telefone2);
+                cmd.Parameters.AddWithValue("@DescTelefone2", string.IsNullOrEmpty(entityNovo.DescTelefone2) ? SqlString.Null : entityNovo.DescTelefone2);
+                cmd.Parameters.AddWithValue("@Telefone3", string.IsNullOrEmpty(entityNovo.Telefone3) ? SqlString.Null : entityNovo.Telefone3);
+                cmd.Parameters.AddWithValue("@DescTelefone3", string.IsNullOrEmpty(entityNovo.DescTelefone3) ? SqlString.Null : entityNovo.DescTelefone3);
                 cmd.Parameters.AddWithValue("@GerarNota", entityNovo.GerarNota);
-                cmd.Parameters.AddWithValue("@DataNascimentoResponsavel", entityNovo.DataNascimentoResponsavel);
+                cmd.Parameters.AddWithValue("@DataNascimentoResponsavel", entityNovo.DataNascimentoResponsavel == new DateTime() ? SqlDateTime.Null : entityNovo.DataNascimentoResponsavel);
                 cmd.Parameters.AddWithValue("@MenorIdade", entityNovo.MenorIdade);
+                cmd.Parameters.AddWithValue("@NomeResponsavel", string.IsNullOrEmpty(entityNovo.NomeReponsavel) ? SqlString.Null : entityNovo.NomeReponsavel);
+                cmd.Parameters.AddWithValue("@GrauParentesco", string.IsNullOrEmpty(entityNovo.Parentesco) ? SqlString.Null : entityNovo.Parentesco);
 
                 cmd.Parameters.AddWithValue("@IDAntigo", entityAntigo.Id);
                 return cmd.ExecuteNonQuery() > 0 ? true : false;
@@ -203,7 +206,8 @@ namespace Web.BD.Repository
                             Cidade = sdr["Cidade"].ToString(),
                             Estado = sdr["Estado"].ToString(),
                             Telefone = sdr["Telefone"].ToString(),
-                            Email = sdr["Email"].ToString()
+                            Email = sdr["Email"].ToString(),
+                            Ativo = (bool)sdr["Ativo"]
                         };
                         entity.Add(model);
                     }
@@ -215,10 +219,12 @@ namespace Web.BD.Repository
 
         public IList<MatriculaTurma> ListaMatriculaTurma()
         {
-            string query = @"SELECT t.Id, count(1) Quantidade, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome
+            string query = @"SELECT t.Id, count(1) Quantidade, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome, m.Ativo
                                 FROM Colaboradores c
                                 JOIN Turmas t ON c.Id = t.ColaboradorId
-                                GROUP BY t.id, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome
+                                JOIN MatriculaTurma mt ON mt.IdTurma = t.Id
+                                JOIN Matriculas m ON m.Id = mt.IdMatricula
+                                GROUP BY t.id, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome, m.Ativo
                                 ORDER BY t.HorarioInicial";
             var lista = new List<MatriculaTurma>();
             using (var con = new SqlConnection(stringConexao))
@@ -248,6 +254,9 @@ namespace Web.BD.Repository
                             HorarioFinal = sdr["HorarioFinal"].ToString()
                             ,
                             Nome = sdr["Nome"].ToString()
+                            ,
+                            Ativo = (bool)sdr["Ativo"]
+
                         };
                         lista.Add(model);
                     }
@@ -301,13 +310,13 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Estado", entity.Estado);
                 cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
                 cmd.Parameters.AddWithValue("@Email", entity.Email);
-                cmd.Parameters.AddWithValue("@DescTelefone", entity.DescTelefone);
-                cmd.Parameters.AddWithValue("@Telefone2", entity.Telefone2);
-                cmd.Parameters.AddWithValue("@DescTelefone2", entity.DescTelefone2);
-                cmd.Parameters.AddWithValue("@Telefone3", entity.Telefone3);
-                cmd.Parameters.AddWithValue("@DescTelefone3", entity.DescTelefone3);
+                cmd.Parameters.AddWithValue("@DescTelefone", string.IsNullOrEmpty(entity.DescTelefone) ? SqlString.Null : entity.DescTelefone);
+                cmd.Parameters.AddWithValue("@Telefone2", string.IsNullOrEmpty(entity.Telefone2) ? SqlString.Null : entity.Telefone2);
+                cmd.Parameters.AddWithValue("@DescTelefone2", string.IsNullOrEmpty(entity.DescTelefone2) ? SqlString.Null : entity.DescTelefone2);
+                cmd.Parameters.AddWithValue("@Telefone3", string.IsNullOrEmpty(entity.Telefone3) ? SqlString.Null : entity.Telefone3);
+                cmd.Parameters.AddWithValue("@DescTelefone3", string.IsNullOrEmpty(entity.DescTelefone3) ? SqlString.Null : entity.DescTelefone3);
                 cmd.Parameters.AddWithValue("@GerarNota", entity.GerarNota);
-                cmd.Parameters.AddWithValue("@DataNascimentoResponsavel", entity.DataNascimentoResponsavel);
+                cmd.Parameters.AddWithValue("@DataNascimentoResponsavel", entity.DataNascimentoResponsavel == new DateTime() ? SqlDateTime.Null : entity.DataNascimentoResponsavel);
                 cmd.Parameters.AddWithValue("@MenorIdade", entity.MenorIdade);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
             }
@@ -366,7 +375,7 @@ namespace Web.BD.Repository
                             HorarioInicial = sdr["HorarioInicial"].ToString(),
                             HorarioFinal = sdr["HorarioFinal"].ToString(),
                             Nome = sdr["Nome"].ToString(),
-                            Ativo = true
+                            Ativo = sdr["Ativo"].ToString() == "0" || string.IsNullOrEmpty(sdr["Ativo"].ToString()) ? false : true
                         };
                         lista.Add(matricula);
                     }
@@ -408,10 +417,11 @@ namespace Web.BD.Repository
                             DescTelefone3 = sdr["DescTelefone3"].ToString(),
                             Telefone2 = sdr["Telefone2"].ToString(),
                             Telefone3 = sdr["Telefone3"].ToString(),
-                            MenorIdade = string.IsNullOrEmpty(sdr["MenorIdade"].ToString()) ? 0 : 1,
+                            MenorIdade = string.IsNullOrEmpty(sdr["MenorIdade"].ToString()) || sdr["MenorIdade"].ToString() == "0" ? 0 : 1,
                             NomeResponsavel = sdr["NomeResponsavel"].ToString(),
                             DataNascimentoResponsavel = sdr["DataNascimentoResponsavel"].ToString(),
-                            Parentesco = sdr["GrauParentesco"].ToString()
+                            Parentesco = sdr["GrauParentesco"].ToString(),
+                            Ativo = sdr["Ativo"].ToString() == "0" || string.IsNullOrEmpty(sdr["Ativo"].ToString()) ? false : true
                         };
                     }
                 }
@@ -422,50 +432,12 @@ namespace Web.BD.Repository
         {
             string query = @"UPDATE Matriculas SET Ativo = 1 
                             WHERE 
-                            Nome = @Nome AND
-                            DataNascimento = @DataNascimento AND
-                            CPF = @CPF AND
-                            RG = @RG AND
-                            Endereco = @Endereco AND
-                            CEP = @CEP AND
-                            Numero = @Numero AND
-                            Bairro =  @Bairro AND
-                            Cidade = @Cidade AND
-                            Estado = @Estado AND
-                            Telefone = @Telefone AND
-                            Email = @Email AND
-                            DescTelefone = @DescTelefone AND,
-                            Telefone2 = @Telefone2 AND,
-                            DescTelefone2 = @DescTelefone2 AND,
-                            Telefone3 = @Telefone3 AND,
-                            DescTelefone3 = @DescTelefone3 AND,
-                            GerarNota = @GerarNota AND,
-                            DataNascimentoResponsavel = @DataNascimentoResponsavel AND,
-                            MenorIdade = @MenorIdade";
+                            Id = @Id";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Nome", entity.Nome);
-                cmd.Parameters.AddWithValue("@DataNascimento", entity.DataNascimento);
-                cmd.Parameters.AddWithValue("@CPF", entity.CPF);
-                cmd.Parameters.AddWithValue("@RG", entity.RG);
-                cmd.Parameters.AddWithValue("@Endereco", entity.Endereco);
-                cmd.Parameters.AddWithValue("@CEP", entity.CEP);
-                cmd.Parameters.AddWithValue("@Numero", entity.Numero);
-                cmd.Parameters.AddWithValue("@Bairro", entity.Bairro);
-                cmd.Parameters.AddWithValue("@Cidade", entity.Cidade);
-                cmd.Parameters.AddWithValue("@Estado", entity.Estado);
-                cmd.Parameters.AddWithValue("@Telefone", entity.Telefone);
-                cmd.Parameters.AddWithValue("@Email", entity.Email);
-                cmd.Parameters.AddWithValue("@DescTelefone", entity.DescTelefone);
-                cmd.Parameters.AddWithValue("@Telefone2", entity.Telefone2);
-                cmd.Parameters.AddWithValue("@DescTelefone2", entity.DescTelefone2);
-                cmd.Parameters.AddWithValue("@Telefone3", entity.Telefone3);
-                cmd.Parameters.AddWithValue("@DescTelefone3", entity.DescTelefone3);
-                cmd.Parameters.AddWithValue("@GerarNota", entity.GerarNota);
-                cmd.Parameters.AddWithValue("@DataNascimentoResponsavel", entity.DataNascimentoResponsavel);
-                cmd.Parameters.AddWithValue("@MenorIdade", entity.MenorIdade);
+                cmd.Parameters.AddWithValue("@Id", entity.Id);
                 return Convert.ToInt32(cmd.ExecuteNonQuery()) > 0 ? true : false;
             }
         }
@@ -473,7 +445,8 @@ namespace Web.BD.Repository
         public List<int> ListaDeMensalidades(int id)
         {
             string query = @"SELECT Id FROM Mensalidades 
-                                WHERE (StatusDaMensalidade = 'Em Haver' || 'ProximoDaDataDeVencimento') AND DataDeVencimento > GETDATE()
+                                WHERE (StatusDaMensalidade = 'EmHaver' OR StatusDaMensalidade = 'ProximoDaDataDeVencimento') 
+                                AND DataDeVencimento > GETDATE()
                                 AND MatriculaId = @Id";
             List<int> lista = new List<int>();
             using (var con = new SqlConnection(stringConexao))
