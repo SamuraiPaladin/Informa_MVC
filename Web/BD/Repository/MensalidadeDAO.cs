@@ -17,20 +17,16 @@ namespace Web.BD.Repository
         {
             string query = @"INSERT INTO Mensalidades(
 	MatriculaId, 
-	--ModalidadeId, 
-	--TurmaId, 
 	DataDeVencimento, 
     StatusDaMensalidade,
 	FormaDePagamento,
-    Valor)
+    Valor, GerarRecibo)
 	Values(
         @MatriculaId, 
-	    --@ModalidadeId, 
-	    --@TurmaId, 
 	    @DataDeVencimento, 
         @StatusDaMensalidade,
 	    @FormaDePagamento,
-        @Valor);
+        @Valor, @GerarRecibo);
             SELECT @@IDENTITY";
             using (var con = new SqlConnection(stringConexao))
             {
@@ -57,6 +53,8 @@ namespace Web.BD.Repository
                     cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
                     cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
                     cmd.Parameters.AddWithValue("@Valor", entity.Valor);
+                    cmd.Parameters.AddWithValue("@GerarRecibo", entity.GerarRecibo);
+
                     cmd.ExecuteNonQuery();
 
                     con.Close();
@@ -496,5 +494,19 @@ namespace Web.BD.Repository
             }
         }
 
+        public bool VerificaSeIraGerarBoleto(int matriculaId)
+        {
+            string query = @"SELECT GerarNota FROM Matriculas WHERE Id = @Id";
+
+            List<EntradasPorPagamento> entradas = new List<EntradasPorPagamento>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Id", matriculaId);
+                return Convert.ToBoolean(cmd.ExecuteScalar());
+            }
+        }
     }
 }
