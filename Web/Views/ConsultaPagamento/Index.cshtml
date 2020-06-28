@@ -44,6 +44,11 @@
 
 @section scripts{
     <script>
+        let valorDebito = 0;
+        let valorCredito = 0;
+        let valorDinheiro = 0;
+        let valorDias;
+
         $(document).ready(function () {
             $('#tabela').DataTable();
         });
@@ -77,64 +82,71 @@
                        $("#Grid tr").remove();
                        $(data).each(function () {
                            $("#Grid").append("<tr><td>" + this.Dias + "</td><td>" + this.Credito + "</td> <td>" + this.Debito + "</td><td>" + this.Dinheiro + "</td> </tr>");
-                        });
-                   }
+                       });
+
+                for (var i = 0; i < data.length; i++) {
+                    valorDebito += data[i].Debito;
+                    valorCredito += data[i].Credito;
+                    valorDinheiro += data[i].Dinheiro;
+                }
+             }
         });
 
     }
 
-    let valorDebito = 314;
-    let valorCredito = 432;
-    let valorDinheiro = 4325
+        const fazPDF = () => {
 
-    var docDefinition = {
-        content: [
-            {
-                text: 'Relatorio de Pagamento\n\n',
-                style: 'title',
+            var docDefinition = {
+                content: [
+                    {
+                        text: 'Relatorio de Pagamento' + '\n' + 'De: ' + document.getElementById('dataInicial').value + '\n' + 'Até: ' + document.getElementById('dataFinal').value + '\n\n',
+                        style: 'title',
 
-            },
-            {
-                text: [
-                    'Pagamento em ',
-                    { text: 'DINHEIRO', fontSize: 15, bold: true },
-                    `: R$${valorDinheiro}`,
-                    '\n\n',
+                    },
+                    {
+                        text: [
+                            'Pagamento em ',
+                            { text: 'DINHEIRO', fontSize: 15, bold: true },
+                            `: R$${valorDinheiro}`,
+                            '\n\n',
+                        ],
+
+                    },
+                    {
+                        text: [
+                            'Pagamento em ',
+                            { text: 'DEBITO', fontSize: 15, bold: true },
+                            `: R$${valorDebito}`,
+                            '\n\n',
+                        ],
+
+                    },
+                    {
+                        text: [
+                            'Pagamento em ',
+                            { text: 'CREDITO', fontSize: 15, bold: true },
+                            `: R$${valorCredito}`,
+                            '\n\n',
+                        ],
+
+                    },
+
                 ],
+                styles: {
+                    title: {
+                        fontSize: 18,
+                        bold: true,
+                        alignment: 'center'
+                    },
 
-            },
-            {
-                text: [
-                    'Pagamento em ',
-                    { text: 'DEBITO', fontSize: 15, bold: true },
-                    `: R$${valorDebito}`,
-                    '\n\n',
-                ],
+                }
+            }
 
-            },
-            {
-                text: [
-                    'Pagamento em ',
-                    { text: 'CREDITO', fontSize: 15, bold: true },
-                    `: R$${valorCredito}`,
-                    '\n\n',
-                ],
 
-            },
-
-        ],
-        styles: {
-            title: {
-                fontSize: 18,
-                bold: true,
-                alignment: 'center'
-            },
-
-        }
-    }
-
-    const fazPDF = () => {
-        pdfMake.createPdf(docDefinition).open();
+            pdfMake.createPdf(docDefinition).open();
+            valorDebito = 0;
+            valorCredito = 0;
+            valorDinheiro = 0;
     }
 
 
