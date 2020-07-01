@@ -104,16 +104,17 @@
                     <input disabled type="date" id="diaDeVencimentoPagamento" name="datadevencimento">
                 </div>
 
-                <div class="input-field col s6">
+                <div id="formaPagamento" class="input-field col s6">
+                    <br />
+                    <select id="formaDropDownPagamento">
 
-                    <a class='dropdown-trigger11 btn' href='#' data-target='formaPagamento' id="formaDropDownPagamento">Selecione a forma de pagamento</a>
-
-                    <ul id='formaPagamento' class='dropdown-content'>
+                        <option disabled selected value="">Selecione a forma de pagamento</option>
                         @foreach (var item in Model.FormasDePagamentos)
                         {
-                            <li><a onclick="editaFormaSelecionado('@item', 'Pagamento')">@item</a></li>
+                            <option value="@item">@item</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Forma de pagamento</label>
                 </div>
 
                 <div id="modalPagamentoMensalidade" class="modal">
@@ -192,6 +193,7 @@
                 document.getElementById('formaDropDown' + model).text = "Selecione a forma de pagamento"
             }
 
+
             if (document.getElementById('statusDropDown' + model) != null) {
                 document.getElementById('statusDropDown' + model).text = statusdamensalidade.split(/(?=[A-Z])/).toString().replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ');
             }
@@ -234,7 +236,7 @@
                 Id: valorId,
                 MatriculaId: valorMatricula,
                 DataDeVencimento: valorVencimento,
-                FormaDePagamento: document.getElementById("formaDropDownPagamento").text != "Selecione a forma de pagamento" ? document.getElementById("formaDropDownPagamento").text : "Debito",
+                FormaDePagamento: $('#formaDropDownPagamento').val() == null ? "Debito" : $('#formaDropDownPagamento').val(),
                 StatusDaMensalidade: 'Pago',
                 Valor: document.getElementById('valorPagamento').value,
                 EditarTodasMensalidades: false,
