@@ -108,7 +108,7 @@
                     <tr>
                         <td class="enabledBotaoPagamento">
                             <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@mensalidade.GerarRecibo')"><i class="material-icons">attach_money</i></a>
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@mensalidade.GerarRecibo.ToString()')"><i class="material-icons">attach_money</i></a>
                         </td>
                         <td>
                             @mensalidade.Matricula.Nome
@@ -399,7 +399,7 @@
 
             if (model === 'Pagamento') {
                 valorGerarRecibo = gerarRecibo;
-                document.getElementById("gerarRecibo").checked = valorGerarRecibo;
+                document.getElementById("gerarRecibo").checked = JSON.parse(valorGerarRecibo.toLowerCase());
                 if (diasVencidos > 0) {
                     var valorDivididoPeloJuros = parseInt(valorPagamento) * (3 / 100);
                     var valorPorDia = valorDivididoPeloJuros / 30;

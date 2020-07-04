@@ -95,7 +95,9 @@ namespace Web.BD.Repository
                             FormaDePagamento = sdr["FormaDePagamento"].ToString(),
                             Valor = (decimal)sdr["Valor"],
                             CPF = sdr["CPF"].ToString(),
-                            DiasVencidos = (int)sdr["DiasVencidos"]
+                            DiasVencidos = (int)sdr["DiasVencidos"],
+                            GerarRecibo = string.IsNullOrEmpty(sdr["GerarRecibo"].ToString()) || sdr["GerarRecibo"].ToString() == "0" || sdr["GerarRecibo"].ToString() == "False" ? false : true
+
                         };
                         Mensalidades.Add(model);
                     }
@@ -132,7 +134,7 @@ namespace Web.BD.Repository
              MatriculaId = @MatriculaIdNovo, 
              --ModalidadeId = @ModalidadeIdNovo, 
              --TurmaId = @TurmaIdNovo, 
-             DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimentoNovo))), 
+             DataDeVencimento = CONVERT(DATE, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimentoNovo))), 
              StatusDaMensalidade = @StatusDaMensalidadeNovo,
              FormaDePagamento = @FormaDePagamentoNovo,
              Valor = @ValorNovo
@@ -262,7 +264,7 @@ namespace Web.BD.Repository
                             Valor = (decimal)sdr["Valor"],
                             DiasVencidos = (int)sdr["DiasVencidos"],
                             CPF = sdr["CPF"].ToString(),
-                            GerarRecibo = string.IsNullOrEmpty(sdr["GerarRecibo"].ToString()) || sdr["GerarRecibo"].ToString() == "0" ? false : true
+                            GerarRecibo = string.IsNullOrEmpty(sdr["GerarRecibo"].ToString()) || sdr["GerarRecibo"].ToString() == "0" || sdr["GerarRecibo"].ToString() == "False" ? false : true
                         };
                         Mensalidades.Add(model);
                     }
@@ -424,7 +426,7 @@ namespace Web.BD.Repository
 
         public bool VerificarSeJaExiste(Mensalidade entity)
         {
-            var dataDeVencimentoQuery = entity.EditarTodasMensalidades || string.IsNullOrEmpty(entity.FormaDePagamento) ? "DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimento))) and" : "DataDeVencimento = @DataDeVencimento and";
+            var dataDeVencimentoQuery = entity.EditarTodasMensalidades || string.IsNullOrEmpty(entity.FormaDePagamento) ? "DataDeVencimento = CONVERT(DATE, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimento))) and" : "DataDeVencimento = @DataDeVencimento and";
 
             string query = $@"SELECT 
                                 	count(1) as qtd
