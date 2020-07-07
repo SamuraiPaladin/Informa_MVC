@@ -38,7 +38,7 @@ namespace Test
 
             PageObject.RegisterEmployee.CEPColaboradorTextBox("04664-020");
 
-            Thread.Sleep(5000);
+            Thread.Sleep(6000);
 
             PageObject.RegisterEmployee.NumeroColaboradorTextBox("50");
 

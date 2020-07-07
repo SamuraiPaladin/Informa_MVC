@@ -26,17 +26,23 @@ namespace Test
 
             Thread.Sleep(250);
 
-            //PageObject.RegisterClass.SelecionaDataButton();
+            PageObject.RegisterClass.SelecionaDataButton();
 
-            //TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+            Thread.Sleep(500);
 
-            //TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
 
             PageObject.RegisterClass.SelecionaColaboradorButton();
+
+            Thread.Sleep(250);
 
             TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
 
             TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
@@ -44,7 +50,7 @@ namespace Test
 
             PageObject.RegisterClass.Seleciona_ModalidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
 
             PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
@@ -54,16 +60,13 @@ namespace Test
 
             PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Poá");
-
-            //PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
-
+           
+            TestesTurmaMetodos.FinalizarTeste(1);
 
         }
 
@@ -72,6 +75,8 @@ namespace Test
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
             Utilities.AcessoGrid("Cadastro", "Turma");
@@ -82,19 +87,35 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            //PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
+            //PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
             PageObject.RegisterClass.SelecionaColaboradorButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Teste");
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
 
             TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
             Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
 
             PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
@@ -104,22 +125,22 @@ namespace Test
 
             PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
+            TestesTurmaMetodos.FinalizarTeste(2);
+
         }
 
         [Fact]
-        public void CampoObrigatorioColaborador()
+        public void CampoObrigatorioDiaSemana()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -131,19 +152,35 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
-            //PageObject.RegisterClass.SelecionaColaboradorButton();
+            //PageObject.RegisterClass.SelecionaDataButton();
 
-            //TestesTurmaMetodos.SelecionaItemDropBox("Teste");
+            Thread.Sleep(500);
+
+            //TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            //TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
+            PageObject.RegisterClass.SelecionaColaboradorButton();
+
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
 
             TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
             Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
 
             PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
@@ -153,22 +190,22 @@ namespace Test
 
             PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
-            PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
+            PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+            TestesTurmaMetodos.FinalizarTeste(2);
 
         }
 
         [Fact]
-        public void CampoObrigatorioTipoAula()
+        public void CampoObrigatorioResponsavelTurma()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -180,20 +217,101 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
+            //PageObject.RegisterClass.SelecionaColaboradorButton();
+
+            //Thread.Sleep(250);
+
+            //TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
+
+            PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
+
+            PageObject.RegisterClass.HoraInicioTextBox("22:30");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.HoraTerminoTextBox("23:30");
+
+            PageObject.RegisterClass.SelecionaUnidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
+
+            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
+
+            PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+            TestesTurmaMetodos.FinalizarTeste(2);
+
+        }
+
+        [Fact]
+        public void CampoObrigatorioFaixaEtaria()
+        {
+            Utilities.OpenChrome();
+
+            Utilities.LogininForma();
+
+            Assert.Equal("Principal - inForma", Utilities.driver.Title);
+
+            Utilities.AcessoGrid("Cadastro", "Turma");
+
+            Assert.Equal("Turma - inForma", Utilities.driver.Title);
+
+            PageObject.RegisterClass.CadastrarTurmaButton();
+
+            TestesTurmaMetodos.AguardaModalCadastro();
+
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
             PageObject.RegisterClass.SelecionaColaboradorButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Teste");
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             //PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            //Thread.Sleep(250);
 
             //TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
             Thread.Sleep(250);
 
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
+
             PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
             Thread.Sleep(250);
@@ -202,15 +320,78 @@ namespace Test
 
             PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+            TestesTurmaMetodos.FinalizarTeste(2);
+
+        }
+
+        [Fact]
+        public void CampoObrigatorioModalidade()
+        {
+            Utilities.OpenChrome();
+
+            Utilities.LogininForma();
+
+            Assert.Equal("Principal - inForma", Utilities.driver.Title);
+
+            Utilities.AcessoGrid("Cadastro", "Turma");
+
+            Assert.Equal("Turma - inForma", Utilities.driver.Title);
+
+            PageObject.RegisterClass.CadastrarTurmaButton();
+
+            TestesTurmaMetodos.AguardaModalCadastro();
+
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
+            PageObject.RegisterClass.SelecionaColaboradorButton();
+
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
+
+            PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
+
+            Thread.Sleep(250);
+
+            //PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            //TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
+
+            PageObject.RegisterClass.HoraInicioTextBox("22:30");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.HoraTerminoTextBox("23:30");
+
+            PageObject.RegisterClass.SelecionaUnidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
+
+            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
+
+            PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+            TestesTurmaMetodos.FinalizarTeste(2);
 
         }
 
@@ -219,6 +400,8 @@ namespace Test
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
             Utilities.AcessoGrid("Cadastro", "Turma");
@@ -229,19 +412,35 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
             PageObject.RegisterClass.SelecionaColaboradorButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Teste");
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
 
             TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
             Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
 
             //PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
@@ -251,15 +450,13 @@ namespace Test
 
             PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+            TestesTurmaMetodos.FinalizarTeste(2);
 
         }
 
@@ -267,6 +464,8 @@ namespace Test
         public void CampoObrigatorioHoraFim()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -278,19 +477,35 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
             PageObject.RegisterClass.SelecionaColaboradorButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Teste");
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
 
             TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
             Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
 
             PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
@@ -300,15 +515,13 @@ namespace Test
 
             PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+
+            TestesTurmaMetodos.FinalizarTeste(2);
 
         }
 
@@ -316,6 +529,8 @@ namespace Test
         public void CampoObrigatorioUnidade()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -327,19 +542,35 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
             PageObject.RegisterClass.SelecionaColaboradorButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Teste");
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
 
             TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
             Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
 
             PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
@@ -349,71 +580,22 @@ namespace Test
 
             //PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            //TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            //TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
-        }
-
-        [Fact]
-        public void CampoObrigatorioModalidade()
-        {
-            Utilities.OpenChrome();
-
-            Assert.Equal("Principal - inForma", Utilities.driver.Title);
-
-            Utilities.AcessoGrid("Cadastro", "Turma");
-
-            Assert.Equal("Turma - inForma", Utilities.driver.Title);
-
-            PageObject.RegisterClass.CadastrarTurmaButton();
-
-            TestesTurmaMetodos.AguardaModalCadastro();
-
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
-
-            Thread.Sleep(250);
-
-            PageObject.RegisterClass.SelecionaColaboradorButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Teste");
-
-            PageObject.RegisterClass.SelecionaFaixaEtariaButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
-
-            Thread.Sleep(250);
-
-            PageObject.RegisterClass.HoraInicioTextBox("22:30");
-
-            Thread.Sleep(250);
-
-            PageObject.RegisterClass.HoraTerminoTextBox("23:30");
-
-            PageObject.RegisterClass.SelecionaUnidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            //PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            //TestesTurmaMetodos.SelecionaItemDropBox("Natação");
-
-            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
-
-            PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
+            TestesTurmaMetodos.FinalizarTeste(2);
 
         }
 
         [Fact]
         public void EditarTurma()
-        { 
+        {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -425,19 +607,35 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
             PageObject.RegisterClass.SelecionaColaboradorButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("Teste");
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
             PageObject.RegisterClass.SelecionaFaixaEtariaButton();
+
+            Thread.Sleep(250);
 
             TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
 
             Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
 
             PageObject.RegisterClass.HoraInicioTextBox("22:30");
 
@@ -447,54 +645,15 @@ namespace Test
 
             PageObject.RegisterClass.SelecionaUnidadeButton();
 
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
 
             PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
 
-            Thread.Sleep(6000);
+            Thread.Sleep(5000);
 
-            PageObject.RegisterClass.CadastrarTurmaButton();
-
-            TestesTurmaMetodos.AguardaModalCadastro();
-
-            PageObject.RegisterClass.NomeTurmaTextBox("Hidroginástica");
-
-            Thread.Sleep(250);
-
-            PageObject.RegisterClass.SelecionaColaboradorButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Teste");
-
-            PageObject.RegisterClass.SelecionaFaixaEtariaButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
-
-            Thread.Sleep(250);
-
-            PageObject.RegisterClass.HoraInicioTextBox("22:20");
-
-            Thread.Sleep(250);
-
-            PageObject.RegisterClass.HoraTerminoTextBox("23:20");
-
-            PageObject.RegisterClass.SelecionaUnidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("São Paulo");
-
-            PageObject.RegisterClass.SelecionaModalidadeButton();
-
-            TestesTurmaMetodos.SelecionaItemDropBox("Natação");
-
-            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
-
-            PageObject.RegisterUnitScreen.MensagemOperacao("Mensagem de Turma já cadastrada");
-
+            TestesTurmaMetodos.FinalizarTeste(1);
 
         }
 
@@ -503,102 +662,185 @@ namespace Test
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
-            Utilities.AcessoGrid("Cadastro", "Colaborador");
+            Utilities.AcessoGrid("Cadastro", "Turma");
 
-            Assert.Equal("Colaborador - inForma", Utilities.driver.Title);
+            Assert.Equal("Turma - inForma", Utilities.driver.Title);
 
-            PageObject.RegisterEmployee.CadastrarColaboradorButton();
+            PageObject.RegisterClass.CadastrarTurmaButton();
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterEmployee.NomeColaboradorTextBox("Thauan Moser Doce");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
-            PageObject.RegisterEmployee.SelecionarCargoButton();
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
+            PageObject.RegisterClass.SelecionaColaboradorButton();
 
             Thread.Sleep(250);
 
-            TestesColaboradorMetodos.SelecionaCargo("Teste");
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
-            Thread.Sleep(1500);
+            PageObject.RegisterClass.SelecionaFaixaEtariaButton();
 
-            PageObject.RegisterEmployee.FinalizarCadastrarButton();
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
+
+            PageObject.RegisterClass.HoraInicioTextBox("22:30");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.HoraTerminoTextBox("23:30");
+
+            PageObject.RegisterClass.SelecionaUnidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
+
+            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
 
-            Thread.Sleep(5000);
+            Thread.Sleep(6500);
 
-            PageObject.RegisterEmployee.ExcluirColaboradorButton();
+            PageObject.RegisterClass.ExcluirTurmaButton();
 
             TestesTurmaMetodos.AguardaModalDeletar();
 
-            PageObject.RegisterEmployee.FinalizarExcluirColaboradorButton();
+            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
+
+            TestesTurmaMetodos.FinalizarTeste(2);
         }
+
         [Fact]
         public void DuplicarTurma()
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
-            Utilities.AcessoGrid("Cadastro", "Colaborador");
+            Utilities.AcessoGrid("Cadastro", "Turma");
 
-            Assert.Equal("Colaborador - inForma", Utilities.driver.Title);
+            Assert.Equal("Turma - inForma", Utilities.driver.Title);
 
-            PageObject.RegisterEmployee.CadastrarColaboradorButton();
+            PageObject.RegisterClass.CadastrarTurmaButton();
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterEmployee.NomeColaboradorTextBox("Thauan Moser Doce");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
-            PageObject.RegisterEmployee.SelecionarCargoButton();
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
+            PageObject.RegisterClass.SelecionaColaboradorButton();
 
             Thread.Sleep(250);
 
-            TestesColaboradorMetodos.SelecionaCargo("Teste");
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
-            Thread.Sleep(1500);
+            PageObject.RegisterClass.SelecionaFaixaEtariaButton();
 
-            PageObject.RegisterEmployee.FinalizarCadastrarButton();
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
+
+            PageObject.RegisterClass.HoraInicioTextBox("22:30");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.HoraTerminoTextBox("23:30");
+
+            PageObject.RegisterClass.SelecionaUnidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
+
+            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
 
-            Thread.Sleep(5000);
-
-            Utilities.OpenChrome();
-
-            Assert.Equal("Principal - inForma", Utilities.driver.Title);
-
-            Utilities.AcessoGrid("Cadastro", "Colaborador");
-
-            Assert.Equal("Colaborador - inForma", Utilities.driver.Title);
-
-            PageObject.RegisterEmployee.CadastrarColaboradorButton();
+            PageObject.RegisterClass.CadastrarTurmaButton();
 
             TestesTurmaMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterEmployee.NomeColaboradorTextBox("Thauan Moser Doce");
+            PageObject.RegisterClass.NomeTurmaTextBox("Aula Teste");
 
             Thread.Sleep(250);
 
-            PageObject.RegisterEmployee.SelecionarCargoButton();
+            PageObject.RegisterClass.SelecionaDataButton();
+
+            Thread.Sleep(500);
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Segunda");
+
+            TestesTurmaMetodos.SelecionaDiaSemana("Quarta");
+
+            PageObject.RegisterClass.SelecionaColaboradorButton();
 
             Thread.Sleep(250);
 
-            TestesColaboradorMetodos.SelecionaCargo("Teste");
+            TestesTurmaMetodos.SelecionaItemDropBox("TESTE");
 
-            Thread.Sleep(1500);
+            PageObject.RegisterClass.SelecionaFaixaEtariaButton();
 
-            PageObject.RegisterEmployee.FinalizarCadastrarButton();
+            Thread.Sleep(250);
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Adulto");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.Seleciona_ModalidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("Arte Marcial");
+
+            PageObject.RegisterClass.HoraInicioTextBox("22:30");
+
+            Thread.Sleep(250);
+
+            PageObject.RegisterClass.HoraTerminoTextBox("23:30");
+
+            PageObject.RegisterClass.SelecionaUnidadeButton();
+
+            TestesTurmaMetodos.SelecionaItemDropBox("OSASCO");
+
+            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Já existe essas informações");
+
+            TestesTurmaMetodos.FinalizarTeste(1);
         }
     }
 }

@@ -196,7 +196,7 @@ namespace Test
 
             TestesModalidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterModality.NomeModalideTextBox("Natação Infantil");
+            PageObject.RegisterModality.NomeModalideTextBox("AA Teste AA");
 
             PageObject.RegisterModality.DescricaoModalideTextBox("Atividade para crianças de 7 a 9 anos.");
 
@@ -212,7 +212,7 @@ namespace Test
 
             TestesModalidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterModality.NomeModalideTextBox("Natação Infantil");
+            PageObject.RegisterModality.NomeModalideTextBox("AA Teste AA");
 
             PageObject.RegisterModality.DescricaoModalideTextBox("Atividade para crianças de 7 a 9 anos.");
 

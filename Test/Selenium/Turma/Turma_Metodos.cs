@@ -56,8 +56,9 @@ public class TestesTurmaMetodos
 		{
 			try
 			{
-				//IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[contains(text(),'Teste')]"));
-				IWebElement Element = Utilities.driver.FindElement(By.LinkText(item));
+				var t = "//*[contains(text(),'" + item + "')]";
+				IWebElement Element = Utilities.driver.FindElement(By.XPath(t));
+				//IWebElement Element = Utilities.driver.FindElement(By.LinkText(item));
 				IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
 				executor.ExecuteScript("arguments[0].click();", Element);
 				clicked = true;
@@ -80,7 +81,7 @@ public class TestesTurmaMetodos
 			{
 				try
 				{
-					IWebElement Element = Utilities.driver.FindElement(By.LinkText("Segunda"));
+					IWebElement Element = Utilities.driver.FindElement(By.XPath("//li[starts-with(@id,'select-options')]//span[contains(text(),'Segunda')]"));
 					IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver; 
 					executor.ExecuteScript("arguments[0].click();", Element);
 					clicked = true;
@@ -97,7 +98,7 @@ public class TestesTurmaMetodos
 			{
 				try
 				{
-					IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"select-options-c399c200-11ab-267d-b436-2170c0c952d32\"]/span"));
+					IWebElement Element = Utilities.driver.FindElement(By.XPath("//li[starts-with(@id,'select-options')]//span[contains(text(),'Terça')]"));
 					IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
 					executor.ExecuteScript("arguments[0].click();", Element);
 					clicked = true;
@@ -114,7 +115,7 @@ public class TestesTurmaMetodos
 			{
 				try
 				{
-					IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"select-options-c399c200-11ab-267d-b436-2170c0c952d33\"]/span/label/span"));
+					IWebElement Element = Utilities.driver.FindElement(By.XPath("//li[starts-with(@id,'select-options')]//span[contains(text(),'Quarta')]"));
 					IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
 					executor.ExecuteScript("arguments[0].click();", Element);
 					clicked = true;
@@ -131,7 +132,7 @@ public class TestesTurmaMetodos
 			{
 				try
 				{
-					IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"select-options-c399c200-11ab-267d-b436-2170c0c952d34\"]/span/label/span"));
+					IWebElement Element = Utilities.driver.FindElement(By.XPath("//li[starts-with(@id,'select-options')]//span[contains(text(),'Quinta')]"));
 					IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
 					executor.ExecuteScript("arguments[0].click();", Element);
 					clicked = true;
@@ -148,7 +149,7 @@ public class TestesTurmaMetodos
 			{
 				try
 				{
-					IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"select-options-c399c200-11ab-267d-b436-2170c0c952d35\"]/span/label/span"));
+					IWebElement Element = Utilities.driver.FindElement(By.XPath("//li[starts-with(@id,'select-options')]//span[contains(text(),'Sexta')]"));
 					IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
 					executor.ExecuteScript("arguments[0].click();", Element);
 					clicked = true;
@@ -165,7 +166,7 @@ public class TestesTurmaMetodos
 			{
 				try
 				{
-					IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"select-options-c399c200-11ab-267d-b436-2170c0c952d36\"]/span/label/span"));
+					IWebElement Element = Utilities.driver.FindElement(By.XPath("//li[starts-with(@id,'select-options')]//span[contains(text(),'Sábado')]"));
 					IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
 					executor.ExecuteScript("arguments[0].click();", Element);
 					clicked = true;
@@ -182,7 +183,7 @@ public class TestesTurmaMetodos
 			{
 				try
 				{
-					IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"select-options-c399c200-11ab-267d-b436-2170c0c952d37\"]/span/label/span"));
+					IWebElement Element = Utilities.driver.FindElement(By.XPath("//li[starts-with(@id,'select-options')]//span[contains(text(),'Domingo')]"));
 					IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
 					executor.ExecuteScript("arguments[0].click();", Element);
 					clicked = true;
@@ -196,4 +197,19 @@ public class TestesTurmaMetodos
 		}
 	}
 
+	public static void FinalizarTeste(int Operacao)
+	{
+		if (Operacao == 1)
+		{
+			Thread.Sleep(6500);
+
+			PageObject.RegisterClass.ExcluirTurmaButton();
+
+			TestesTurmaMetodos.AguardaModalDeletar();
+
+			PageObject.RegisterClass.FinalizarCadastroTurmaButton();
+		}
+
+		Utilities.driver.Close();
+	}
 }

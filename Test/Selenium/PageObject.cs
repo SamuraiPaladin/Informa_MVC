@@ -1522,7 +1522,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.Id("//*[@id=\"formularioEditar\"]/div[4]/div/input"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"formularioEditar\"]/div[4]/div/input"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1661,7 +1661,47 @@ namespace Test
                 }
             }
 
+            public static void ExcluirTurmaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"deletarTurma\"]/i"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
 
+            public static void FinalizarExcluirTurmaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("deletar"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
 
 
 

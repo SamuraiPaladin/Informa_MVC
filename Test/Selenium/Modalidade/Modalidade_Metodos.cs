@@ -51,7 +51,15 @@ public class TestesModalidadeMetodos
 	{
 		if (Operacao == 1)
 		{
+			Thread.Sleep(5500);
 
+			PageObject.RegisterModality.ExcluirModalidadeButton();
+
+			TestesModalidadeMetodos.AguardaModalDeletar();
+
+			PageObject.RegisterModality.FinalizarExcluirModalidadeButton();
+
+			PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
 		}
 		Utilities.driver.Close();
 	}
