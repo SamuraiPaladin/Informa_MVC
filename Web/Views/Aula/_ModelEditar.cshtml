@@ -59,6 +59,10 @@
                 <tr>
                     <th>RM</th>
                     <th>Nome</th>
+                    @if (Cache.Get("DadosDoUsuario.PerfilUsuario").Equals("Administrador"))
+                    {
+                        <th>Telefone</th>
+                    }
                     <th>Data de Nascimento</th>
                 </tr>
             </thead>

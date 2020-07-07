@@ -35,7 +35,7 @@
                 <tr>
                     <td class="enabledBotaoPagamento">
                         <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros')"><i class="material-icons">attach_money</i></a>
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@mensalidade.GerarRecibo.ToString()')"><i class="material-icons">attach_money</i></a>
                     </td>
                     <td>
                         @mensalidade.Matricula.Nome
@@ -61,41 +61,56 @@
 </div>
 
 <div id="modalPagamento" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="height:550px">
         <div class="modal-header">
-            <h4 id="pagarMensalidadeDescricao"></h4>
+            <h4 class="flow-text" id="pagarMensalidadeDescricao"></h4>
         </div>
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioPagamento">
+                <!-- NOVO CAMPO!!! GERAR O RECIBO!!-->
+                <div class="input-field col s12">
+                    <p>
+                        <label>
+                            <input id="gerarRecibo" type="checkbox" checked="checked" />
+                            <span class="red-text">Gerar Recibo?</span>
+                        </label>
+                    </p>
+                </div>
 
 
-                <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger6 btn' href='#' data-target='MatriculaPagamento' id="MatriculaDropDownPagamento">Selecione um Matricula</a>
-                    <ul id='MatriculaDropDownPagamento' class='dropdown-content'>
+
+                <div disabled id="MatriculaPagamento" class="input-field col s12">
+                    <select disabled id="MatriculaDropDownPagamento">
                         @foreach (var item in Model.ListaMatricula)
                         {
-                            <li><a>@item.Nome</a></li>
+                            <option value="@item.Id">@item.Nome</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Matricula</label>
                 </div>
 
                 <div class="input-field col s6">
-                    <a disabled class='dropdown-trigger9 btn' href='#' data-target='statusPagamento' id="statusDropDownPagamento">Selecione o Status do Pagamento</a>
-
-                    <ul id='statusPagamento' class='dropdown-content'>
-                        @foreach (var item in Model.StatusDasMensalidades)
-                        {
-                            <li><a>@String.Join(" ", @System.Text.RegularExpressions.Regex.Split(item.ToString(), @"(?<!^)(?=[A-Z])"))</a></li>
-                        }
-                    </ul>
+                    <label for="valor">Valor da Mensalidade</label>
+                    <input disabled type="text" id="valorSerPago" class="validate" placeholder="R$250,00">
                 </div>
 
                 <div class="input-field col s6">
+                    <label for="valor">Valor do Juros</label>
+                    <input disabled type="text" id="valorJuros" class="validate" placeholder="">
+                </div>
+
+                <div class="input-field col s12">
 
                     <label for="valor" id="labelValorAPagar">Valor</label>
                     <br />
                     <input disabled min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="valor">Valor Pago</label>
+                    <br />
+                    <input type="text" id="valorPago" class="validate">
                 </div>
 
                 <div class="input-field col s6">
@@ -104,17 +119,20 @@
                     <input disabled type="date" id="diaDeVencimentoPagamento" name="datadevencimento">
                 </div>
 
-                <div class="input-field col s6">
+                <div id="formaPagamento" class="input-field col s6">
+                    <br />
+                    <select id="formaDropDownPagamento">
 
-                    <a class='dropdown-trigger11 btn' href='#' data-target='formaPagamento' id="formaDropDownPagamento">Selecione a forma de pagamento</a>
-
-                    <ul id='formaPagamento' class='dropdown-content'>
+                        <option disabled selected value="">Selecione a forma de pagamento</option>
                         @foreach (var item in Model.FormasDePagamentos)
                         {
-                            <li><a onclick="editaFormaSelecionado('@item', 'Pagamento')">@item</a></li>
+                            <option value="@item">@item</option>
                         }
-                    </ul>
+                    </select>
+                    <label>Forma de pagamento</label>
                 </div>
+
+
 
                 <div id="modalPagamentoMensalidade" class="modal">
                     <div class="modal-content">
@@ -128,13 +146,14 @@
                     </div>
                 </div>
                 <input id="idEditar" style="display: none;" />
+
             </form>
         </div>
 
     </div>
     <div class="modal-footer">
         <a id="fecharPagar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="pagar" class="waves-effect waves-light green btn modal-trigger right btnCadastrar" onclick="Pagar()">PAGAR</a>
+        <a id="pagar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Pagar()">PAGAR</a>
     </div>
 </div>
 
@@ -147,8 +166,10 @@
         let valorVencimento;
         let valorFormaDePagamento;
         let valorStatusDaMensalidade;
+        let valorGerarRecibo;
 
-        function EditarModal(id, Matricula, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, valor, diasVencidos, juros) {
+
+        function EditarModal(id, Matricula, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, valor, diasVencidos, juros, gerarRecibo) {
 
             valorId = id;
             valorMatricula = Matricula;
@@ -158,6 +179,7 @@
             valorFormaDePagamento = formadepagamento;
             valorStatusDaMensalidade = statusdamensalidade;
             valorPagamento = valor;
+           
 
 
             document.getElementById('MatriculaDropDown' + model).text = nomeMatricula;
@@ -166,11 +188,19 @@
             //document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
             //document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
             if (model === 'Pagamento') {
+                valorGerarRecibo = gerarRecibo;
+                document.getElementById("gerarRecibo").checked = JSON.parse(valorGerarRecibo.toLowerCase());
                 if (diasVencidos > 0) {
                     var valorDivididoPeloJuros = parseInt(valorPagamento) * (3 / 100);
                     var valorPorDia = valorDivididoPeloJuros / 30;
                     var calculoDiasDeAtraso = valorPorDia * diasVencidos;
                     var resultado = calculoDiasDeAtraso + parseFloat(valorPagamento.replace(',', '.'));
+
+                    document.getElementById('valorSerPago').value = valorPagamento.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+                    document.getElementById('valorJuros').value = calculoDiasDeAtraso.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+                    document.getElementById('valorPago').value = resultado.toLocaleString('pt-br', { minimumFractionDigits: 2 });
                     document.getElementById('valor' + model).value = resultado.toLocaleString('pt-br', { minimumFractionDigits: 2 });
                     document.getElementById('labelValorAPagar').innerHTML = 'Valor com juros';
                 } else {
@@ -191,6 +221,7 @@
             else if (model == "Pagamento") {
                 document.getElementById('formaDropDown' + model).text = "Selecione a forma de pagamento"
             }
+
 
             if (document.getElementById('statusDropDown' + model) != null) {
                 document.getElementById('statusDropDown' + model).text = statusdamensalidade.split(/(?=[A-Z])/).toString().replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ');
@@ -234,11 +265,12 @@
                 Id: valorId,
                 MatriculaId: valorMatricula,
                 DataDeVencimento: valorVencimento,
-                FormaDePagamento: document.getElementById("formaDropDownPagamento").text != "Selecione a forma de pagamento" ? document.getElementById("formaDropDownPagamento").text : "Debito",
+                FormaDePagamento: $('#formaDropDownPagamento').val() == null ? "Debito" : $('#formaDropDownPagamento').val(),
                 StatusDaMensalidade: 'Pago',
-                Valor: document.getElementById('valorPagamento').value,
+                Valor: document.getElementById("valorPago").value != "" ? document.getElementById("valorPago").value : document.getElementById('valorPagamento').value,
                 EditarTodasMensalidades: false,
-                Dia: valorVencimento.split('-')[2]
+                Dia: valorVencimento.split('-')[2],
+                GerarRecibo: document.getElementById("gerarRecibo").checked
             };
 
             $(function () {
@@ -265,6 +297,7 @@
             $('#tabelaPagamento').DataTable();
         });
         $(document).ready(function () {
+            
             for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
                 var status = document.getElementsByClassName('statusStyle')[i].innerText;
 
@@ -272,9 +305,9 @@
                     case 'Pago':
                         document.getElementsByClassName('statusStyle')[i].style.color = "#139E26";
                         document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
                         break;
                     case 'Em Haver':
                         document.getElementsByClassName('statusStyle')[i].style.color = "#F68300";
@@ -282,16 +315,16 @@
                     case 'Pago Com Atraso':
                         document.getElementsByClassName('statusStyle')[i].style.color = "#19DF33";
                         document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
                         break;
                     case 'Vencido':
                         document.getElementsByClassName('statusStyle')[i].style.color = "red";
                         //document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
-                        document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
                         break;
                     case 'Proximo Da Data De Vencimento':
                         document.getElementsByClassName('statusStyle')[i].style.color = "#DCE224";

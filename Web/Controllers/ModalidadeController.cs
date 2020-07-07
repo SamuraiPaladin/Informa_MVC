@@ -11,7 +11,7 @@ namespace Web.Controllers
 {
     public class ModalidadeController : Controller
     {
-        private readonly IDAO<Modalidade> _service = new ModalidadeDAO();
+        private readonly IModalidadeDAO<Modalidade> _service = new ModalidadeDAO();
         private readonly IUsuarioDAO<Usuario> _serviceUsuario = new UsuarioDAO();
 
         public ActionResult Index()
@@ -30,7 +30,7 @@ namespace Web.Controllers
                 return Json("Preenchimento obrigatório");
             else
             {
-                if (!_service.VerificarSeJaExiste(modalidade))
+                if (!_service.VerificarSeJaExiste(modalidade, false))
                     return Json(_service.Adicionar(modalidade));
                 else 
                     return Json(false);
@@ -46,7 +46,7 @@ namespace Web.Controllers
                 return Json("Preenchimento obrigatório");
             else
             {
-                if (!_service.VerificarSeJaExiste(modalidadeEditar))
+                if (!_service.VerificarSeJaExiste(modalidadeEditar, true))
                     return Json(_service.Atualizar(modalidade, modalidadeEditar));
                 else
                     return Json(false);
@@ -57,7 +57,7 @@ namespace Web.Controllers
             //if (VerificaSeTemCampoVazioOuNulo(modalidade))
             //    return Json("Preenchimento obrigatório");
             //else
-            if (_service.VerificarSeJaExiste(modalidade))
+            if (_service.VerificarSeJaExiste(modalidade, false))
                 return Json(_service.Deletar(modalidade));
             else
                 return Json(false);

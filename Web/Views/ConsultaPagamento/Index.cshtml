@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pagamentos";
 }
 
 <nav class="clean containerConfigurado">
@@ -17,31 +17,23 @@
 
 
 <h4 class="flow-text center">RELATORIO DE PAGAMENTOS</h4>
-<div class="row container">
-    <table class="highlight centered tabela" id="tabelaCadastrar">
+
+@Html.Partial("_CabecalhoPesquisa")
+
+
+<div class="row containerConfigurado">
+    <table class="highlight centered tabela" id="tabela">
         <thead>
             <tr>
+                <th>Dia</th>
                 <th>Credito</th>
                 <th>Debito</th>
                 <th>Dinheiro</th>
             </tr>
         </thead>
-        <tbody>
-
-            <tr>
-                <td>32132</td>
-                <td>32131</td>
-                <td>3123</td>
-            </tr>
-
+        <tbody id="Grid">
         </tbody>
     </table>
-
-    <div class="row containerConfigurado">
-        <div class="col s12 l12">
-            <a id="gerarPDF" href="#!" class="btn right" onclick="fazPDF()">Gerar PDF</a>
-        </div>
-    </div>
 
 </div>
 
@@ -49,60 +41,116 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
 
-<script>
 
-    let valorDebito = 314;
-    let valorCredito = 432;
-    let valorDinheiro = 4325
+@section scripts{
+    <script>
+        let valorDebito = 0;
+        let valorCredito = 0;
+        let valorDinheiro = 0;
+        let valorDias;
 
-    var docDefinition = {
-        content: [
-            {
-                text: 'Relatorio de Pagamento\n\n',
-                style: 'title',
+        $(document).ready(function () {
+            $('#tabela').DataTable();
+        });
 
-            },
-            {
-                text: [
-                    'Pagamento em ',
-                    { text: 'DINHEIRO', fontSize: 15, bold: true },
-                    `: R$${valorDinheiro}`,
-                    '\n\n',
-                ],
+    $(document).ready( function() {
+    var date = new Date();
 
-            },
-            {
-                text: [
-                    'Pagamento em ',
-                    { text: 'DEBITO', fontSize: 15, bold: true },
-                    `: R$${valorDebito}`,
-                    '\n\n',
-                ],
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
 
-            },
-            {
-                text: [
-                    'Pagamento em ',
-                    { text: 'CREDITO', fontSize: 15, bold: true },
-                    `: R$${valorCredito}`,
-                    '\n\n',
-                ],
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
 
-            },
-            
-        ],
-        styles: {
-            title: {
-                fontSize: 18,
-                bold: true,
-                alignment: 'center'
-            },
+    var today = year + "-" + month + "-" + day;
+    document.getElementById("dataInicial").value = today;
+    });
 
+    function PesquisarDados()
+    {
+        var ConsultaPagamento = {
+            Datainicial: document.getElementById('dataInicial').value,
+            Datafinal: document.getElementById('dataFinal').value
         }
+        $.ajax({
+                   type: "POST",
+                   url: "@Url.Action("ConsultaTabela", "ConsultaPagamento")",
+            data: { consultaPagamento: ConsultaPagamento },
+            success: function (data) {
+                       //Coloque aqui o local onde a View deverá ocupar
+                       $("#Grid tr").remove();
+                       $(data).each(function () {
+                           $("#Grid").append("<tr><td>" + this.Dias + "</td><td>" + this.Credito + "</td> <td>" + this.Debito + "</td><td>" + this.Dinheiro + "</td> </tr>");
+                       });
+
+                for (var i = 0; i < data.length; i++) {
+                    valorDebito += data[i].Debito;
+                    valorCredito += data[i].Credito;
+                    valorDinheiro += data[i].Dinheiro;
+                }
+             }
+        });
+
     }
 
-    const fazPDF = () => {
-        pdfMake.createPdf(docDefinition).open();
+        const fazPDF = () => {
+
+            var docDefinition = {
+                content: [
+                    {
+                        text: 'Relatorio de Pagamento' + '\n' + 'De: ' + document.getElementById('dataInicial').value + '\n' + 'Até: ' + document.getElementById('dataFinal').value + '\n\n',
+                        style: 'title',
+
+                    },
+                    {
+                        text: [
+                            'Pagamento em ',
+                            { text: 'DINHEIRO', fontSize: 15, bold: true },
+                            `: R$${valorDinheiro}`,
+                            '\n\n',
+                        ],
+
+                    },
+                    {
+                        text: [
+                            'Pagamento em ',
+                            { text: 'DEBITO', fontSize: 15, bold: true },
+                            `: R$${valorDebito}`,
+                            '\n\n',
+                        ],
+
+                    },
+                    {
+                        text: [
+                            'Pagamento em ',
+                            { text: 'CREDITO', fontSize: 15, bold: true },
+                            `: R$${valorCredito}`,
+                            '\n\n',
+                        ],
+
+                    },
+
+                ],
+                styles: {
+                    title: {
+                        fontSize: 18,
+                        bold: true,
+                        alignment: 'center'
+                    },
+
+                }
+            }
+
+
+            pdfMake.createPdf(docDefinition).open();
+            valorDebito = 0;
+            valorCredito = 0;
+            valorDinheiro = 0;
     }
 
-</script>
+
+    </script>
+
+}
+

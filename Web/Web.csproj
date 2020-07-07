@@ -223,12 +223,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BD\Interface\IAulaTurmaDAO.cs" />
+    <Compile Include="BD\Interface\IConsultaPagamentoDAO.cs" />
     <Compile Include="BD\Interface\IDAO.cs" />
     <Compile Include="BD\Interface\IDAOMatricula.cs" />
     <Compile Include="BD\Interface\IDAOPrincipal.cs" />
+    <Compile Include="BD\Interface\IModalidadeDAO.cs" />
     <Compile Include="BD\Interface\IUnidadeDAO.cs" />
     <Compile Include="BD\Repository\AulaTurmaDAO.cs" />
     <Compile Include="BD\Interface\IUsuarioDAO.cs" />
+    <Compile Include="BD\Repository\ConsultaPagamentoDAO.cs" />
     <Compile Include="BD\Repository\MatriculaDAO.cs" />
     <Compile Include="BD\Repository\MensalidadeDAO.cs" />
     <Compile Include="BD\Repository\PrincipalDAO.cs" />
@@ -239,6 +242,7 @@
     <Compile Include="BD\Repository\UnidadeDAO.cs" />
     <Compile Include="BD\Repository\UsuarioDAO.cs" />
     <Compile Include="Controllers\AulaController.cs" />
+    <Compile Include="Controllers\ConsultaPagamentoController.cs" />
     <Compile Include="Controllers\EntradasPorFormaDePagamentoController.cs" />
     <Compile Include="Controllers\InadimplentesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -865,6 +869,9 @@
     <Content Include="Views\UsuarioSistema\_ModalEditarUsuario.cshtml" />
     <Content Include="Views\UsuarioSistema\_ModalDeletar.cshtml" />
     <Content Include="Views\Principal\_TabelaTurmas.cshtml" />
+    <Content Include="Views\ConsultaPagamento\Index.cshtml" />
+    <Content Include="Views\Matricula\_Ativar.cshtml" />
+    <Content Include="Views\ConsultaPagamento\_CabecalhoPesquisa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,7 +17,7 @@ namespace Web.BD.Repository
         {
             string query = @"SELECT a.Id, a.MatriculaId, a.TurmaId, m.Nome, m.Email, m.CPF, m.DataNascimento, a.Presenca, t.Descricao, 
                                 t.HorarioInicial, t.HorarioFinal, t.DiaDaSemana, c.Nome as NomeColaborador,
-								ms.TipoModalidade, t.Tipo
+								ms.TipoModalidade, t.Tipo, m.Telefone
 							  FROM Matriculas m
                               JOIN Aulas a ON m.Id = a.MatriculaId
                               JOIN Turmas t ON t.Id = a.TurmaId
@@ -51,7 +51,8 @@ namespace Web.BD.Repository
                             DiaDaSemana = sdr["DiaDaSemana"].ToString(),
                             NomeColaborador= sdr["NomeColaborador"].ToString(),
                             TipoModalidade = sdr["TipoModalidade"].ToString(),
-                            TipoFaixaEtaria = sdr["Tipo"].ToString()
+                            TipoFaixaEtaria = sdr["Tipo"].ToString(),
+                            Telefone = sdr["Telefone"].ToString()
                         };
 
                         listaAulas.Add(aula);

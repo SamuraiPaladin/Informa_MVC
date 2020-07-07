@@ -33,5 +33,6 @@ namespace Model.Entity
         public string Parentesco { get; set; }
         public DateTime DataNascimentoResponsavel { get; set; }
         public int MenorIdade { get; set; }
+        public bool Ativo { get; set; }
     }
 }

@@ -17,20 +17,16 @@ namespace Web.BD.Repository
         {
             string query = @"INSERT INTO Mensalidades(
 	MatriculaId, 
-	--ModalidadeId, 
-	--TurmaId, 
 	DataDeVencimento, 
     StatusDaMensalidade,
 	FormaDePagamento,
-    Valor)
+    Valor, GerarRecibo)
 	Values(
         @MatriculaId, 
-	    --@ModalidadeId, 
-	    --@TurmaId, 
 	    @DataDeVencimento, 
         @StatusDaMensalidade,
 	    @FormaDePagamento,
-        @Valor);
+        @Valor, @GerarRecibo);
             SELECT @@IDENTITY";
             using (var con = new SqlConnection(stringConexao))
             {
@@ -57,6 +53,8 @@ namespace Web.BD.Repository
                     cmd.Parameters.AddWithValue("@StatusDaMensalidade", entity.StatusDaMensalidade);
                     cmd.Parameters.AddWithValue("@FormaDePagamento", entity.FormaDePagamento);
                     cmd.Parameters.AddWithValue("@Valor", entity.Valor);
+                    cmd.Parameters.AddWithValue("@GerarRecibo", entity.GerarRecibo);
+
                     cmd.ExecuteNonQuery();
 
                     con.Close();
@@ -97,7 +95,9 @@ namespace Web.BD.Repository
                             FormaDePagamento = sdr["FormaDePagamento"].ToString(),
                             Valor = (decimal)sdr["Valor"],
                             CPF = sdr["CPF"].ToString(),
-                            DiasVencidos = (int)sdr["DiasVencidos"]
+                            DiasVencidos = (int)sdr["DiasVencidos"],
+                            GerarRecibo = string.IsNullOrEmpty(sdr["GerarRecibo"].ToString()) || sdr["GerarRecibo"].ToString() == "0" || sdr["GerarRecibo"].ToString() == "False" ? false : true
+
                         };
                         Mensalidades.Add(model);
                     }
@@ -129,16 +129,15 @@ namespace Web.BD.Repository
                 @"DataDeVencimento = @DataDeVencimentoAntigo AND
                   Valor = @ValorAntigo AND";
 
-
             string query = $@"UPDATE Mensalidades 
             SET
              MatriculaId = @MatriculaIdNovo, 
              --ModalidadeId = @ModalidadeIdNovo, 
              --TurmaId = @TurmaIdNovo, 
-             DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimentoNovo))), 
+             DataDeVencimento = CONVERT(DATE, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimentoNovo))), 
              StatusDaMensalidade = @StatusDaMensalidadeNovo,
              FormaDePagamento = @FormaDePagamentoNovo,
-             Valor = @ValorNovo       
+             Valor = @ValorNovo
             WHERE   
              MatriculaId = @MatriculaIdAntigo AND
              --ModalidadeId = @ModalidadeIdAntigo AND
@@ -146,6 +145,7 @@ namespace Web.BD.Repository
              {unicaOuTodaMensalidade}
              StatusDaMensalidade = @StatusDaMensalidadeAntigo --AND
              --FormaDePagamento = @FormaDePagamentoAntigo";
+
 
             using (var con = new SqlConnection(stringConexao))
             {
@@ -169,6 +169,15 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@ValorAntigo", entityAntigo.Valor);
 
                 cmd.ExecuteNonQuery();
+
+                if (entityNovo.GerarRecibo)
+                {
+                    string query2 = @"UPDATE Mensalidades SET GerarRecibo = 1 WHERE MatriculaId = @MatriculaIdNovo";
+                    SqlCommand cmd2 = new SqlCommand(query2, con);
+                    cmd2.Parameters.AddWithValue("@MatriculaIdNovo", entityNovo.MatriculaId);
+                    cmd2.ExecuteNonQuery();
+                }
+
                 return true;
             }
         }
@@ -209,10 +218,9 @@ namespace Web.BD.Repository
             }
         }
 
-        //TODO ALTERAR QUERYE PARA PEGAR O JUROS DA UNIDADE
         public decimal Juros()
         {
-            string query = "SELECT TOP 1 Valor FROM Parametros";
+            string query = "SELECT TOP 1 JurosMensal FROM Unidades";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -256,6 +264,7 @@ namespace Web.BD.Repository
                             Valor = (decimal)sdr["Valor"],
                             DiasVencidos = (int)sdr["DiasVencidos"],
                             CPF = sdr["CPF"].ToString(),
+                            GerarRecibo = string.IsNullOrEmpty(sdr["GerarRecibo"].ToString()) || sdr["GerarRecibo"].ToString() == "0" || sdr["GerarRecibo"].ToString() == "False" ? false : true
                         };
                         Mensalidades.Add(model);
                     }
@@ -417,7 +426,7 @@ namespace Web.BD.Repository
 
         public bool VerificarSeJaExiste(Mensalidade entity)
         {
-            var dataDeVencimentoQuery = entity.EditarTodasMensalidades || string.IsNullOrEmpty(entity.FormaDePagamento) ? "DataDeVencimento = CONVERT(datetime, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimento))) and" : "DataDeVencimento = @DataDeVencimento and";
+            var dataDeVencimentoQuery = entity.EditarTodasMensalidades || string.IsNullOrEmpty(entity.FormaDePagamento) ? "DataDeVencimento = CONVERT(DATE, FORMAT(DataDeVencimento, CONCAT('yyyy-MM-', @DataDeVencimento))) and" : "DataDeVencimento = @DataDeVencimento and";
 
             string query = $@"SELECT 
                                 	count(1) as qtd
@@ -487,5 +496,19 @@ namespace Web.BD.Repository
             }
         }
 
+        public bool VerificaSeIraGerarBoleto(int matriculaId)
+        {
+            string query = @"SELECT GerarNota FROM Matriculas WHERE Id = @Id";
+
+            List<EntradasPorPagamento> entradas = new List<EntradasPorPagamento>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Id", matriculaId);
+                return Convert.ToBoolean(cmd.ExecuteScalar());
+            }
+        }
     }
 }

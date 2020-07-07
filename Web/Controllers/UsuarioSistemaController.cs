@@ -16,7 +16,12 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             if (_service.ValidaUsuarioNoCache()) {
-                return View(_service.Lista());
+                var usuario = new Usuario()
+                {
+                    ListaDeUsuarios = _service.Lista(),
+                    ListaDeColaboradores = _service.ListaColaboradores()
+                };
+                return View(usuario);
             }
             else
             {
@@ -58,7 +63,8 @@ namespace Web.Controllers
         }
         private bool VerificaSeTemCampoVazioOuNulo(Usuario usuario)
         {
-            return (string.IsNullOrEmpty(usuario.Nome)) || (string.IsNullOrEmpty(usuario.PerfilUsuario)) || (string.IsNullOrEmpty(usuario.Senha));
+            return (string.IsNullOrEmpty(usuario.Nome)) || (string.IsNullOrEmpty(usuario.PerfilUsuario)) 
+                || (string.IsNullOrEmpty(usuario.Senha) || usuario.IdColaborador == 0);
         }
     }
 }

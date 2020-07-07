@@ -46,16 +46,16 @@
         <tbody>
             @if (Model.ListaMatriculaTurma.Count == 0)
             {
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
 
-            </tr>
+                </tr>
             }
             else
             {
@@ -72,12 +72,19 @@
                         <td>@item.Telefone</td>
                         <td>@item.Bairro</td>
                         <td>@item.Cidade</td>
-                        <td>Ativo ou Inativo</td>
-                        <td>
+                        @if (item.Ativo)
+                        {
+                            <td class="statusStyle">Ativo</td>
+                        }
+                        else
+                        {
+                            <td class="statusStyle">Inativo</td>
+                        }
+                        <td class="enabledDeletarAtivar">
                             <a id="editarMatricula" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
                             <a id="fecharMatricula" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
                                onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
-                            <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger"><i class="material-icons" style="background-color:green">assignment_turned_in</i></a>
+                            <a id="ativarMatricula" href="#modalAtivar" onclick="AtivarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')" class="btn-floating btn-sm waves-effect waves-light green modal-trigger"><i class="material-icons" style="background-color:green">assignment_turned_in</i></a>
                         </td>
                     </tr>
                 }
@@ -90,6 +97,7 @@
 
 @Html.Partial("_Editar")
 @Html.Partial("_Deletar")
+@Html.Partial("_Ativar")
 
 
 
@@ -249,6 +257,7 @@
                                  M.toast({ html: dados, classes: 'rounded orange' });
                                  break;
                              case true:
+                                 fazPDF();
                                  M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
@@ -274,7 +283,34 @@
                             M.toast({ html: dados, classes: 'rounded orange' });
                             break;
                             case true:
-                            M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                            M.toast({ html: 'Inativado com sucesso!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                            break;
+                            default:
+                        }
+                    }
+            });
+        }
+
+
+        function Ativar() {
+            var entity = {
+                Id: valorId
+        };
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: "@Url.Action("Ativar", "Matricula")",
+                    data: { entity: entity},
+                    success: function (dados) {
+                        switch (dados) {
+                            case "Preenchimento obrigatório":
+                            M.toast({ html: dados, classes: 'rounded orange' });
+                                break;
+                            case "Erro ao ativar aluno":
+                            M.toast({ html: dados, classes: 'rounded red' });
+                            break;
+                            case true:
+                            M.toast({ html: 'Ativado com sucesso!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                             break;
                             default:
                         }
@@ -287,7 +323,16 @@
                 document.getElementById('deletarModalRG').innerHTML = rg;
                 document.getElementById('deletarModalNome').innerHTML = nome;
                 document.getElementById('deletarModalCPF').innerHTML = cpf;
-                document.getElementById('deletarModalCabecalho').innerText = 'Tem certeza que deseja deletar o aluno ' + nome + '?';
+                document.getElementById('deletarModalCabecalho').innerText = 'Tem certeza que deseja desativar o aluno ' + nome + '?';
+        }
+
+
+        function AtivarModal(id, nome, rg, cpf) {
+                valorId = id;
+                document.getElementById('ativarModalRG').innerHTML = rg;
+                document.getElementById('ativarModalNome').innerHTML = nome;
+                document.getElementById('ativarModalCPF').innerHTML = cpf;
+                document.getElementById('ativarModalCabecalho').innerText = 'Tem certeza que deseja ativar o aluno ' + nome + '?';
         }
 
         function EditarModal(id) {
@@ -356,9 +401,9 @@
                        $("#Grid tr").remove();
                        $(data).each(function () {
                            if (this.Ativo === true) {
-                               $("#Grid").append("<tr><td class='left'><label><input type='checkbox'  id='" + this.Id + "' checked='checked'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Colaborador + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
+                               $("#Grid").append("<tr><td class='left'><label><input type='checkbox'  id='" + this.Id + "' checked='checked'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Nome + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
                            } else {
-                               $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.Id + "'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Colaborador + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
+                               $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.Id + "'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Nome + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
                            }
                         });
                    },
@@ -402,11 +447,11 @@
                 Telefone2: valorTelefone2,
                 Telefone3:    valorTelefone3,
                 DescTelefone:    valorContato,
-                DescTelefone2:   valorContato2, 
-                DescTelefone3:    valorContato3, 
-                NomeReponsavel:    valorNomeResponsavel, 
-                DataNascimentoResponsavel: valorDataNascimentoResponsavel, 
-                Parentesco:    valorGrauParentesco, 
+                DescTelefone2:   valorContato2,
+                DescTelefone3:    valorContato3,
+                NomeReponsavel:    valorNomeResponsavel,
+                DataNascimentoResponsavel: valorDataNascimentoResponsavel,
+                Parentesco:    valorGrauParentesco,
                 MenorIdade:  valorMenorDeIdade
             }
             var alunoEditar = {
@@ -454,5 +499,22 @@
                 }
             });
         }
+
+
+        $(document).ready(function () {
+            for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
+                var status = document.getElementsByClassName('statusStyle')[i].innerText;
+
+                switch (status) {
+                    case 'Ativo':
+                        document.getElementsByClassName('enabledDeletarAtivar')[i].children[2].style.display = "none"
+                        break;
+                    case 'Inativo':
+                        document.getElementsByClassName('enabledDeletarAtivar')[i].children[1].style.display = "none"
+                        break;
+                }
+
+            }
+        });
     </script>
 }

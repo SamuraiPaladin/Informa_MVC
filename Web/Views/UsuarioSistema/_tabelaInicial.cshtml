@@ -6,6 +6,7 @@
             <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Nome de Colaborador</th>
                     <th>Nivel de Acesso</th>
                     <th></th>
                 </tr>
@@ -15,6 +16,7 @@
                 {
                     <tr>
                         <td>@item.Nome</td>
+                        <td>@item.NomeColaborador</td>
                         <td>@item.PerfilUsuario</td>
                         <td>
                             <a id="editarCargo" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="Modal('@item.Id', 'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
