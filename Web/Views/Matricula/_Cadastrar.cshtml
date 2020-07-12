@@ -214,7 +214,7 @@
     </div>
     <div class="modal-footer">
         <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+        <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar(); geraPDF(); ">Cadastrar</a>
     </div>
 </div>
 
@@ -223,96 +223,198 @@
 
 <script>
 
-    let nomeMatriculado = 'Diego Souza';
-    let rg = '432423';
-    let cpf = '432423';
-    let endereco = 'av. paulista';
-    let numero = '32';
-    let bairro = 'Bela Vista';
-    let cep = '2123243-2';
-    let estado = 'sao paulo';
-    let cidade = 'sp';
+    let nomeMatriculado = '';
+    let rg = '';
+    let cpf = '';
+    let endereco = '';
+    let numero = '';
+    let bairro = '';
+    let cep = '';
+    let estado = '';
+    let cidade = '';
 
-    let nomeAcademia = 'Golfinho natacao';
-    let ruaAcademia = 'rua';
-    let numeroAcademia = '32';
-    let bairroAcademia = 'osasco';
-    let cidadeAcademia = 'sp';
-    let cepAcademia = '321321';
-    let estadoAcademia = 'sao paulo';
-    let cnpjAcademia = '42423';
+    let docDefinition = '';
 
-    var docDefinition = {
-        content: [
-            {
-                text: 'CONTRATO DE PRESTAÇÃO DE SERVIÇOS\n\n',
-                style: 'title'
-            },
-            {
-                text: [
-                    { text: 'CONTRATANTE: ', fontSize: 13, bold: true },
-                    { text: `${nomeMatriculado}`, fontSize: 12, bold: true },
-                    ', portador do RG: ',
-                    { text: `${rg}`, fontSize: 12, bold: true },
-                    ', CPF: ',
-                    { text: `${cpf}`, fontSize: 12, bold: true },
-                    ', residente e domiciliado na ',
-                    { text: `${endereco}, ${numero}`, fontSize: 12, bold: true },
-                    ', bairro ',
-                    { text: `${bairro}`, fontSize: 12, bold: true },
-                    ', CEP:',
-                    { text: `${cep}`, fontSize: 12, bold: true },
-                    ' Cidade de ',
-                    { text: `${estado}`, fontSize: 12, bold: true },
-                    ', Estado de ',
-                    { text: `${cidade}`, fontSize: 12, bold: true },
+    const geraPDF = () => {
+         nomeMatriculado = document.getElementById("nome").value;
+         rg = document.getElementById("rg").value;
+         cpf = document.getElementById("cpf").value;
+         endereco = document.getElementById("endereco").value;
+         numero = document.getElementById("numero").value;
+         bairro = document.getElementById("bairro").value;
+         cep = document.getElementById("cep").value;
+         estado = document.getElementById("estado").value;
+        cidade = document.getElementById("cidade").value;
 
+        docDefinition = {
+            content: [
+                {
+                    text: 'CONTRATO DE PRESTAÇÃO DE SERVIÇOS\n\n',
+                    style: 'title'
+                },
+                {
+                    text: [
+                        { text: 'I - PARTES CONTRATADA', fontSize: 13, bold: true },
+                        '\n\n',
+                    ],
 
-                    '\n\n',
-                ],
+                },
+                {
+                    text: [
+                        { text: 'ESCOLA DE NATAÇÃO GOLFINHO, com sede em Poá, na Rua Deputado Paula Lima, nº 82 , Vila Julia, Poá, CEP 08551-110, no Estado São Paulo, inscrita no CNPJ sob o n° 33.724.382/0001-55.' },
+                        '\n\n\n',
+                    ]
+                },
+                {
+                    text: [
+                        { text: 'II - CONTRATANTE (CLIENTE)', fontSize: 13, bold: true },
+                        '\n\n',
+                    ]
+                },
+                {
+                    text: [
+                        'Nome: ',
+                        { text: `${nomeMatriculado}`, fontSize: 12, bold: true },
+                        ', portador do RG: ',
+                        { text: `${rg}`, fontSize: 12, bold: true },
+                        ', CPF: ',
+                        { text: `${cpf}`, fontSize: 12, bold: true },
+                        ', residente e domiciliado na ',
+                        { text: `${endereco}, ${numero}`, fontSize: 12, bold: true },
+                        ', bairro ',
+                        { text: `${bairro}`, fontSize: 12, bold: true },
+                        ', CEP:',
+                        { text: `${cep}`, fontSize: 12, bold: true },
+                        ' Cidade de ',
+                        { text: `${estado}`, fontSize: 12, bold: true },
+                        ', Estado de ',
+                        { text: `${cidade}`, fontSize: 12, bold: true },
+                        ' As partes identificadas acima têm, entre si, justo e acertado o presente Contrato de Prestação de Serviços, que se regerá pelas cláusulas a seguir.',
+                        '\n',
+                        'Referente ao aluno Matriculado:____________________________________________',
+                        '\n\n',
+                    ],
 
-            },
-            {
-                text: [
-                    { text: 'CONTRATADO: ', fontSize: 13, bold: true },
-                    { text: `${nomeAcademia}`, fontSize: 12, bold: true },
-                    ', com sede na Rua: ',
-                    { text: `${ruaAcademia}`, fontSize: 12, bold: true },
-                    ', numero: ',
-                    { text: `${numeroAcademia}`, fontSize: 12, bold: true },
-                    ', bairro ',
-                    { text: `${bairroAcademia}`, fontSize: 12, bold: true },
-                    ', cidade ',
-                    { text: `${cidadeAcademia}`, fontSize: 12, bold: true },
-                    ', CEP:',
-                    { text: `${cepAcademia}`, fontSize: 12, bold: true },
-                    ' no estado ',
-                    { text: `${estadoAcademia}`, fontSize: 12, bold: true },
-                    ',inscrita no CNPJ ',
-                    { text: `${cnpjAcademia}`, fontSize: 12, bold: true },
+                },
+                {
+                    text: [
+                        { text: 'III - OBJETO DO CONTRATO', fontSize: 13, bold: true },
+                        '\n',
+                    ]
 
+                },
+                {
+                    text: [
+                        { text: 'Cláusula 1ª.', fontSize: 13, bold: true },
+                        '\n\n',
+                        'O objeto do presente contrato é a prestação, pela ACADEMIA NATAÇÃO GOLFINHO, ao CLIENTE dos serviços de sessões coletivas de atividades de natação ou hidroginástica, estando com sua proposta em conformidade com o CREF/ CONFEF, através de seus profissionais e das aulas de atividade física. O CLIENTE, através do presente, está se matriculando na ESCOLA DE NATAÇÃO GOLFINHO, Para o período de (  )6 meses (  )1 ano, no curso de ______________________, cujos treinos ocorrerão no período da (M) (T) (N), nos dias da semana (segunda) (terça)(quarta) (quinta) (sábado) das ___:___ às ___:___ horas. Podendo ter desistência em 1 (UM) Mês do início do contrato.',
+                        '\n',
+                        'Parágrafo 1º.',
+                        '\n',
+                        'A direção da ACADEMIA não se recusa a manter um diálogo construtivo com o CLIENTE ou seus RESPONSÁVEIS que demonstre um verdadeiro interesse na melhoria da qualidade das aulas e no seu processo evolutivo.',
+                        '\n',
+                        'Parágrafo 2º.',
+                        '\n',
+                        'Mudanças eventuais no horário aqui estabelecido deverão ser avisadas ao contratante com no mínimo uma semana de antecedência.',
+                        '\n',
+                        { text: 'Cláusula 2ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'O cliente se obriga a observar, estrita e exclusivamente, as orientações dos profissionais da NATAÇÃO GOLFINHO para a prática das atividades físicas. A academia não se responsabiliza por danos físicos de qualquer natureza resultantes da inobservância do cliente a estas orientações.',
+                        '\n',
+                        { text: 'Cláusula 3ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Será concedida uma licença de afastamento de respectivamente 15 e 30 dias, SENDO, que a mensalidade deverá ser paga normalmente, com direito a reposição do período dentro de três meses após afastamento, NÃO usufruindo no final do contrato. Esta licença deverá ser formalizada junto à recepção da ESCOLA por escrito e com pelo menos 15 dias de antecedência.',
+                        '\n',
+                        { text: 'Cláusula 4ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'A Natação Golfinho, livre de quaisquer ônus para com o CLIENTE, poderá utilizar-se da sua imagem para fins exclusivos de divulgação da Natação Golfinho e suas atividades podendo, para tanto, reproduzi-la ou divulgá-la junto a Internet, jornais e todos os demais meios de comunicação pública ou privada.',
+                        '\n',
+                        'Parágrafo 1º.',
+                        '\n',
+                        'Em nenhuma hipótese poderá a imagem do CLIENTE ser utilizada de maneira contrária à moral ou aos bons costumes ou à ordem pública.',
+                        '\n',
+                        'Parágrafo 2º.',
+                        '\n',
+                        'O não comparecimento do CLIENTE às dependências da Natação golfinho, ora contratada, não exime o pagamento, tendo em vista a disponibilidade do serviço.',
+                        'Parágrafo 3º.',
+                        '\n',
+                        'No caso de menores, após o término das aulas, deverá o RESPONSÁVEL retirá-lo imediatamente.',
+                        { text: 'Cláusula 5ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Todo o regulamento interno da Natação Golfinho é adendo deste instrumento (vide anexo), possuindo força contratual;',
+                        '\n\n',
+                        { text: 'IV – REMUNERAÇÃO', fontSize: 13, bold: true },
+                        '\n',
+                        { text: 'Cláusula 6ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Pela prestação dos serviços, referentes ao período contratado conforme previsto na cláusula “1”, o CLIENTE pagará à Natação Golfinho a tempo e modo conforme opção feita pelo cliente.',
+                        '\n',
+                        'OPCOES',
+                        '\n',
+                        '(  ) Mensal____________',
+                        '\n',
+                        '(  ) Semestral ___________',
+                        '\n',
+                        '(  ) Anual ___________',
+                        '\n\n',
+                        { text: 'Cláusula 7ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'O CLIENTE/ RESPONSÁVEL se obriga a ressarcir a Natação Golfinho por qualquer dano causado por ele, por dolo ou culpa, até 48 horas após a constatação do evento e sua consequente.',
+                        '\n',
+                        { text: 'Cláusula 8ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Caso o CLIENTE venha solicitar trancamento de sua matrícula, durante a vigência deste contrato, por qualquer motivo, terá o mesmo que fazê-lo por escrito de próprio punho, justificando o motivo, caracterizando quebra de contrato, e a ESCOLA cobrará o valor equivalente a 1 (UMA) mensalidade sem qualquer desconto no valor de R$ 195,00 (Cento e Noventa e Cinco Reais).',
+                        '\n\n',
+                        { text: 'V – RENOVAÇÃO', fontSize: 13, bold: true },
+                        '\n',
+                        { text: 'Cláusula 9ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Após o período discriminado na Cláusula 1ª, este contrato poderá ser renovado automaticamente, bastando, para tanto, que o (a) CLIENTE efetue o(s) pagamento(s) referente aos meses seguintes, como descritos na cláusula 6ª. e assim sucessivamente.',
+                        '\n',
+                        { text: 'VI – RESCISÃO', fontSize: 13, bold: true },
+                        '\n',
+                        { text: 'Cláusula 10ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'O presente instrumento NÃO poderá ser rescindido a qualquer momento por qualquer das partes, visto tratar-se de CURSO LIVRE.',
+                        '\n',
+                        { text: 'PARÁGRAFO ÚNICO –', fontSize: 13, bold: true },
+                        '\n',
+                        'CASO O CLIENTE DESISTA EXPRESSAMENTE DO CONTRATO EM QUALQUER ÉPOCA, A ACADEMIA COBRARÁ O VALOR EQUIVALENTE A 1 (UMA) MENSALIDADE DO VALOR DE 195,00, CARACTERIZANDO, POR PARTE DO CLIENTE, QUEBRA DE CONTRATO. O NÃO PAGAMENTO DAS PARCELAS ASSUMIDAS NESTE CONTRATO É PASSIVEL DAS MEDIDAS  LEGAIS CABÍVEIS.',
+                        '\n',
+                        { text: 'VII – FORO', fontSize: 13, bold: true },
+                        '\n',
+                        { text: 'Cláusula 11ª.', fontSize: 13, bold: true },
+                        'As partes atribuem ao presente Contrato plena eficácia e força executiva e extrajudicial.',
+                        '\n',
+                        { text: 'Cláusula 12ª.', fontSize: 13, bold: true },
+                        '\n',
+                        ' Para dirimir quaisquer controvérsias originadas por este contrato, fica eleito o Fórum da Comarca em cuja jurisdição o CLIENTE/ RESPONSAVÉL tiver domicílio, arcando a parte vencida, em demanda judicial, com as custas processuais a que der causa e com os honorários advocatícios arbitrados do patrono da parte vencedora.',
+                        '\n',
+                        'Estou ciente de todas as propostas deste Contrato de Prestação de Serviços para o curso, dias e horários que escolhi, e assumo a validade e veracidade das cláusulas nele descritas. Declaro ainda estar em perfeitas condições de saúde, conhecendo e assumindo todos os riscos advindos da atividade física à minha pessoa ou àquele por quem me responsabilizo, não portando também nenhuma moléstia que possa prejudicar os demais frequentadores da Natação Golfinho.',
+                        '\n',
+                        'Por estarem assim justos e contratados, firmam o presente instrumento, em duas vias de igual teor, idôneas, rubricando todas as suas páginas.',
+                        '\n\n\n',
+                        '_____________________________, ______de______________________de________ (local) ',
+                        '\n\n\n\n',
+                        '____________________________________ __________________________________',
+                        '\n',
+                        'NOME DO CONTRATANTE                        NOME DO CONTRATADO',
+                    ]
 
-                    '\n\n',
-                ],
-
-            },
-            {
-                text: [
-                    'As partes acima identificadas têm, entre si, justo e acertado o presente Contrato de Prestação de Serviços de Academia de Ginástica, que se regerá pelas cláusulas seguintes e pelas condições descritas no presente.\n\n',
-
-                ]
+                },
+            ],
+            styles: {
+                title: {
+                    fontSize: 15,
+                    bold: true,
+                    alignment: 'center'
+                },
 
             }
-        ],
-        styles: {
-            title: {
-                fontSize: 15,
-                bold: true,
-                alignment: 'center'
-            },
-
         }
     }
+
+    
 
     const fazPDF = () => {
         pdfMake.createPdf(docDefinition).open();
