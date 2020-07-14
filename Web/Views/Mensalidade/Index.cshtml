@@ -277,10 +277,10 @@
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioPagamento">
                 <!-- NOVO CAMPO!!! GERAR O RECIBO!!-->
-                <div class="input-field col s12" >
+                <div class="input-field col s12">
                     <p>
                         <label>
-                            <input id="gerarRecibo" type="checkbox" checked="checked"/>
+                            <input id="gerarRecibo" type="checkbox" checked="checked" />
                             <span class="red-text">Gerar Recibo?</span>
                         </label>
                     </p>
@@ -292,7 +292,7 @@
                     <select disabled id="MatriculaDropDownPagamento">
                         @foreach (var item in Model.ListaMatricula)
                         {
-                            <option value="@item.Id">@item.Nome</option>
+                            <option id="nomeMatriculado" value="@item.Id">@item.Nome</option>
                         }
                     </select>
                     <label>Matricula</label>
@@ -334,7 +334,7 @@
                         <option disabled selected value="">Selecione a forma de pagamento</option>
                         @foreach (var item in Model.FormasDePagamentos)
                         {
-                            <option value="@item">@item</option>
+                            <option id="formaPagamento" value="@item">@item</option>
                         }
                     </select>
                     <label>Forma de pagamento</label>
@@ -361,10 +361,12 @@
     </div>
     <div class="modal-footer">
         <a id="fecharPagar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="pagar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Pagar()">PAGAR</a>
+        <a id="pagar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Pagar(); montaRecibo();">PAGAR</a>
     </div>
 </div>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
 
 @section scripts{
     <script>
@@ -446,7 +448,7 @@
             }
             else if (model === "Pagamento") {
                 //document.getElementById('gerarRecibo').checked
-                document.getElementById("pagarMensalidadeDescricao").innerText = "Pagar Mensalidade aluno: " + nomeMatricula; 
+                document.getElementById("pagarMensalidadeDescricao").innerText = "Pagar Mensalidade aluno: " + nomeMatricula;
             }
             else {
                 document.getElementById("deletarMensalidadeDescricao").innerText = "Tem certeza que deseja deletar a Mensalidade?";
@@ -761,6 +763,76 @@
             }
             return !1
         }
+
+        let docDefinition;
+        let nomeMatricula = '';
+        let valorSerPago = '';
+        let formaPagamento = '';
+
+        const geraRecibo = () => {
+            pdfMake.createPdf(docDefinition).open();
+        }
+
+        function verificarData() {
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Setembro", "Dezembro"];
+            var dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
+
+            var dayNome = dias[dateObj.getDay()];
+            month = meses[dateObj.getMonth()];
+
+            newdate = dayNome + ", " + day + " de " + month;
+            return newdate;
+        }
+
+        const montaRecibo = () => {
+
+            nomeMatricula = document.getElementById('nomeMatriculado').innerText    //ajuda
+            valorSerPago = document.getElementById('valorPagamento').value          //pegando normal
+            formaPagamento = document.getElementById('formaPagamento').innerText    //ajuda
+
+            docDefinition = {
+                content: [
+                    {
+                        text: 'RECIBO DE PAGAMENTO DE MENSALIDADE\n\n',
+                        style: 'title'
+                    },
+                    {
+                        text: [
+                            'Recebemos de ',
+                            { text: `${nomeMatricula}`, fontSize: 13, bold: true },
+                            ' a quantia de ',
+                            {
+                                text: `${valorSerPago}`, fontSize: 13, bold: true },
+                            ' referente a mensalidade da ',
+                            { text: 'NATACAO GOLFINHO', fontSize: 13, bold: true },
+                            ' pago em formato de ',
+                            { text: `${formaPagamento}`, fontSize: 13, bold: true },
+                            '\n\n\n',
+                            `Pago em `,
+                            { text: `${verificarData()}`, fontSize: 13, bold: true },
+
+                        ],
+
+                    },
+
+                ],
+                styles: {
+                    title: {
+                        fontSize: 15,
+                        bold: true,
+                        alignment: 'center'
+                    },
+
+                }
+            }
+            geraRecibo();
+        }
+
+
     </script>
 
 }
