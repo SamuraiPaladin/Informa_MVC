@@ -792,7 +792,7 @@
   
             nomeMatricula = $('#MatriculaPagamento')[0].children[0].children[0].value;   
             valorSerPago = document.getElementById('valorPago').value != null ? document.getElementById('valorPago').value : document.getElementById('valorPagamento').value;         
-            formaPagamento = document.getElementById('formaPagamento').children[1].children[0].value;  
+            formaPagamento = document.getElementById('formaPagamento').children[1].children[0].value != "Selecione a forma de pagamento" ? document.getElementById('formaPagamento').children[1].children[0].value : "Debito";
 
             docDefinition = {
                 content: [
