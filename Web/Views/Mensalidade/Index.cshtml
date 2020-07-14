@@ -789,10 +789,10 @@
         }
 
         const montaRecibo = () => {
-
-            nomeMatricula = document.getElementById('nomeMatriculado').innerText    //ajuda
-            valorSerPago = document.getElementById('valorPagamento').value          //pegando normal
-            formaPagamento = document.getElementById('formaPagamento').innerText    //ajuda
+  
+            nomeMatricula = $('#MatriculaPagamento')[0].children[0].children[0].value;   
+            valorSerPago = document.getElementById('valorPago').value != null ? document.getElementById('valorPago').value : document.getElementById('valorPagamento').value;         
+            formaPagamento = document.getElementById('formaPagamento').children[1].children[0].value;  
 
             docDefinition = {
                 content: [
