@@ -48,7 +48,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@MenorIdade", entity.MenorIdade);
                 cmd.Parameters.AddWithValue("@NomeResponsavel", string.IsNullOrEmpty(entity.NomeReponsavel) ? SqlString.Null : entity.NomeReponsavel);
                 cmd.Parameters.AddWithValue("@GrauParentesco", string.IsNullOrEmpty(entity.Parentesco) ? SqlString.Null : entity.Parentesco);
-              
+
 
                 var ultimoIdInserido = cmd.ExecuteScalar();
                 var retorno = Convert.ToInt32(ultimoIdInserido) > 0 ? true : false;
@@ -368,8 +368,7 @@ GROUP BY t.Id, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFi
                             DiaDaSemana = sdr["DiaDaSemana"].ToString(),
                             HorarioInicial = sdr["HorarioInicial"].ToString(),
                             HorarioFinal = sdr["HorarioFinal"].ToString(),
-                            Nome = sdr["Nome"].ToString(),
-                            Ativo = sdr["Ativo"].ToString() == "0" || string.IsNullOrEmpty(sdr["Ativo"].ToString()) ? false : true
+                            Nome = sdr["Nome"].ToString()
                         };
                         lista.Add(matricula);
                     }
