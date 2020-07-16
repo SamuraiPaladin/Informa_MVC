@@ -153,11 +153,13 @@
     </div>
     <div class="modal-footer">
         <a id="fecharPagar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a id="pagar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Pagar()">PAGAR</a>
+        <a id="pagar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Pagar(); montaRecibo();">PAGAR</a>
     </div>
 </div>
 
 @section scripts{
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
     <script>
         let valorId;
         let valorMatricula;
@@ -179,11 +181,15 @@
             valorFormaDePagamento = formadepagamento;
             valorStatusDaMensalidade = statusdamensalidade;
             valorPagamento = valor;
-           
 
 
-            document.getElementById('MatriculaDropDown' + model).text = nomeMatricula;
-            document.getElementById('MatriculaDropDown' + model).MatriculaId = Matricula;
+            $('#Matricula' + model)[0].children[0].children[0].value = nomeMatricula;
+
+            for (i = 0; i < $('#MatriculaDropDown' + model)[0].length; i++) {
+                if ($('#MatriculaDropDown' + model)[0].children[i].value == parseInt(Matricula)) {
+                    $('#MatriculaDropDown' + model)[0].children[i].selected = true;
+                }
+            }
 
             //document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
             //document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
@@ -296,8 +302,10 @@
         $(document).ready(function () {
             $('#tabelaPagamento').DataTable();
         });
-        $(document).ready(function () {
-            
+
+
+        function setarStatus() {
+
             for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
                 var status = document.getElementsByClassName('statusStyle')[i].innerText;
 
@@ -331,49 +339,58 @@
                         break;
                 }
             }
-        });
+
+        }
 
         $(document).ready(function () {
-            var month = new Date().getMonth() + 1;
-            switch (month) {
-                case 1:
-                    document.getElementById("mes").innerHTML = "Janeiro";
-                    break;
-                case 2:
-                    document.getElementById("mes").innerHTML = "Fevereiro";
-                    break;
-                case 3:
-                    document.getElementById("mes").innerHTML = "Março";
-                    break;
-                case 4:
-                    document.getElementById("mes").innerHTML = "Abril";
-                    break;
-                case 5:
-                    document.getElementById("mes").innerHTML = "Maio";
-                    break;
-                case 6:
-                    document.getElementById("mes").innerHTML = "Junho";
-                    break;
-                case 7:
-                    document.getElementById("mes").innerHTML = "Julho";
-                    break;
-                case 8:
-                    document.getElementById("mes").innerHTML = "Agosto";
-                    break;
-                case 9:
-                    document.getElementById("mes").innerHTML = "Setembro";
-                    break;
-                case 10:
-                    document.getElementById("mes").innerHTML = "Outubro";
-                    break;
-                case 11:
-                    document.getElementById("mes").innerHTML = "Novembro";
-                    break;
-                case 12:
-                    document.getElementById("mes").innerHTML = "Dezembro";
-                    break;
+            setarStatus();
+            var buttons = document.getElementsByClassName("paginate_button page-item");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", setarStatus);
             }
         });
+
+        //$(document).ready(function () {
+        //    var month = new Date().getMonth() + 1;
+        //    switch (month) {
+        //        case 1:
+        //            document.getElementById("mes").innerHTML = "Janeiro";
+        //            break;
+        //        case 2:
+        //            document.getElementById("mes").innerHTML = "Fevereiro";
+        //            break;
+        //        case 3:
+        //            document.getElementById("mes").innerHTML = "Março";
+        //            break;
+        //        case 4:
+        //            document.getElementById("mes").innerHTML = "Abril";
+        //            break;
+        //        case 5:
+        //            document.getElementById("mes").innerHTML = "Maio";
+        //            break;
+        //        case 6:
+        //            document.getElementById("mes").innerHTML = "Junho";
+        //            break;
+        //        case 7:
+        //            document.getElementById("mes").innerHTML = "Julho";
+        //            break;
+        //        case 8:
+        //            document.getElementById("mes").innerHTML = "Agosto";
+        //            break;
+        //        case 9:
+        //            document.getElementById("mes").innerHTML = "Setembro";
+        //            break;
+        //        case 10:
+        //            document.getElementById("mes").innerHTML = "Outubro";
+        //            break;
+        //        case 11:
+        //            document.getElementById("mes").innerHTML = "Novembro";
+        //            break;
+        //        case 12:
+        //            document.getElementById("mes").innerHTML = "Dezembro";
+        //            break;
+        //    }
+        //});
         function moeda(a, e, r, t) {
             let n = ""
                 , h = j = 0
@@ -409,6 +426,71 @@
                 a.value += r + l.substr(u - 2, u)
             }
             return !1
+        }
+
+        const geraRecibo = () => {
+            pdfMake.createPdf(docDefinition).open();
+        }
+
+
+        function verificarData() {
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Setembro", "Dezembro"];
+            var dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
+
+            var dayNome = dias[dateObj.getDay()];
+            month = meses[dateObj.getMonth()];
+
+            newdate = dayNome + ", " + day + " de " + month;
+            return newdate;
+        }
+
+        const montaRecibo = () => {
+
+            nomeMatricula = $('#MatriculaPagamento')[0].children[0].children[0].value;
+            valorSerPago = document.getElementById('valorPago').value != null ? document.getElementById('valorPago').value : document.getElementById('valorPagamento').value;
+            formaPagamento = document.getElementById('formaPagamento').children[1].children[0].value != "Selecione a forma de pagamento" ? document.getElementById('formaPagamento').children[1].children[0].value : "Debito";
+
+            docDefinition = {
+                content: [
+                    {
+                        text: 'RECIBO DE PAGAMENTO DE MENSALIDADE\n\n',
+                        style: 'title'
+                    },
+                    {
+                        text: [
+                            'Recebemos de ',
+                            { text: `${nomeMatricula}`, fontSize: 13, bold: true },
+                            ' a quantia de ',
+                            {
+                                text: `${valorSerPago}`, fontSize: 13, bold: true
+                            },
+                            ' referente a mensalidade da ',
+                            { text: 'NATACAO GOLFINHO', fontSize: 13, bold: true },
+                            ' pago em formato de ',
+                            { text: `${formaPagamento}`, fontSize: 13, bold: true },
+                            '\n\n\n',
+                            `Pago em `,
+                            { text: `${verificarData()}`, fontSize: 13, bold: true },
+
+                        ],
+
+                    },
+
+                ],
+                styles: {
+                    title: {
+                        fontSize: 15,
+                        bold: true,
+                        alignment: 'center'
+                    },
+
+                }
+            }
+            geraRecibo();
         }
     </script>
 }

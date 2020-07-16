@@ -134,9 +134,6 @@ namespace Web.Controllers
                     lista.Add(item);
                 }
             }
-            //curso, tipo, professor, diadasemana, horarioinicial, horariofinal
-
-
             return Json(lista, JsonRequestBehavior.AllowGet);
         }
     }
