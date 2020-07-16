@@ -302,7 +302,9 @@
         $(document).ready(function () {
             $('#tabelaPagamento').DataTable();
         });
-        $(document).ready(function () {
+
+
+        function setarStatus() {
 
             for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
                 var status = document.getElementsByClassName('statusStyle')[i].innerText;
@@ -336,6 +338,15 @@
                         document.getElementsByClassName('statusStyle')[i].style.color = "#DCE224";
                         break;
                 }
+            }
+
+        }
+
+        $(document).ready(function () {
+            setarStatus();
+            var buttons = document.getElementsByClassName("paginate_button page-item");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", setarStatus);
             }
         });
 
@@ -438,7 +449,7 @@
         }
 
         const montaRecibo = () => {
-            debugger;
+
             nomeMatricula = $('#MatriculaPagamento')[0].children[0].children[0].value;
             valorSerPago = document.getElementById('valorPago').value != null ? document.getElementById('valorPago').value : document.getElementById('valorPagamento').value;
             formaPagamento = document.getElementById('formaPagamento').children[1].children[0].value != "Selecione a forma de pagamento" ? document.getElementById('formaPagamento').children[1].children[0].value : "Debito";

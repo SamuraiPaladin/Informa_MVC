@@ -627,7 +627,7 @@
                 }
             });
 
-        $(document).ready(function () {
+        function ativarEDesativar() {
             for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
                 var status = document.getElementsByClassName('statusStyle')[i].innerText;
 
@@ -659,6 +659,14 @@
                         document.getElementsByClassName('statusStyle')[i].style.color = "#DCE224";
                         break;
                 }
+            }
+        }
+
+        $(document).ready(function () {
+            ativarEDesativar();
+            var buttons = document.getElementsByClassName("paginate_button page-item");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", ativarEDesativar);
             }
         });
 
