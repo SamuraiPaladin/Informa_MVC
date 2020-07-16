@@ -10,6 +10,8 @@ namespace Test
         {
             Utilities.OpenChrome();
 
+            Utilities.LogininForma();
+
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
             Utilities.AcessoGrid("Cadastro","Unidade");
@@ -20,7 +22,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
             
-            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -44,12 +46,16 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
 
+            TestesUnidadeMetodos.FinalizarTeste(1);
+
         }
 
         [Fact]
         public void CampoObrigatorioNomeUnidade()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -61,7 +67,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
 
-            //PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            //PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -85,12 +91,15 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
+            TestesUnidadeMetodos.FinalizarTeste(2);
         }
 
         [Fact]
         public void CampoObrigatorioTelefone()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -102,7 +111,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             //PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -126,12 +135,15 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
+            TestesUnidadeMetodos.FinalizarTeste(2);
         }
 
         [Fact]
         public void CampoObrigatorioCEP()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -143,7 +155,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -165,12 +177,16 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
+            TestesUnidadeMetodos.FinalizarTeste(2);
+
         }
 
         [Fact]
         public void CampoObrigatorioNumeroCEP()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -182,7 +198,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -206,12 +222,15 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Preenchimento obrigatório");
 
+            TestesUnidadeMetodos.FinalizarTeste(2);
         }
 
         [Fact]
         public void EditarUnidade()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -223,7 +242,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -258,11 +277,15 @@ namespace Test
             PageObject.RegisterUnitScreen.FinalizarEditarUnidadeButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Editado");
+
+            TestesUnidadeMetodos.FinalizarTeste(1);
         }
         [Fact]
         public void DeletarUnidade()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -274,7 +297,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -298,20 +321,14 @@ namespace Test
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Salvo");
 
-            Thread.Sleep(5500);
-
-            PageObject.RegisterUnitScreen.ExcluirUnidadeButton();
-
-            TestesUnidadeMetodos.AguardaModalDeletar();
-
-            PageObject.RegisterUnitScreen.FinalizarExcluirUnidadeButton();
-
-            PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
+            TestesUnidadeMetodos.FinalizarTeste(1);
         }
         [Fact]
         public void DuplicarUnidade()
         {
             Utilities.OpenChrome();
+
+            Utilities.LogininForma();
 
             Assert.Equal("Principal - inForma", Utilities.driver.Title);
 
@@ -323,7 +340,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -353,7 +370,7 @@ namespace Test
 
             TestesUnidadeMetodos.AguardaModalCadastro();
 
-            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("São Paulo");
+            PageObject.RegisterUnitScreen.NomeUnidadeTextBox("AAA TESTE AAA");
 
             PageObject.RegisterUnitScreen.TelefoneTextBox("11999999999");
 
@@ -372,6 +389,8 @@ namespace Test
             PageObject.RegisterUnitScreen.FinalizarCadastrarButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Já existe essas informações");
+
+            TestesUnidadeMetodos.FinalizarTeste(1);
         }
     }
 }

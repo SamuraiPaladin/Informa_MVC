@@ -67,4 +67,23 @@ public class TestesUnidadeMetodos
 		}
 		return true;
 	}
+
+	public static void FinalizarTeste(int Operacao)
+	{
+		if (Operacao == 1)
+		{
+			Thread.Sleep(6500);
+
+			PageObject.RegisterUnitScreen.ExcluirUnidadeButton();
+
+			TestesUnidadeMetodos.AguardaModalDeletar();
+
+			PageObject.RegisterUnitScreen.FinalizarExcluirUnidadeButton();
+;
+		}
+
+		Utilities.driver.Close();
+	}
+
+
 }
