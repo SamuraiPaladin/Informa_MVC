@@ -233,6 +233,30 @@ namespace Test
 
             }
 
+            public class Matricula
+            {
+                public static void MatriculaList()
+                {
+                    int count = 0;
+                    Boolean clicked = false;
+                    while (clicked.Equals(false))
+                    {
+                        try
+                        {
+                            IWebElement Element = Utilities.driver.FindElement(By.Id("matricula"));
+                            IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                            executor.ExecuteScript("arguments[0].click();", Element);
+                            clicked = true;
+                        }
+                        catch (Exception e)
+                        {
+                            count = count + 1;
+                            Assert.False(count > 3, "Descrição da Falha: " + e);
+                        }
+                    }
+                }
+            }
+
             public class Financeiro
             {
                 public static void FinanceiroList()
@@ -575,7 +599,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[9]/a[2]/i"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"deletarUnidade\"]/i"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -596,7 +620,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"modalDeletar\"]/div[2]/a[2]"));
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("deletar"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -617,7 +641,7 @@ namespace Test
                 {
                     try
                     {
-                        IWebElement Element = Utilities.driver.FindElement(By.XPath("/html/body/div[1]/table/tbody/tr/td[9]/a[1]/i"));
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"editarUnidade\"]/i"));
                         IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
                         executor.ExecuteScript("arguments[0].click();", Element);
                         clicked = true;
@@ -1713,6 +1737,75 @@ namespace Test
 
 
 
+
+
+
+        }
+
+        public static class RegisterEnrollment
+        {
+            public static void CadastrarMatriulaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cadastrarAluno"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void NomeAlunoTextBox(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("nome"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void DataNascimento(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("datadenascimento"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
 
 
 
