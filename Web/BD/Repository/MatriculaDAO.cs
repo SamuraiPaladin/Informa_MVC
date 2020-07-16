@@ -219,13 +219,9 @@ namespace Web.BD.Repository
 
         public IList<MatriculaTurma> ListaMatriculaTurma()
         {
-            string query = @"SELECT t.Id, count(1) Quantidade, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome, m.Ativo
-                                FROM Colaboradores c
-                                JOIN Turmas t ON c.Id = t.ColaboradorId
-                                JOIN MatriculaTurma mt ON mt.IdTurma = t.Id
-                                JOIN Matriculas m ON m.Id = mt.IdMatricula
-                                GROUP BY t.id, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome, m.Ativo
-                                ORDER BY t.HorarioInicial";
+            string query = @"select t.Id, count(1) Quantidade, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome from turmas t
+JOIN Colaboradores c ON t.ColaboradorId = c.Id
+GROUP BY t.Id, t.Descricao, t.Tipo, t.DiaDaSemana, t.HorarioInicial, t.HorarioFinal, c.Nome";
             var lista = new List<MatriculaTurma>();
             using (var con = new SqlConnection(stringConexao))
             {
@@ -254,8 +250,6 @@ namespace Web.BD.Repository
                             HorarioFinal = sdr["HorarioFinal"].ToString()
                             ,
                             Nome = sdr["Nome"].ToString()
-                            ,
-                            Ativo = (bool)sdr["Ativo"]
 
                         };
                         lista.Add(model);
