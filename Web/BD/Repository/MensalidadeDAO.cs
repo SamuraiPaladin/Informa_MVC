@@ -65,6 +65,11 @@ namespace Web.BD.Repository
 
         }
 
+        internal object ListaDeValores(Mensalidade mensalidade)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Mensalidade> ListaMensalidadeVencida()
         {
             string query = @"SELECT t.*, a.CPF, a.Nome, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos

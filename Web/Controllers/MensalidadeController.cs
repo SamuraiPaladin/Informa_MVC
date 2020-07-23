@@ -34,7 +34,7 @@ namespace Web.Controllers
                 {
 
                     Juros = dAOMensalidade.Juros(),
-                    ListaMensalidade = dAOMensalidade.ListaMensalidade(),
+                    //ListaMensalidade = dAOMensalidade.ListaMensalidade(),
                     ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
                     FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
                     StatusDasMensalidades = Enum.GetValues(typeof(EnumPaymentStatus.PaymentStatus))
@@ -46,6 +46,24 @@ namespace Web.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
+        }
+
+        public JsonResult ConsultaTabela(Mensalidade mensalidade)
+        {
+            if (!VerificaSeDataInicialEstaNula(mensalidade))
+            {
+                return Json(dAOMensalidade.ListaDeValores(mensalidade));
+            }
+            else
+            {
+                return Json("");
+            }
+
+        }
+
+        private bool VerificaSeDataInicialEstaNula(Mensalidade mensalidade)
+        {
+            return string.IsNullOrEmpty(mensalidade.DataInicial.ToString());
         }
 
         public JsonResult Adicionar(Mensalidade Mensalidade)
@@ -83,7 +101,6 @@ namespace Web.Controllers
 
             return PartialView("Index", model);
         }
-
 
         private static bool VerificaSeTemCampoVazioOuNulo(Mensalidade Mensalidade)
         {

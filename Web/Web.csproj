@@ -872,6 +872,7 @@
     <Content Include="Views\ConsultaPagamento\Index.cshtml" />
     <Content Include="Views\Matricula\_Ativar.cshtml" />
     <Content Include="Views\ConsultaPagamento\_CabecalhoPesquisa.cshtml" />
+    <Content Include="Views\Mensalidade\_CabecalhoPesquisa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
