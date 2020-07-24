@@ -41,7 +41,7 @@ C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\WebDriver.dll
 C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.assert.dll
 C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.core.dll
 C:\Users\Guilherme\Desktop\Projetos\inForma\Test\bin\Debug\xunit.execution.desktop.dll
+C:\Users\Guilherme\Desktop\Projetos\inForma\Test\obj\Debug\Test.csprojAssemblyReference.cache
 C:\Users\Guilherme\Desktop\Projetos\inForma\Test\obj\Debug\Test.csproj.CopyComplete
 C:\Users\Guilherme\Desktop\Projetos\inForma\Test\obj\Debug\Test.dll
 C:\Users\Guilherme\Desktop\Projetos\inForma\Test\obj\Debug\Test.pdb
-C:\Users\Guilherme\Desktop\Projetos\inForma\Test\obj\Debug\Test.csprojAssemblyReference.cache
