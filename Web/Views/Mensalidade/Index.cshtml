@@ -103,7 +103,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="Grid">
                     @foreach (var mensalidade in Model.ListaMensalidade)
                     {
                         <tr>
@@ -370,6 +370,9 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+
 @section scripts{
     <script>
 
@@ -395,15 +398,36 @@
             success: function (data) {
                        //Coloque aqui o local onde a View deverá ocupar
                        $("#Grid tr").remove();
-                       $(data).each(function () {
-                           $("#Grid").append("<tr><td>" + this.Dias + "</td><td>" + this.Credito + "</td> <td>" + this.Debito + "</td><td>" + this.Dinheiro + "</td> </tr>");
-                       });
+                $(data).each(function () {
+                    debugger;
+                    $("#Grid").append("<tr><td class='enabledBotaoPagamento'><a class='btn-floating btn-sm waves-effect waves-light green modal-trigger' href='#modalPagamento' onclick=EditarModal(" + '\'' + this.Id + '\',' + '\'' + this.Matricula.Id + '\',' + '\'' + moment(this.DataDeVencimento).format("YYYY-MM-DD") + '\',' + '\'' + '' + '\',' + '\'' + this.StatusDaMensalidade + '\',' + '\'' + 'Pagamento' + '\',' + '\'' + this.Matricula.Nome + '\',' + '\'' + this.Valor + '\',' + '\'' + this.DiasVencidos + '\',' + '\'' + '@Model.Juros' + '\',' + '\'' + this.GerarRecibo + '\'' + ")><i class='material-icons'>attach_money</i></a></td><td>" +
+                                this.Matricula.Nome +
+                            "</td>" +
+                            "<td>" +
+                                this.CPF +
+                            "</td>" +
+                            "<td>" +
+                        moment(this.DataDeVencimento).format("YYYY-MM-DD") +
+                            "</td>" +
+                            "<td>" +
+                                this.Valor +
+                            "</td>" +
+                            "<td class='statusStyle'>" +
+                               this.StatusDaMensalidade +
+                            "</td>" +
+                            @*"<td class'enabledDeletarEditar'>" +
+                                "<a id='editarMensalidade' class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick='EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"'><i class="material-icons" style="background-color:#f79f00">create</i></a>" +
+                                "<a id='deletarMensalidade' class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick='EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"'><i class="material-icons">delete_forever</i></a>" +
+                            "</td>" +*@
+                        "</tr>"
+                        );
+                 });
 
-                for (var i = 0; i < data.length; i++) {
-                    valorDebito += data[i].Debito;
-                    valorCredito += data[i].Credito;
-                    valorDinheiro += data[i].Dinheiro;
-                }
+                //for (var i = 0; i < data.length; i++) {
+                //    valorDebito += data[i].Debito;
+                //    valorCredito += data[i].Credito;
+                //    valorDinheiro += data[i].Dinheiro;
+                //}
              }
         });
 

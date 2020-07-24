@@ -34,7 +34,7 @@ namespace Web.Controllers
                 {
 
                     Juros = dAOMensalidade.Juros(),
-                    //ListaMensalidade = dAOMensalidade.ListaMensalidade(),
+                    ListaMensalidade = dAOMensalidade.ListaMensalidade(),
                     ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
                     FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
                     StatusDasMensalidades = Enum.GetValues(typeof(EnumPaymentStatus.PaymentStatus))
