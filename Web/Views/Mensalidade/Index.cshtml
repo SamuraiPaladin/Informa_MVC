@@ -386,7 +386,12 @@
         let valorGerarRecibo;
 
         function PesquisarDados()
-    {
+        {
+
+            var table = $('#tabelaPagamento').DataTable();
+
+            table.destroy();
+
         var mensalidade = {
             Datainicial: document.getElementById('dataInicial').value,
             Datafinal: document.getElementById('dataFinal').value
@@ -413,12 +418,12 @@
                                 this.Valor +
                             "</td>" +
                             "<td class='statusStyle'>" +
-                               this.StatusDaMensalidade +
+                        this.StatusDaMensalidade.split(/(?=[A-ZÀ-Ú])/).toString().replace(',', ' ') +
                             "</td>" +
-                            @*"<td class'enabledDeletarEditar'>" +
-                                "<a id='editarMensalidade' class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick='EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"'><i class="material-icons" style="background-color:#f79f00">create</i></a>" +
-                                "<a id='deletarMensalidade' class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick='EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"'><i class="material-icons">delete_forever</i></a>" +
-                            "</td>" +*@
+                            "<td class='enabledDeletarEditar'>" +
+                                "<a id='editarMensalidade' class='btn-floating btn-sm waves-effect waves-light yellow modal-trigger' href='#modalEditar' onclick=EditarModal()><i class='material-icons' style='background-color:#f79f00'>create</i></a>" +
+                                "<a id='deletarMensalidade' class='btn-floating btn-sm waves-effect waves-light red modal-trigger' href='#modalDeletar' onclick=EditarModal()><i class='material-icons'>delete_forever</i></a>" +
+                            "</td>" +
                         "</tr>"
                         );
                  });
@@ -428,9 +433,11 @@
                 //    valorCredito += data[i].Credito;
                 //    valorDinheiro += data[i].Dinheiro;
                 //}
+                ativarEDesativar();
+   
+                $('#tabelaPagamento').DataTable();
              }
         });
-
     }
 
         $(document).ready(function () {
