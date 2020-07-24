@@ -405,7 +405,7 @@
                        $("#Grid tr").remove();
                 $(data).each(function () {
                     debugger;
-                    $("#Grid").append("<tr><td class='enabledBotaoPagamento'><a class='btn-floating btn-sm waves-effect waves-light green modal-trigger' href='#modalPagamento' onclick=EditarModal(" + '\'' + this.Id + '\',' + '\'' + this.Matricula.Id + '\',' + '\'' + moment(this.DataDeVencimento).format("YYYY-MM-DD") + '\',' + '\'' + '' + '\',' + '\'' + this.StatusDaMensalidade + '\',' + '\'' + 'Pagamento' + '\',' + '\'' + this.Matricula.Nome + '\',' + '\'' + this.Valor + '\',' + '\'' + this.DiasVencidos + '\',' + '\'' + '@Model.Juros' + '\',' + '\'' + this.GerarRecibo + '\'' + ")><i class='material-icons'>attach_money</i></a></td><td>" +
+                    $("#Grid").append("<tr><td class='enabledBotaoPagamento'><a class='btn-floating btn-sm waves-effect waves-light green modal-trigger' href='#modalPagamento' onclick=EditarModal(" + '\'' + this.Id + '\',' + '\'' + this.Matricula.Id + '\',' + '\'' + moment(this.DataDeVencimento).format("YYYY-MM-DD") + '\',' + '\'' + '' + '\',' + '\'' + this.StatusDaMensalidade + '\',' + '\'' + 'Pagamento' + '\',' + '\'' + this.Matricula.Nome.split(' ').toString() + '\',' + '\'' + this.Valor + '\',' + '\'' + this.DiasVencidos + '\',' + '\'' + '@Model.Juros' + '\',' + '\'' + this.GerarRecibo + '\'' + ")><i class='material-icons'>attach_money</i></a></td><td>" +
                                 this.Matricula.Nome +
                             "</td>" +
                             "<td>" +
@@ -421,8 +421,8 @@
                         this.StatusDaMensalidade.split(/(?=[A-ZÀ-Ú])/).toString().replace(',', ' ') +
                             "</td>" +
                             "<td class='enabledDeletarEditar'>" +
-                                "<a id='editarMensalidade' class='btn-floating btn-sm waves-effect waves-light yellow modal-trigger' href='#modalEditar' onclick=EditarModal()><i class='material-icons' style='background-color:#f79f00'>create</i></a>" +
-                                "<a id='deletarMensalidade' class='btn-floating btn-sm waves-effect waves-light red modal-trigger' href='#modalDeletar' onclick=EditarModal()><i class='material-icons'>delete_forever</i></a>" +
+                                "<a id='editarMensalidade' class='btn-floating btn-sm waves-effect waves-light yellow modal-trigger' href='#modalEditar' onclick=EditarModal(" + '\'' + this.Id + '\',' + '\'' + this.Matricula.Id + '\',' + '\'' + moment(this.DataDeVencimento).format("YYYY-MM-DD") + '\',' + '\'' + '' + '\',' + '\'' + this.StatusDaMensalidade + '\',' + '\'' + 'Editar' + '\',' + '\'' + this.Matricula.Nome.split(' ').toString() + '\',' + '\'' + this.Valor + '\',' + '\'' + this.DiasVencidos + '\',' + '\'' + '@Model.Juros' + '\',' + '\'' + this.GerarRecibo + '\'' + ")><i class='material-icons' style='background-color:#f79f00'>create</i></a>" +
+                        "<a id='deletarMensalidade' class='btn-floating btn-sm waves-effect waves-light red modal-trigger' href='#modalDeletar' onclick=EditarModal(" + '\'' + this.Id + '\',' + '\'' + this.Matricula.Id + '\',' + '\'' + moment(this.DataDeVencimento).format("YYYY-MM-DD") + '\',' + '\'' + '' + '\',' + '\'' + this.StatusDaMensalidade + '\',' + '\'' + 'Deletar' + '\',' + '\'' + this.Matricula.Nome.split(' ').toString() + '\',' + '\'' + this.Valor + '\',' + '\'' + this.DiasVencidos + '\',' + '\'' + '@Model.Juros' + '\',' + '\'' + this.GerarRecibo + '\'' + ")><i class='material-icons'>delete_forever</i></a>" +
                             "</td>" +
                         "</tr>"
                         );
@@ -434,7 +434,7 @@
                 //    valorDinheiro += data[i].Dinheiro;
                 //}
                 ativarEDesativar();
-   
+
                 $('#tabelaPagamento').DataTable();
              }
         });
@@ -463,7 +463,7 @@
                 valorStatusDaMensalidade = statusdamensalidade;
             valorPagamento = valor;
 
-            $('#Matricula' + model)[0].children[0].children[0].value = nomeMatricula;
+            $('#Matricula' + model)[0].children[0].children[0].value = nomeMatricula.replace(',', ' ');
 
             for (i = 0; i < $('#MatriculaDropDown' + model)[0].length; i++) {
                 if ($('#MatriculaDropDown' + model)[0].children[i].value == parseInt(Matricula)) {
@@ -522,7 +522,7 @@
             }
             else if (model === "Pagamento") {
                 //document.getElementById('gerarRecibo').checked
-                document.getElementById("pagarMensalidadeDescricao").innerText = "Pagar Mensalidade aluno: " + nomeMatricula;
+                document.getElementById("pagarMensalidadeDescricao").innerText = "Pagar Mensalidade aluno: " + nomeMatricula.replace(',', ' ');
             }
             else {
                 document.getElementById("deletarMensalidadeDescricao").innerText = "Tem certeza que deseja deletar a Mensalidade?";

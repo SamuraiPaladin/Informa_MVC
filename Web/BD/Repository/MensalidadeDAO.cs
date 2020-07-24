@@ -78,7 +78,7 @@ namespace Web.BD.Repository
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@DataInicio", mensalidade.DataInicial);
-                cmd.Parameters.AddWithValue("@DataFim", mensalidade.DataFinal);
+                cmd.Parameters.AddWithValue("@DataFim", mensalidade.DataFinal = mensalidade.DataFinal == new DateTime() ? DateTime.Now : mensalidade.DataFinal);
                 SqlDataReader sdr = cmd.ExecuteReader();
 
                 if (sdr.HasRows)

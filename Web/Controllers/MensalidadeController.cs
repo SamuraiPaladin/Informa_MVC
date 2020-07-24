@@ -63,7 +63,7 @@ namespace Web.Controllers
 
         private bool VerificaSeDataInicialEstaNula(Mensalidade mensalidade)
         {
-            return string.IsNullOrEmpty(mensalidade.DataInicial.ToString());
+            return string.IsNullOrEmpty(mensalidade.DataInicial.ToString()) || mensalidade.DataInicial == new DateTime();
         }
 
         public JsonResult Adicionar(Mensalidade Mensalidade)
