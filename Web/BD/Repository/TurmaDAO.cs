@@ -353,7 +353,7 @@ namespace Web.BD.Repository
                          ColaboradorId = @ColaboradorId and 
                            (@HorarioInicial   between HorarioInicial and HorarioFinal)
                              or @HorarioFinal between HorarioInicial and HorarioFinal
-                             and ( HorarioInicial >= @HorarioInicial and HorarioFinal<= @HorarioFinal)";
+                             and ( HorarioInicial >= @HorarioInicial and HorarioFinal<= @HorarioFinal) ";
 
             var result = false;
             using (var con = new SqlConnection(stringConexao))
@@ -373,13 +373,17 @@ namespace Web.BD.Repository
                     {
                         var turma = new Turma()
                         {
-                            DiaDaSemana = sdr["DiaDaSemana"].ToString()
+                            DiaDaSemana = sdr["DiaDaSemana"].ToString(),
+                            Id = Convert.ToInt32(sdr["Id"])
                         };
                         lista.Add(turma);
                     }
                 }
                 foreach (var item in lista)
                 {
+                    if (item.Id == entity.Id)
+                        break;
+
                     if (item.DiaDaSemana.Replace(" ", "").Split(',').Intersect(entity.DiaDaSemana.Replace(" ", "").Split(',')).Any())
                         return true;
                 }

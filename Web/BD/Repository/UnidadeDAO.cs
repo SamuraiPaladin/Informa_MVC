@@ -150,6 +150,17 @@ namespace Web.BD.Repository
             return GravarERetornarVerdadeiroOuFalse(entity, query, acao);
         }
 
+        public bool VerificarSeTemFilho(Unidade entity)
+        {
+            using (var con = new SqlConnection(stringConexao))
+            {
+                string query = @"SELECT * FROM Turmas
+                                 WHERE UnidadeId = (SELECT Id FROM Unidades WHERE Descricao = '" + entity.Descricao + "')";
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0 ? true : false;
+            }
+        }
 
         private bool GravarERetornarVerdadeiroOuFalse(Unidade entity, string query, int acao)
         {

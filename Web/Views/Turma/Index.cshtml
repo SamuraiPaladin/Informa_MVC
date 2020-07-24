@@ -558,7 +558,11 @@
                              case "Preenchimento obrigatório":
                                  M.toast({ html: dados, classes: 'rounded orange' });
                                  break;
+                              case "Horário inicial não pode ser maior que o final.":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
                               case "Horario inválido":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                              case "Professor já tem aula nesse horário.":
                                  M.toast({ html: dados, classes: 'rounded orange' });
                              break;
                              case true:

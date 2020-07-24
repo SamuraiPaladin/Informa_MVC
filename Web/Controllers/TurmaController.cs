@@ -101,7 +101,11 @@ namespace Web.Controllers
                 if (VerificaHorario(Turma.HorarioInicial, Turma.HorarioFinal))
                     return Json("Horário inicial não pode ser maior que o final.");
                 else
-                    return Json(dAO.Atualizar(Turma, TurmaEditar));
+                    if (VerificaSeExisteTurmaNesseHorarios(TurmaEditar))
+                        return Json($"Professor já tem aula nesse horário.");
+                    else
+                        return Json(dAO.Atualizar(Turma, TurmaEditar)); 
+
             }
         }
         public JsonResult Deletar(Turma Turma)
