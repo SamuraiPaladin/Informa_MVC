@@ -34,7 +34,7 @@ namespace Web.Controllers
                 {
 
                     Juros = dAOMensalidade.Juros(),
-                    //ListaMensalidade = dAOMensalidade.ListaMensalidade(),
+                    ListaMensalidade = dAOMensalidade.ListaMensalidade(),
                     ListaMatricula = dAOMensalidade.ReturnMensalidadeMatriculaLista(),
                     FormasDePagamentos = Enum.GetValues(typeof(EnumPaymentForms.PaymentForms)),
                     StatusDasMensalidades = Enum.GetValues(typeof(EnumPaymentStatus.PaymentStatus))
@@ -63,7 +63,7 @@ namespace Web.Controllers
 
         private bool VerificaSeDataInicialEstaNula(Mensalidade mensalidade)
         {
-            return string.IsNullOrEmpty(mensalidade.DataInicial.ToString());
+            return string.IsNullOrEmpty(mensalidade.DataInicial.ToString()) || mensalidade.DataInicial == new DateTime();
         }
 
         public JsonResult Adicionar(Mensalidade Mensalidade)
