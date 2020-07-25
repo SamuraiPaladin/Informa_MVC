@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web.BD.Interface;
 using Web.BD.Repository;
+using System.Web.Caching;
 
 namespace Web.Controllers
 {
@@ -18,7 +19,18 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             if (_serviceUsuario.ValidaUsuarioNoCache()) {
-                IList<Aula> aulasNaDataDeHoje = _service.AulasNaDataDeHoje();
+                var usuarioCache = (Usuario) new Cache()["DadosDoUsuario"];
+
+                IList<Aula> aulasNaDataDeHoje = null;
+
+                if (usuarioCache.PerfilUsuario == "Administrador")
+                {
+                    aulasNaDataDeHoje = _service.AulasNaDataDeHoje();
+                }
+                else
+                {
+                    aulasNaDataDeHoje = _service.AulasNaDataDeHojeColab(usuarioCache.IdColaborador);
+                }
                 if (aulasNaDataDeHoje.Count() < 1)
                 {
                     var listaDeAlunosParaPresencaAtual = _service.ListaDeAlunosParaPresencaAtual();

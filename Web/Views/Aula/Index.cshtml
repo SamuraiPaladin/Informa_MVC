@@ -14,7 +14,7 @@
         </div>
     </div>
 </nav>
-<input id="perfilLogado" value="@Cache.Get("DadosDoUsuario.PerfilUsuario")"/>
+<input id="perfilLogado" type="hidden" value="@Cache.Get("DadosDoUsuario.PerfilUsuario")"/>
 @Html.Partial("_TabelaTurmas", Model)
 @Html.Partial("_ModelEditar", Model)
 
@@ -26,7 +26,8 @@
                      type: "POST",
                      url: "@Url.Action("CarregarListaDeChamada", "Aula")",
                      data: { turmaId: turmaId },
-                     success: function (dados) {
+                     success: function (dados)
+                     {
                          if (dados.length > 0)
                          {
                              now = new Date;
