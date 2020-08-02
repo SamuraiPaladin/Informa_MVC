@@ -1,0 +1,423 @@
+﻿@model  Model.Entity.Matricula
+<head>
+    <style>
+        [type="checkbox"]:checked + span:not(.lever):before {
+            border-right: 2px solid #af2405;
+            border-bottom: 2px solid #af2405;
+        }
+    </style>
+</head>
+<div id="modalCadastrar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="flow-text center">CADASTRAR ALUNO</h4>
+        </div>
+        <br /><br />
+        <div class="col s12 l12">
+            <form class="col s12 l12">
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nome" type="text" class="validate">
+                    <label for="nome">Nome do Aluno</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="dd/mm/aaaa" type="date" id="datadenascimento" class="validate">
+                    <label for="datadenascimento">Data de Nascimento</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s6">
+                    <p>
+                        <label>
+                            <input id="menorDeIdade" type="checkbox" />
+                            <span>Menor de idade?</span>
+                        </label>
+                    </p>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s6">
+                    <p>
+                        <label>
+                            <input id="gerarNota" type="checkbox" />
+                            <span>Gerar nota?</span>
+                        </label>
+                    </p>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Nome do resposável, caso for menor de idade" type="text" id="resposavel" class="validate">
+                    <label for="resposavel">Responsável</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Grau de parentesco" type="text" id="parentesco" class="validate">
+                    <label for="parentesco">Grau de Parentesco</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Data Nascimento do Responsável" type="date" id="Nascimentoparentesco" class="validate">
+                    <label for="Nascimentoparentesco">Data Nascimento do Responsável</label>
+                </div>
+
+                <div class="input-field col s4">
+                    <input placeholder="Ex: 999.999.999-99" id="cpf" oninput="mascaraCPF(this)" type="text">
+                    <label for="cpf">CPF</label>
+                </div>
+
+                <div class="input-field col s4">
+                    <input placeholder="Ex: 99.999.999-9" id="rg" oninput="mascaraRG(this)" type="text">
+                    <label for="rg">RG</label>
+                </div>
+
+                <div class="input-field col s4">
+                    <input placeholder="Ex: email@email.com" id="email" type="email">
+                    <label for="email">E-mail</label>
+                </div>
+
+                <div class="input-field col s4">
+                    <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate" maxlength="11">
+                    <label for="telefone">Telefone</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Ex: 46361345, 84512574..." type="text" id="telefone2" class="validate">
+                    <label for="telefone2">Telefone 2</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Ex: 46361345, 84512574..." type="text" id="telefone3" class="validate">
+                    <label for="telefone3">Telefone 3</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Casa" id="contato" type="text" class="validate" maxlength="11">
+                    <label for="contato">Descrição Telefone</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Celular" type="text" id="contato2" class="validate">
+                    <label for="contato2">Descrição Telefone 2</label>
+                </div>
+
+                <!-- NOVO INPUT -->
+                <div class="input-field col s4">
+                    <input placeholder="Celular" type="text" id="contato3" class="validate">
+                    <label for="contato3">Descrição Telefone 3</label>
+                </div>
+
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cep" oninput="mascaraCEP(this)" type="text" class="validate" maxlength="9">
+                    <label for="cep">CEP</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate" maxlength="45" disabled>
+                    <label for="endereco">Endereco</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 4300..." id="numero" type="number" class="validate" maxlength="5">
+                    <label for="numero">Numero</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate" maxlength="30" disabled>
+                    <label for="bairro">Bairro</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: Poá, Suzano..." id="cidade" type="text" class="validate" maxlength="30" disabled>
+                    <label for="cidade">Cidade</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Ex: SP, MG..." id="estado" type="text" class="validate" disabled>
+                    <label for="estado">Estado</label>
+                </div>
+
+                <div id="modalCadastroAluno" class="modal">
+                    <div class="modal-content">
+                        <h4 class="flow-text center">Aluno Cadastrado!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a id="adicionar" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+            </form>
+            <br /><br />
+        </div>
+
+        <div class="col s12 l12">
+
+            <div class="col s12 l6">
+                <h4 class="flow-text center subtitleModal" style="margin-top:25px;">TURMAS DISPONÍVEIS</h4>
+            </div>
+        </div>
+
+        <table class="table highlight centered " id="tabelaAdicionar">
+            <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Tipo</th>
+                    <th>Alunos na Turma</th>
+                    <th>Professor</th>
+                    <th>Dia da Semana</th>
+                    <th>Horário Inícial</th>
+                    <th>Horário FInal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListaMatriculaTurma.Count == 0)
+                {
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                } else
+                {
+                    foreach (var item in Model.ListaMatriculaTurma)
+                    {
+                        <tr>
+                            <td class="left">
+                                <label>
+                                    <input type="checkbox" id="@item.Id" />
+                                    <span>@item.Descricao</span>
+                                </label>
+                            </td>
+                            <td>@item.Tipo</td>
+                            <td>@item.Quantidade</td>
+                            <td><strong>@item.Nome</strong></td>
+                            <td>@item.DiaDaSemana</td>
+                            <td>@item.HorarioInicial</td>
+                            <td>@item.HorarioFinal</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal-footer">
+        <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar(); geraPDF(); ">Cadastrar</a>
+    </div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
+
+<script>
+
+    let nomeMatriculado = '';
+    let rg = '';
+    let cpf = '';
+    let endereco = '';
+    let numero = '';
+    let bairro = '';
+    let cep = '';
+    let estado = '';
+    let cidade = '';
+
+    let docDefinition = '';
+
+    const geraPDF = () => {
+         nomeMatriculado = document.getElementById("nome").value;
+         rg = document.getElementById("rg").value;
+         cpf = document.getElementById("cpf").value;
+         endereco = document.getElementById("endereco").value;
+         numero = document.getElementById("numero").value;
+         bairro = document.getElementById("bairro").value;
+         cep = document.getElementById("cep").value;
+         estado = document.getElementById("estado").value;
+        cidade = document.getElementById("cidade").value;
+
+        docDefinition = {
+            content: [
+                {
+                    text: 'CONTRATO DE PRESTAÇÃO DE SERVIÇOS\n\n',
+                    style: 'title'
+                },
+                {
+                    text: [
+                        { text: 'I - PARTES CONTRATADA', fontSize: 13, bold: true },
+                        '\n\n',
+                    ],
+
+                },
+                {
+                    text: [
+                        { text: 'ESCOLA DE NATAÇÃO GOLFINHO, com sede em Poá, na Rua Deputado Paula Lima, nº 82 , Vila Julia, Poá, CEP 08551-110, no Estado São Paulo, inscrita no CNPJ sob o n° 33.724.382/0001-55.' },
+                        '\n\n\n',
+                    ]
+                },
+                {
+                    text: [
+                        { text: 'II - CONTRATANTE (CLIENTE)', fontSize: 13, bold: true },
+                        '\n\n',
+                    ]
+                },
+                {
+                    text: [
+                        'Nome: ',
+                        { text: `${nomeMatriculado}`, fontSize: 12, bold: true },
+                        ', portador do RG: ',
+                        { text: `${rg}`, fontSize: 12, bold: true },
+                        ', CPF: ',
+                        { text: `${cpf}`, fontSize: 12, bold: true },
+                        ', residente e domiciliado na ',
+                        { text: `${endereco}, ${numero}`, fontSize: 12, bold: true },
+                        ', bairro ',
+                        { text: `${bairro}`, fontSize: 12, bold: true },
+                        ', CEP:',
+                        { text: `${cep}`, fontSize: 12, bold: true },
+                        ' Cidade de ',
+                        { text: `${estado}`, fontSize: 12, bold: true },
+                        ', Estado de ',
+                        { text: `${cidade}`, fontSize: 12, bold: true },
+                        ' As partes identificadas acima têm, entre si, justo e acertado o presente Contrato de Prestação de Serviços, que se regerá pelas cláusulas a seguir.',
+                        '\n',
+                        'Referente ao aluno Matriculado:____________________________________________',
+                        '\n\n',
+                    ],
+
+                },
+                {
+                    text: [
+                        { text: 'III - OBJETO DO CONTRATO', fontSize: 13, bold: true },
+                        '\n',
+                    ]
+
+                },
+                {
+                    text: [
+                        { text: 'Cláusula 1ª.', fontSize: 13, bold: true },
+                        '\n\n',
+                        'O objeto do presente contrato é a prestação, pela ACADEMIA NATAÇÃO GOLFINHO, ao CLIENTE dos serviços de sessões coletivas de atividades de natação ou hidroginástica, estando com sua proposta em conformidade com o CREF/ CONFEF, através de seus profissionais e das aulas de atividade física. O CLIENTE, através do presente, está se matriculando na ESCOLA DE NATAÇÃO GOLFINHO, Para o período de (  )6 meses (  )1 ano, no curso de ______________________, cujos treinos ocorrerão no período da (M) (T) (N), nos dias da semana (segunda) (terça)(quarta) (quinta) (sábado) das ___:___ às ___:___ horas. Podendo ter desistência em 1 (UM) Mês do início do contrato.',
+                        '\n',
+                        'Parágrafo 1º.',
+                        '\n',
+                        'A direção da ACADEMIA não se recusa a manter um diálogo construtivo com o CLIENTE ou seus RESPONSÁVEIS que demonstre um verdadeiro interesse na melhoria da qualidade das aulas e no seu processo evolutivo.',
+                        '\n',
+                        'Parágrafo 2º.',
+                        '\n',
+                        'Mudanças eventuais no horário aqui estabelecido deverão ser avisadas ao contratante com no mínimo uma semana de antecedência.',
+                        '\n',
+                        { text: 'Cláusula 2ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'O cliente se obriga a observar, estrita e exclusivamente, as orientações dos profissionais da NATAÇÃO GOLFINHO para a prática das atividades físicas. A academia não se responsabiliza por danos físicos de qualquer natureza resultantes da inobservância do cliente a estas orientações.',
+                        '\n',
+                        { text: 'Cláusula 3ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Será concedida uma licença de afastamento de respectivamente 15 e 30 dias, SENDO, que a mensalidade deverá ser paga normalmente, com direito a reposição do período dentro de três meses após afastamento, NÃO usufruindo no final do contrato. Esta licença deverá ser formalizada junto à recepção da ESCOLA por escrito e com pelo menos 15 dias de antecedência.',
+                        '\n',
+                        { text: 'Cláusula 4ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'A Natação Golfinho, livre de quaisquer ônus para com o CLIENTE, poderá utilizar-se da sua imagem para fins exclusivos de divulgação da Natação Golfinho e suas atividades podendo, para tanto, reproduzi-la ou divulgá-la junto a Internet, jornais e todos os demais meios de comunicação pública ou privada.',
+                        '\n',
+                        'Parágrafo 1º.',
+                        '\n',
+                        'Em nenhuma hipótese poderá a imagem do CLIENTE ser utilizada de maneira contrária à moral ou aos bons costumes ou à ordem pública.',
+                        '\n',
+                        'Parágrafo 2º.',
+                        '\n',
+                        'O não comparecimento do CLIENTE às dependências da Natação golfinho, ora contratada, não exime o pagamento, tendo em vista a disponibilidade do serviço.',
+                        'Parágrafo 3º.',
+                        '\n',
+                        'No caso de menores, após o término das aulas, deverá o RESPONSÁVEL retirá-lo imediatamente.',
+                        { text: 'Cláusula 5ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Todo o regulamento interno da Natação Golfinho é adendo deste instrumento (vide anexo), possuindo força contratual;',
+                        '\n\n',
+                        { text: 'IV – REMUNERAÇÃO', fontSize: 13, bold: true },
+                        '\n',
+                        { text: 'Cláusula 6ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Pela prestação dos serviços, referentes ao período contratado conforme previsto na cláusula “1”, o CLIENTE pagará à Natação Golfinho a tempo e modo conforme opção feita pelo cliente.',
+                        '\n',
+                        'OPCOES',
+                        '\n',
+                        '(  ) Mensal____________',
+                        '\n',
+                        '(  ) Semestral ___________',
+                        '\n',
+                        '(  ) Anual ___________',
+                        '\n\n',
+                        { text: 'Cláusula 7ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'O CLIENTE/ RESPONSÁVEL se obriga a ressarcir a Natação Golfinho por qualquer dano causado por ele, por dolo ou culpa, até 48 horas após a constatação do evento e sua consequente.',
+                        '\n',
+                        { text: 'Cláusula 8ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Caso o CLIENTE venha solicitar trancamento de sua matrícula, durante a vigência deste contrato, por qualquer motivo, terá o mesmo que fazê-lo por escrito de próprio punho, justificando o motivo, caracterizando quebra de contrato, e a ESCOLA cobrará o valor equivalente a 1 (UMA) mensalidade sem qualquer desconto no valor de R$ 195,00 (Cento e Noventa e Cinco Reais).',
+                        '\n\n',
+                        { text: 'V – RENOVAÇÃO', fontSize: 13, bold: true },
+                        '\n',
+                        { text: 'Cláusula 9ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'Após o período discriminado na Cláusula 1ª, este contrato poderá ser renovado automaticamente, bastando, para tanto, que o (a) CLIENTE efetue o(s) pagamento(s) referente aos meses seguintes, como descritos na cláusula 6ª. e assim sucessivamente.',
+                        '\n',
+                        { text: 'VI – RESCISÃO', fontSize: 13, bold: true },
+                        '\n',
+                        { text: 'Cláusula 10ª.', fontSize: 13, bold: true },
+                        '\n',
+                        'O presente instrumento NÃO poderá ser rescindido a qualquer momento por qualquer das partes, visto tratar-se de CURSO LIVRE.',
+                        '\n',
+                        { text: 'PARÁGRAFO ÚNICO –', fontSize: 13, bold: true },
+                        '\n',
+                        'CASO O CLIENTE DESISTA EXPRESSAMENTE DO CONTRATO EM QUALQUER ÉPOCA, A ACADEMIA COBRARÁ O VALOR EQUIVALENTE A 1 (UMA) MENSALIDADE DO VALOR DE 195,00, CARACTERIZANDO, POR PARTE DO CLIENTE, QUEBRA DE CONTRATO. O NÃO PAGAMENTO DAS PARCELAS ASSUMIDAS NESTE CONTRATO É PASSIVEL DAS MEDIDAS  LEGAIS CABÍVEIS.',
+                        '\n',
+                        { text: 'VII – FORO', fontSize: 13, bold: true },
+                        '\n',
+                        { text: 'Cláusula 11ª.', fontSize: 13, bold: true },
+                        'As partes atribuem ao presente Contrato plena eficácia e força executiva e extrajudicial.',
+                        '\n',
+                        { text: 'Cláusula 12ª.', fontSize: 13, bold: true },
+                        '\n',
+                        ' Para dirimir quaisquer controvérsias originadas por este contrato, fica eleito o Fórum da Comarca em cuja jurisdição o CLIENTE/ RESPONSAVÉL tiver domicílio, arcando a parte vencida, em demanda judicial, com as custas processuais a que der causa e com os honorários advocatícios arbitrados do patrono da parte vencedora.',
+                        '\n',
+                        'Estou ciente de todas as propostas deste Contrato de Prestação de Serviços para o curso, dias e horários que escolhi, e assumo a validade e veracidade das cláusulas nele descritas. Declaro ainda estar em perfeitas condições de saúde, conhecendo e assumindo todos os riscos advindos da atividade física à minha pessoa ou àquele por quem me responsabilizo, não portando também nenhuma moléstia que possa prejudicar os demais frequentadores da Natação Golfinho.',
+                        '\n',
+                        'Por estarem assim justos e contratados, firmam o presente instrumento, em duas vias de igual teor, idôneas, rubricando todas as suas páginas.',
+                        '\n\n\n',
+                        '_____________________________, ______de______________________de________ (local) ',
+                        '\n\n\n\n',
+                        '____________________________________ __________________________________',
+                        '\n',
+                        'NOME DO CONTRATANTE                        NOME DO CONTRATADO',
+                    ]
+
+                },
+            ],
+            styles: {
+                title: {
+                    fontSize: 15,
+                    bold: true,
+                    alignment: 'center'
+                },
+
+            }
+        }
+    }
+
+    
+
+    const fazPDF = () => {
+        pdfMake.createPdf(docDefinition).open();
+    }
+
+</script>

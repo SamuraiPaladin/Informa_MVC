@@ -102,3 +102,18 @@ C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0
 C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.dll
 C:\Users\Diego Souza\Desktop\Projetos\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.pdb
 C:\Users\Guilherme\Desktop\Projetos\inForma\Model\obj\Debug\netstandard2.0\Model.csprojAssemblyReference.cache
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\Model.deps.json
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\Model.dll
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\Model.pdb
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.dll
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\System.Configuration.dll
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\System.Security.dll
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.xml
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\System.Configuration.xml
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\bin\Debug\netstandard2.0\System.Security.xml
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.csprojAssemblyReference.cache
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.AssemblyInfoInputs.cache
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.AssemblyInfo.cs
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.csproj.CopyComplete
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.dll
+C:\Users\Thauan Moser Doce\source\repos\inForma\Informa_MVC\Model\obj\Debug\netstandard2.0\Model.pdb

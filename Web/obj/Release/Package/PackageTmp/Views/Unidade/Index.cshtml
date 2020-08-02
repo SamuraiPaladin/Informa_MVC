@@ -3,28 +3,28 @@
 @{
     ViewData["Title"] = "Unidade";
 }
-<nav class="clean container">
-    <div class="nav-wrapper">
-        <div class="col s12">
-            <span class="left">
-                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-                <a href="#" class="breadcrumb">Cadastro</a>
-                <a href="@Url.Action("Index", "Unidade")" class="breadcrumb"><strong>Unidade</strong></a>
-            </span>
-        </div>
-    </div>
-</nav>
+    <nav class="clean" style="padding-right:2em; padding-left:2em; margin:1em">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <span class="left">
+                        <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                        <a href="#" class="breadcrumb">Cadastro</a>
+                        <a id="paginaUnidade" href="@Url.Action("Index", "Unidade")" class="breadcrumb"><strong>Unidade</strong></a>
+                    </span>
+                </div>
+            </div>
+    </nav>
 
 
-<div class="row container">
-    <a href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Unidade</a>
+<div class="row" style="padding-right:2em; padding-left:2em; margin:3em">
+    <a id="cadastrarUnidade" href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Unidade</a>
 
     <div id="modaCadastrar" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Cadastrar Unidade </h4>
+                <h4 class="flow-text center">CADASTRAR UNIDADE</h4>
             </div>
-
+            <br /><br />
 
             <div class="col s12 l12">
                 <form class="col s12 l12" id="formularioEditar">
@@ -69,6 +69,12 @@
                         <label for="estado">Estado</label>
                     </div>
 
+                    <!-- NOVO INPUT -->
+                    <div class="input-field col s6">
+                        <input placeholder="Ex: 2" id="jurosMensal" type="number" class="validate">
+                        <label for="jurosMensal">Juros Mensal</label>
+                    </div>
+
                     <div id="modalCadastroUnidade" class="modal">
                         <div class="modal-content">
                             <h4 class="flow-text center">Unidade Cadastrada!</h4>
@@ -86,63 +92,66 @@
 
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-            <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+            <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+            <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
         </div>
     </div>
 
 </div>
 
-@if (Model.Count > 0)
-{
-    <table class="table highlight container ">
-        <thead>
-            <tr>
-                <th>Descrição</th>
-                <th>Endereço</th>
-                <th>Número</th>
-                <th>CEP</th>
-                <th>Telefone</th>
-                <th>Bairro</th>
-                <th>Cidade</th>
-                <th>Estado</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+<div style="padding-right:2em; padding-left:2em; margin:3em">
+
+    @if (Model.Count > 0)
+    {
+        <table class="table highlight centered " id="tabelaCadastrar">
+            <thead>
                 <tr>
-                    <td>@item.Descricao</td>
-                    <td>@item.Endereco</td>
-                    <td>@item.Numero</td>
-                    <td>@item.CEP</td>
-                    <td>@item.Telefone</td>
-                    <td>@item.Bairro</td>
-                    <td>@item.Cidade</td>
-                    <td>@item.Estado</td>
-                    <td>
-                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
-        '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Editar')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
-        '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Deletar')"><i class="material-icons">delete_forever</i></a>
-                    </td>
+                    <th>Descrição</th>
+                    <th>Endereço</th>
+                    <th>Número</th>
+                    <th>CEP</th>
+                    <th>Telefone</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Descricao</td>
+                        <td>@item.Endereco</td>
+                        <td>@item.Numero</td>
+                        <td>@item.CEP</td>
+                        <td>@item.Telefone</td>
+                        <td>@item.Bairro</td>
+                        <td>@item.Cidade</td>
+                        <td>@item.Estado</td>
+                        <td>
+                            <a id="editarUnidade" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
+            '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Editar', '@item.JurosMensal')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a id="deletarUnidade" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Descricao', '@item.Endereco',
+            '@item.Numero', '@item.CEP','@item.Telefone', '@item.Bairro', '@item.Cidade', '@item.Estado', 'Deletar', '@item.JurosMensal')"><i class="material-icons">delete_forever</i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
 <div id="modalEditar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="editarUnidadeDescricao"></h4>
+            <h4 class="flow-text center" id="editarUnidadeDescricao"></h4>
         </div>
-
+        <br /><br />
 
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioEditar">
                 <div class="input-field col s6">
-                    <input placeholder="Ex: Osasco, Penha, Paulista" id="descricaoEditar" type="text" class="validate" maxlength="20">
+                    <input placeholder="Ex: Osasco, Penha, Paulista" id="descricaoEditar" type="text" class="validate" maxlength="20" disabled>
                     <label for="descricaoEditar">Nome da Unidade</label>
                 </div>
 
@@ -182,6 +191,12 @@
                     <label for="estadoEditar">Estado</label>
                 </div>
 
+                <!-- NOVO INPUT -->
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 2" id="jurosMensalEditar" type="number" class="validate">
+                    <label for="jurosMensalEditar">Juros Mensal</label>
+                </div>
+
                 <div id="modalCadastroUnidade" class="modal">
                     <div class="modal-content">
                         <h4 class="flow-text center">Unidade Cadastrada!</h4>
@@ -197,16 +212,18 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
+        <a id="fecharEditar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="editar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Editar()">Atualizar</a>
     </div>
 </div>
 
 <div id="modalDeletar" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="deletarUnidadeDescricao"></h4>
+            <h4 class="flow-text center" id="deletarUnidadeDescricao"></h4>
         </div>
+        <br /><br />
+
         <div class="col s12 l12">
             <form class="col s12 l12" id="formularioDeletar">
                 <div class="input-field col s6">
@@ -250,6 +267,12 @@
                     <label for="estadoDeletar">Estado</label>
                 </div>
 
+                <!-- NOVO INPUT -->
+                <div class="input-field col s6">
+                    <input placeholder="Ex: 2" id="jurosMensalDeletar" type="number" class="validate" readonly disabled>
+                    <label for="jurosMensalDeletar">Juros Mensal</label>
+                </div>
+
                 <div id="modalCadastroUnidade" class="modal">
                     <div class="modal-content">
                         <h4 class="flow-text center">Unidade Cadastrada!</h4>
@@ -265,8 +288,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
+        <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Deletar</a>
     </div>
 </div>
 
@@ -281,7 +304,8 @@
         let valorBairro;
         let valorCidade;
         let valorEstado;
-        function EditarModal(id, descricao, endereco, numero, cep, telefone, bairro, cidade, estado, model) {
+        let valorJuros;
+        function EditarModal(id, descricao, endereco, numero, cep, telefone, bairro, cidade, estado, model, juros) {
             valorId = id;
             valorDescricao = descricao;
             valorEndereco = endereco;
@@ -291,6 +315,7 @@
             valorBairro = bairro;
             valorCidade = cidade;
             valorEstado = estado;
+            valorJuros = juros;
             document.getElementById("descricao" + model).value = descricao;
             document.getElementById("endereco" + model).value = endereco;
             document.getElementById("numero" + model).value = numero;
@@ -299,6 +324,7 @@
             document.getElementById("bairro" + model).value = bairro;
             document.getElementById("cidade" + model).value = cidade;
             document.getElementById("estado" + model).value = estado;
+            document.getElementById("jurosMensal" + model).value = parseFloat(juros);
             if (model === "Editar") {
             document.getElementById("id" + model).value = id;
             document.getElementById("editarUnidadeDescricao").innerText = "Editar Unidade " + descricao;
@@ -306,10 +332,11 @@
                 document.getElementById("deletarUnidadeDescricao").innerText = "Tem certeza que deseja deletar a Unidade " + descricao +"?";
             }
         }
+
         function Deletar() {
             var unidade = {
                 Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
-                , Cidade: valorCidade, Estado: valorEstado};
+                , Cidade: valorCidade, Estado: valorEstado, JurosMensal: valorJuros };
             $(function () {
                  $.ajax({
                      dataType: "json",
@@ -330,14 +357,16 @@
             });
         });
         }
+
         function Editar() {
             var unidade = {
                 Id: valorId, Descricao: valorDescricao, Endereco: valorEndereco, Numero: valorNumero, CEP: valorCep, Telefone: valorTelefone, Bairro: valorBairro
-                , Cidade: valorCidade, Estado: valorEstado};
+                , Cidade: valorCidade, Estado: valorEstado, JurosMensal: valorJuros
+            };
             var unidadeEditar = {
                 Id: document.getElementById("idEditar").value, Descricao: document.getElementById("descricaoEditar").value, Endereco: document.getElementById("enderecoEditar").value, Numero: document.getElementById("numeroEditar").value,
                 CEP: document.getElementById("cepEditar").value, Telefone: document.getElementById("telefoneEditar").value, Bairro: document.getElementById("bairroEditar").value
-                , Cidade: document.getElementById("cidadeEditar").value, Estado: document.getElementById("estadoEditar").value};
+                , Cidade: document.getElementById("cidadeEditar").value, Estado: document.getElementById("estadoEditar").value, JurosMensal: document.getElementById("jurosMensalEditar").value};
             $(function () {
                  $.ajax({
                      dataType: "json",
@@ -360,6 +389,7 @@
             });
         });
         }
+
         function PesquisaCEPEditar() {
             let cep = document.getElementById('cepEditar').value;
              $(function () {
@@ -377,6 +407,7 @@
                 })
             });
         }
+
         function PesquisaCEP() {
             let cep = document.getElementById('cep').value;
              $(function () {
@@ -394,10 +425,11 @@
                 })
             });
         }
-         function Adicionar() {
+
+        function Adicionar() {
             var unidade = {
                 Descricao: document.getElementById("descricao").value, Endereco: document.getElementById("endereco").value, Numero: document.getElementById("numero").value, CEP: document.getElementById("cep").value,
-                Telefone: document.getElementById("telefone").value, Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value};
+                Telefone: document.getElementById("telefone").value, Bairro: document.getElementById("bairro").value, Cidade: document.getElementById("cidade").value, Estado: document.getElementById("estado").value, JurosMensal: document.getElementById("jurosMensal").value};
              $(function () {
                  $.ajax({
                      dataType: "json",
@@ -420,8 +452,9 @@
             });
         });
         }
-        $(document).ready(function(){
-          $('.modal').modal();
+
+        $(document).ready(function () {
+            $('#tabelaCadastrar').dataTable();
         });
     </script>
 

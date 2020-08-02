@@ -40,7 +40,7 @@ namespace Test
 
             PageObject.RegisterUnitScreen.NumeroTextBox("666");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
 
             PageObject.RegisterUnitScreen.FinalizarCadastrarButton();
 

@@ -1,0 +1,496 @@
+﻿@model Model.Entity.Mensalidade
+@{
+    ViewData["Title"] = "Alunos Inadimplentes";
+}
+
+<!-- BREADCRUMB -->
+<nav class="clean containerConfigurado">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <span class="left">
+                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="#" class="breadcrumb">Cadastro</a>
+                <a href="@Url.Action("Index", "Aluno")" class="breadcrumb"><strong>Alunos Inadimplentes</strong></a>
+            </span>
+        </div>
+    </div>
+</nav>
+
+<div class="containerConfigurado" id="tabelaGerenciaPagamento">
+    <table id="tabelaPagamento" class="highlight centered tabelaPagamento">
+        <thead>
+            <tr>
+                <th>Pagamento</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Data de Vencimento</th>
+                <th>Valor</th>
+                <th>Status Mensalidade</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var mensalidade in Model.ListaMensalidade)
+            {
+                <tr>
+                    <td class="enabledBotaoPagamento">
+                        <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id',
+        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@mensalidade.GerarRecibo.ToString()')"><i class="material-icons">attach_money</i></a>
+                    </td>
+                    <td>
+                        @mensalidade.Matricula.Nome
+                    </td>
+                    <td>
+                        @mensalidade.CPF
+                    </td>
+                    <td>
+                        @mensalidade.DataDeVencimento.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @mensalidade.Valor
+                    </td>
+                    <td class="statusStyle">
+                        @String.Join(" ", @System.Text.RegularExpressions.Regex.Split(mensalidade.StatusDaMensalidade, @"(?<!^)(?=[A-Z])"))
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+<div id="modalPagamento" class="modal">
+    <div class="modal-content" style="height:550px">
+        <div class="modal-header">
+            <h4 class="flow-text" id="pagarMensalidadeDescricao"></h4>
+        </div>
+
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioPagamento">
+                <!-- NOVO CAMPO!!! GERAR O RECIBO!!-->
+                <div class="input-field col s12">
+                    <p>
+                        <label>
+                            <input id="gerarRecibo" type="checkbox" checked="checked" />
+                            <span class="red-text">Gerar Recibo?</span>
+                        </label>
+                    </p>
+                </div>
+
+
+
+                <div disabled id="MatriculaPagamento" class="input-field col s12">
+                    <select disabled id="MatriculaDropDownPagamento">
+                        @foreach (var item in Model.ListaMatricula)
+                        {
+                            <option value="@item.Id">@item.Nome</option>
+                        }
+                    </select>
+                    <label>Matricula</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <label for="valor">Valor da Mensalidade</label>
+                    <input disabled type="text" id="valorSerPago" class="validate" placeholder="R$250,00">
+                </div>
+
+                <div class="input-field col s6">
+                    <label for="valor">Valor do Juros</label>
+                    <input disabled type="text" id="valorJuros" class="validate" placeholder="">
+                </div>
+
+                <div class="input-field col s12">
+
+                    <label for="valor" id="labelValorAPagar">Valor</label>
+                    <br />
+                    <input disabled min='1' type="text" id="valorPagamento" class="validate" onKeyPress="return(moeda(this,'.',',',event))">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="valor">Valor Pago</label>
+                    <br />
+                    <input type="text" id="valorPago" class="validate">
+                </div>
+
+                <div class="input-field col s6">
+                    <label min='2020-01-01' max='2099-12-31' for="diaDeVencimentoPagamento">Data de Vencimento:</label>
+                    <br />
+                    <input disabled type="date" id="diaDeVencimentoPagamento" name="datadevencimento">
+                </div>
+
+                <div id="formaPagamento" class="input-field col s6">
+                    <br />
+                    <select id="formaDropDownPagamento">
+
+                        <option disabled selected value="">Selecione a forma de pagamento</option>
+                        @foreach (var item in Model.FormasDePagamentos)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    <label>Forma de pagamento</label>
+                </div>
+
+
+
+                <div id="modalPagamentoMensalidade" class="modal">
+                    <div class="modal-content">
+
+                        <h4 class="flow-text center">Mensalidade Paga!</h4>
+                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="{redirect()}">sair</a>
+                    </div>
+                </div>
+                <input id="idEditar" style="display: none;" />
+
+            </form>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a id="fecharPagar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="pagar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Pagar(); montaRecibo();">PAGAR</a>
+    </div>
+</div>
+
+@section scripts{
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
+    <script>
+        let valorId;
+        let valorMatricula;
+        let valorModalidade;
+        let valorTurma;
+        let valorVencimento;
+        let valorFormaDePagamento;
+        let valorStatusDaMensalidade;
+        let valorGerarRecibo;
+
+
+        function EditarModal(id, Matricula, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, valor, diasVencidos, juros, gerarRecibo) {
+
+            valorId = id;
+            valorMatricula = Matricula;
+            //valorModalidade = modalidade;
+            //valorTurma = turma;
+            valorVencimento = datadevencimento;
+            valorFormaDePagamento = formadepagamento;
+            valorStatusDaMensalidade = statusdamensalidade;
+            valorPagamento = valor;
+
+
+            $('#Matricula' + model)[0].children[0].children[0].value = nomeMatricula;
+
+            for (i = 0; i < $('#MatriculaDropDown' + model)[0].length; i++) {
+                if ($('#MatriculaDropDown' + model)[0].children[i].value == parseInt(Matricula)) {
+                    $('#MatriculaDropDown' + model)[0].children[i].selected = true;
+                }
+            }
+
+            //document.getElementById('modalidadeDropDown' + model).text = tipomodalidade;
+            //document.getElementById('modalidadeDropDown' + model).ModalidadeId = modalidade;
+            if (model === 'Pagamento') {
+                valorGerarRecibo = gerarRecibo;
+                document.getElementById("gerarRecibo").checked = JSON.parse(valorGerarRecibo.toLowerCase());
+                if (diasVencidos > 0) {
+                    var valorDivididoPeloJuros = parseInt(valorPagamento) * (3 / 100);
+                    var valorPorDia = valorDivididoPeloJuros / 30;
+                    var calculoDiasDeAtraso = valorPorDia * diasVencidos;
+                    var resultado = calculoDiasDeAtraso + parseFloat(valorPagamento.replace(',', '.'));
+
+                    document.getElementById('valorSerPago').value = valorPagamento.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+                    document.getElementById('valorJuros').value = calculoDiasDeAtraso.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+                    document.getElementById('valorPago').value = resultado.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    document.getElementById('valor' + model).value = resultado.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    document.getElementById('labelValorAPagar').innerHTML = 'Valor com juros';
+                } else {
+                    document.getElementById('labelValorAPagar').innerHTML = 'Valor';
+                    document.getElementById('valor' + model).value = valorPagamento;
+                }
+            } else {
+                document.getElementById('labelValorAPagar').innerHTML = 'Valor';
+                document.getElementById('valor' + model).value = valorPagamento;
+            }
+
+            //document.getElementById('turmaDropDown' + model).text = descricao;
+            //document.getElementById('turmaDropDown' + model).TurmaId = turma;
+
+            if (document.getElementById('formaDropDown' + model) != null && formadepagamento != " " && formadepagamento != "") {
+                document.getElementById('formaDropDown' + model).text = formadepagamento;
+            }
+            else if (model == "Pagamento") {
+                document.getElementById('formaDropDown' + model).text = "Selecione a forma de pagamento"
+            }
+
+
+            if (document.getElementById('statusDropDown' + model) != null) {
+                document.getElementById('statusDropDown' + model).text = statusdamensalidade.split(/(?=[A-Z])/).toString().replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ').replace(',', ' ');
+            }
+
+            if (model != "Pagamento") {
+                document.getElementById('diaDeVencimento' + model).value = datadevencimento.split('-')[2];
+            }
+            else {
+                document.getElementById('diaDeVencimento' + model).value = datadevencimento;
+            }
+
+            if (model === "Editar") {
+                document.getElementById("id" + model).value = id;
+                document.getElementById("editarMensalidadeDescricao").innerText = "Editar Mensalidade";
+            }
+            else if (model === "Pagamento") {
+                //document.getElementById("id" + model).value = id;
+                document.getElementById("pagarMensalidadeDescricao").innerText = "Pagar Mensalidade";
+            }
+            else {
+                document.getElementById("deletarMensalidadeDescricao").innerText = "Tem certeza que deseja deletar a Mensalidade?";
+            }
+        }
+
+        function editaFormaSelecionado(formadepagamento, model) {
+            document.getElementById('formaDropDown' + model).text = formadepagamento;
+        }
+
+        function Pagar() {
+            var mensalidade = {
+                Id: valorId,
+                MatriculaId: valorMatricula,
+                DataDeVencimento: valorVencimento,
+                FormaDePagamento: valorFormaDePagamento,
+                StatusDaMensalidade: valorStatusDaMensalidade,
+                Valor: valorPagamento
+            };
+
+            var mensalidadeEditar = {
+                Id: valorId,
+                MatriculaId: valorMatricula,
+                DataDeVencimento: valorVencimento,
+                FormaDePagamento: $('#formaDropDownPagamento').val() == null ? "Debito" : $('#formaDropDownPagamento').val(),
+                StatusDaMensalidade: 'Pago',
+                Valor: document.getElementById("valorPago").value != "" ? document.getElementById("valorPago").value : document.getElementById('valorPagamento').value,
+                EditarTodasMensalidades: false,
+                Dia: valorVencimento.split('-')[2],
+                GerarRecibo: document.getElementById("gerarRecibo").checked
+            };
+
+            $(function () {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Mensalidade")",
+                     data: { mensalidade: mensalidade, mensalidadeEditar, mensalidadeEditar },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                             break;
+                             case true:
+                                 M.toast({ html: 'Mensalidade paga com sucesso!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             default:
+                         }
+                }
+            });
+        });
+        }
+        $(document).ready(function () {
+            $('#tabelaPagamento').DataTable();
+        });
+
+
+        function setarStatus() {
+
+            for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
+                var status = document.getElementsByClassName('statusStyle')[i].innerText;
+
+                switch (status) {
+                    case 'Pago':
+                        document.getElementsByClassName('statusStyle')[i].style.color = "#139E26";
+                        document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
+                        break;
+                    case 'Em Haver':
+                        document.getElementsByClassName('statusStyle')[i].style.color = "#F68300";
+                        break;
+                    case 'Pago Com Atraso':
+                        document.getElementsByClassName('statusStyle')[i].style.color = "#19DF33";
+                        document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
+                        break;
+                    case 'Vencido':
+                        document.getElementsByClassName('statusStyle')[i].style.color = "red";
+                        //document.getElementsByClassName('enabledBotaoPagamento')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].children[0].style.backgroundColor = "";
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[0].setAttribute("disabled", "disabled");
+                        //document.getElementsByClassName('enabledDeletarEditar')[i].children[1].setAttribute("disabled", "disabled");
+                        break;
+                    case 'Proximo Da Data De Vencimento':
+                        document.getElementsByClassName('statusStyle')[i].style.color = "#DCE224";
+                        break;
+                }
+            }
+
+        }
+
+        $(document).ready(function () {
+            setarStatus();
+            var buttons = document.getElementsByClassName("paginate_button page-item");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", setarStatus);
+            }
+        });
+
+        //$(document).ready(function () {
+        //    var month = new Date().getMonth() + 1;
+        //    switch (month) {
+        //        case 1:
+        //            document.getElementById("mes").innerHTML = "Janeiro";
+        //            break;
+        //        case 2:
+        //            document.getElementById("mes").innerHTML = "Fevereiro";
+        //            break;
+        //        case 3:
+        //            document.getElementById("mes").innerHTML = "Março";
+        //            break;
+        //        case 4:
+        //            document.getElementById("mes").innerHTML = "Abril";
+        //            break;
+        //        case 5:
+        //            document.getElementById("mes").innerHTML = "Maio";
+        //            break;
+        //        case 6:
+        //            document.getElementById("mes").innerHTML = "Junho";
+        //            break;
+        //        case 7:
+        //            document.getElementById("mes").innerHTML = "Julho";
+        //            break;
+        //        case 8:
+        //            document.getElementById("mes").innerHTML = "Agosto";
+        //            break;
+        //        case 9:
+        //            document.getElementById("mes").innerHTML = "Setembro";
+        //            break;
+        //        case 10:
+        //            document.getElementById("mes").innerHTML = "Outubro";
+        //            break;
+        //        case 11:
+        //            document.getElementById("mes").innerHTML = "Novembro";
+        //            break;
+        //        case 12:
+        //            document.getElementById("mes").innerHTML = "Dezembro";
+        //            break;
+        //    }
+        //});
+        function moeda(a, e, r, t) {
+            let n = ""
+                , h = j = 0
+                , u = tamanho2 = 0
+                , l = ajd2 = ""
+                , o = window.Event ? t.which : t.keyCode;
+            if (13 == o || 8 == o)
+                return !0;
+            if (n = String.fromCharCode(o),
+                -1 == "0123456789".indexOf(n))
+                return !1;
+            for (u = a.value.length,
+                h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+                ;
+            for (l = ""; h < u; h++)
+                -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+            if (l += n,
+                0 == (u = l.length) && (a.value = ""),
+                1 == u && (a.value = "0" + r + "0" + l),
+                2 == u && (a.value = "0" + r + l),
+                u > 2) {
+                for (ajd2 = "",
+                    j = 0,
+                    h = u - 3; h >= 0; h--)
+                    3 == j && (ajd2 += e,
+                        j = 0),
+                        ajd2 += l.charAt(h),
+                        j++;
+                for (a.value = "",
+                    tamanho2 = ajd2.length,
+                    h = tamanho2 - 1; h >= 0; h--)
+                    a.value += ajd2.charAt(h);
+                a.value += r + l.substr(u - 2, u)
+            }
+            return !1
+        }
+
+        const geraRecibo = () => {
+            pdfMake.createPdf(docDefinition).open();
+        }
+
+
+        function verificarData() {
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Setembro", "Dezembro"];
+            var dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
+
+            var dayNome = dias[dateObj.getDay()];
+            month = meses[dateObj.getMonth()];
+
+            newdate = dayNome + ", " + day + " de " + month;
+            return newdate;
+        }
+
+        const montaRecibo = () => {
+
+            nomeMatricula = $('#MatriculaPagamento')[0].children[0].children[0].value;
+            valorSerPago = document.getElementById('valorPago').value != null ? document.getElementById('valorPago').value : document.getElementById('valorPagamento').value;
+            formaPagamento = document.getElementById('formaPagamento').children[1].children[0].value != "Selecione a forma de pagamento" ? document.getElementById('formaPagamento').children[1].children[0].value : "Debito";
+
+            docDefinition = {
+                content: [
+                    {
+                        text: 'RECIBO DE PAGAMENTO DE MENSALIDADE\n\n',
+                        style: 'title'
+                    },
+                    {
+                        text: [
+                            'Recebemos de ',
+                            { text: `${nomeMatricula}`, fontSize: 13, bold: true },
+                            ' a quantia de ',
+                            {
+                                text: `${valorSerPago}`, fontSize: 13, bold: true
+                            },
+                            ' referente a mensalidade da ',
+                            { text: 'NATACAO GOLFINHO', fontSize: 13, bold: true },
+                            ' pago em formato de ',
+                            { text: `${formaPagamento}`, fontSize: 13, bold: true },
+                            '\n\n\n',
+                            `Pago em `,
+                            { text: `${verificarData()}`, fontSize: 13, bold: true },
+
+                        ],
+
+                    },
+
+                ],
+                styles: {
+                    title: {
+                        fontSize: 15,
+                        bold: true,
+                        alignment: 'center'
+                    },
+
+                }
+            }
+            geraRecibo();
+        }
+    </script>
+}

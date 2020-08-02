@@ -1,0 +1,38 @@
+﻿@model  Model.Entity.Matricula
+
+<div id="modalDeletar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="flow-text center" id="deletarModalCabecalho"></h4>
+        </div>
+
+        <div class="col s12 l12">
+            <div class="col s12 l4">
+                <p class="center">
+                    <strong style="font-weight:bold">Aluno</strong>
+                    <br />
+                    <label id="deletarModalNome">117979</label>
+                </p>
+            </div>
+            <div class="col s12 l4">
+                <p class="center">
+                    <strong style="font-weight:bold">RG</strong>
+                    <br />
+                    <label id="deletarModalRG"></label>
+                </p>
+            </div>
+            <div class="col s12 l4">
+                <p class="center">
+                    <strong style="font-weight:bold">CPF</strong>
+                    <br />
+                    <label id="deletarModalCPF"></label>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a id="fecharDeletar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="deletar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">desativar</a>
+    </div>
+</div>

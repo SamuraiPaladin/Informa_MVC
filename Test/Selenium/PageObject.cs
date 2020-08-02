@@ -1790,7 +1790,7 @@ namespace Test
             {
                 int count = 0;
                 string Text = "";
-                while (!Text.Equals(Unidade))
+                while (Text.Equals(""))
                 {
                     try
                     {
@@ -1804,7 +1804,300 @@ namespace Test
                         Assert.False(count > 3, "Descrição da Falha: " + e);
                     }
                 }
+            }
+
+            public static void SelecionaMenorIdadeButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("menorDeIdade"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void SelecionaGerarNotaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("gerarNota"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+
+            public static void ResponsavelTextBox(String Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("resposavel"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
                 Assert.Contains(Unidade, Text);
+            }
+
+            public static void GrauParentescoResponsavelTextBox(String Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("parentesco"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void DataNascimentoResponsavel(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (Text.Equals(""))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("Nascimentoparentesco"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void CPFResponsavel(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cpf"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void RgResponsavel(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("rg"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void EmailResponsavel(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("email"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void TelefoneResponsavel(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("telefone"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void DescricaoTelefoneResponsavel(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("contato"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void CEPResponsavel(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cep"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void NumeroResponsavel(string Unidade)
+            {
+                int count = 0;
+                string Text = "";
+                while (!Text.Equals(Unidade))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("numero"));
+                        Element.SendKeys(Unidade);
+                        Text = Element.GetAttribute("value");
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+                Assert.Contains(Unidade, Text);
+            }
+
+            public static void SelecionaAulaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.XPath("//*[@id=\"15\"]"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
+            }
+
+            public static void FinalizarCadastroTurmaButton()
+            {
+                int count = 0;
+                Boolean clicked = false;
+                while (clicked.Equals(false))
+                {
+                    try
+                    {
+                        IWebElement Element = Utilities.driver.FindElement(By.Id("cadastrar"));
+                        IJavaScriptExecutor executor = (IJavaScriptExecutor)Utilities.driver;
+                        executor.ExecuteScript("arguments[0].click();", Element);
+                        clicked = true;
+                    }
+                    catch (Exception e)
+                    {
+                        count = count + 1;
+                        Assert.False(count > 3, "Descrição da Falha: " + e);
+                    }
+                }
             }
 
 

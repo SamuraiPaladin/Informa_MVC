@@ -16,7 +16,7 @@ namespace Test.Selenium.Matricula
 		public static Boolean AguardaModalCadastro()
 		{
 			int aux = 0;
-			while (Utilities.driver.FindElement(By.Id("modaCadastrar")).Displayed.Equals(false))
+			while (Utilities.driver.FindElement(By.Id("modalCadastrar")).Displayed.Equals(false))
 			{
 				Thread.Sleep(1000);
 				Assert.False(aux == 5, "Sistema não exibiu modal de Cadastro");

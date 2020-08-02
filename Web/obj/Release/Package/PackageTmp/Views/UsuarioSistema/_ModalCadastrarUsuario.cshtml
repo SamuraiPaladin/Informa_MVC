@@ -1,0 +1,53 @@
+﻿@model IList<Model.Entity.Colaborador>
+<div id="cadastrarUsuario" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="flow-text center">CADASTRAR USUARIO</h4>
+        </div>
+        <br /><br />
+
+        <div class="col s12 l12">
+            <form class="col s12 l12" id="formularioAdicionar">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex:Diego, David..." id="nome" type="text" class="validate">
+                        <label for="funcao">Nome do Usuario</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="**********************" id="senha" type="password" class="validate" />
+                        <label for="senha">Digite a sua Senha</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select id="perfilUsuario">
+                            <option value="" disabled selected>Escolha o nivel de acesso</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Basico">Basico</option>
+                        </select>
+                        <label>Nivel de Acesso</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="usuarioCadastrado">
+                            <option value="" disabled selected>Escolha o nivel de acesso</option>
+                            @foreach (var item in Model)
+                            {
+                        <option value="@item.Id">@item.Nome</option>
+                            }
+                        </select>
+                        <label>Nivel de Acesso</label>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a id="fecharCadastrar" href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
+        <a id="cadastrar" class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
+    </div>
+</div>
+

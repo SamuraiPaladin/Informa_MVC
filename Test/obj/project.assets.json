@@ -810,20 +810,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Guilherme\\.nuget\\packages\\": {}
+    "C:\\Users\\Thauan Moser Doce\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Guilherme\\Desktop\\Projetos\\inForma\\Test\\Test.csproj",
+      "projectUniqueName": "C:\\Users\\Thauan Moser Doce\\source\\repos\\inForma\\Informa_MVC\\Test\\Test.csproj",
       "projectName": "Test",
-      "projectPath": "C:\\Users\\Guilherme\\Desktop\\Projetos\\inForma\\Test\\Test.csproj",
-      "packagesPath": "C:\\Users\\Guilherme\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Guilherme\\Desktop\\Projetos\\inForma\\Test\\obj\\",
+      "projectPath": "C:\\Users\\Thauan Moser Doce\\source\\repos\\inForma\\Informa_MVC\\Test\\Test.csproj",
+      "packagesPath": "C:\\Users\\Thauan Moser Doce\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Thauan Moser Doce\\source\\repos\\inForma\\Informa_MVC\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\Guilherme\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Thauan Moser Doce\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
