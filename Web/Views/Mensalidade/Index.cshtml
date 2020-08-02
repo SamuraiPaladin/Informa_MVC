@@ -15,7 +15,7 @@
     </div>
 </nav>
 
-
+@Html.Partial("_CabecalhoPesquisa")
 
 <div class="row containerConfigurado">
     <a id="cadastrarMensalidade" href="#modaCadastrar" class="btn waves-effect waves-light right modal-trigger">Cadastrar Mensalidade</a>
@@ -26,7 +26,6 @@
                 <h4 class="flow-text center">CADASTRAR MENSALIDADE</h4>
             </div>
             <br /><br />
-
             <div class="col s12 l12">
                 <form class="col s12 l12" id="formularioEditar">
 
@@ -89,52 +88,55 @@
     </div>
 
     <div class="row" id="tabelaGerenciaPagamento">
-        <table id="tabelaPagamento" class="highlight centered tabelaPagamento">
-            <thead>
-                <tr>
-                    <th>Pagamento</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Data de Vencimento</th>
-                    <th>Valor</th>
-                    <th>Status Mensalidade</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach (var mensalidade in Model.ListaMensalidade)
-                {
+        @if (Model.ListaMensalidade != null)
+        {
+            <table id="tabelaPagamento" class="highlight centered tabelaPagamento">
+                <thead>
                     <tr>
-                        <td class="enabledBotaoPagamento">
-                            <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id',
-        '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@mensalidade.GerarRecibo.ToString()')"><i class="material-icons">attach_money</i></a>
-                        </td>
-                        <td>
-                            @mensalidade.Matricula.Nome
-                        </td>
-                        <td>
-                            @mensalidade.CPF
-                        </td>
-                        <td>
-                            @mensalidade.DataDeVencimento.ToString("dd/MM/yyyy")
-                        </td>
-                        <td>
-                            @mensalidade.Valor
-                        </td>
-                        <td class="statusStyle">
-                            @String.Join(" ", @System.Text.RegularExpressions.Regex.Split(mensalidade.StatusDaMensalidade, @"(?<!^)(?=[A-Z])"))
-                        </td>
-                        <td class="enabledDeletarEditar">
-                            <a id="editarMensalidade" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                            <a id="deletarMensalidade" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"><i class="material-icons">delete_forever</i></a>
-                        </td>
+                        <th>Pagamento</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Data de Vencimento</th>
+                        <th>Valor</th>
+                        <th>Status Mensalidade</th>
+                        <th>Ações</th>
                     </tr>
-                }
+                </thead>
 
+                <tbody id="Grid">
+                    @foreach (var mensalidade in Model.ListaMensalidade)
+                    {
+                        <tr>
+                            <td class="enabledBotaoPagamento">
+                                <a class="btn-floating btn-sm waves-effect waves-light green modal-trigger" href="#modalPagamento" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id',
+            '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Pagamento', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@mensalidade.GerarRecibo.ToString()')"><i class="material-icons">attach_money</i></a>
+                            </td>
+                            <td>
+                                @mensalidade.Matricula.Nome
+                            </td>
+                            <td>
+                                @mensalidade.CPF
+                            </td>
+                            <td>
+                                @mensalidade.DataDeVencimento.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @mensalidade.Valor
+                            </td>
+                            <td class="statusStyle">
+                                @String.Join(" ", @System.Text.RegularExpressions.Regex.Split(mensalidade.StatusDaMensalidade, @"(?<!^)(?=[A-Z])"))
+                            </td>
+                            <td class="enabledDeletarEditar">
+                                <a id="editarMensalidade" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Editar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                                <a id="deletarMensalidade" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@mensalidade.Id', '@mensalidade.Matricula.Id', '@mensalidade.DataDeVencimento.ToString("yyyy-MM-dd")', '@mensalidade.FormaDePagamento','@mensalidade.StatusDaMensalidade', 'Deletar', '@mensalidade.Matricula.Nome', '@mensalidade.Valor', '@mensalidade.DiasVencidos', '@Model.Juros', '@Model.GerarRecibo')"><i class="material-icons">delete_forever</i></a>
+                            </td>
+                        </tr>
+                    }
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+
+        }
     </div>
 </div>
 
@@ -368,6 +370,9 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/pdfmake.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.65/vfs_fonts.js'></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+
 @section scripts{
     <script>
 
@@ -380,6 +385,75 @@
         let valorStatusDaMensalidade;
         let valorGerarRecibo;
 
+        function PesquisarDados()
+        {
+
+            var table = $('#tabelaPagamento').DataTable();
+
+            table.destroy();
+
+        var mensalidade = {
+            Datainicial: document.getElementById('dataInicial').value,
+            Datafinal: document.getElementById('dataFinal').value
+        }
+        $.ajax({
+                   type: "POST",
+            url: "@Url.Action("ConsultaTabela", "Mensalidade")",
+            data: { mensalidade: mensalidade },
+            success: function (data) {
+                       //Coloque aqui o local onde a View deverá ocupar
+                       $("#Grid tr").remove();
+                $(data).each(function () {
+                    debugger;
+                    $("#Grid").append("<tr><td class='enabledBotaoPagamento'><a class='btn-floating btn-sm waves-effect waves-light green modal-trigger' href='#modalPagamento' onclick=EditarModal(" + '\'' + this.Id + '\',' + '\'' + this.Matricula.Id + '\',' + '\'' + moment(this.DataDeVencimento).format("YYYY-MM-DD") + '\',' + '\'' + '' + '\',' + '\'' + this.StatusDaMensalidade + '\',' + '\'' + 'Pagamento' + '\',' + '\'' + this.Matricula.Nome.split(' ').toString() + '\',' + '\'' + this.Valor + '\',' + '\'' + this.DiasVencidos + '\',' + '\'' + '@Model.Juros' + '\',' + '\'' + this.GerarRecibo + '\'' + ")><i class='material-icons'>attach_money</i></a></td><td>" +
+                                this.Matricula.Nome +
+                            "</td>" +
+                            "<td>" +
+                                this.CPF +
+                            "</td>" +
+                            "<td>" +
+                        moment(this.DataDeVencimento).format("YYYY-MM-DD") +
+                            "</td>" +
+                            "<td>" +
+                                this.Valor +
+                            "</td>" +
+                            "<td class='statusStyle'>" +
+                        this.StatusDaMensalidade.split(/(?=[A-ZÀ-Ú])/).toString().replace(',', ' ') +
+                            "</td>" +
+                            "<td class='enabledDeletarEditar'>" +
+                                "<a id='editarMensalidade' class='btn-floating btn-sm waves-effect waves-light yellow modal-trigger' href='#modalEditar' onclick=EditarModal(" + '\'' + this.Id + '\',' + '\'' + this.Matricula.Id + '\',' + '\'' + moment(this.DataDeVencimento).format("YYYY-MM-DD") + '\',' + '\'' + '' + '\',' + '\'' + this.StatusDaMensalidade + '\',' + '\'' + 'Editar' + '\',' + '\'' + this.Matricula.Nome.split(' ').toString() + '\',' + '\'' + this.Valor + '\',' + '\'' + this.DiasVencidos + '\',' + '\'' + '@Model.Juros' + '\',' + '\'' + this.GerarRecibo + '\'' + ")><i class='material-icons' style='background-color:#f79f00'>create</i></a>" +
+                        "<a id='deletarMensalidade' class='btn-floating btn-sm waves-effect waves-light red modal-trigger' href='#modalDeletar' onclick=EditarModal(" + '\'' + this.Id + '\',' + '\'' + this.Matricula.Id + '\',' + '\'' + moment(this.DataDeVencimento).format("YYYY-MM-DD") + '\',' + '\'' + '' + '\',' + '\'' + this.StatusDaMensalidade + '\',' + '\'' + 'Deletar' + '\',' + '\'' + this.Matricula.Nome.split(' ').toString() + '\',' + '\'' + this.Valor + '\',' + '\'' + this.DiasVencidos + '\',' + '\'' + '@Model.Juros' + '\',' + '\'' + this.GerarRecibo + '\'' + ")><i class='material-icons'>delete_forever</i></a>" +
+                            "</td>" +
+                        "</tr>"
+                        );
+                 });
+
+                //for (var i = 0; i < data.length; i++) {
+                //    valorDebito += data[i].Debito;
+                //    valorCredito += data[i].Credito;
+                //    valorDinheiro += data[i].Dinheiro;
+                //}
+                ativarEDesativar();
+
+                $('#tabelaPagamento').DataTable();
+             }
+        });
+    }
+
+        $(document).ready(function () {
+            var date = new Date();
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+
+            var today = year + "-" + month + "-" + day;
+            document.getElementById("dataInicial").value = today;
+        });
+
         function EditarModal(id, Matricula, datadevencimento, formadepagamento, statusdamensalidade, model, nomeMatricula, valor, diasVencidos, juros, gerarRecibo) {
 
                 valorId = id;
@@ -389,7 +463,7 @@
                 valorStatusDaMensalidade = statusdamensalidade;
             valorPagamento = valor;
 
-            $('#Matricula' + model)[0].children[0].children[0].value = nomeMatricula;
+            $('#Matricula' + model)[0].children[0].children[0].value = nomeMatricula.replace(',', ' ');
 
             for (i = 0; i < $('#MatriculaDropDown' + model)[0].length; i++) {
                 if ($('#MatriculaDropDown' + model)[0].children[i].value == parseInt(Matricula)) {
@@ -448,7 +522,7 @@
             }
             else if (model === "Pagamento") {
                 //document.getElementById('gerarRecibo').checked
-                document.getElementById("pagarMensalidadeDescricao").innerText = "Pagar Mensalidade aluno: " + nomeMatricula;
+                document.getElementById("pagarMensalidadeDescricao").innerText = "Pagar Mensalidade aluno: " + nomeMatricula.replace(',', ' ');
             }
             else {
                 document.getElementById("deletarMensalidadeDescricao").innerText = "Tem certeza que deseja deletar a Mensalidade?";
@@ -797,9 +871,9 @@
         }
 
         const montaRecibo = () => {
-  
-            nomeMatricula = $('#MatriculaPagamento')[0].children[0].children[0].value;   
-            valorSerPago = document.getElementById('valorPago').value != null ? document.getElementById('valorPago').value : document.getElementById('valorPagamento').value;         
+
+            nomeMatricula = $('#MatriculaPagamento')[0].children[0].children[0].value;
+            valorSerPago = document.getElementById('valorPago').value != null ? document.getElementById('valorPago').value : document.getElementById('valorPagamento').value;
             formaPagamento = document.getElementById('formaPagamento').children[1].children[0].value != "Selecione a forma de pagamento" ? document.getElementById('formaPagamento').children[1].children[0].value : "Debito";
 
             docDefinition = {

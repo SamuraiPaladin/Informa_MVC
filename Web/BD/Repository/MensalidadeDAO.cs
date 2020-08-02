@@ -65,6 +65,47 @@ namespace Web.BD.Repository
 
         }
 
+        internal object ListaDeValores(Mensalidade mensalidade)
+        {
+            string query = @"SELECT t.*, a.CPF, a.Nome, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos
+                            from Mensalidades t 
+                            inner join Matriculas a on t.Matriculaid = a.Id AND
+                            t.DataDeVencimento BETWEEN @DataInicio AND @DataFim";
+
+            List<Mensalidade> Mensalidades = new List<Mensalidade>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@DataInicio", mensalidade.DataInicial);
+                cmd.Parameters.AddWithValue("@DataFim", mensalidade.DataFinal = mensalidade.DataFinal == new DateTime() ? DateTime.Now : mensalidade.DataFinal);
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        var model = new Mensalidade
+                        {
+                            Id = (int)sdr["Id"],
+                            MatriculaId = (int)sdr["MatriculaId"],
+                            Matricula = new Matricula { Id = (int)sdr["MatriculaId"], Nome = sdr["Nome"].ToString() },
+                            DataDeVencimento = (DateTime)sdr["DataDeVencimento"],
+                            StatusDaMensalidade = sdr["StatusDaMensalidade"].ToString(),
+                            FormaDePagamento = sdr["FormaDePagamento"].ToString(),
+                            Valor = (decimal)sdr["Valor"],
+                            CPF = sdr["CPF"].ToString(),
+                            DiasVencidos = (int)sdr["DiasVencidos"],
+                            GerarRecibo = string.IsNullOrEmpty(sdr["GerarRecibo"].ToString()) || sdr["GerarRecibo"].ToString() == "0" || sdr["GerarRecibo"].ToString() == "False" ? false : true
+
+                        };
+                        Mensalidades.Add(model);
+                    }
+                }
+                con.Close();
+                return Mensalidades;
+            }
+        }
         public List<Mensalidade> ListaMensalidadeVencida()
         {
             string query = @"SELECT t.*, a.CPF, a.Nome, DATEDIFF(DAY, DataDeVencimento, GETDATE()) DiasVencidos

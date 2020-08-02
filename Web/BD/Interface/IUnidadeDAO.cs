@@ -13,5 +13,6 @@ namespace Web.BD.Interface
         bool Atualizar(T entityNovo, T entityAntigo);
         bool Deletar(T entity);
         bool VerificarSeJaExiste(T entity, int acao);
+        bool VerificarSeTemFilho(T entity);
     }
 }

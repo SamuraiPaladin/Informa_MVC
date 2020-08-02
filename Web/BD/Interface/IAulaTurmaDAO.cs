@@ -10,6 +10,7 @@ namespace Web.BD.Interface
     {
         IList<Aula> ListaDeTurmas();
         IList<Aula> AulasNaDataDeHoje();
+        IList<Aula> AulasNaDataDeHojeColab(int IdColaborador);
         IList<Aula> ListaDeAlunosParaPresencaAtual();
         void SalvarListaDePresencaParaDataAtual(IList<Aula> listaDeAlunosParaPresencaAtual);
         IList<Aula> AlunosPorTurma(int turmaId);
