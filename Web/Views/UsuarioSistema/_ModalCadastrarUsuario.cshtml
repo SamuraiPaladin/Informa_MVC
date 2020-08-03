@@ -30,13 +30,13 @@
                     </div>
                     <div class="input-field col s6">
                         <select id="usuarioCadastrado">
-                            <option value="" disabled selected>Escolha o nivel de acesso</option>
+                            <option value="" disabled selected>Escolha o colaborador</option>
                             @foreach (var item in Model)
                             {
                         <option value="@item.Id">@item.Nome</option>
                             }
                         </select>
-                        <label>Nivel de Acesso</label>
+                        <label>Nome do Colaborador</label>
                     </div>
                 </div>
 
