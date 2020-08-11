@@ -500,20 +500,29 @@
             });
         }
 
-
-        $(document).ready(function () {
+        function ativarEDesativar() {
             for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
                 var status = document.getElementsByClassName('statusStyle')[i].innerText;
 
                 switch (status) {
                     case 'Ativo':
+                        document.getElementsByClassName('enabledDeletarAtivar')[i].children[0].style.display = "block";
                         document.getElementsByClassName('enabledDeletarAtivar')[i].children[2].style.display = "none"
                         break;
                     case 'Inativo':
-                        document.getElementsByClassName('enabledDeletarAtivar')[i].children[1].style.display = "none"
+                        document.getElementsByClassName('enabledDeletarAtivar')[i].children[0].style.display = "none";
+                        document.getElementsByClassName('enabledDeletarAtivar')[i].children[1].style.display = "none";
                         break;
                 }
 
+            }
+        }
+
+        $(document).ready(function () {
+            ativarEDesativar();
+            var buttons = document.getElementsByClassName("paginate_button page-item");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", ativarEDesativar); 
             }
         });
     </script>

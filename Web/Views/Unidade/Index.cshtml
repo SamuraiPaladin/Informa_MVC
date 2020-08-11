@@ -347,6 +347,9 @@
                          switch (dados) {
                              case "Preenchimento obrigatório":
                                  M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case "Há Turmas cadastradas nessa Unidade. Não é possível deletar.":
+                                 M.toast({ html: dados, classes: 'rounded red' });
                              break;
                              case true:
                                  M.toast({ html: 'Deletado com sucesso!!!',  classes: 'rounded green', completeCallback: function(){window.location.reload()} });

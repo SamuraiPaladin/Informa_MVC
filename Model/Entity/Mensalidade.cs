@@ -26,5 +26,8 @@ namespace Model.Entity
         public int DiasVencidos { get; set; }
         public string CPF { get; set; }
         public List<EntradasPorPagamento> EntradasPorPagamento { get; set; }
+
+        public DateTime DataInicial { get; set; }
+        public DateTime DataFinal { get; set; }
     }
 }

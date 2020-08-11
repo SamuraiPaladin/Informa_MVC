@@ -64,7 +64,7 @@ namespace Web.Controllers
         private bool VerificaSeTemCampoVazioOuNulo(Usuario usuario)
         {
             return (string.IsNullOrEmpty(usuario.Nome)) || (string.IsNullOrEmpty(usuario.PerfilUsuario)) 
-                || (string.IsNullOrEmpty(usuario.Senha) || usuario.IdColaborador == 0);
+                || (string.IsNullOrEmpty(usuario.Senha));
         }
     }
 }

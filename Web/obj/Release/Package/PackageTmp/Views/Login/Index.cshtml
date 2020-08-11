@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_SemLayout.cshtml";
+    ViewBag.Title = "Login";
+}
+<style>
+    body {
+        background-color: #af2405;
+        user-select: none;
+    }
+
+    .input-field input:focus + label {
+        color: #fff !important;
+    }
+    /* label underline focus color || Border bottom*/
+    .row .input-field input:focus {
+        border-bottom: 1px solid #fff !important;
+        box-shadow: 0 1px 0 0 #fff !important
+    }
+</style>
+
+<div class="row container">
+    <br><br>
+    <br><br>
+
+    <div class="col s12 l12 ">
+        <div class="col s12 l12 center">
+            <img src="~/imgs/informa.png" width="500" class="responsive-img">
+        </div>
+    </div>
+
+    <div class="col s12 l12" >
+        <div class="col s12 l12">
+            <form class="col s12 l6 offset-l3">
+                <div class="input-field col s12">
+                    <input placeholder="Digite seu usuario..." id="login" type="text" class="validate"
+                           style="color:#fff;">
+                    <label for="login">Usuário</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="Digite sua senha..." id="password" type="password" class="validate"
+                           style="color:#fff;">
+                    <label for="password">Senha</label>
+                </div>
+                <div class="col s12 l12">
+                    <!-- <input class="waves-effect waves-light btn white" type="submit" name="logar" value="Logar no inForma" style="color:#115FD3; width: 200px;"><br> -->
+                    <a onclick="Logar()" class="waves-effect waves-light btn white" style="color: #af2405;">
+                        <i class="material-icons right medium">send</i>Logar no inForma
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    document.addEventListener('keypress', function (e) {
+        if (e.which == 13) {
+            Logar();
+        }
+    }, false);
+    function Logar() {
+                    var usuario = {
+                        Nome: document.getElementById("login").value,
+                        Senha: document.getElementById("password").value
+                    };
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Logar", "Login")",
+                     data: { usuario: usuario },
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Usuário e/ou Senha obrigatórios":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case true:
+                                  window.location = "/Principal/Index?";
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Usuário e/ou Senha inválidos', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+    }
+
+</script>

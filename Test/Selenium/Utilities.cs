@@ -71,7 +71,10 @@ public class Utilities
 			{
 				PageObject.MainScreen.Financeiro.GerenciarPagamentoLink();
 			}
-
+		}
+		else if (Modulo.Equals("Matricula"))
+		{
+			PageObject.MainScreen.Matricula.MatriculaList();
 		} else if (Modulo.Equals("Estoque"))
 		{
 			PageObject.MainScreen.Estoque.EstoqueList();

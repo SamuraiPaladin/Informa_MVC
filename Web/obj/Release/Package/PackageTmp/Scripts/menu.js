@@ -89,6 +89,11 @@ $(document).ready(function () {
     $('.dropdown-trigger10').dropdown();
 });
 
+$(document).ready(function () {
+    $('select').formSelect();
+    $('.dropdown-trigger11').dropdown();
+});
+
 
 $(document).ready(function () {
 });

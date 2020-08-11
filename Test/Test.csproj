@@ -56,6 +56,8 @@
     <Compile Include="Selenium\Cargo\Cargo_Testes.cs" />
     <Compile Include="Selenium\Colaborador\Colaborador_Metodos.cs" />
     <Compile Include="Selenium\Colaborador\Colaborador_Testes.cs" />
+    <Compile Include="Selenium\Matricula\Matricula_Testes.cs" />
+    <Compile Include="Selenium\Matricula\Matricula_Metodos.cs" />
     <Compile Include="Selenium\Modalidade\Modalidade_Metodos.cs" />
     <Compile Include="Selenium\Modalidade\Modalidade_Testes.cs" />
     <Compile Include="Selenium\PageObject.cs" />
@@ -71,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Selenium\Financeiro\" />
-    <Folder Include="Selenium\Matrícula\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

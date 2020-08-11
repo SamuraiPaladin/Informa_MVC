@@ -76,7 +76,12 @@ namespace Web.Controllers
                 return Json("Preenchimento obrigatório");
             else
                 if (dAO.VerificarSeJaExiste(unidade, 0))
-                return Json(dAO.Deletar(unidade));
+                {
+                    if (dAO.VerificarSeTemFilho(unidade))
+                        return Json("Há Turmas cadastradas nessa Unidade. Não é possível deletar.");
+                    else
+                    return Json(dAO.Deletar(unidade));
+                }
             else
                 return Json(false);
         }

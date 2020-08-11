@@ -207,7 +207,7 @@ public class TestesTurmaMetodos
 
 			TestesTurmaMetodos.AguardaModalDeletar();
 
-			PageObject.RegisterClass.FinalizarCadastroTurmaButton();
+			PageObject.RegisterClass.FinalizarExcluirTurmaButton();
 		}
 
 		Utilities.driver.Close();

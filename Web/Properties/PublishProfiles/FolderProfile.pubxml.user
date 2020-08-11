@@ -6,20 +6,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publicado\inForma</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include=".editorconfig">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>11/16/2019 03:00:22</publishTime>
@@ -28,34 +28,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2019 03:00:40</publishTime>
     </File>
     <File Include="bin/es/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/fr/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/it/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/ja/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/ko/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/Microsoft.Bcl.HashCode.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.SqlClient.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.SqlClient.pdb">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.EntityFrameworkCore.Abstractions.dll">
       <publishTime>03/15/2020 19:35:30</publishTime>
@@ -64,2050 +64,2116 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/15/2020 19:35:30</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Caching.Abstractions.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Caching.Memory.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Configuration.Abstractions.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Configuration.Binder.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Configuration.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.DependencyInjection.Abstractions.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.DependencyInjection.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Logging.Abstractions.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:20</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Logging.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:20</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Options.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:20</publishTime>
     </File>
     <File Include="bin/Microsoft.Extensions.Primitives.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:20</publishTime>
     </File>
     <File Include="bin/Microsoft.Identity.Client.dll">
-      <publishTime>04/01/2020 19:10:54</publishTime>
+      <publishTime>07/07/2020 21:21:21</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.JsonWebTokens.dll">
-      <publishTime>04/01/2020 19:10:54</publishTime>
+      <publishTime>07/07/2020 21:21:22</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Logging.dll">
-      <publishTime>04/01/2020 19:10:54</publishTime>
+      <publishTime>07/07/2020 21:21:22</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Protocols.dll">
-      <publishTime>04/01/2020 19:10:54</publishTime>
+      <publishTime>07/07/2020 21:21:22</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll">
-      <publishTime>04/01/2020 19:10:54</publishTime>
+      <publishTime>07/07/2020 21:21:22</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Tokens.dll">
-      <publishTime>04/01/2020 19:10:54</publishTime>
+      <publishTime>07/07/2020 21:21:22</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>04/01/2020 19:10:54</publishTime>
+      <publishTime>07/07/2020 21:21:25</publishTime>
     </File>
     <File Include="bin/Model.dll">
-      <publishTime>04/01/2020 19:15:43</publishTime>
+      <publishTime>07/16/2020 18:51:34</publishTime>
     </File>
     <File Include="bin/Model.pdb">
-      <publishTime>04/01/2020 19:15:43</publishTime>
+      <publishTime>07/16/2020 18:51:34</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:26</publishTime>
     </File>
     <File Include="bin/pt-BR/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe.config">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/csc.rsp">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/csi.exe">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/csi.exe.config">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/csi.rsp">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Win32.Primitives.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.AppContext.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Collections.Immutable.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Console.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Diagnostics.DiagnosticSource.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Diagnostics.FileVersionInfo.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Globalization.Calendars.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.Compression.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.Compression.ZipFile.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.FileSystem.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Net.Http.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Net.Sockets.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Reflection.Metadata.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Security.Cryptography.Algorithms.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Security.Cryptography.Encoding.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Security.Cryptography.Primitives.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Security.Cryptography.X509Certificates.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Text.Encoding.CodePages.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Threading.Tasks.Extensions.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.ValueTuple.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Xml.ReaderWriter.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Xml.XmlDocument.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Xml.XPath.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Xml.XPath.XDocument.dll">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe.config">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.rsp">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
-      <publishTime>04/01/2020 19:10:52</publishTime>
+      <publishTime>07/07/2020 21:21:17</publishTime>
     </File>
     <File Include="bin/ru/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/System.Buffers.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:27</publishTime>
     </File>
     <File Include="bin/System.Collections.Immutable.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:27</publishTime>
     </File>
     <File Include="bin/System.ComponentModel.Annotations.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:27</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:29</publishTime>
     </File>
     <File Include="bin/System.IdentityModel.Tokens.Jwt.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:29</publishTime>
     </File>
     <File Include="bin/System.Memory.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:29</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/System.Numerics.Vectors.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:30</publishTime>
     </File>
     <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:30</publishTime>
     </File>
     <File Include="bin/System.Threading.Tasks.Extensions.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:30</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:16</publishTime>
     </File>
     <File Include="bin/ViaCEP.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:30</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>04/01/2020 19:15:45</publishTime>
+      <publishTime>07/16/2020 19:41:52</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>04/01/2020 19:15:45</publishTime>
+      <publishTime>07/16/2020 19:41:52</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>04/01/2020 19:10:55</publishTime>
+      <publishTime>07/07/2020 21:21:30</publishTime>
     </File>
     <File Include="bin/x64/SNI.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/x64/SNI.pdb">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/x86/SNI.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/x86/SNI.pdb">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/zh-Hans/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="bin/zh-Hant/Microsoft.Data.SqlClient.resources.dll">
-      <publishTime>04/01/2020 19:10:53</publishTime>
+      <publishTime>07/07/2020 21:21:18</publishTime>
     </File>
     <File Include="Content/cadastro.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
+    </File>
+    <File Include="Content/data-tables-content/dataTables.min.css">
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/gerenciarPagamento.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
+    </File>
+    <File Include="Content/images/sort_both.png">
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/css/materialize.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/css/materialize.min.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/material-design-icons/LICENSE.txt">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/material-design-icons/Material-Design-Icons.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/material-design-icons/Material-Design-Icons.svg">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/material-design-icons/Material-Design-Icons.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/material-design-icons/Material-Design-Icons.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/material-design-icons/Material-Design-Icons.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Bold.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Bold.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Bold.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Bold.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Light.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Light.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Light.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Light.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Medium.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Medium.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Medium.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Medium.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Regular.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Regular.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Regular.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Regular.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Thin.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Thin.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Thin.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/font/roboto/Roboto-Thin.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Bold.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Bold.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Bold.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Bold.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Light.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Light.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Light.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Light.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Medium.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Medium.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Medium.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Medium.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Regular.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Regular.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Regular.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Regular.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Thin.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Thin.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Thin.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/materialize/fonts/roboto/Roboto-Thin.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/paginas/home.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/paginas/login.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/paginas/perfilProfessor.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/paginas/principal.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/public.css">
-      <publishTime>04/01/2020 19:10:47</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>04/01/2020 19:10:47</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/.gitignore">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/.npmignore">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/bower.json">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/css/weather-icons-wind.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/css/weather-icons-wind.min.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/css/weather-icons.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/css/weather-icons.min.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/font/weathericons-regular-webfont.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/font/weathericons-regular-webfont.svg">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/font/weathericons-regular-webfont.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/font/weathericons-regular-webfont.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/font/weathericons-regular-webfont.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-beaufort.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-day.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-direction.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-misc.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-moon-aliases.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-moon.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-neutral.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-night.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-time.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-wind-aliases.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-wind-degrees.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-classes/classes-wind.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-beaufort.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-day.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-direction.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-misc.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-moon.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-neutral.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-night.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-time.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/icon-variables/variables-wind-names.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/mappings/wi-forecast-io.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/mappings/wi-owm.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/mappings/wi-wmo4680.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/mappings/wi-wunderground.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/mappings/wi-yahoo.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/weather-icons-classes.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/weather-icons-core.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/weather-icons-variables.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/weather-icons-wind.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/weather-icons-wind.min.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/weather-icons.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/less/weather-icons.min.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/package.json">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/README.md">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-beaufort.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-day.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-direction.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-misc.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-moon-aliases.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-moon.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-neutral.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-night.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-time.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-wind-aliases.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-wind-degrees.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-classes/classes-wind.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-beaufort.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-day.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-direction.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-misc.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-moon.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-neutral.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-night.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-time.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/icon-variables/variables-wind-names.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/mappings/wi-forecast-io.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/mappings/wi-owm.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/mappings/wi-wmo4680.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/mappings/wi-wunderground.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/mappings/wi-yahoo.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/weather-icons-classes.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/weather-icons-core.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/weather-icons-variables.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/weather-icons-wind.min.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/weather-icons-wind.scss">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/weather-icons.min.scss">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/sass/weather-icons.scss">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-alien.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-barometer.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-celsius.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-cloud-down.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-cloud-refresh.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-cloud-up.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-cloud.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-cloudy-gusts.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-cloudy-windy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-cloudy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-cloudy-gusts.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-cloudy-high.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-cloudy-windy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-cloudy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-fog.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-hail.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-haze.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-light-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-lightning.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-rain-mix.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-rain-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-rain.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-showers.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-sleet-storm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-sleet.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-snow-thunderstorm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-snow-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-snow.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-sprinkle.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-storm-showers.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-sunny-overcast.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-sunny.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-thunderstorm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-day-windy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-degrees.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-direction-down-left.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-direction-down-right.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-direction-down.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-direction-left.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-direction-right.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-direction-up-left.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-direction-up-right.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-direction-up.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-dust.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-earthquake.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-fahrenheit.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-fire.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-flood.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-fog.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-gale-warning.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-hail.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-horizon-alt.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-horizon.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-hot.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-humidity.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-hurricane-warning.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-hurricane.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-lightning.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-lunar-eclipse.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-meteor.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-first-quarter.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-full.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-new.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-third-quarter.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-crescent-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-crescent-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-crescent-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-crescent-4.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-crescent-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-crescent-6.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-gibbous-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-gibbous-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-gibbous-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-gibbous-4.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-gibbous-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waning-gibbous-6.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-crescent-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-crescent-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-crescent-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-crescent-4.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-crescent-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-crescent-6 .svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-gibbous-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-gibbous-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-gibbous-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-gibbous-4.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-gibbous-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-alt-waxing-gibbous-6 .svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-first-quarter.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-full.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-new.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-third-quarter.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-crescent-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-crescent-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-crescent-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-crescent-4 .svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-crescent-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-crescent-6.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-gibbous-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-gibbous-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-gibbous-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-gibbous-4.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-gibbous-5 .svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waning-gibbous-6.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-crescent-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-crescent-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-crescent-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-crescent-4.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-crescent-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-crescent-6 .svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-gibbous-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-gibbous-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-gibbous-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-gibbous-4 .svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-gibbous-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moon-waxing-gibbous-6.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moonrise.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-moonset.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-na.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-cloudy-gusts.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-cloudy-high.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-cloudy-windy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-cloudy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-hail.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-lightning.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-partly-cloudy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-rain-mix.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-rain-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-rain.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-showers.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-sleet-storm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-sleet.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-snow-thunderstorm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-snow-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-snow.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-sprinkle.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-storm-showers.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-alt-thunderstorm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-clear.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-cloudy-gusts.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-cloudy-high.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-cloudy-windy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-cloudy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-fog.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-hail.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-lightning.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-partly-cloudy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-rain-mix.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-rain-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-rain.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-showers.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-sleet-storm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-sleet.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-snow-thunderstorm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-snow-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-snow.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-sprinkle.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-storm-showers.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-night-thunderstorm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-rain-mix.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-rain-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-rain.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-raindrop.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-raindrops.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-refresh-alt.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-refresh.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-sandstorm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-showers.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-sleet.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-small-craft-advisory.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-smog.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-smoke.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-snow-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-snow.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-snowflake-cold.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-solar-eclipse.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-sprinkle.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-stars.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-storm-showers.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-storm-warning.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-strong-wind.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-sunrise.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-sunset.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-thermometer-exterior.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-thermometer-internal.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-thermometer.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-thunderstorm.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-10.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-11.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-12.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-4.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-6.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-7.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-8.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-time-9.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-tornado.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-train.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-tsunami.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-umbrella.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-volcano.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-0.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-1.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-10.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-11.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-12.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-2.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-3.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-4.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-5.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-6.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-7.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-8.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-beaufort-9.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-wind-deg.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/svg/wi-windy.svg">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/values/weathericons.xml">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/beaufort.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/bak.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/beaufort.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/day.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/direction.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/misc.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/moon.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/neutral.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/night.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/temp.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/time.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/wind-degrees.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/csv/wind.csv">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/day.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/direction.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/misc.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/moon.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/neutral.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/night.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/templates.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/time.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/wbuilder">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/wind-degrees.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_builder/wind.edn">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/font-source/artwork/cloud pieces.ai">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/font-source/artwork/icon template.ai">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/font-source/artwork/tsunami.ai">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/font-source/weathericons-regular.glyphs">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/font-source/weathericons-regular.otf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/api-list.html">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/browserconfig.xml">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/CNAME">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/css/img/sky.jpg">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/css/styles.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/css/weather-icons-wind.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/css/weather-icons-wind.min.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/css/weather-icons.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/css/weather-icons.min.css">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/apple-touch-icon-57x57.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/apple-touch-icon-60x60.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/apple-touch-icon-precomposed.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/apple-touch-icon.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/favicon-16x16.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/favicon-32x32.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/favicon.ico">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/mstile-150x150.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/mstile-310x150.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/favicons/mstile-70x70.png">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/font/weathericons-regular-webfont.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/font/weathericons-regular-webfont.svg">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/font/weathericons-regular-webfont.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/font/weathericons-regular-webfont.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/font/weathericons-regular-webfont.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/fonts/fontawesome-webfont.eot">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/fonts/fontawesome-webfont.svg">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/fonts/fontawesome-webfont.ttf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/fonts/fontawesome-webfont.woff">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/fonts/fontawesome-webfont.woff2">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/fonts/FontAwesome.otf">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/gh-pages/index.html">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/api-list.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-beaufort.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-day.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-direction.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-misc.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-moon.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-neutral.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-night.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-time.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-wind-cardinal.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list-wind.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/icon-list.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/index.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/jade/new-icons.jade">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap-includes.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/alerts.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/badges.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/bootstrap.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/breadcrumbs.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/button-groups.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/buttons.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/carousel.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/close.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/code.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/component-animations.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/dropdowns.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/forms.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/glyphicons.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:13</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/grid.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/input-groups.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/jumbotron.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/labels.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/list-group.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/media.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/alerts.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/background-variant.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/border-radius.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/buttons.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/center-block.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/clearfix.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/forms.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/gradients.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/grid-framework.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/grid.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/hide-text.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/image.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/labels.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/list-group.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/nav-divider.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/nav-vertical-align.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/opacity.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/pagination.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/panels.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/progress-bar.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/reset-filter.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/reset-text.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/resize.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/responsive-visibility.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/size.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/tab-focus.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/table-row.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/text-emphasis.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/text-overflow.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/mixins/vendor-prefixes.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/modals.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/navbar.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/navs.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/normalize.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/pager.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/pagination.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/panels.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/popovers.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/print.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/progress-bars.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/responsive-embed.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/responsive-utilities.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/scaffolding.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/tables.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/theme.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/thumbnails.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/tooltip.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/type.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/utilities.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/variables.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/bootstrap/wells.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/cheatsheet.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/animated.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/bordered-pulled.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/core.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/fixed-width.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/font-awesome.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/icons.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/larger.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/list.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/mixins.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/path.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/rotated-flipped.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/stacked.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/font-awesome/variables.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/main.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/mixins.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/styles.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Content/weather-icons-master/_docs/less/variables.less">
-      <publishTime>04/01/2020 19:10:49</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="imgs/avatar-batman.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/churrosteam.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/favicon.ico">
       <publishTime>03/15/2020 19:35:28</publishTime>
     </File>
     <File Include="imgs/golfin.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/icon-informa.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/img-parallaxx.jfif">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/informa.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/01d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/01n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/02d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/02n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/03d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/03n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/04d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/04n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/09d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/09n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/10d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/10n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/11d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/11n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/13d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/13n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/50d.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
     </File>
     <File Include="imgs/weather-icons/50n.png">
-      <publishTime>04/01/2020 19:10:51</publishTime>
+      <publishTime>07/07/2020 21:21:15</publishTime>
+    </File>
+    <File Include="Scripts/data-tables/dataTables.bootstrap4.min.js">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Scripts/data-tables/jquery.dataTables.min.js">
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery-3.4.1.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery-3.4.1.min.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery-3.4.1.min.map">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery-3.4.1.slim.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery-3.4.1.slim.min.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery-3.4.1.slim.min.map">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/main.js">
       <publishTime>03/15/2020 19:56:20</publishTime>
     </File>
     <File Include="Scripts/materialize/materialize.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/materialize/materialize.min.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/menu.js">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.8.3.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/site.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Scripts/temperaturaAndLocale.js">
       <publishTime>04/01/2020 19:10:48</publishTime>
     </File>
     <File Include="Scripts/tempo.js">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Aluno/Index.cshtml">
       <publishTime>04/01/2020 19:10:48</publishTime>
     </File>
+    <File Include="Views/Aula/Index.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/Aula/_ModelEditar.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/Aula/_TabelaTurmas.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
     <File Include="Views/Colaborador/Index.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/ConsultaPagamento/Index.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/ConsultaPagamento/_CabecalhoPesquisa.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Funcao/Index.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/Inadimplentes/Index.cshtml">
+      <publishTime>07/16/2020 18:33:34</publishTime>
+    </File>
+    <File Include="Views/Login/Index.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Matricula/Index.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/16/2020 18:33:34</publishTime>
+    </File>
+    <File Include="Views/Matricula/_Ativar.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/Matricula/_Cadastrar.cshtml">
+      <publishTime>07/16/2020 18:33:34</publishTime>
+    </File>
+    <File Include="Views/Matricula/_Deletar.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/Matricula/_Editar.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Mensalidade/Index.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/16/2020 18:33:34</publishTime>
     </File>
     <File Include="Views/Modalidade/Index.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Principal/Index.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/Principal/_TabelaTurmas.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/Shared/_SemLayout.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Turma/Index.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Unidade/Index.cshtml">
-      <publishTime>04/01/2020 19:10:48</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/UsuarioSistema/Index.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/UsuarioSistema/_ModalCadastrarUsuario.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/UsuarioSistema/_ModalDeletar.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/UsuarioSistema/_ModalEditarUsuario.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
+    </File>
+    <File Include="Views/UsuarioSistema/_tabelaInicial.cshtml">
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>04/01/2020 19:10:50</publishTime>
+      <publishTime>07/07/2020 21:21:14</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/01/2020 19:15:46</publishTime>
+      <publishTime>07/16/2020 18:51:38</publishTime>
     </File>
   </ItemGroup>
 </Project>

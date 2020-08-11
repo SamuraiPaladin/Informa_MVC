@@ -107,6 +107,37 @@ namespace Web.BD.Repository
             return listaAulas;
         }
 
+        public IList<Aula> AulasNaDataDeHojeColab(int IdColaborador)
+        {
+            string query = @"SET LANGUAGE 'Brazilian';
+                             SELECT a.TurmaId, a.MatriculaId, a.Presenca, a.Data FROM Aulas a
+                             INNER JOIN Turmas t ON a.TurmaId = t.Id
+                             WHERE a.Data = CONVERT(date, GETDATE()) AND
+                             t.ColaboradorId = @ColaboradorId";
+            IList<Aula> listaAulas = new List<Aula>();
+            using (var con = new SqlConnection(stringConexao))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@ColaboradorId", IdColaborador);
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        Aula aula = new Aula();
+                        aula.TurmaId = Convert.ToInt32(sdr["TurmaId"]);
+                        aula.MatriculaId = Convert.ToInt32(sdr["MatriculaId"]);
+                        aula.Presenca = Convert.ToBoolean(sdr["Presenca"]);
+                        aula.Data = Convert.ToDateTime(sdr["Data"]);
+                        listaAulas.Add(aula);
+                    }
+                }
+            }
+            return listaAulas;
+        }
+
         public IList<Aula> ListaDeAlunosParaPresencaAtual()
         {
             string query = @"SET LANGUAGE 'Brazilian';

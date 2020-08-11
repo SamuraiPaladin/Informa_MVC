@@ -724,7 +724,7 @@ namespace Test
 
             TestesTurmaMetodos.AguardaModalDeletar();
 
-            PageObject.RegisterClass.FinalizarCadastroTurmaButton();
+            PageObject.RegisterClass.FinalizarExcluirTurmaButton();
 
             PageObject.RegisterUnitScreen.MensagemOperacao("Deletado");
 

@@ -106,6 +106,10 @@ nav.clean {
     color: #af2405 !important;
 }
 
+.input:focus + label {
+    color: #af2405 !important;
+}
+
 .row .input-field input:focus {
     border-bottom: 1px solid #af2405 !important;
     box-shadow: 0 1px 0 0 #af2405 !important
@@ -115,7 +119,7 @@ nav.clean {
 ::-webkit-scrollbar-track {
     background-color: #F4F4F4;
 }
-
+consultaRapida
 ::-webkit-scrollbar {
     width: 6px;
     background: #F4F4F4;
@@ -147,3 +151,25 @@ nav {
     background-color: #ff9100;
     text-align:center;
 }
+
+
+body {
+    zoom: 90%;
+}
+
+.linkRapido {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.linkRapido:hover {
+    color: #af2405
+}
+
+.containerConfigurado {
+    padding-right: 2em;
+    padding-left: 2em;
+    margin: 1em
+}
+

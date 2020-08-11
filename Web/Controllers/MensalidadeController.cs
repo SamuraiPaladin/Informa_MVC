@@ -48,6 +48,24 @@ namespace Web.Controllers
             }
         }
 
+        public JsonResult ConsultaTabela(Mensalidade mensalidade)
+        {
+            if (!VerificaSeDataInicialEstaNula(mensalidade))
+            {
+                return Json(dAOMensalidade.ListaDeValores(mensalidade));
+            }
+            else
+            {
+                return Json("");
+            }
+
+        }
+
+        private bool VerificaSeDataInicialEstaNula(Mensalidade mensalidade)
+        {
+            return string.IsNullOrEmpty(mensalidade.DataInicial.ToString()) || mensalidade.DataInicial == new DateTime();
+        }
+
         public JsonResult Adicionar(Mensalidade Mensalidade)
         {
             if (VerificaSeTemCampoVazioOuNulo(Mensalidade))
@@ -83,7 +101,6 @@ namespace Web.Controllers
 
             return PartialView("Index", model);
         }
-
 
         private static bool VerificaSeTemCampoVazioOuNulo(Mensalidade Mensalidade)
         {

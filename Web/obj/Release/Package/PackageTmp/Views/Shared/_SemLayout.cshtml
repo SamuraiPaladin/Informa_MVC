@@ -1,0 +1,38 @@
+﻿<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"] - inForma</title>
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <link href="~/Content/paginas/principal.css" rel="stylesheet" />
+    <link href="~/Content/weather-icons-master/css/weather-icons-wind.min.css" rel="stylesheet" />
+    <link href="~/Content/data-tables-content/dataTables.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<body>
+    <!-- TOP SIDE -->
+    
+    
+
+    <div class="row">
+        @RenderBody()
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - inForma
+        </div>
+    </footer>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/menu.js"></script>
+    <script src="~/Scripts/materialize/materialize.min.js"></script>
+
+
+    @RenderSection("Scripts", required: false);
+
+
+</body>

@@ -1,0 +1,112 @@
+﻿@model IList<Model.Entity.Aula>
+@{
+    ViewData["Title"] = "Aulas";
+}
+
+<nav class="clean containerConfigurado">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <span class="left">
+                <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a href="#" class="breadcrumb">Cadastro</a>
+                <a id="paginaAula" href="@Url.Action("Index", "Aula")" class="breadcrumb"><strong>Aulas</strong></a>
+            </span>
+        </div>
+    </div>
+</nav>
+<input id="perfilLogado" value="@Cache.Get("DadosDoUsuario.PerfilUsuario")"/>
+@Html.Partial("_TabelaTurmas", Model)
+@Html.Partial("_ModelEditar", Model)
+
+@section scripts{
+    <script>
+        function ModalListaPresenca(turmaId) {
+                 $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("CarregarListaDeChamada", "Aula")",
+                     data: { turmaId: turmaId },
+                     success: function (dados) {
+                         if (dados.length > 0)
+                         {
+                             now = new Date;
+                             document.getElementById("editarAulaModal").innerText = "Lista de chamada Turma: " + dados[0].DescricaoTurma;
+                             document.getElementById("turma").value = dados[0].DescricaoTurma;
+                             document.getElementById("professorTurma").value = dados[0].NomeColaborador;
+                             document.getElementById("faixaEtaria").value = dados[0].TipoFaixaEtaria;
+                             document.getElementById("dataAulaInicio").value = dados[0].HorarioInicial;
+                             document.getElementById("dataAulaFim").value = dados[0].HorarioFinal;
+
+
+                             if (document.getElementById('perfilLogado').value == 'Administrador') {
+                             document.getElementById("diasSemanas").value = dados[0].DiaDaSemana;
+                             document.getElementById("diaAula").value = now.getDay();
+                             document.getElementById("modalidade").value = dados[0].TipoModalidade;
+
+                             }
+
+                         }
+                         $("#Grid tr").remove();
+                         $(dados).each(function () {
+                             if (this.Presenca === true) {
+                                 if (document.getElementById('perfilLogado').value == 'Administrador') {
+                                     $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.Telefone + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 } else {
+                                     $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' checked='checked' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 }
+                                 } else {
+
+                                 if (document.getElementById('perfilLogado').value == 'Administrador') {
+                                     $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.Telefone + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 } else {
+                                     $("#Grid").append("<tr><td><label><input type='checkbox' id='" + this.AulaId + "' /><span>" + this.AulaId + "</span></label></td><td>" + this.NomeAluno + "</td><td>" + this.DataNascimento.substring(0, 10) + "</td></tr>");
+                                 }
+                             }
+                         });
+                }
+            });
+        }
+
+
+        function Editar(){
+            var arrayEditar = [];
+     
+            try {
+                var table = document.getElementById("tabelaNova");
+                var rows = table.getElementsByTagName('tr');
+
+                for (var ica = 1; ica < rows.length; ica++) {
+                    var cols = rows[ica].getElementsByTagName('td');
+                    var value = cols[0].getElementsByTagName('input')[0];
+                    arrayEditar.push({ AulaId: value.id, Presenca: value.checked });
+                }
+            }
+            catch (e) {
+                //alert(e);
+            }
+            $.ajax({
+                     dataType: "json",
+                     type: "POST",
+                     url: "@Url.Action("Editar","Aula")",
+                data: { entity: arrayEditar},
+                     success: function (dados) {
+                         switch (dados) {
+                             case "Preenchimento obrigatório":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
+                             case true:
+                                 M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                                 break;
+                             case false:
+                                 M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
+                             default:
+                         }
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('#tabela').dataTable();
+        });
+
+    </script>
+}

@@ -8,3 +8,8 @@
 /Model/bin/Debug/netstandard2.0
 /Model/obj
 /Test/obj/Debug/build.force
+.vs/*
+.vs
+/Web/obj/*
+/Web/bin/*
+/Web/Web.config

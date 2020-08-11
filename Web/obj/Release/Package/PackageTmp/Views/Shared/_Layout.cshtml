@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="~/Content/Site.css">
     <link href="~/Content/paginas/principal.css" rel="stylesheet" />
     <link href="~/Content/weather-icons-master/css/weather-icons-wind.min.css" rel="stylesheet" />
+    <link href="~/Content/data-tables-content/dataTables.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="~/favicon.ico" />
 </head>
 <body>
     <!-- TOP SIDE -->
     <nav style="background-color: #af2405;">
-        <div class="nav-wrapper row container" style="background-color: #af2405;">
+        <div class="nav-wrapper row " style="background-color: #af2405;">
             <ul class="left hide-on-med-and-down">
                 <li>
                     <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large">
@@ -27,29 +28,43 @@
                 </li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="@Url.Action("Index","Principal")">Home</a></li>
-                <li><a href="@Url.Action("Index","Unidade")">Unidade</a></li>
-                <li><a href="@Url.Action("Index","Modalidade")">Modalidade</a></li>
+                <li><a id="principal" href="@Url.Action("Index","Principal")">Principal</a></li>
+                <li><a id="unidade" href="@Url.Action("Index","Unidade")">Unidade</a></li>
+                <li id="mensalidades"></li>
+                <li><a title="Sair" id="sair" href="@Url.Action("Index","Login")"><i class="material-icons">exit_to_app</i></a></li>
+                    
+                @*<li id="mensalidades"><a href="@Url.Action("Index","Mensalidade")">Situação de Alunos<span class="new badge" data-badge-caption="Pendência" style="background-color: darkred;" id="retornaLenght">@ViewBag.Quantidade</span></a></li>*@
+                    
+                
             </ul>
         </div>
     </nav>
 
     <ul id="slide-out" class="sidenav">
         <li>
-            <div class="user-view">
-                <div class="background" style="background-color: #af2405;">
-                    <img src="~/imgs/icon-informa.png" class="right" width="140">
+            <div class="user-view" style="height:130px">
+                <div class="background" style="background-color: #af2405; ">
+
+                    @*<img src="~/imgs/icon-informa.png" class="right" width="80">*@
+                    <p class="white-text container">
+                        @*<a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>*@
+                        <a href="#name"><span class="white-text name"><strong>Natação Golfinho</strong></span></a>
+
+                        <a href="#name"><span class="white-text name">Bem Vindo @Cache.Get("DadosDoUsuario.Nome")</span></a>
+                        <a href="#email"><span class="white-text email">Nivel de Acesso: <strong>@Cache.Get("DadosDoUsuario.PerfilUsuario")</strong></span></a>
+
+                    </p>
                 </div>
-                <a href="#user"><img class="circle" src="~/imgs/avatar-batman.png"></a>
-                <a href="#name"><span class="white-text name">John Dee</span></a>
-                <a href="#email"><span class="white-text email"><strong>Recepcionista</strong> - Osasco</span></a>
+                <!--<img class="circle" src="~/imgs/avatar-batman.png">-->
+
+
             </div>
         </li>
-        <li><a class="subheader">Módulos</a></li>
+        <li><a class="subheader">Módulos de Negócio</a></li>
         <li>
             <ul class="collapsible">
                 <li>
-                    <div class="collapsible-header">
+                    <div id="cadastros" class="collapsible-header">
                         <i class="material-icons" style="color: grey;">edit</i>
                         <strong>Cadastros</strong>
                         <i class="material-icons right" id="arrow">arrow_drop_down</i>
@@ -58,22 +73,22 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a href="@Url.Action("Index","Unidade")"><span class="insideLink">Unidade</span></a>
+                                <a id="cadastroUnidade" href="@Url.Action("Index","Unidade")"><span class="insideLink">Unidade</span></a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index","Modalidade")"><span class="insideLink">Modalidade</span></a>
+                                <a id="cadastroModalidade" href="@Url.Action("Index","Modalidade")"><span class="insideLink">Modalidade</span></a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index","Funcao")"><span class="insideLink">Cargo</span></a>
+                                <a id="cadastroCargo" href="@Url.Action("Index","Funcao")"><span class="insideLink">Cargo</span></a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index","Colaborador")"><span class="insideLink">Colaborador</span></a>
+                                <a id="cadastroColaborador" href="@Url.Action("Index","Colaborador")"><span class="insideLink">Colaborador</span></a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index","Fornecedor")"><span class="insideLink">Fornecedor</span></a>
+                                <a id="cadastroTurma" href="@Url.Action("Index","Turma")"><span class="insideLink">Turma</span></a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index","Turma")"><span class="insideLink">Turma</span></a>
+                                <a id="cadastroAula" href="@Url.Action("Index","Aula")"><span class="insideLink">Aulas</span></a>
                             </li>
                         </ul>
 
@@ -83,7 +98,7 @@
         </li>
 
         <li>
-            <div class="collapsible-header" onClick="redirecionaPaginaMatricula()">
+            <div id="matricula" class="collapsible-header" onClick="redirecionaPaginaMatricula()">
                 <i class="material-icons" style="color: grey;">recent_actors</i>
                 <strong>Matricula</strong>
             </div>
@@ -93,7 +108,7 @@
         <li>
             <ul class="collapsible">
                 <li>
-                    <div class="collapsible-header">
+                    <div id="financeiro" class="collapsible-header">
                         <i class="material-icons" style="color: grey;">money</i>
                         <strong>Financeiro</strong>
                         <i class="material-icons right" id="arrow">arrow_drop_down</i>
@@ -101,10 +116,10 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a class="" href="@Url.Action("Index","Mensalidade")"><span class="insideLink">Mensalidades</span></a>
+                                <a id="financeiroMensalidade" class="" href="@Url.Action("Index","Mensalidade")"><span class="insideLink">Mensalidades</span></a>
                             </li>
                             <li>
-                                <a class="" href="@Url.Action("Index","Aluno")"><span class="insideLink">Alunos Inadimplentes</span></a>
+                                <a id="financeiroAluno" class="" href="@Url.Action("Index","Inadimplentes")"><span class="insideLink">Alunos Inadimplentes</span></a>
                             </li>
                         </ul>
 
@@ -113,31 +128,23 @@
             </ul>
         </li>
 
+        <li><a class="subheader">Relatórios</a></li>
 
         <li>
-            <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header">
-                        <i class="material-icons" style="color: grey;">edit</i>
-                        <strong>Estoque</strong>
-                        <i class="material-icons right" id="arrow">arrow_drop_down</i>
-                    </div>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a class=""><span class="insideLink">Link</span></a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </li>
-            </ul>
+            <div id="matricula" class="collapsible-header" onClick="redirecionaPaginaPagamento()" >
+                <i class="material-icons" style="color: grey;">article</i>
+                <strong>Movimento Financeiro</strong>
+            </div>
         </li>
+
+        <li><a class="subheader">Sistema</a></li>
+
         <li>
-            <div class="divider"></div>
+            <div id="matricula" class="collapsible-header" onClick="redirecionaPaginaSistema()">
+                <i class="material-icons" style="color: grey;">person</i>
+                <strong>Usuarios do Sistema</strong>
+            </div>
         </li>
-
-        <li><a class="subheader">Outro submenu</a></li>
 
     </ul>
 
@@ -154,17 +161,44 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/menu.js"></script>
     <script src="~/Scripts/materialize/materialize.min.js"></script>
-    <script src="~/Scripts/temperaturaAndLocale.js"></script>
-    <script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/data-tables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/data-tables/dataTables.bootstrap4.min.js"></script>
+
 
     @RenderSection("Scripts", required: false);
-    <script>
+<script>
 
         const redirecionaPaginaMatricula = () => {
-            window.location.href="@Url.Action("Index", "Matricula")"
-        }
+            window.location.href = "@Url.Action("Index", "Matricula")";
+    }
 
-    </script>
+    const redirecionaPaginaSistema = () => {
+        window.location.href = "@Url.Action("Index", "UsuarioSistema")";
+    }
+
+    const redirecionaPaginaPagamento = () => {
+        window.location.href = "@Url.Action("Index", "ConsultaPagamento")";
+    }
+
+    $(document).ready(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("QuantidadeDeAtrasados", "Principal")",
+                    success: function (data) {
+                        if (data === 0) {
+                            $("#mensalidades").append("<a href='@Url.Action("Index","Mensalidade")'>Situação de Alunos</a>");
+                        } else if(data  > 1 ){
+                            $("#mensalidades").append("<a href='@Url.Action("Index","Mensalidade")'>Situação de Alunos<span class='new badge' data-badge-caption='Pendências' style='background-color: darkred;' id='retornaLenght'>"+data+"</span></a>")
+                        } else {
+                            $("#mensalidades").append("<a href='@Url.Action("Index","Mensalidade")'>Situação de Alunos<span class='new badge' data-badge-caption='Pendência' style='background-color: darkred;' id='retornaLenght'>"+data+"</span></a>")
+                        }
+
+                    }, error: function (ex) {
+                        alert("Erro: " + ex.status);
+                    }
+                });
+                }
+        );
+</script>
 
 </body>

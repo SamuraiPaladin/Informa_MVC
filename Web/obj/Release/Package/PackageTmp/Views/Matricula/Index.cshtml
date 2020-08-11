@@ -3,262 +3,103 @@
     ViewData["Title"] = "Matricula";
 }
 <!-- BREADCRUMB -->
-<nav class="clean container">
+<nav class="clean containerConfigurado">
     <div class="nav-wrapper">
         <div class="col s12">
             <span class="left">
-                <a href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
-                <a href="@Url.Action("Index", "Aluno")" class="breadcrumb"><strong>Matricula</strong></a>
+                <a id="paginaPrincipal" href="@Url.Action("Index", "Principal")" class="breadcrumb">Principal</a>
+                <a id="paginaAluno" href="@Url.Action("Index", "Aluno")" class="breadcrumb"><strong>Matricula</strong></a>
             </span>
         </div>
     </div>
 </nav>
 
 
-<div class="row container">
+<div class="row containerConfigurado">
     <div class="col s12 l12">
-        <a href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Aluno</a>
+        <a id="cadastrarAluno" href="#modalCadastrar" class="btn waves-effect waves-light modal-trigger right">Cadastrar Aluno</a>
     </div>
 </div>
 
-<div id="modalCadastrar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="flow-text ">Cadastrar Aluno</h4>
-        </div>
-        <br /><br />
-        <div class="col s12 l12">
-            <div class="col s12 l12"><h4 class="flow-text subtitleModal">DADOS PESSOAIS</h4></div>
-        </div>
+@Html.Partial("_Cadastrar")
 
-        <br />
 
-        <div class="col s12 l12">
-            <form class="col s12 l12">
+<div class="containerConfigurado">
 
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Ronaldo, Diego, Angela..." id="nome" type="text" class="validate">
-                    <label for="nome">Nome do Aluno</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="mm/dd/aaaa" type="date" id="datadenascimento" class="validate">
-                    <label for="datadenascimento">Data de Nascimento</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 999.999.999-99" id="cpf" oninput="mascaraCPF(this)" type="text">
-                    <label for="cpf">CPF</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 99.999.999-9" id="rg" oninput="mascaraRG(this)" type="text">
-                    <label for="rg">RG</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 46361345, 84512574..." id="telefone" type="text" class="validate" maxlength="11">
-                    <label for="telefone">Telefone</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 08568520..." onblur="PesquisaCEP()" id="cep" oninput="mascaraCEP(this)" type="text" class="validate" maxlength="9">
-                    <label for="cep">CEP</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Av. Paulista..." id="endereco" type="text" class="validate" maxlength="45" disabled>
-                    <label for="endereco">Endereco</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: 4300..." id="numero" type="number" class="validate" maxlength="5">
-                    <label for="numero">Numero</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Penha, Vila Leopoldina..." id="bairro" type="text" class="validate" maxlength="30" disabled>
-                    <label for="bairro">Bairro</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: Poá, Suzano..." id="cidade" type="text" class="validate" maxlength="30" disabled>
-                    <label for="cidade">Cidade</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input placeholder="Ex: SP, MG..." id="estado" type="text" class="validate" disabled>
-                    <label for="estado">Estado</label>
-                </div>
-
-                <div id="modalCadastroAluno" class="modal">
-                    <div class="modal-content">
-                        <h4 class="flow-text center">Aluno Cadastrado!</h4>
-                        <p class="center">Clique em "SAIR" para voltar a página principal.</p>
-
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="Adicionar()">sair</a>
-                    </div>
-                </div>
-                <input id="idEditar" style="display: none;" />
-            </form>
-            <br /><br />
-        </div>
-
-        <div class="col s12 l12">
-            <br /><br />
-            <div class="col s12 l6">
-                <h4 class="flow-text center subtitleModal" style="margin-top:25px;">TURMAS DISPONÍVEIS</h4>
-            </div>
-        </div>
-
-        <table class="table highlight centered " id="tabelaAdicionar">
-            <thead>
-                <tr>
-                    <th>Curso</th>
-                    <th>Tipo</th>
-                    <th>Alunos na Turma</th>
-                    <th>Professor</th>
-                    <th>Dia da Semana</th>
-                    <th>Horário Inícial</th>
-                    <th>Horário FInal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.ListaMatriculaTurma.Count == 0)
-                {
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (var item in Model.ListaMatriculaTurma)
-                    {
-                        <tr>
-                            <td class="left">
-                                <label>
-                                    <input type="checkbox" id="@item.Id" />
-                                    <span>@item.Descricao</span>
-                                </label>
-                            </td>
-                            <td>@item.Tipo</td>
-                            <td>@item.Quantidade</td>
-                            <td><strong>@item.Nome</strong></td>
-                            <td>@item.DiaDaSemana</td>
-                            <td>@item.HorarioInicial</td>
-                            <td>@item.HorarioFinal</td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Adicionar()">Cadastrar</a>
-    </div>
-</div>
-
-<table class="table highlight centered container" id="tabelaAdicionar">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Data de Nascimento</th>
-            <th>RG</th>
-            <th>CPF</th>
-            <th>Endereço</th>
-            <th>Numero</th>
-            <th>Telefone</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.ListaMatricula.Count == 0)
-        {
+    <table id="tabelaPrincipal">
+        <thead>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>E-mail</th>
+                <th>RG</th>
+                <th>CPF</th>
+                <th>Endereço</th>
+                <th>Numero</th>
+                <th>Telefone</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Situacao aluno</th>
                 <th></th>
             </tr>
-        }
-        else
-        {
-            foreach (var item in Model.ListaMatricula)
+        </thead>
+        <tbody>
+            @if (Model.ListaMatriculaTurma.Count == 0)
             {
                 <tr>
-                    <td>@item.Nome</td>
-                    <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
-                    <td>@item.RG</td>
-                    <td>@item.CPF</td>
-                    <td>@item.Endereco</td>
-                    <td>@item.Numero</td>
-                    <td>@item.Telefone</td>
-                    <td>@item.Bairro</td>
-                    <td>@item.Cidade</td>
-                    <td>
-                        <a class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
-                        <a class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
-                           onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
                 </tr>
             }
-        }
-    </tbody>
-</table>
+            else
+            {
+                foreach (var item in Model.ListaMatricula)
+                {
+                    <tr>
+                        <td>@item.Nome</td>
+                        <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Email</td>
+                        <td>@item.RG</td>
+                        <td>@item.CPF</td>
+                        <td>@item.Endereco</td>
+                        <td>@item.Numero</td>
+                        <td>@item.Telefone</td>
+                        <td>@item.Bairro</td>
+                        <td>@item.Cidade</td>
+                        @if (item.Ativo)
+                        {
+                            <td class="statusStyle">Ativo</td>
+                        }
+                        else
+                        {
+                            <td class="statusStyle">Inativo</td>
+                        }
+                        <td class="enabledDeletarAtivar">
+                            <a id="editarMatricula" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal(@item.Id)"><i class="material-icons" style="background-color:#f79f00">create</i></a>
+                            <a id="fecharMatricula" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar"
+                               onclick="DeletarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')"><i class="material-icons">delete_forever</i></a>
+                            <a id="ativarMatricula" href="#modalAtivar" onclick="AtivarModal(@item.Id, '@item.Nome', '@item.RG', '@item.CPF')" class="btn-floating btn-sm waves-effect waves-light green modal-trigger"><i class="material-icons" style="background-color:green">assignment_turned_in</i></a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
 
 @Html.Partial("_Editar")
+@Html.Partial("_Deletar")
+@Html.Partial("_Ativar")
 
-<div id="modalDeletar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 id="deletarModalCabecalho"></h4>
-        </div>
 
-        <div class="col s12 l12">
-            <div class="col s12 l4">
-                <p class="center">
-                    <strong style="font-weight:bold">Aluno</strong>
-                    <br />
-                    <label id="deletarModalNome">117979</label>
-                </p>
-            </div>
-            <div class="col s12 l4">
-                <p class="center">
-                    <strong style="font-weight:bold">RG</strong>
-                    <br />
-                    <label id="deletarModalRG"></label>
-                </p>
-            </div>
-            <div class="col s12 l4">
-                <p class="center">
-                    <strong style="font-weight:bold">CPF</strong>
-                    <br />
-                    <label id="deletarModalCPF"></label>
-                </p>
-            </div>
-        </div>
-
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat" style="background-color:inherit; border:inherit; color: black">Fechar</a>
-        <a class="waves-effect waves-light btn modal-trigger right btnCadastrar" onclick="Deletar()">Sim, deletar</a>
-    </div>
-</div>
 
 @section scripts{
     <script>
@@ -274,24 +115,35 @@
         let valorCidade;
         let valorEstado;
         let valorDataNascimento;
+        let valorEmail;
+        let valorTelefone2;
+        let valorTelefone3;
+        let valorContato;
+        let valorContato2;
+        let valorContato3;
+        let valorNomeResponsavel;
+        let valorDataNascimentoResponsavel;
+        let valorGerarNota;
+        let valorGrauParentesco;
+        let valorMenorDeIdade;
+
+
         $(document).ready(function () {
-            $('#tabelaAdicionar').DataTable();
-            $('#tabelaEditar').DataTable();
+            $('#tabelaAdicionar').dataTable();
+            $('#tabelaPrincipal').dataTable();
         });
 
+
+
         function mascaraCPF(i) {
-
             var v = i.value;
-
             if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
                 i.value = v.substring(0, v.length - 1);
                 return;
             }
-
             i.setAttribute("maxlength", "14");
             if (v.length == 3 || v.length == 7) i.value += ".";
             if (v.length == 11) i.value += "-";
-
         }
 
         function mascaraRG(i) {
@@ -305,6 +157,7 @@
             if (v.length == 2 || v.length == 6) i.value += ".";
             if (v.length == 10) i.value += "-";
         }
+
         function mascaraCEP(i) {
             var v = i.value;
             if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
@@ -314,6 +167,7 @@
             i.setAttribute("maxlength", "9");
             if (v.length == 5) i.value += "-";
         }
+
         function PesquisaCEP() {
         let cep = document.getElementById('cep').value;
             $(function () {
@@ -331,6 +185,25 @@
                 })
             });
         }
+
+        function PesquisaCEPEditar() {
+        let cep = document.getElementById('cepEditar').value;
+            $(function () {
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: "@Url.Action("BuscaCep", "Matricula")",
+                    data: { cep: cep },
+                    success: function (dados) {
+                    document.getElementById('bairroEditar').value = dados.Bairro;
+                        document.getElementById('enderecoEditar').value = dados.Endereco ;
+                        document.getElementById('cidadeEditar').value = dados.Cidade ;
+                        document.getElementById('estadoEditar').value = dados.Estado ;
+                    }
+                })
+            });
+        }
+
         function Adicionar() {
             let array = [];
             try {
@@ -346,7 +219,7 @@
                 }
             }
             catch (e) {
-                alert(e);
+                //alert(e);
             }
                     var aluno = {
                         Nome: document.getElementById("nome").value,
@@ -354,13 +227,24 @@
                         RG: document.getElementById("rg").value,
                         CPF: document.getElementById("cpf").value,
                         Telefone: document.getElementById("telefone").value,
+                        Telefone2: document.getElementById("telefone2").value,
+                        Telefone3: document.getElementById("telefone3").value,
+                        DescTelefone: document.getElementById("contato").value,
+                        DescTelefone2: document.getElementById("contato2").value,
+                        DescTelefone3: document.getElementById("contato3").value,
                         Endereco: document.getElementById("endereco").value,
                         Numero: document.getElementById("numero").value,
                         CEP: document.getElementById("cep").value,
                         Bairro: document.getElementById("bairro").value,
                         Cidade: document.getElementById("cidade").value,
                         Estado: document.getElementById("estado").value,
-                        Array: array
+                        Email: document.getElementById("email").value,
+                        Array: array,
+                        NomeReponsavel: document.getElementById("resposavel").value,
+                        Parentesco: document.getElementById("parentesco").value,
+                        DataNascimentoResponsavel: document.getElementById("Nascimentoparentesco").value,
+                        MenorIdade: document.getElementById('menorDeIdade').checked == true ? 1 : 0,
+                        GerarNota: document.getElementById('gerarNota').checked == true ? 1 : 0
                     };
                  $.ajax({
                      dataType: "json",
@@ -373,6 +257,7 @@
                                  M.toast({ html: dados, classes: 'rounded orange' });
                                  break;
                              case true:
+                                 fazPDF();
                                  M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
@@ -382,6 +267,7 @@
                 }
             });
         }
+
         function Deletar() {
             var entity = {
                 Id: valorId
@@ -397,22 +283,59 @@
                             M.toast({ html: dados, classes: 'rounded orange' });
                             break;
                             case true:
-                            M.toast({ html: 'Deletado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                            M.toast({ html: 'Inativado com sucesso!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                             break;
                             default:
                         }
                     }
             });
         }
-            function DeletarModal(id, nome, rg, cpf) {
+
+
+        function Ativar() {
+            var entity = {
+                Id: valorId
+        };
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: "@Url.Action("Ativar", "Matricula")",
+                    data: { entity: entity},
+                    success: function (dados) {
+                        switch (dados) {
+                            case "Preenchimento obrigatório":
+                            M.toast({ html: dados, classes: 'rounded orange' });
+                                break;
+                            case "Erro ao ativar aluno":
+                            M.toast({ html: dados, classes: 'rounded red' });
+                            break;
+                            case true:
+                            M.toast({ html: 'Ativado com sucesso!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
+                            break;
+                            default:
+                        }
+                    }
+            });
+        }
+
+        function DeletarModal(id, nome, rg, cpf) {
                 valorId = id;
                 document.getElementById('deletarModalRG').innerHTML = rg;
                 document.getElementById('deletarModalNome').innerHTML = nome;
                 document.getElementById('deletarModalCPF').innerHTML = cpf;
-                document.getElementById('deletarModalCabecalho').innerText = 'Tem certeza que deseja deletar o aluno ' + nome + '?';
+                document.getElementById('deletarModalCabecalho').innerText = 'Tem certeza que deseja desativar o aluno ' + nome + '?';
         }
 
-           function EditarModal(id) {
+
+        function AtivarModal(id, nome, rg, cpf) {
+                valorId = id;
+                document.getElementById('ativarModalRG').innerHTML = rg;
+                document.getElementById('ativarModalNome').innerHTML = nome;
+                document.getElementById('ativarModalCPF').innerHTML = cpf;
+                document.getElementById('ativarModalCabecalho').innerText = 'Tem certeza que deseja ativar o aluno ' + nome + '?';
+        }
+
+        function EditarModal(id) {
             $.ajax({
                      dataType: "json",
                      type: "POST",
@@ -421,16 +344,26 @@
                 success: function (result) {
                     document.getElementById('tituloAlunoEditar').innerText = 'Editar Aluno ' + result.DadosMatriculaTurma.Nome;
                     document.getElementById('nomeEditar').value = result.DadosMatriculaTurma.Nome;
-                    document.getElementById('datadenascimentoEditar').value = result.DadosMatriculaTurma.DataNascimento;
+                    document.getElementById('resposavelEditar').value = result.DadosMatriculaTurma.NomeResponsavel;
+                    document.getElementById('parentescoEditar').value = result.DadosMatriculaTurma.Parentesco;
+                    document.getElementById('datadenascimentoEditar').value = result.DadosMatriculaTurma.DataNascimento.substring(0, 10);
+                    document.getElementById('NascimentoparentescoEditar').value = result.DadosMatriculaTurma.DataNascimentoResponsavel.substring(0, 10);
+                    document.getElementById('menorDeIdadeEditar').checked = result.DadosMatriculaTurma.MenorIdade == 0 || result.DadosMatriculaTurma.MenorIdade == null  ? false : true;
                     document.getElementById('cpfEditar').value = result.DadosMatriculaTurma.CPF;
                     document.getElementById('rgEditar').value = result.DadosMatriculaTurma.RG;
                     document.getElementById('telefoneEditar').value = result.DadosMatriculaTurma.Telefone;
+                    document.getElementById('telefone2Editar').value = result.DadosMatriculaTurma.Telefone2;
+                    document.getElementById('telefone3Editar').value = result.DadosMatriculaTurma.Telefone3;
                     document.getElementById('cepEditar').value = result.DadosMatriculaTurma.CEP;
+                    document.getElementById('contatoEditar').value = result.DadosMatriculaTurma.DescTelefone;
+                    document.getElementById('contato2Editar').value = result.DadosMatriculaTurma.DescTelefone2;
+                    document.getElementById('contato3Editar').value = result.DadosMatriculaTurma.DescTelefone3;
                     document.getElementById('enderecoEditar').value = result.DadosMatriculaTurma.Endereco;
                     document.getElementById('numeroEditar').value = result.DadosMatriculaTurma.Numero;
                     document.getElementById('bairroEditar').value = result.DadosMatriculaTurma.Bairro;
                     document.getElementById('cidadeEditar').value = result.DadosMatriculaTurma.Cidade;
                     document.getElementById('estadoEditar').value = result.DadosMatriculaTurma.Estado;
+                    document.getElementById('emailEditar').value = result.DadosMatriculaTurma.Email;
 
 
                     valorId = id;
@@ -445,24 +378,35 @@
                     valorBairro = result.DadosMatriculaTurma.Bairro;
                     valorCidade = result.DadosMatriculaTurma.Cidade;
                     valorEstado = result.DadosMatriculaTurma.Estado;
+                    valorEmail = result.DadosMatriculaTurma.Email;
+                    valorTelefone2 = result.DadosMatriculaTurma.Telefone2;
+                    valorTelefone3 = result.DadosMatriculaTurma.Telefone3;
+                    valorContato = result.DadosMatriculaTurma.DescTelefone;
+                    valorContato2 = result.DadosMatriculaTurma.DescTelefone2;
+                    valorContato3 = result.DadosMatriculaTurma.DescTelefone3;
+                    valorNomeResponsavel = result.DadosMatriculaTurma.NomeResponsavel;
+                    valorDataNascimentoResponsavel = result.DadosMatriculaTurma.DataNascimentoResponsavel;
+                    valorGrauParentesco = result.DadosMatriculaTurma.Parentesco;
+                    valorMenorDeIdade = result.DadosMatriculaTurma.MenorIdade == 0 || result.DadosMatriculaTurma.MenorIdade == null ? 0 : 1;
 
 
                 }
             });
-
-
                $.ajax({
                    type: "POST",
                    url: "@Url.Action("Tabela", "Matricula")",
                    data: { id: id },
                    success: function (data) {
                        //Coloque aqui o local onde a View deverá ocupar
+                       $("#Grid tr").remove();
                        $(data).each(function () {
-                           $("#Grid").append("<tr><td class='left'>" + this.Descricao + "</td><td>" + this.Tipo + "</td><td>" + this.Colaborador + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
+                           if (this.Ativo === true) {
+                               $("#Grid").append("<tr><td class='left'><label><input type='checkbox'  id='" + this.Id + "' checked='checked'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Nome + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
+                           } else {
+                               $("#Grid").append("<tr><td class='left'><label><input type='checkbox' id='" + this.Id + "'/><span>" + this.Descricao + "</span></label></td><td>" + this.Tipo + "</td><td>" + this.Nome + "</td> <td>" + this.DiaDaSemana + "</td><td>" + this.HorarioInicial + "</td> <td>" + this.HorarioFinal + "</td>  </tr>");
+                           }
                         });
                    },
-                   
-
                    error: function (ex) {
                        alert("Erro: " + ex.status);
                    }
@@ -484,7 +428,7 @@
                 }
             }
             catch (e) {
-                alert(e);
+                //alert(e);
             }
             var aluno = {
                Id : valorId,
@@ -498,22 +442,42 @@
                 Telefone: valorTelefone,
                Bairro: valorBairro,
                 Cidade: valorCidade,
-                Estado: valorEstado
+                Estado: valorEstado,
+                Email: valorEmail,
+                Telefone2: valorTelefone2,
+                Telefone3:    valorTelefone3,
+                DescTelefone:    valorContato,
+                DescTelefone2:   valorContato2,
+                DescTelefone3:    valorContato3,
+                NomeReponsavel:    valorNomeResponsavel,
+                DataNascimentoResponsavel: valorDataNascimentoResponsavel,
+                Parentesco:    valorGrauParentesco,
+                MenorIdade:  valorMenorDeIdade
             }
             var alunoEditar = {
                 Id: valorId,
-                Nome: valorNome,
-                DataNascimento:valorDataNascimento,
-                RG: valorRG,
-                CPF: valorCPF,
-                Endereco: valorEndereco,
-                Numero: valorNumero,
-                CEP: valorCep,
-                Telefone: valorTelefone,
-                Bairro: valorBairro,
-                Cidade: valorCidade,
-                Estado: valorEstado,
-                Array: arrayEditar
+                Nome: document.getElementById('nomeEditar').value,
+                DataNascimento: document.getElementById('datadenascimentoEditar').value,
+                RG: document.getElementById('rgEditar').value,
+                CPF: document.getElementById('cpfEditar').value,
+                Endereco: document.getElementById('enderecoEditar').value,
+                Numero: document.getElementById('numeroEditar').value,
+                CEP: document.getElementById('cepEditar').value,
+                Telefone: document.getElementById('telefoneEditar').value,
+                Bairro: document.getElementById('bairroEditar').value,
+                Cidade: document.getElementById('cidadeEditar').value,
+                Estado: document.getElementById('estadoEditar').value,
+                Email: document.getElementById('emailEditar').value,
+                Array: arrayEditar,
+                Telefone2: document.getElementById('telefone2Editar').value,
+                Telefone3: document.getElementById('telefone3Editar').value,
+                DescTelefone: document.getElementById('contatoEditar').value,
+                DescTelefone2: document.getElementById('contato2Editar').value,
+                DescTelefone3: document.getElementById('contato3Editar').value,
+                NomeReponsavel: document.getElementById('resposavelEditar').value,
+                DataNascimentoResponsavel: document.getElementById('NascimentoparentescoEditar').value,
+                Parentesco: document.getElementById('parentescoEditar').value,
+                MenorIdade: document.getElementById('menorDeIdadeEditar').checked == true ? 1 : 0
             }
             $.ajax({
                      dataType: "json",
@@ -535,5 +499,29 @@
                 }
             });
         }
+
+        function ativarEDesativar() {
+            for (i = 0; i < document.getElementsByClassName('statusStyle').length; i++) {
+                var status = document.getElementsByClassName('statusStyle')[i].innerText;
+
+                switch (status) {
+                    case 'Ativo':
+                        document.getElementsByClassName('enabledDeletarAtivar')[i].children[2].style.display = "none"
+                        break;
+                    case 'Inativo':
+                        document.getElementsByClassName('enabledDeletarAtivar')[i].children[1].style.display = "none"
+                        break;
+                }
+
+            }
+        }
+
+        $(document).ready(function () {
+            ativarEDesativar();
+            var buttons = document.getElementsByClassName("paginate_button page-item");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", ativarEDesativar); 
+            }
+        });
     </script>
 }

@@ -31,7 +31,7 @@ namespace Web.BD.Repository
 
         public bool Atualizar(Usuario entity)
         {
-            string query = @"UPDATE Usuarios SET Nome = @Nome, Perfil = @Perfil, Senha = PWDENCRYPT(@Senha), IdColaborador = @IdColab  FROM Usuarios WHERE Id = @Id";
+            string query = @"UPDATE Usuarios SET Nome = @Nome, Perfil = @Perfil, Senha = PWDENCRYPT(@Senha) FROM Usuarios WHERE Id = @Id";
             using (var con = new SqlConnection(stringConexao))
             {
                 con.Open();
@@ -40,7 +40,7 @@ namespace Web.BD.Repository
                 cmd.Parameters.AddWithValue("@Perfil", entity.PerfilUsuario);
                 cmd.Parameters.AddWithValue("@Senha", entity.Senha);
                 cmd.Parameters.AddWithValue("@Id", entity.Id);
-                cmd.Parameters.AddWithValue("@IdColab", entity.IdColaborador);
+                //cmd.Parameters.AddWithValue("@IdColab", entity.IdColaborador);
                 return Convert.ToInt32(cmd.ExecuteNonQuery()) > 0 ? true : false;
             }
         }
