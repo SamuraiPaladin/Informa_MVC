@@ -171,7 +171,7 @@
                     <td>@item.Bairro</td>
                     <td>@item.Cidade</td>
                     <td>@Html.DisplayFor(modelItem => item.Funcao.TipoFuncao)</td>
-                    <td>
+                    <td style="display: inline-flex">
                         <a id="editarColaborador" class="btn-floating btn-sm waves-effect waves-light yellow modal-trigger" href="#modalEditar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
                                                                                                                                                       'Editar', '@item.Funcao.TipoFuncao', '@item.RG','@item.CPF','@item.Endereco','@item.Numero','@item.CEP','@item.Telefone','@item.Bairro','@item.Cidade','@item.Estado','@item.DataNascimento.ToString("dd/MM/yyyy")','@item.Email')"><i class="material-icons" style="background-color:#f79f00">create</i></a>
                         <a id="deletarColaborador" class="btn-floating btn-sm waves-effect waves-light red modal-trigger" href="#modalDeletar" onclick="EditarModal('@item.Id', '@item.Nome', '@item.Funcao.Id',
