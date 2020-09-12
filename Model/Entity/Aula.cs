@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-
+﻿
 namespace Model.Entity
 {
     public class Aula
@@ -21,7 +17,7 @@ namespace Model.Entity
         public string Email { get; set; }
         public string CPF { get; set; }
         public string DataNascimento { get; set; }
-        public DateTime Data { get; set; }
+        public System.DateTime Data { get; set; }
         public string TipoModalidade { get; set; }
         public string Telefone { get; set; }
     }

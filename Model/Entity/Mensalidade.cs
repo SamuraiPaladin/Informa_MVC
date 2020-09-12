@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace Model.Entity
+﻿namespace Model.Entity
 {
     public class Mensalidade
     {
         public int Id { get; set; }
-        public List<Matricula> ListaMatricula{ get; set; }
+        public System.Collections.Generic.List<Matricula> ListaMatricula{ get; set; }
         public Matricula Matricula { get; set; }
         public int MatriculaId { get; set; }
-        public DateTime DataDeVencimento { get; set; }
-        public Array StatusDasMensalidades { get; set; }
+        public System.DateTime DataDeVencimento { get; set; }
+        public System.Array StatusDasMensalidades { get; set; }
         public string StatusDaMensalidade { get; set; }
-        public Array FormasDePagamentos { get; set; }
+        public System.Array FormasDePagamentos { get; set; }
         public string FormaDePagamento { get; set; }
-        public List<Mensalidade> ListaMensalidade { get; set; }
+        public System.Collections.Generic.List<Mensalidade> ListaMensalidade { get; set; }
         public int Dia { get; set; }
         public int QuantidadeDeMeses { get; set; }
         public decimal Valor { get; set; }
@@ -25,9 +20,9 @@ namespace Model.Entity
         public decimal Juros { get; set; }
         public int DiasVencidos { get; set; }
         public string CPF { get; set; }
-        public List<EntradasPorPagamento> EntradasPorPagamento { get; set; }
+        public System.Collections.Generic.List<EntradasPorPagamento> EntradasPorPagamento { get; set; }
 
-        public DateTime DataInicial { get; set; }
-        public DateTime DataFinal { get; set; }
+        public System.DateTime DataInicial { get; set; }
+        public System.DateTime DataFinal { get; set; }
     }
 }

@@ -258,6 +258,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Entity\Aula.cs" />
+    <Compile Include="Model\Entity\Colaborador.cs" />
+    <Compile Include="Model\Entity\ConsultaPagamento.cs" />
+    <Compile Include="Model\Entity\EntradasPorPagamento.cs" />
+    <Compile Include="Model\Entity\Funcao.cs" />
+    <Compile Include="Model\Entity\Matricula.cs" />
+    <Compile Include="Model\Entity\MatriculaTurma.cs" />
+    <Compile Include="Model\Entity\Mensalidade.cs" />
+    <Compile Include="Model\Entity\Modalidade.cs" />
+    <Compile Include="Model\Entity\Principal.cs" />
+    <Compile Include="Model\Entity\Turma.cs" />
+    <Compile Include="Model\Entity\Unidade.cs" />
+    <Compile Include="Model\Entity\Usuario.cs" />
+    <Compile Include="Model\Enums\EnumClients.cs" />
+    <Compile Include="Model\Enums\EnumDays.cs" />
+    <Compile Include="Model\Enums\EnumPaymentForms.cs" />
+    <Compile Include="Model\Enums\EnumPaymentStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -881,12 +898,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{bbfcbc88-4eb5-4847-9e98-2505ce714264}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

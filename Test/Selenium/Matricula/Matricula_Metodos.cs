@@ -11,8 +11,6 @@ namespace Test.Selenium.Matricula
 {
     class Matricula_Metodos
     {
-		public static IWebDriver driver;
-
 		public static Boolean AguardaModalCadastro()
 		{
 			int aux = 0;

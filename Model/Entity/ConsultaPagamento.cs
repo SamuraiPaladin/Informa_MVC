@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.Entity
+﻿namespace Model.Entity
 {
     public class ConsultaPagamento
     {
-        public DateTime DataInicial { get; set; }
-        public DateTime DataFinal { get; set; }
+        public System.DateTime DataInicial { get; set; }
+        public System.DateTime DataFinal { get; set; }
         public string Dias { get; set; }
         public decimal Credito { get; set; }
         public decimal Debito { get; set; }

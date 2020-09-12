@@ -1,4 +1,4 @@
-﻿using Model.Entity;
+﻿using Web.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,8 +6,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Web.BD.Interface;
-using Model.Entity;
-
 namespace Web.BD.Repository
 {
     public class MensalidadeDAO : IDAO<Mensalidade>

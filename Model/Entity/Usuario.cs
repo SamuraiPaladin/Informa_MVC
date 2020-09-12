@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Model.Entity
+﻿namespace Model.Entity
 {
     public class Usuario
     {
@@ -10,7 +8,7 @@ namespace Model.Entity
         public string PerfilUsuario { get; set; }
         public int IdColaborador { get; set; }
         public string NomeColaborador { get; set; }
-        public IList<Colaborador> ListaDeColaboradores { get; set; }
-        public IList<Usuario> ListaDeUsuarios { get; set; }
+        public System.Collections.Generic.IList<Colaborador> ListaDeColaboradores { get; set; }
+        public System.Collections.Generic.IList<Usuario> ListaDeUsuarios { get; set; }
     }
 }

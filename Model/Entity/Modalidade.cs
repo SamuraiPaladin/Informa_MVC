@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-namespace Model.Entity
+﻿namespace Model.Entity
 {
     public class Modalidade
     {

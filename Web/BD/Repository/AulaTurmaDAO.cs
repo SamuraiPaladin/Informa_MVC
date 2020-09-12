@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using Model.Entity;
+using Web.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

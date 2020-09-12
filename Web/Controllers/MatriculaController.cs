@@ -1,4 +1,4 @@
-﻿using Model.Entity;
+﻿using Web.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +69,7 @@ namespace Web.Controllers
             {
                 return Json(dAO.AtivarMatricula(entity));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json("Erro ao ativar aluno");
             }

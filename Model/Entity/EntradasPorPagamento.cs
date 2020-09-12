@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.Entity
+﻿namespace Model.Entity
 {
     public class EntradasPorPagamento
     {

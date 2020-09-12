@@ -1,4 +1,4 @@
-﻿using Model.Entity;
+﻿using Web.Model.Entity;
 using Model.Enums;
 using System;
 using System.Linq;
