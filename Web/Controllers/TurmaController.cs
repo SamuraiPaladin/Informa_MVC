@@ -97,7 +97,7 @@ namespace Web.Controllers
             {
                 return Json("Preenchimento obrigatório");
             }
-            else if (Turma.HorarioInicial == Turma.HorarioFinal)
+            else if (TurmaEditar.HorarioInicial == TurmaEditar.HorarioFinal)
             {
                 return Json("Horário inicial não pode ser igual ao final.");
             }
@@ -108,11 +108,11 @@ namespace Web.Controllers
             }
             else
             {
-                if (VerificaHorario(Turma.HorarioInicial, Turma.HorarioFinal))
+                if (VerificaHorario(TurmaEditar.HorarioInicial, TurmaEditar.HorarioFinal))
                     return Json("Horário inicial não pode ser maior que o final.");
                 else
                     if (VerificaSeExisteTurmaNesseHorarios(TurmaEditar))
-                    return Json($"Professor já tem aula nesse horário. Por favor selecione um horário fora do período {Turma.HorarioInicial} e {Turma.HorarioFinal}");
+                    return Json($"Professor já tem aula nesse horário. Por favor selecione um horário fora do período {TurmaEditar.HorarioInicial} e {TurmaEditar.HorarioFinal}");
                 else
                     return Json(dAO.Atualizar(Turma, TurmaEditar));
 
