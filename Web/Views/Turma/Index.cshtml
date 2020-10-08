@@ -558,19 +558,25 @@
                              case "Preenchimento obrigatório":
                                  M.toast({ html: dados, classes: 'rounded orange' });
                                  break;
-                              case "Horário inicial não pode ser maior que o final.":
+                             case "Horário inicial não pode ser maior que o final.":
                                  M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
                               case "Horario inválido":
                                  M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
                               case "Professor já tem aula nesse horário.":
                                  M.toast({ html: dados, classes: 'rounded orange' });
-                             break;
+                                 break;
+                             case "Horário inicial não pode ser igual ao final.":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
                              case true:
                                  M.toast({ html: 'Editado com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
                                  M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
                              default:
+                                 M.toast({ html: dados, classes: 'rounded orange' });
                          }
                 }
             });
@@ -604,13 +610,17 @@
                                  break;
                              case "Professor já tem aula nesse horário.":
                                  M.toast({ html: dados, classes: 'rounded orange' });
-                             break;
+                                 break;
+                             case "Horário inicial não pode ser igual ao final.":
+                                 M.toast({ html: dados, classes: 'rounded orange' });
+                                 break;
                              case true:
                                  M.toast({ html: 'Salvo com sucesso!!!', classes: 'rounded green', completeCallback: function(){window.location.reload()} });
                                  break;
                              case false:
                                  M.toast({ html: 'Já existe essas informações no sistema.', classes: 'rounded red' });
                              default:
+                                 M.toast({ html: dados, classes: 'rounded orange' });
                          }
                 }
             });

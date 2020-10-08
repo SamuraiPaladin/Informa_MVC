@@ -48,6 +48,10 @@ namespace Web.Controllers
         {
             if (VerificaSeTemCampoVazioOuNulo(Turma))
                 return Json("Preenchimento obrigatório");
+            else if (Turma.HorarioInicial == Turma.HorarioFinal)
+            {
+                return Json("Horário inicial não pode ser igual ao final.");
+            }
             else
                 if (dAO.VerificarSeJaExiste(Turma))
             {
@@ -59,7 +63,7 @@ namespace Web.Controllers
                     return Json("Horário inicial não pode ser maior que o final.");
                 else if (VerificaSeExisteTurmaNesseHorarios(Turma))
                 {
-                    return Json($"Professor já tem aula nesse horário.");
+                    return Json($"Professor já tem aula nesse horário. Por favor selecione um horário fora do período de {Turma.HorarioInicial} e {Turma.HorarioFinal}");
                 }
                 else
                 {
@@ -90,7 +94,13 @@ namespace Web.Controllers
         public JsonResult Editar(Turma Turma, Turma TurmaEditar)
         {
             if (VerificaSeTemCampoVazioOuNulo(TurmaEditar))
+            {
                 return Json("Preenchimento obrigatório");
+            }
+            else if (Turma.HorarioInicial == Turma.HorarioFinal)
+            {
+                return Json("Horário inicial não pode ser igual ao final.");
+            }
             else
                if (dAO.VerificarSeJaExiste(TurmaEditar))
             {
@@ -102,9 +112,9 @@ namespace Web.Controllers
                     return Json("Horário inicial não pode ser maior que o final.");
                 else
                     if (VerificaSeExisteTurmaNesseHorarios(TurmaEditar))
-                        return Json($"Professor já tem aula nesse horário.");
-                    else
-                        return Json(dAO.Atualizar(Turma, TurmaEditar)); 
+                    return Json($"Professor já tem aula nesse horário. Por favor selecione um horário fora do período {Turma.HorarioInicial} e {Turma.HorarioFinal}");
+                else
+                    return Json(dAO.Atualizar(Turma, TurmaEditar));
 
             }
         }
